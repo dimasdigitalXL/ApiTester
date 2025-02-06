@@ -1,0 +1,23 @@
+{
+  "endpoints": [
+    {
+      "name": "Get SalesOrders",
+      "url": "https://636a1d639f14e.xentral.biz/api/salesOrders",
+      "method": "GET",
+      "headers": {
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+        "Authorization": "Bearer 1159|isvdZaAzpS0jDoJKNkBQdiFIQa3i6MUrdtVROn29"
+      },
+      "query": {
+        "filter[0][key]": "status",
+        "filter[0][op]": "equals",
+        "filter[0][value]": "released",
+        "page[number]": 1,
+        "page[size]": 50
+      },
+      "expectedStructure": "expected/salesOrder.json"
+    }
+  ],
+  "schedule": "0 6 * * *"
+}

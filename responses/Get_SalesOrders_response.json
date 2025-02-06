@@ -1,0 +1,4261 @@
+{
+  "data": [
+    {
+      "id": "57",
+      "documentNumber": "200030",
+      "externalOrderNumber": "20029",
+      "customerOrderNumber": "",
+      "transactionNumber": "",
+      "externalOrderId": "67",
+      "date": "2023-02-08",
+      "netSales": 10,
+      "total": 11.9,
+      "desiredDeliveryDate": null,
+      "desiredDeliveryDateAsCalendarWeek": false,
+      "reservationDate": null,
+      "editor": "Kassen Mitarbeiter",
+      "sales": {
+        "id": null,
+        "name": null
+      },
+      "status": "released",
+      "customer": {
+        "id": "8",
+        "number": "10004"
+      },
+      "comment": "Hier kommt der Text rein.",
+      "project": {
+        "id": "6"
+      },
+      "bodyOutroduction": "",
+      "language": {
+        "iso2": "deutsch"
+      },
+      "financials": {
+        "paymentMethod": {
+          "id": "0"
+        },
+        "currency": "EUR",
+        "billingAddress": {
+          "name": "Christian Hofmann",
+          "department": "",
+          "subDepartment": "",
+          "street": "Werner-von-Siemens-Straße 6",
+          "zipCode": "86159",
+          "city": "Augsburg",
+          "state": "",
+          "country": "DE",
+          "type": "herr",
+          "title": "",
+          "contactPerson": "",
+          "addressSupplement": "",
+          "fax": "",
+          "email": "christian@digitalxl.de",
+          "salutation": "",
+          "gln": ""
+        },
+        "paymentTerms": {
+          "paymentTargetDiscount": 0,
+          "paymentTargetDays": 14,
+          "paymentTargetDiscountDays": 10
+        }
+      },
+      "delivery": {
+        "email": "",
+        "conditions": "",
+        "autoShipping": true,
+        "fastLane": false,
+        "shippingAddress": {
+          "name": "Christian Hofmann",
+          "department": "",
+          "subDepartment": "",
+          "street": "Werner-von-Siemens-Straße 6",
+          "zipCode": "86159",
+          "city": "Augsburg",
+          "state": "",
+          "country": "DE",
+          "gln": ""
+        }
+      },
+      "log": {
+        "createdAt": "-0001-11-30T00:00:00+00:53",
+        "createdBy": {
+          "id": "5",
+          "name": "Kassen Mitarbeiter"
+        }
+      }
+    },
+    {
+      "id": "74",
+      "documentNumber": "200042",
+      "externalOrderNumber": "201895",
+      "customerOrderNumber": null,
+      "transactionNumber": "3NY17903TV3137334",
+      "externalOrderId": "",
+      "date": "2023-02-20",
+      "netSales": 185.72,
+      "total": 221.01,
+      "desiredDeliveryDate": null,
+      "desiredDeliveryDateAsCalendarWeek": false,
+      "reservationDate": null,
+      "editor": "Administrator",
+      "sales": {
+        "id": 1,
+        "name": "Administrator"
+      },
+      "status": "released",
+      "customer": {
+        "id": "15",
+        "number": "10007"
+      },
+      "comment": "",
+      "project": {
+        "id": "1"
+      },
+      "bodyOutroduction": "",
+      "language": {
+        "iso2": ""
+      },
+      "financials": {
+        "paymentMethod": {
+          "id": "0"
+        },
+        "currency": "EUR",
+        "billingAddress": {
+          "name": "Lawn Care",
+          "department": "",
+          "subDepartment": "",
+          "street": "Anemonenweg 3",
+          "zipCode": "14669",
+          "city": "Ketzin",
+          "state": "",
+          "country": "DE",
+          "type": "",
+          "title": "",
+          "contactPerson": "Patrick Raschle",
+          "addressSupplement": "",
+          "fax": "",
+          "email": "lawncare.swiss@gmail.com",
+          "salutation": "",
+          "gln": ""
+        },
+        "paymentTerms": {
+          "paymentTargetDiscount": 0,
+          "paymentTargetDays": 14,
+          "paymentTargetDiscountDays": 10
+        }
+      },
+      "delivery": {
+        "email": "",
+        "conditions": "",
+        "autoShipping": true,
+        "fastLane": false,
+        "shippingAddress": {
+          "name": "Lawn Care",
+          "department": "",
+          "subDepartment": "",
+          "street": "Anemonenweg 3",
+          "zipCode": "14669",
+          "city": "Ketzin",
+          "state": "",
+          "country": "DE",
+          "gln": ""
+        }
+      },
+      "log": {
+        "createdAt": "2023-02-20T17:12:05+01:00",
+        "createdBy": {
+          "id": "1",
+          "name": "Administrator"
+        }
+      }
+    },
+    {
+      "id": "91",
+      "documentNumber": "1",
+      "externalOrderNumber": "20274",
+      "customerOrderNumber": "20274",
+      "transactionNumber": "",
+      "externalOrderId": "",
+      "date": "2022-11-02",
+      "netSales": 15,
+      "total": 17.85,
+      "desiredDeliveryDate": null,
+      "desiredDeliveryDateAsCalendarWeek": false,
+      "reservationDate": null,
+      "editor": "Administrator",
+      "sales": {
+        "id": 1,
+        "name": "Administrator"
+      },
+      "status": "released",
+      "customer": {
+        "id": "18",
+        "number": "19329"
+      },
+      "comment": "",
+      "project": {
+        "id": "4"
+      },
+      "bodyOutroduction": "",
+      "language": {
+        "iso2": "deutsch"
+      },
+      "financials": {
+        "paymentMethod": {
+          "id": "13"
+        },
+        "currency": "EUR",
+        "billingAddress": {
+          "name": "ProDentika GmbH",
+          "department": "",
+          "subDepartment": "",
+          "street": "Nimrodstraße 10 BAU 4",
+          "zipCode": "90441",
+          "city": "Nürnberg",
+          "state": "",
+          "country": "DE",
+          "type": "firma",
+          "title": "",
+          "contactPerson": "Eleni Poimenaki ProDentika GmbH",
+          "addressSupplement": "",
+          "fax": "",
+          "email": "",
+          "salutation": "",
+          "gln": ""
+        },
+        "paymentTerms": {
+          "paymentTargetDiscount": 0,
+          "paymentTargetDays": 14,
+          "paymentTargetDiscountDays": 10
+        }
+      },
+      "delivery": {
+        "email": "",
+        "conditions": "",
+        "autoShipping": true,
+        "fastLane": false,
+        "shippingAddress": {
+          "name": "ProDentika GmbH",
+          "department": "",
+          "subDepartment": "",
+          "street": "Nimrodstraße 10 BAU 4",
+          "zipCode": "90441",
+          "city": "Nürnberg",
+          "state": "",
+          "country": "DE",
+          "gln": ""
+        }
+      },
+      "log": {
+        "createdAt": "2023-02-28T12:09:04+01:00",
+        "createdBy": {
+          "id": "1",
+          "name": "Administrator"
+        }
+      }
+    },
+    {
+      "id": "92",
+      "documentNumber": "2",
+      "externalOrderNumber": "20274",
+      "customerOrderNumber": "20274",
+      "transactionNumber": "",
+      "externalOrderId": "",
+      "date": "2022-11-02",
+      "netSales": 10,
+      "total": 11.9,
+      "desiredDeliveryDate": null,
+      "desiredDeliveryDateAsCalendarWeek": false,
+      "reservationDate": null,
+      "editor": "Administrator",
+      "sales": {
+        "id": 1,
+        "name": "Administrator"
+      },
+      "status": "released",
+      "customer": {
+        "id": "18",
+        "number": "19329"
+      },
+      "comment": "",
+      "project": {
+        "id": "4"
+      },
+      "bodyOutroduction": "",
+      "language": {
+        "iso2": "deutsch"
+      },
+      "financials": {
+        "paymentMethod": {
+          "id": "13"
+        },
+        "currency": "EUR",
+        "billingAddress": {
+          "name": "T4D",
+          "department": "",
+          "subDepartment": "",
+          "street": "Teststraße 3",
+          "zipCode": "86152",
+          "city": "Augsburg",
+          "state": "",
+          "country": "DE",
+          "type": "firma",
+          "title": "",
+          "contactPerson": "",
+          "addressSupplement": "",
+          "fax": "",
+          "email": "",
+          "salutation": "",
+          "gln": ""
+        },
+        "paymentTerms": {
+          "paymentTargetDiscount": 0,
+          "paymentTargetDays": 14,
+          "paymentTargetDiscountDays": 10
+        }
+      },
+      "delivery": {
+        "email": "",
+        "conditions": "",
+        "autoShipping": true,
+        "fastLane": false,
+        "shippingAddress": {
+          "name": "ProDentika GmbH",
+          "department": "",
+          "subDepartment": "",
+          "street": "Nimrodstraße 10 BAU 4",
+          "zipCode": "90441",
+          "city": "Nürnberg",
+          "state": "",
+          "country": "DE",
+          "gln": ""
+        }
+      },
+      "log": {
+        "createdAt": "2023-02-28T12:12:03+01:00",
+        "createdBy": {
+          "id": "1",
+          "name": "Administrator"
+        }
+      }
+    },
+    {
+      "id": "94",
+      "documentNumber": "200054",
+      "externalOrderNumber": "10011",
+      "customerOrderNumber": null,
+      "transactionNumber": "",
+      "externalOrderId": "867692e26482494082cbd71b1d71d41c",
+      "date": "2023-02-27",
+      "netSales": 27.97,
+      "total": 33.28,
+      "desiredDeliveryDate": null,
+      "desiredDeliveryDateAsCalendarWeek": false,
+      "reservationDate": null,
+      "editor": "Kassen Mitarbeiter",
+      "sales": {
+        "id": null,
+        "name": null
+      },
+      "status": "released",
+      "customer": {
+        "id": "8",
+        "number": "10004"
+      },
+      "comment": "",
+      "project": {
+        "id": "10"
+      },
+      "bodyOutroduction": "",
+      "language": {
+        "iso2": "deutsch"
+      },
+      "financials": {
+        "paymentMethod": {
+          "id": "0"
+        },
+        "currency": "EUR",
+        "billingAddress": {
+          "name": "Christian Hofmann",
+          "department": "",
+          "subDepartment": "",
+          "street": "Trentiner Ring 2",
+          "zipCode": "86356",
+          "city": "Neusäß",
+          "state": "BY",
+          "country": "DE",
+          "type": "herr",
+          "title": "",
+          "contactPerson": "",
+          "addressSupplement": "",
+          "fax": "",
+          "email": "christian@digitalxl.de",
+          "salutation": "",
+          "gln": ""
+        },
+        "paymentTerms": {
+          "paymentTargetDiscount": 0,
+          "paymentTargetDays": 14,
+          "paymentTargetDiscountDays": 10
+        }
+      },
+      "delivery": {
+        "email": "",
+        "conditions": "",
+        "autoShipping": true,
+        "fastLane": false,
+        "shippingAddress": {
+          "name": "Christian Hofmann",
+          "department": "",
+          "subDepartment": "",
+          "street": "Trentiner Ring 2",
+          "zipCode": "86356",
+          "city": "Neusäß",
+          "state": "BY",
+          "country": "DE",
+          "gln": ""
+        }
+      },
+      "log": {
+        "createdAt": "2023-02-28T15:59:27+01:00",
+        "createdBy": {
+          "id": "5",
+          "name": "Kassen Mitarbeiter"
+        }
+      }
+    },
+    {
+      "id": "105",
+      "documentNumber": "200062",
+      "externalOrderNumber": "",
+      "customerOrderNumber": null,
+      "transactionNumber": "",
+      "externalOrderId": "",
+      "date": "2023-03-03",
+      "netSales": 30,
+      "total": 35.7,
+      "desiredDeliveryDate": null,
+      "desiredDeliveryDateAsCalendarWeek": false,
+      "reservationDate": null,
+      "editor": "Administrator",
+      "sales": {
+        "id": 1,
+        "name": "Administrator"
+      },
+      "status": "released",
+      "customer": {
+        "id": "4",
+        "number": "100018"
+      },
+      "comment": "",
+      "project": {
+        "id": "8"
+      },
+      "bodyOutroduction": "",
+      "language": {
+        "iso2": "deutsch"
+      },
+      "financials": {
+        "paymentMethod": {
+          "id": "13"
+        },
+        "currency": "EUR",
+        "billingAddress": {
+          "name": "Karlo Kunde",
+          "department": "",
+          "subDepartment": "",
+          "street": "Beispielstrasse 1",
+          "zipCode": "81245",
+          "city": "München",
+          "state": "",
+          "country": "DE",
+          "type": "",
+          "title": "Dr.",
+          "contactPerson": "",
+          "addressSupplement": "Angelegt durch die API",
+          "fax": "089 111222334",
+          "email": "me@example.com",
+          "salutation": "",
+          "gln": ""
+        },
+        "paymentTerms": {
+          "paymentTargetDiscount": 0,
+          "paymentTargetDays": 14,
+          "paymentTargetDiscountDays": 10
+        }
+      },
+      "delivery": {
+        "email": "",
+        "conditions": "",
+        "autoShipping": true,
+        "fastLane": false,
+        "shippingAddress": {
+          "name": "Karlo Kunde",
+          "department": "",
+          "subDepartment": "",
+          "street": "Beispielstrasse 1",
+          "zipCode": "81245",
+          "city": "München",
+          "state": "",
+          "country": "DE",
+          "gln": ""
+        }
+      },
+      "log": {
+        "createdAt": "2023-03-03T15:14:40+01:00",
+        "createdBy": {
+          "id": "1",
+          "name": "Administrator"
+        }
+      }
+    },
+    {
+      "id": "109",
+      "documentNumber": "200065",
+      "externalOrderNumber": "",
+      "customerOrderNumber": "100018",
+      "transactionNumber": "",
+      "externalOrderId": "",
+      "date": "2023-03-06",
+      "netSales": 25,
+      "total": 29.75,
+      "desiredDeliveryDate": null,
+      "desiredDeliveryDateAsCalendarWeek": false,
+      "reservationDate": null,
+      "editor": "Marco",
+      "sales": {
+        "id": 1,
+        "name": "Administrator"
+      },
+      "status": "released",
+      "customer": {
+        "id": "4",
+        "number": "100018"
+      },
+      "comment": "",
+      "project": {
+        "id": "5"
+      },
+      "bodyOutroduction": "",
+      "language": {
+        "iso2": "deutsch"
+      },
+      "financials": {
+        "paymentMethod": {
+          "id": "13"
+        },
+        "currency": "EUR",
+        "billingAddress": {
+          "name": "Karlo Kunde",
+          "department": "",
+          "subDepartment": "",
+          "street": "Beispielstrasse 1",
+          "zipCode": "81245",
+          "city": "München",
+          "state": "",
+          "country": "DE",
+          "type": "",
+          "title": "Dr.",
+          "contactPerson": "",
+          "addressSupplement": "Angelegt durch die API",
+          "fax": "089 111222334",
+          "email": "me@example.com",
+          "salutation": "",
+          "gln": ""
+        },
+        "paymentTerms": {
+          "paymentTargetDiscount": 0,
+          "paymentTargetDays": 14,
+          "paymentTargetDiscountDays": 10
+        }
+      },
+      "delivery": {
+        "email": "",
+        "conditions": "",
+        "autoShipping": true,
+        "fastLane": true,
+        "shippingAddress": {
+          "name": "Karlo Kunde",
+          "department": "",
+          "subDepartment": "",
+          "street": "Beispielstrasse 1",
+          "zipCode": "81245",
+          "city": "München",
+          "state": "",
+          "country": "DE",
+          "gln": ""
+        }
+      },
+      "log": {
+        "createdAt": "-0001-11-30T00:00:00+00:53",
+        "createdBy": {
+          "id": "1",
+          "name": "Marco"
+        }
+      }
+    },
+    {
+      "id": "115",
+      "documentNumber": "200069-2",
+      "externalOrderNumber": "",
+      "customerOrderNumber": "",
+      "transactionNumber": "",
+      "externalOrderId": "",
+      "date": "2023-03-06",
+      "netSales": 0,
+      "total": 0,
+      "desiredDeliveryDate": null,
+      "desiredDeliveryDateAsCalendarWeek": false,
+      "reservationDate": null,
+      "editor": "Administrator",
+      "sales": {
+        "id": 1,
+        "name": "Administrator"
+      },
+      "status": "released",
+      "customer": {
+        "id": "4",
+        "number": "100018"
+      },
+      "comment": "",
+      "project": {
+        "id": "5"
+      },
+      "bodyOutroduction": "\r\nTeillieferung von Auftrag 200069\r\n",
+      "language": {
+        "iso2": "deutsch"
+      },
+      "financials": {
+        "paymentMethod": {
+          "id": "13"
+        },
+        "currency": "EUR",
+        "billingAddress": {
+          "name": "Karlo Kunde",
+          "department": "",
+          "subDepartment": "",
+          "street": "Beispielstrasse 1",
+          "zipCode": "81245",
+          "city": "München",
+          "state": "",
+          "country": "DE",
+          "type": "",
+          "title": "Dr.",
+          "contactPerson": "",
+          "addressSupplement": "Angelegt durch die API",
+          "fax": "089 111222334",
+          "email": "me@example.com",
+          "salutation": "",
+          "gln": ""
+        },
+        "paymentTerms": {
+          "paymentTargetDiscount": 0,
+          "paymentTargetDays": 14,
+          "paymentTargetDiscountDays": 10
+        }
+      },
+      "delivery": {
+        "email": "",
+        "conditions": "",
+        "autoShipping": true,
+        "fastLane": false,
+        "shippingAddress": {
+          "name": "Karlo Kunde",
+          "department": "",
+          "subDepartment": "",
+          "street": "Beispielstrasse 1",
+          "zipCode": "81245",
+          "city": "München",
+          "state": "",
+          "country": "DE",
+          "gln": ""
+        }
+      },
+      "log": {
+        "createdAt": "2023-03-06T08:35:50+01:00",
+        "createdBy": {
+          "id": "1",
+          "name": "Administrator"
+        }
+      }
+    },
+    {
+      "id": "125",
+      "documentNumber": "200075",
+      "externalOrderNumber": "",
+      "customerOrderNumber": "100018",
+      "transactionNumber": "",
+      "externalOrderId": "",
+      "date": "2025-01-30",
+      "netSales": 18.67,
+      "total": 22.22,
+      "desiredDeliveryDate": null,
+      "desiredDeliveryDateAsCalendarWeek": false,
+      "reservationDate": null,
+      "editor": "Marco",
+      "sales": {
+        "id": 1,
+        "name": "Administrator"
+      },
+      "status": "released",
+      "customer": {
+        "id": "4",
+        "number": "100018"
+      },
+      "comment": "",
+      "project": {
+        "id": "1"
+      },
+      "bodyOutroduction": "",
+      "language": {
+        "iso2": "deutsch"
+      },
+      "financials": {
+        "paymentMethod": {
+          "id": "13"
+        },
+        "currency": "EUR",
+        "billingAddress": {
+          "name": "Karlo Kunde",
+          "department": "",
+          "subDepartment": "",
+          "street": "Beispielstrasse 1",
+          "zipCode": "81245",
+          "city": "München",
+          "state": "",
+          "country": "DE",
+          "type": "",
+          "title": "Dr.",
+          "contactPerson": "",
+          "addressSupplement": "Angelegt durch die API",
+          "fax": "089 111222334",
+          "email": "me@example.com",
+          "salutation": "",
+          "gln": ""
+        },
+        "paymentTerms": {
+          "paymentTargetDiscount": 0,
+          "paymentTargetDays": 14,
+          "paymentTargetDiscountDays": 10
+        }
+      },
+      "delivery": {
+        "email": "",
+        "conditions": "",
+        "autoShipping": true,
+        "fastLane": false,
+        "shippingAddress": {
+          "name": "Karlo Kunde",
+          "department": "",
+          "subDepartment": "",
+          "street": "Beispielstrasse 1",
+          "zipCode": "81245",
+          "city": "München",
+          "state": "",
+          "country": "DE",
+          "gln": ""
+        }
+      },
+      "log": {
+        "createdAt": "2023-03-06T09:17:53+01:00",
+        "createdBy": {
+          "id": "1",
+          "name": "Marco"
+        }
+      }
+    },
+    {
+      "id": "142",
+      "documentNumber": "200081-2",
+      "externalOrderNumber": "",
+      "customerOrderNumber": "",
+      "transactionNumber": "",
+      "externalOrderId": "",
+      "date": "2023-03-06",
+      "netSales": 20,
+      "total": 24,
+      "desiredDeliveryDate": null,
+      "desiredDeliveryDateAsCalendarWeek": false,
+      "reservationDate": null,
+      "editor": "Administrator",
+      "sales": {
+        "id": 1,
+        "name": "Administrator"
+      },
+      "status": "released",
+      "customer": {
+        "id": "4",
+        "number": "100018"
+      },
+      "comment": "",
+      "project": {
+        "id": "11"
+      },
+      "bodyOutroduction": "\r\nTeillieferung von Auftrag 200081\r\n",
+      "language": {
+        "iso2": "deutsch"
+      },
+      "financials": {
+        "paymentMethod": {
+          "id": "13"
+        },
+        "currency": "EUR",
+        "billingAddress": {
+          "name": "Karlo Kunde",
+          "department": "",
+          "subDepartment": "",
+          "street": "Beispielstrasse 1",
+          "zipCode": "81245",
+          "city": "München",
+          "state": "",
+          "country": "DE",
+          "type": "",
+          "title": "Dr.",
+          "contactPerson": "",
+          "addressSupplement": "Angelegt durch die API",
+          "fax": "089 111222334",
+          "email": "me@example.com",
+          "salutation": "",
+          "gln": ""
+        },
+        "paymentTerms": {
+          "paymentTargetDiscount": 0,
+          "paymentTargetDays": 14,
+          "paymentTargetDiscountDays": 10
+        }
+      },
+      "delivery": {
+        "email": "",
+        "conditions": "",
+        "autoShipping": true,
+        "fastLane": false,
+        "shippingAddress": {
+          "name": "Karlo Kunde",
+          "department": "",
+          "subDepartment": "",
+          "street": "Beispielstrasse 1",
+          "zipCode": "81245",
+          "city": "München",
+          "state": "",
+          "country": "DE",
+          "gln": ""
+        }
+      },
+      "log": {
+        "createdAt": "2023-03-06T14:06:36+01:00",
+        "createdBy": {
+          "id": "1",
+          "name": "Administrator"
+        }
+      }
+    },
+    {
+      "id": "143",
+      "documentNumber": "200082",
+      "externalOrderNumber": "",
+      "customerOrderNumber": null,
+      "transactionNumber": "",
+      "externalOrderId": "",
+      "date": "2023-03-06",
+      "netSales": 45,
+      "total": 53.55,
+      "desiredDeliveryDate": null,
+      "desiredDeliveryDateAsCalendarWeek": false,
+      "reservationDate": null,
+      "editor": "Administrator",
+      "sales": {
+        "id": 1,
+        "name": "Administrator"
+      },
+      "status": "released",
+      "customer": {
+        "id": "4",
+        "number": "100018"
+      },
+      "comment": "",
+      "project": {
+        "id": "8"
+      },
+      "bodyOutroduction": "",
+      "language": {
+        "iso2": "deutsch"
+      },
+      "financials": {
+        "paymentMethod": {
+          "id": "13"
+        },
+        "currency": "EUR",
+        "billingAddress": {
+          "name": "Karlo Kunde",
+          "department": "",
+          "subDepartment": "",
+          "street": "Beispielstrasse 1",
+          "zipCode": "81245",
+          "city": "München",
+          "state": "",
+          "country": "DE",
+          "type": "",
+          "title": "Dr.",
+          "contactPerson": "",
+          "addressSupplement": "Angelegt durch die API",
+          "fax": "089 111222334",
+          "email": "me@example.com",
+          "salutation": "",
+          "gln": ""
+        },
+        "paymentTerms": {
+          "paymentTargetDiscount": 0,
+          "paymentTargetDays": 14,
+          "paymentTargetDiscountDays": 10
+        }
+      },
+      "delivery": {
+        "email": "",
+        "conditions": "",
+        "autoShipping": true,
+        "fastLane": false,
+        "shippingAddress": {
+          "name": "Karlo Kunde",
+          "department": "",
+          "subDepartment": "",
+          "street": "Beispielstrasse 1",
+          "zipCode": "81245",
+          "city": "München",
+          "state": "",
+          "country": "DE",
+          "gln": ""
+        }
+      },
+      "log": {
+        "createdAt": "2023-03-06T14:13:57+01:00",
+        "createdBy": {
+          "id": "1",
+          "name": "Administrator"
+        }
+      }
+    },
+    {
+      "id": "144",
+      "documentNumber": "200083",
+      "externalOrderNumber": "",
+      "customerOrderNumber": "",
+      "transactionNumber": "",
+      "externalOrderId": "",
+      "date": "2023-03-06",
+      "netSales": 45,
+      "total": 53.55,
+      "desiredDeliveryDate": null,
+      "desiredDeliveryDateAsCalendarWeek": false,
+      "reservationDate": null,
+      "editor": "Administrator",
+      "sales": {
+        "id": 1,
+        "name": "Administrator"
+      },
+      "status": "released",
+      "customer": {
+        "id": "4",
+        "number": "100018"
+      },
+      "comment": "",
+      "project": {
+        "id": "8"
+      },
+      "bodyOutroduction": "",
+      "language": {
+        "iso2": "deutsch"
+      },
+      "financials": {
+        "paymentMethod": {
+          "id": "13"
+        },
+        "currency": "EUR",
+        "billingAddress": {
+          "name": "Karlo Kunde",
+          "department": "",
+          "subDepartment": "",
+          "street": "Beispielstrasse 1",
+          "zipCode": "81245",
+          "city": "München",
+          "state": "",
+          "country": "DE",
+          "type": "",
+          "title": "Dr.",
+          "contactPerson": "",
+          "addressSupplement": "Angelegt durch die API",
+          "fax": "089 111222334",
+          "email": "me@example.com",
+          "salutation": "",
+          "gln": ""
+        },
+        "paymentTerms": {
+          "paymentTargetDiscount": 0,
+          "paymentTargetDays": 14,
+          "paymentTargetDiscountDays": 10
+        }
+      },
+      "delivery": {
+        "email": "",
+        "conditions": "",
+        "autoShipping": true,
+        "fastLane": false,
+        "shippingAddress": {
+          "name": "Karlo Kunde",
+          "department": "",
+          "subDepartment": "",
+          "street": "Beispielstrasse 1",
+          "zipCode": "81245",
+          "city": "München",
+          "state": "",
+          "country": "DE",
+          "gln": ""
+        }
+      },
+      "log": {
+        "createdAt": "-0001-11-30T00:00:00+00:53",
+        "createdBy": {
+          "id": "1",
+          "name": "Administrator"
+        }
+      }
+    },
+    {
+      "id": "147",
+      "documentNumber": "D1000",
+      "externalOrderNumber": "",
+      "customerOrderNumber": "",
+      "transactionNumber": "",
+      "externalOrderId": "",
+      "date": "2023-03-07",
+      "netSales": 0,
+      "total": 0,
+      "desiredDeliveryDate": null,
+      "desiredDeliveryDateAsCalendarWeek": false,
+      "reservationDate": null,
+      "editor": "Administrator",
+      "sales": {
+        "id": 1,
+        "name": "Administrator"
+      },
+      "status": "released",
+      "customer": {
+        "id": "4",
+        "number": "100018"
+      },
+      "comment": "",
+      "project": {
+        "id": "5"
+      },
+      "bodyOutroduction": "",
+      "language": {
+        "iso2": "deutsch"
+      },
+      "financials": {
+        "paymentMethod": {
+          "id": "13"
+        },
+        "currency": "EUR",
+        "billingAddress": {
+          "name": "Karlo Kunde",
+          "department": "",
+          "subDepartment": "",
+          "street": "Beispielstrasse 1",
+          "zipCode": "81245",
+          "city": "München",
+          "state": "",
+          "country": "DE",
+          "type": "",
+          "title": "Dr.",
+          "contactPerson": "",
+          "addressSupplement": "Angelegt durch die API",
+          "fax": "089 111222334",
+          "email": "me@example.com",
+          "salutation": "",
+          "gln": ""
+        },
+        "paymentTerms": {
+          "paymentTargetDiscount": 0,
+          "paymentTargetDays": 14,
+          "paymentTargetDiscountDays": 10
+        }
+      },
+      "delivery": {
+        "email": "",
+        "conditions": "",
+        "autoShipping": true,
+        "fastLane": false,
+        "shippingAddress": {
+          "name": "Karlo Kunde",
+          "department": "",
+          "subDepartment": "",
+          "street": "Beispielstrasse 1",
+          "zipCode": "81245",
+          "city": "München",
+          "state": "",
+          "country": "DE",
+          "gln": ""
+        }
+      },
+      "log": {
+        "createdAt": "-0001-11-30T00:00:00+00:53",
+        "createdBy": {
+          "id": "1",
+          "name": "Administrator"
+        }
+      }
+    },
+    {
+      "id": "148",
+      "documentNumber": "DE-2023-99",
+      "externalOrderNumber": "",
+      "customerOrderNumber": "",
+      "transactionNumber": "",
+      "externalOrderId": "",
+      "date": "2023-03-07",
+      "netSales": 0,
+      "total": 0,
+      "desiredDeliveryDate": null,
+      "desiredDeliveryDateAsCalendarWeek": false,
+      "reservationDate": null,
+      "editor": "Administrator",
+      "sales": {
+        "id": 1,
+        "name": "Administrator"
+      },
+      "status": "released",
+      "customer": {
+        "id": "4",
+        "number": "100018"
+      },
+      "comment": "",
+      "project": {
+        "id": "5"
+      },
+      "bodyOutroduction": "",
+      "language": {
+        "iso2": "deutsch"
+      },
+      "financials": {
+        "paymentMethod": {
+          "id": "13"
+        },
+        "currency": "EUR",
+        "billingAddress": {
+          "name": "Karlo Kunde",
+          "department": "",
+          "subDepartment": "",
+          "street": "Beispielstrasse 1",
+          "zipCode": "81245",
+          "city": "München",
+          "state": "",
+          "country": "DE",
+          "type": "",
+          "title": "Dr.",
+          "contactPerson": "",
+          "addressSupplement": "Angelegt durch die API",
+          "fax": "089 111222334",
+          "email": "me@example.com",
+          "salutation": "",
+          "gln": ""
+        },
+        "paymentTerms": {
+          "paymentTargetDiscount": 0,
+          "paymentTargetDays": 14,
+          "paymentTargetDiscountDays": 10
+        }
+      },
+      "delivery": {
+        "email": "",
+        "conditions": "",
+        "autoShipping": true,
+        "fastLane": false,
+        "shippingAddress": {
+          "name": "Karlo Kunde",
+          "department": "",
+          "subDepartment": "",
+          "street": "Beispielstrasse 1",
+          "zipCode": "81245",
+          "city": "München",
+          "state": "",
+          "country": "DE",
+          "gln": ""
+        }
+      },
+      "log": {
+        "createdAt": "-0001-11-30T00:00:00+00:53",
+        "createdBy": {
+          "id": "1",
+          "name": "Administrator"
+        }
+      }
+    },
+    {
+      "id": "151",
+      "documentNumber": "200084-1",
+      "externalOrderNumber": "",
+      "customerOrderNumber": "",
+      "transactionNumber": "",
+      "externalOrderId": "",
+      "date": "2023-03-07",
+      "netSales": 10,
+      "total": 10,
+      "desiredDeliveryDate": null,
+      "desiredDeliveryDateAsCalendarWeek": false,
+      "reservationDate": null,
+      "editor": "Administrator",
+      "sales": {
+        "id": 5,
+        "name": "Kassen Mitarbeiter"
+      },
+      "status": "released",
+      "customer": {
+        "id": "7",
+        "number": "10003"
+      },
+      "comment": "",
+      "project": {
+        "id": "5"
+      },
+      "bodyOutroduction": "\r\nTeillieferung von Auftrag 200084\r\n",
+      "language": {
+        "iso2": "deutsch"
+      },
+      "financials": {
+        "paymentMethod": {
+          "id": "13"
+        },
+        "currency": "EUR",
+        "billingAddress": {
+          "name": "Testkunde ABC",
+          "department": "",
+          "subDepartment": "",
+          "street": "",
+          "zipCode": "",
+          "city": "",
+          "state": "",
+          "country": "DE",
+          "type": "",
+          "title": "",
+          "contactPerson": "",
+          "addressSupplement": "",
+          "fax": "",
+          "email": "",
+          "salutation": "",
+          "gln": ""
+        },
+        "paymentTerms": {
+          "paymentTargetDiscount": 0,
+          "paymentTargetDays": 14,
+          "paymentTargetDiscountDays": 10
+        }
+      },
+      "delivery": {
+        "email": "",
+        "conditions": "",
+        "autoShipping": true,
+        "fastLane": false,
+        "shippingAddress": {
+          "name": "Testkunde ABC",
+          "department": "",
+          "subDepartment": "",
+          "street": "",
+          "zipCode": "",
+          "city": "",
+          "state": "",
+          "country": "DE",
+          "gln": ""
+        }
+      },
+      "log": {
+        "createdAt": "2023-03-07T14:31:20+01:00",
+        "createdBy": {
+          "id": "1",
+          "name": "Administrator"
+        }
+      }
+    },
+    {
+      "id": "152",
+      "documentNumber": "200084-2",
+      "externalOrderNumber": "",
+      "customerOrderNumber": "",
+      "transactionNumber": "",
+      "externalOrderId": "",
+      "date": "2023-03-07",
+      "netSales": 15,
+      "total": 15,
+      "desiredDeliveryDate": null,
+      "desiredDeliveryDateAsCalendarWeek": false,
+      "reservationDate": null,
+      "editor": "Administrator",
+      "sales": {
+        "id": 5,
+        "name": "Kassen Mitarbeiter"
+      },
+      "status": "released",
+      "customer": {
+        "id": "7",
+        "number": "10003"
+      },
+      "comment": "",
+      "project": {
+        "id": "8"
+      },
+      "bodyOutroduction": "\r\nTeillieferung von Auftrag 200084\r\n",
+      "language": {
+        "iso2": "deutsch"
+      },
+      "financials": {
+        "paymentMethod": {
+          "id": "13"
+        },
+        "currency": "EUR",
+        "billingAddress": {
+          "name": "Testkunde ABC",
+          "department": "",
+          "subDepartment": "",
+          "street": "",
+          "zipCode": "",
+          "city": "",
+          "state": "",
+          "country": "DE",
+          "type": "",
+          "title": "",
+          "contactPerson": "",
+          "addressSupplement": "",
+          "fax": "",
+          "email": "",
+          "salutation": "",
+          "gln": ""
+        },
+        "paymentTerms": {
+          "paymentTargetDiscount": 0,
+          "paymentTargetDays": 14,
+          "paymentTargetDiscountDays": 10
+        }
+      },
+      "delivery": {
+        "email": "",
+        "conditions": "",
+        "autoShipping": true,
+        "fastLane": false,
+        "shippingAddress": {
+          "name": "Testkunde ABC",
+          "department": "",
+          "subDepartment": "",
+          "street": "",
+          "zipCode": "",
+          "city": "",
+          "state": "",
+          "country": "DE",
+          "gln": ""
+        }
+      },
+      "log": {
+        "createdAt": "2023-03-07T14:31:20+01:00",
+        "createdBy": {
+          "id": "1",
+          "name": "Administrator"
+        }
+      }
+    },
+    {
+      "id": "153",
+      "documentNumber": "200085",
+      "externalOrderNumber": "",
+      "customerOrderNumber": null,
+      "transactionNumber": "",
+      "externalOrderId": "",
+      "date": "2023-03-07",
+      "netSales": 45,
+      "total": 53.55,
+      "desiredDeliveryDate": null,
+      "desiredDeliveryDateAsCalendarWeek": false,
+      "reservationDate": null,
+      "editor": "Administrator",
+      "sales": {
+        "id": 1,
+        "name": "Administrator"
+      },
+      "status": "released",
+      "customer": {
+        "id": "4",
+        "number": "100018"
+      },
+      "comment": "",
+      "project": {
+        "id": "11"
+      },
+      "bodyOutroduction": "",
+      "language": {
+        "iso2": "deutsch"
+      },
+      "financials": {
+        "paymentMethod": {
+          "id": "13"
+        },
+        "currency": "EUR",
+        "billingAddress": {
+          "name": "Karlo Kunde",
+          "department": "",
+          "subDepartment": "",
+          "street": "Beispielstrasse 1",
+          "zipCode": "81245",
+          "city": "München",
+          "state": "",
+          "country": "DE",
+          "type": "",
+          "title": "Dr.",
+          "contactPerson": "",
+          "addressSupplement": "Angelegt durch die API",
+          "fax": "089 111222334",
+          "email": "me@example.com",
+          "salutation": "",
+          "gln": ""
+        },
+        "paymentTerms": {
+          "paymentTargetDiscount": 0,
+          "paymentTargetDays": 14,
+          "paymentTargetDiscountDays": 10
+        }
+      },
+      "delivery": {
+        "email": "",
+        "conditions": "",
+        "autoShipping": false,
+        "fastLane": false,
+        "shippingAddress": {
+          "name": "Karlo Kunde",
+          "department": "",
+          "subDepartment": "",
+          "street": "Beispielstrasse 1",
+          "zipCode": "81245",
+          "city": "München",
+          "state": "",
+          "country": "DE",
+          "gln": ""
+        }
+      },
+      "log": {
+        "createdAt": "2023-03-07T14:36:02+01:00",
+        "createdBy": {
+          "id": "1",
+          "name": "Administrator"
+        }
+      }
+    },
+    {
+      "id": "154",
+      "documentNumber": "200086",
+      "externalOrderNumber": "",
+      "customerOrderNumber": "",
+      "transactionNumber": "",
+      "externalOrderId": "",
+      "date": "2023-03-07",
+      "netSales": 15,
+      "total": 17.85,
+      "desiredDeliveryDate": null,
+      "desiredDeliveryDateAsCalendarWeek": false,
+      "reservationDate": null,
+      "editor": "Administrator",
+      "sales": {
+        "id": 1,
+        "name": "Administrator"
+      },
+      "status": "released",
+      "customer": {
+        "id": "4",
+        "number": "100018"
+      },
+      "comment": "",
+      "project": {
+        "id": "11"
+      },
+      "bodyOutroduction": "",
+      "language": {
+        "iso2": "deutsch"
+      },
+      "financials": {
+        "paymentMethod": {
+          "id": "13"
+        },
+        "currency": "EUR",
+        "billingAddress": {
+          "name": "Karlo Kunde",
+          "department": "",
+          "subDepartment": "",
+          "street": "Beispielstrasse 1",
+          "zipCode": "81245",
+          "city": "München",
+          "state": "",
+          "country": "DE",
+          "type": "",
+          "title": "Dr.",
+          "contactPerson": "",
+          "addressSupplement": "Angelegt durch die API",
+          "fax": "089 111222334",
+          "email": "me@example.com",
+          "salutation": "",
+          "gln": ""
+        },
+        "paymentTerms": {
+          "paymentTargetDiscount": 0,
+          "paymentTargetDays": 14,
+          "paymentTargetDiscountDays": 10
+        }
+      },
+      "delivery": {
+        "email": "",
+        "conditions": "",
+        "autoShipping": true,
+        "fastLane": false,
+        "shippingAddress": {
+          "name": "Karlo Kunde",
+          "department": "",
+          "subDepartment": "",
+          "street": "Beispielstrasse 1",
+          "zipCode": "81245",
+          "city": "München",
+          "state": "",
+          "country": "DE",
+          "gln": ""
+        }
+      },
+      "log": {
+        "createdAt": "-0001-11-30T00:00:00+00:53",
+        "createdBy": {
+          "id": "1",
+          "name": "Administrator"
+        }
+      }
+    },
+    {
+      "id": "155",
+      "documentNumber": "200086-1",
+      "externalOrderNumber": "",
+      "customerOrderNumber": "",
+      "transactionNumber": "",
+      "externalOrderId": "",
+      "date": "2023-03-07",
+      "netSales": 10,
+      "total": 11.9,
+      "desiredDeliveryDate": null,
+      "desiredDeliveryDateAsCalendarWeek": false,
+      "reservationDate": null,
+      "editor": "Administrator",
+      "sales": {
+        "id": 1,
+        "name": "Administrator"
+      },
+      "status": "released",
+      "customer": {
+        "id": "4",
+        "number": "100018"
+      },
+      "comment": "",
+      "project": {
+        "id": "5"
+      },
+      "bodyOutroduction": "\r\nTeillieferung von Auftrag 200086\r\n",
+      "language": {
+        "iso2": "deutsch"
+      },
+      "financials": {
+        "paymentMethod": {
+          "id": "13"
+        },
+        "currency": "EUR",
+        "billingAddress": {
+          "name": "Karlo Kunde",
+          "department": "",
+          "subDepartment": "",
+          "street": "Beispielstrasse 1",
+          "zipCode": "81245",
+          "city": "München",
+          "state": "",
+          "country": "DE",
+          "type": "",
+          "title": "Dr.",
+          "contactPerson": "",
+          "addressSupplement": "Angelegt durch die API",
+          "fax": "089 111222334",
+          "email": "me@example.com",
+          "salutation": "",
+          "gln": ""
+        },
+        "paymentTerms": {
+          "paymentTargetDiscount": 0,
+          "paymentTargetDays": 14,
+          "paymentTargetDiscountDays": 10
+        }
+      },
+      "delivery": {
+        "email": "",
+        "conditions": "",
+        "autoShipping": true,
+        "fastLane": false,
+        "shippingAddress": {
+          "name": "Karlo Kunde",
+          "department": "",
+          "subDepartment": "",
+          "street": "Beispielstrasse 1",
+          "zipCode": "81245",
+          "city": "München",
+          "state": "",
+          "country": "DE",
+          "gln": ""
+        }
+      },
+      "log": {
+        "createdAt": "2023-03-07T14:48:29+01:00",
+        "createdBy": {
+          "id": "1",
+          "name": "Administrator"
+        }
+      }
+    },
+    {
+      "id": "158",
+      "documentNumber": "200087-1",
+      "externalOrderNumber": "",
+      "customerOrderNumber": "",
+      "transactionNumber": "",
+      "externalOrderId": "",
+      "date": "2023-03-07",
+      "netSales": 10,
+      "total": 11.9,
+      "desiredDeliveryDate": null,
+      "desiredDeliveryDateAsCalendarWeek": false,
+      "reservationDate": null,
+      "editor": "",
+      "sales": {
+        "id": 1,
+        "name": "Administrator"
+      },
+      "status": "released",
+      "customer": {
+        "id": "4",
+        "number": "100018"
+      },
+      "comment": "",
+      "project": {
+        "id": "5"
+      },
+      "bodyOutroduction": "\r\nTeillieferung von Auftrag 200087\r\n",
+      "language": {
+        "iso2": "deutsch"
+      },
+      "financials": {
+        "paymentMethod": {
+          "id": "13"
+        },
+        "currency": "EUR",
+        "billingAddress": {
+          "name": "Karlo Kunde",
+          "department": "",
+          "subDepartment": "",
+          "street": "Beispielstrasse 1",
+          "zipCode": "81245",
+          "city": "München",
+          "state": "",
+          "country": "DE",
+          "type": "",
+          "title": "Dr.",
+          "contactPerson": "",
+          "addressSupplement": "Angelegt durch die API",
+          "fax": "089 111222334",
+          "email": "me@example.com",
+          "salutation": "",
+          "gln": ""
+        },
+        "paymentTerms": {
+          "paymentTargetDiscount": 0,
+          "paymentTargetDays": 14,
+          "paymentTargetDiscountDays": 10
+        }
+      },
+      "delivery": {
+        "email": "",
+        "conditions": "",
+        "autoShipping": true,
+        "fastLane": false,
+        "shippingAddress": {
+          "name": "Karlo Kunde",
+          "department": "",
+          "subDepartment": "",
+          "street": "Beispielstrasse 1",
+          "zipCode": "81245",
+          "city": "München",
+          "state": "",
+          "country": "DE",
+          "gln": ""
+        }
+      },
+      "log": {
+        "createdAt": "2023-03-07T14:56:12+01:00",
+        "createdBy": {
+          "id": "1",
+          "name": ""
+        }
+      }
+    },
+    {
+      "id": "189",
+      "documentNumber": "200101",
+      "externalOrderNumber": "",
+      "customerOrderNumber": "",
+      "transactionNumber": "",
+      "externalOrderId": "",
+      "date": "2023-03-16",
+      "netSales": 215,
+      "total": 255.85,
+      "desiredDeliveryDate": null,
+      "desiredDeliveryDateAsCalendarWeek": false,
+      "reservationDate": null,
+      "editor": "Administrator",
+      "sales": {
+        "id": 1,
+        "name": "Administrator"
+      },
+      "status": "released",
+      "customer": {
+        "id": "17",
+        "number": "10008"
+      },
+      "comment": "",
+      "project": {
+        "id": "1"
+      },
+      "bodyOutroduction": "",
+      "language": {
+        "iso2": "deutsch"
+      },
+      "financials": {
+        "paymentMethod": {
+          "id": "13"
+        },
+        "currency": "EUR",
+        "billingAddress": {
+          "name": "Ricki",
+          "department": "",
+          "subDepartment": "",
+          "street": "",
+          "zipCode": "",
+          "city": "",
+          "state": "",
+          "country": "DE",
+          "type": "",
+          "title": "",
+          "contactPerson": "",
+          "addressSupplement": "",
+          "fax": "",
+          "email": "",
+          "salutation": "",
+          "gln": ""
+        },
+        "paymentTerms": {
+          "paymentTargetDiscount": 0,
+          "paymentTargetDays": 14,
+          "paymentTargetDiscountDays": 10
+        }
+      },
+      "delivery": {
+        "email": "",
+        "conditions": "",
+        "autoShipping": true,
+        "fastLane": false,
+        "shippingAddress": {
+          "name": "Ricki",
+          "department": "",
+          "subDepartment": "",
+          "street": "",
+          "zipCode": "",
+          "city": "",
+          "state": "",
+          "country": "DE",
+          "gln": ""
+        }
+      },
+      "log": {
+        "createdAt": "-0001-11-30T00:00:00+00:53",
+        "createdBy": {
+          "id": "1",
+          "name": "Administrator"
+        }
+      }
+    },
+    {
+      "id": "199",
+      "documentNumber": "200108",
+      "externalOrderNumber": "",
+      "customerOrderNumber": "",
+      "transactionNumber": "",
+      "externalOrderId": "",
+      "date": "2023-03-20",
+      "netSales": 10,
+      "total": 11.9,
+      "desiredDeliveryDate": null,
+      "desiredDeliveryDateAsCalendarWeek": false,
+      "reservationDate": null,
+      "editor": "Christian Hofmann",
+      "sales": {
+        "id": 8,
+        "name": "Test Kunde"
+      },
+      "status": "released",
+      "customer": {
+        "id": "15",
+        "number": "10007"
+      },
+      "comment": "",
+      "project": {
+        "id": "18"
+      },
+      "bodyOutroduction": "",
+      "language": {
+        "iso2": "deutsch"
+      },
+      "financials": {
+        "paymentMethod": {
+          "id": "11"
+        },
+        "currency": "EUR",
+        "billingAddress": {
+          "name": "Lawn Care",
+          "department": "",
+          "subDepartment": "",
+          "street": "Anemonenweg 3",
+          "zipCode": "14669",
+          "city": "Ketzin",
+          "state": "",
+          "country": "DE",
+          "type": "",
+          "title": "",
+          "contactPerson": "Patrick Raschle",
+          "addressSupplement": "",
+          "fax": "",
+          "email": "lawncare.swiss@gmail.com",
+          "salutation": "",
+          "gln": ""
+        },
+        "paymentTerms": {
+          "paymentTargetDiscount": 2,
+          "paymentTargetDays": 14,
+          "paymentTargetDiscountDays": 10
+        }
+      },
+      "delivery": {
+        "email": "",
+        "conditions": "",
+        "autoShipping": true,
+        "fastLane": false,
+        "shippingAddress": {
+          "name": "Lawn Care",
+          "department": "",
+          "subDepartment": "",
+          "street": "Anemonenweg 3",
+          "zipCode": "14669",
+          "city": "Ketzin",
+          "state": "",
+          "country": "DE",
+          "gln": ""
+        }
+      },
+      "log": {
+        "createdAt": "-0001-11-30T00:00:00+00:53",
+        "createdBy": {
+          "id": "8",
+          "name": "Christian Hofmann"
+        }
+      }
+    },
+    {
+      "id": "201",
+      "documentNumber": "200109",
+      "externalOrderNumber": "",
+      "customerOrderNumber": null,
+      "transactionNumber": "",
+      "externalOrderId": "",
+      "date": "2023-03-20",
+      "netSales": 10,
+      "total": 11.9,
+      "desiredDeliveryDate": null,
+      "desiredDeliveryDateAsCalendarWeek": false,
+      "reservationDate": null,
+      "editor": "Christian Hofmann",
+      "sales": {
+        "id": 8,
+        "name": "Christian Hofmann"
+      },
+      "status": "released",
+      "customer": {
+        "id": "2",
+        "number": "10000"
+      },
+      "comment": "",
+      "project": {
+        "id": "14"
+      },
+      "bodyOutroduction": "",
+      "language": {
+        "iso2": "deutsch"
+      },
+      "financials": {
+        "paymentMethod": {
+          "id": "13"
+        },
+        "currency": "EUR",
+        "billingAddress": {
+          "name": "Karlo Kunde GmbH & Co. KG",
+          "department": "Geschäftsführung",
+          "subDepartment": "Unterabteilung",
+          "street": "Beispielstrasse 1",
+          "zipCode": "81245",
+          "city": "München",
+          "state": "BY",
+          "country": "DE",
+          "type": "firma",
+          "title": "Dr.",
+          "contactPerson": "Karlo Kunde",
+          "addressSupplement": "Adresszusatz",
+          "fax": "089 111222334",
+          "email": "me@example.com",
+          "salutation": "",
+          "gln": ""
+        },
+        "paymentTerms": {
+          "paymentTargetDiscount": 0,
+          "paymentTargetDays": 14,
+          "paymentTargetDiscountDays": 10
+        }
+      },
+      "delivery": {
+        "email": "",
+        "conditions": "",
+        "autoShipping": true,
+        "fastLane": false,
+        "shippingAddress": {
+          "name": "Karlo Kunde GmbH & Co. KG",
+          "department": "Geschäftsführung",
+          "subDepartment": "Unterabteilung",
+          "street": "Beispielstrasse 1",
+          "zipCode": "81245",
+          "city": "München",
+          "state": "BY",
+          "country": "DE",
+          "gln": ""
+        }
+      },
+      "log": {
+        "createdAt": "2023-03-20T15:10:14+01:00",
+        "createdBy": {
+          "id": "8",
+          "name": "Christian Hofmann"
+        }
+      }
+    },
+    {
+      "id": "202",
+      "documentNumber": "200110",
+      "externalOrderNumber": "",
+      "customerOrderNumber": "",
+      "transactionNumber": "",
+      "externalOrderId": "",
+      "date": "2023-03-20",
+      "netSales": 20,
+      "total": 23.8,
+      "desiredDeliveryDate": null,
+      "desiredDeliveryDateAsCalendarWeek": false,
+      "reservationDate": null,
+      "editor": "Christian Hofmann",
+      "sales": {
+        "id": 8,
+        "name": "Christian Hofmann"
+      },
+      "status": "released",
+      "customer": {
+        "id": "2",
+        "number": "10000"
+      },
+      "comment": "",
+      "project": {
+        "id": "6"
+      },
+      "bodyOutroduction": "",
+      "language": {
+        "iso2": "deutsch"
+      },
+      "financials": {
+        "paymentMethod": {
+          "id": "11"
+        },
+        "currency": "EUR",
+        "billingAddress": {
+          "name": "Karlo Kunde GmbH & Co. KG",
+          "department": "Geschäftsführung",
+          "subDepartment": "Unterabteilung",
+          "street": "Beispielstrasse 1",
+          "zipCode": "81245",
+          "city": "München",
+          "state": "BY",
+          "country": "DE",
+          "type": "firma",
+          "title": "Dr.",
+          "contactPerson": "Karlo Kunde",
+          "addressSupplement": "Adresszusatz",
+          "fax": "089 111222334",
+          "email": "me@example.com",
+          "salutation": "",
+          "gln": ""
+        },
+        "paymentTerms": {
+          "paymentTargetDiscount": 0,
+          "paymentTargetDays": 14,
+          "paymentTargetDiscountDays": 10
+        }
+      },
+      "delivery": {
+        "email": "",
+        "conditions": "",
+        "autoShipping": true,
+        "fastLane": false,
+        "shippingAddress": {
+          "name": "Karlo Kunde GmbH & Co. KG",
+          "department": "Geschäftsführung",
+          "subDepartment": "Unterabteilung",
+          "street": "Beispielstrasse 1",
+          "zipCode": "81245",
+          "city": "München",
+          "state": "BY",
+          "country": "DE",
+          "gln": ""
+        }
+      },
+      "log": {
+        "createdAt": "-0001-11-30T00:00:00+00:53",
+        "createdBy": {
+          "id": "8",
+          "name": "Christian Hofmann"
+        }
+      }
+    },
+    {
+      "id": "203",
+      "documentNumber": "200111",
+      "externalOrderNumber": "",
+      "customerOrderNumber": "",
+      "transactionNumber": "",
+      "externalOrderId": "",
+      "date": "2023-03-20",
+      "netSales": 20,
+      "total": 23.8,
+      "desiredDeliveryDate": null,
+      "desiredDeliveryDateAsCalendarWeek": false,
+      "reservationDate": null,
+      "editor": "Christian Hofmann",
+      "sales": {
+        "id": 1,
+        "name": "Administrator"
+      },
+      "status": "released",
+      "customer": {
+        "id": "5",
+        "number": "10002"
+      },
+      "comment": "",
+      "project": {
+        "id": "5"
+      },
+      "bodyOutroduction": "",
+      "language": {
+        "iso2": "deutsch"
+      },
+      "financials": {
+        "paymentMethod": {
+          "id": "11"
+        },
+        "currency": "EUR",
+        "billingAddress": {
+          "name": "Kassen Mitarbeiter",
+          "department": "",
+          "subDepartment": "",
+          "street": "",
+          "zipCode": "",
+          "city": "",
+          "state": "",
+          "country": "DE",
+          "type": "",
+          "title": "",
+          "contactPerson": "",
+          "addressSupplement": "",
+          "fax": "",
+          "email": "",
+          "salutation": "",
+          "gln": ""
+        },
+        "paymentTerms": {
+          "paymentTargetDiscount": 0,
+          "paymentTargetDays": 14,
+          "paymentTargetDiscountDays": 10
+        }
+      },
+      "delivery": {
+        "email": "",
+        "conditions": "",
+        "autoShipping": true,
+        "fastLane": false,
+        "shippingAddress": {
+          "name": "Kassen Mitarbeiter",
+          "department": "",
+          "subDepartment": "",
+          "street": "",
+          "zipCode": "",
+          "city": "",
+          "state": "",
+          "country": "DE",
+          "gln": ""
+        }
+      },
+      "log": {
+        "createdAt": "-0001-11-30T00:00:00+00:53",
+        "createdBy": {
+          "id": "8",
+          "name": "Christian Hofmann"
+        }
+      }
+    },
+    {
+      "id": "204",
+      "documentNumber": "200112",
+      "externalOrderNumber": "",
+      "customerOrderNumber": "",
+      "transactionNumber": "",
+      "externalOrderId": "",
+      "date": "2023-03-20",
+      "netSales": 25,
+      "total": 29.75,
+      "desiredDeliveryDate": null,
+      "desiredDeliveryDateAsCalendarWeek": false,
+      "reservationDate": null,
+      "editor": "Christian Hofmann",
+      "sales": {
+        "id": 1,
+        "name": "Administrator"
+      },
+      "status": "released",
+      "customer": {
+        "id": "5",
+        "number": "10002"
+      },
+      "comment": "Interne Bemerkung Test&nbsp;",
+      "project": {
+        "id": "29"
+      },
+      "bodyOutroduction": "",
+      "language": {
+        "iso2": "deutsch"
+      },
+      "financials": {
+        "paymentMethod": {
+          "id": "11"
+        },
+        "currency": "EUR",
+        "billingAddress": {
+          "name": "Kassen Mitarbeiter",
+          "department": "",
+          "subDepartment": "",
+          "street": "",
+          "zipCode": "",
+          "city": "",
+          "state": "",
+          "country": "DE",
+          "type": "",
+          "title": "",
+          "contactPerson": "",
+          "addressSupplement": "",
+          "fax": "",
+          "email": "",
+          "salutation": "",
+          "gln": ""
+        },
+        "paymentTerms": {
+          "paymentTargetDiscount": 0,
+          "paymentTargetDays": 14,
+          "paymentTargetDiscountDays": 10
+        }
+      },
+      "delivery": {
+        "email": "",
+        "conditions": "",
+        "autoShipping": true,
+        "fastLane": false,
+        "shippingAddress": {
+          "name": "Kassen Mitarbeiter",
+          "department": "",
+          "subDepartment": "",
+          "street": "",
+          "zipCode": "",
+          "city": "",
+          "state": "",
+          "country": "DE",
+          "gln": ""
+        }
+      },
+      "log": {
+        "createdAt": "-0001-11-30T00:00:00+00:53",
+        "createdBy": {
+          "id": "8",
+          "name": "Christian Hofmann"
+        }
+      }
+    },
+    {
+      "id": "219",
+      "documentNumber": "200117",
+      "externalOrderNumber": "",
+      "customerOrderNumber": "",
+      "transactionNumber": "",
+      "externalOrderId": "",
+      "date": "2023-04-04",
+      "netSales": 135,
+      "total": 160.65,
+      "desiredDeliveryDate": null,
+      "desiredDeliveryDateAsCalendarWeek": false,
+      "reservationDate": null,
+      "editor": "Administrator",
+      "sales": {
+        "id": 1,
+        "name": "Administrator"
+      },
+      "status": "released",
+      "customer": {
+        "id": "20",
+        "number": "11000"
+      },
+      "comment": "",
+      "project": {
+        "id": "14"
+      },
+      "bodyOutroduction": "",
+      "language": {
+        "iso2": "englisch"
+      },
+      "financials": {
+        "paymentMethod": {
+          "id": "16"
+        },
+        "currency": "EUR",
+        "billingAddress": {
+          "name": "Paul in Office",
+          "department": "",
+          "subDepartment": "",
+          "street": "Schiefer Weg 23",
+          "zipCode": "79341",
+          "city": "Kenzingen",
+          "state": "",
+          "country": "DE",
+          "type": "herr",
+          "title": "",
+          "contactPerson": "",
+          "addressSupplement": "",
+          "fax": "",
+          "email": "",
+          "salutation": "",
+          "gln": ""
+        },
+        "paymentTerms": {
+          "paymentTargetDiscount": 2,
+          "paymentTargetDays": 33,
+          "paymentTargetDiscountDays": 11
+        }
+      },
+      "delivery": {
+        "email": "",
+        "conditions": "",
+        "autoShipping": true,
+        "fastLane": false,
+        "shippingAddress": {
+          "name": "Paul in Office",
+          "department": "",
+          "subDepartment": "",
+          "street": "Schiefer Weg 23",
+          "zipCode": "79341",
+          "city": "Kenzingen",
+          "state": "",
+          "country": "DE",
+          "gln": ""
+        }
+      },
+      "log": {
+        "createdAt": "-0001-11-30T00:00:00+00:53",
+        "createdBy": {
+          "id": "1",
+          "name": "Administrator"
+        }
+      }
+    },
+    {
+      "id": "250",
+      "documentNumber": "200140",
+      "externalOrderNumber": "123456",
+      "customerOrderNumber": "",
+      "transactionNumber": "Paypal_4456251",
+      "externalOrderId": "1",
+      "date": "2023-01-02",
+      "netSales": 184,
+      "total": 184,
+      "desiredDeliveryDate": "2023-10-10",
+      "desiredDeliveryDateAsCalendarWeek": false,
+      "reservationDate": null,
+      "editor": "Administrator",
+      "sales": {
+        "id": 5,
+        "name": "Kassen Mitarbeiter"
+      },
+      "status": "released",
+      "customer": {
+        "id": "7",
+        "number": "10003"
+      },
+      "comment": "Interne Bemerkung",
+      "project": {
+        "id": "1"
+      },
+      "bodyOutroduction": "Freitext",
+      "language": {
+        "iso2": "deutsch"
+      },
+      "financials": {
+        "paymentMethod": {
+          "id": "13"
+        },
+        "currency": "EUR",
+        "billingAddress": {
+          "name": "Justus Jonas GmbH",
+          "department": "Detektiv",
+          "subDepartment": "Erster",
+          "street": "Unterer Zirkel 17",
+          "zipCode": "79336",
+          "city": "Rocky Beach",
+          "state": "",
+          "country": "DE",
+          "type": "firma",
+          "title": "Herr Dr.",
+          "contactPerson": "Peter Shaw",
+          "addressSupplement": "",
+          "fax": "",
+          "email": "justus@example.com",
+          "salutation": "Sehr geehrter Herr Shaw",
+          "gln": "GLN12345"
+        },
+        "paymentTerms": {
+          "paymentTargetDiscount": 0,
+          "paymentTargetDays": 14,
+          "paymentTargetDiscountDays": 10
+        }
+      },
+      "delivery": {
+        "email": "delivery@example.com",
+        "conditions": "Bis Bordsteinkante",
+        "autoShipping": true,
+        "fastLane": true,
+        "shippingAddress": {
+          "name": "Liefername",
+          "department": "Lieferabteilung",
+          "subDepartment": "Lieferunterabteilung",
+          "street": "Egalstrasse 13",
+          "zipCode": "88888",
+          "city": "Hausenhausen",
+          "state": "",
+          "country": "DE",
+          "gln": "GLN654321"
+        }
+      },
+      "log": {
+        "createdAt": "2023-05-08T09:30:44+02:00",
+        "createdBy": {
+          "id": "1",
+          "name": "Administrator"
+        }
+      }
+    },
+    {
+      "id": "251",
+      "documentNumber": "200141",
+      "externalOrderNumber": "",
+      "customerOrderNumber": "",
+      "transactionNumber": "",
+      "externalOrderId": "",
+      "date": "2023-05-08",
+      "netSales": 5,
+      "total": 5.95,
+      "desiredDeliveryDate": null,
+      "desiredDeliveryDateAsCalendarWeek": false,
+      "reservationDate": null,
+      "editor": "Administrator",
+      "sales": {
+        "id": null,
+        "name": null
+      },
+      "status": "released",
+      "customer": {
+        "id": "2",
+        "number": "10000"
+      },
+      "comment": "",
+      "project": {
+        "id": "1"
+      },
+      "bodyOutroduction": "",
+      "language": {
+        "iso2": "deutsch"
+      },
+      "financials": {
+        "paymentMethod": {
+          "id": "11"
+        },
+        "currency": "EUR",
+        "billingAddress": {
+          "name": "Karlo Kunde GmbH & Co. KG",
+          "department": "Geschäftsführung",
+          "subDepartment": "Unterabteilung",
+          "street": "Beispielstrasse 1",
+          "zipCode": "81245",
+          "city": "München",
+          "state": "BY",
+          "country": "DE",
+          "type": "firma",
+          "title": "Dr.",
+          "contactPerson": "Karlo Kunde",
+          "addressSupplement": "Adresszusatz",
+          "fax": "089 111222334",
+          "email": "me@example.com",
+          "salutation": "",
+          "gln": ""
+        },
+        "paymentTerms": {
+          "paymentTargetDiscount": 0,
+          "paymentTargetDays": 14,
+          "paymentTargetDiscountDays": 10
+        }
+      },
+      "delivery": {
+        "email": "",
+        "conditions": "",
+        "autoShipping": true,
+        "fastLane": false,
+        "shippingAddress": {
+          "name": "Karlo Kunde GmbH & Co. KG",
+          "department": "Geschäftsführung",
+          "subDepartment": "Unterabteilung",
+          "street": "Beispielstrasse 1",
+          "zipCode": "81245",
+          "city": "München",
+          "state": "BY",
+          "country": "DE",
+          "gln": ""
+        }
+      },
+      "log": {
+        "createdAt": "2023-05-08T11:44:49+02:00",
+        "createdBy": {
+          "id": "1",
+          "name": "Administrator"
+        }
+      }
+    },
+    {
+      "id": "252",
+      "documentNumber": "200142",
+      "externalOrderNumber": "",
+      "customerOrderNumber": "",
+      "transactionNumber": "",
+      "externalOrderId": "",
+      "date": "2023-05-08",
+      "netSales": 1,
+      "total": 1.19,
+      "desiredDeliveryDate": null,
+      "desiredDeliveryDateAsCalendarWeek": false,
+      "reservationDate": null,
+      "editor": "Administrator",
+      "sales": {
+        "id": 1,
+        "name": "Administrator"
+      },
+      "status": "released",
+      "customer": {
+        "id": "17",
+        "number": "10008"
+      },
+      "comment": "",
+      "project": {
+        "id": "17"
+      },
+      "bodyOutroduction": "",
+      "language": {
+        "iso2": "deutsch"
+      },
+      "financials": {
+        "paymentMethod": {
+          "id": "13"
+        },
+        "currency": "EUR",
+        "billingAddress": {
+          "name": "Ricki",
+          "department": "",
+          "subDepartment": "",
+          "street": "",
+          "zipCode": "",
+          "city": "",
+          "state": "",
+          "country": "DE",
+          "type": "",
+          "title": "",
+          "contactPerson": "",
+          "addressSupplement": "",
+          "fax": "",
+          "email": "",
+          "salutation": "",
+          "gln": ""
+        },
+        "paymentTerms": {
+          "paymentTargetDiscount": 0,
+          "paymentTargetDays": 14,
+          "paymentTargetDiscountDays": 10
+        }
+      },
+      "delivery": {
+        "email": "",
+        "conditions": "",
+        "autoShipping": false,
+        "fastLane": false,
+        "shippingAddress": {
+          "name": "Ricki",
+          "department": "",
+          "subDepartment": "",
+          "street": "",
+          "zipCode": "",
+          "city": "",
+          "state": "",
+          "country": "DE",
+          "gln": ""
+        }
+      },
+      "log": {
+        "createdAt": "2023-05-08T13:35:49+02:00",
+        "createdBy": {
+          "id": "1",
+          "name": "Administrator"
+        }
+      }
+    },
+    {
+      "id": "262",
+      "documentNumber": "200675",
+      "externalOrderNumber": "",
+      "customerOrderNumber": "",
+      "transactionNumber": "",
+      "externalOrderId": "",
+      "date": "2024-03-01",
+      "netSales": 0,
+      "total": 0,
+      "desiredDeliveryDate": null,
+      "desiredDeliveryDateAsCalendarWeek": false,
+      "reservationDate": null,
+      "editor": "Administrator",
+      "sales": {
+        "id": 1,
+        "name": "Administrator"
+      },
+      "status": "released",
+      "customer": {
+        "id": "20",
+        "number": "11000"
+      },
+      "comment": "",
+      "project": {
+        "id": "1"
+      },
+      "bodyOutroduction": "",
+      "language": {
+        "iso2": "deutsch"
+      },
+      "financials": {
+        "paymentMethod": {
+          "id": "8"
+        },
+        "currency": "EUR",
+        "billingAddress": {
+          "name": "Paul Maier",
+          "department": "",
+          "subDepartment": "",
+          "street": "Turmweg 23",
+          "zipCode": "79341",
+          "city": "Kenzingen",
+          "state": "",
+          "country": "DE",
+          "type": "herr",
+          "title": "",
+          "contactPerson": "",
+          "addressSupplement": "",
+          "fax": "",
+          "email": "",
+          "salutation": "",
+          "gln": ""
+        },
+        "paymentTerms": {
+          "paymentTargetDiscount": 2,
+          "paymentTargetDays": 33,
+          "paymentTargetDiscountDays": 11
+        }
+      },
+      "delivery": {
+        "email": "",
+        "conditions": " ",
+        "autoShipping": true,
+        "fastLane": false,
+        "shippingAddress": {
+          "name": "Paul Maier",
+          "department": "",
+          "subDepartment": "",
+          "street": "Turmweg 23",
+          "zipCode": "79341",
+          "city": "Kenzingen",
+          "state": "",
+          "country": "DE",
+          "gln": ""
+        }
+      },
+      "log": {
+        "createdAt": "2023-05-08T17:25:22+02:00",
+        "createdBy": {
+          "id": "1",
+          "name": "Administrator"
+        }
+      }
+    },
+    {
+      "id": "263",
+      "documentNumber": "200148",
+      "externalOrderNumber": "10037",
+      "customerOrderNumber": null,
+      "transactionNumber": "",
+      "externalOrderId": "c08d8192c4d8478b9dde4fc310bfb76a",
+      "date": "2023-05-09",
+      "netSales": 75.13,
+      "total": 75.13,
+      "desiredDeliveryDate": null,
+      "desiredDeliveryDateAsCalendarWeek": false,
+      "reservationDate": null,
+      "editor": "Kassen Mitarbeiter",
+      "sales": {
+        "id": null,
+        "name": null
+      },
+      "status": "released",
+      "customer": {
+        "id": "41",
+        "number": "10015"
+      },
+      "comment": "",
+      "project": {
+        "id": "1"
+      },
+      "bodyOutroduction": "",
+      "language": {
+        "iso2": ""
+      },
+      "financials": {
+        "paymentMethod": {
+          "id": "11"
+        },
+        "currency": "EUR",
+        "billingAddress": {
+          "name": "USA Kunde",
+          "department": "",
+          "subDepartment": "",
+          "street": "10 Columbus Cir",
+          "zipCode": "NY 10019",
+          "city": "New York",
+          "state": "",
+          "country": "US",
+          "type": "herr",
+          "title": "",
+          "contactPerson": "",
+          "addressSupplement": "",
+          "fax": "",
+          "email": "usa@digitalxl.de",
+          "salutation": "",
+          "gln": ""
+        },
+        "paymentTerms": {
+          "paymentTargetDiscount": 0,
+          "paymentTargetDays": 14,
+          "paymentTargetDiscountDays": 10
+        }
+      },
+      "delivery": {
+        "email": "",
+        "conditions": "",
+        "autoShipping": false,
+        "fastLane": false,
+        "shippingAddress": {
+          "name": "USA Kunde",
+          "department": "",
+          "subDepartment": "",
+          "street": "10 Columbus Cir",
+          "zipCode": "NY 10019",
+          "city": "New York",
+          "state": "",
+          "country": "US",
+          "gln": ""
+        }
+      },
+      "log": {
+        "createdAt": "2023-05-09T11:13:25+02:00",
+        "createdBy": {
+          "id": "5",
+          "name": "Kassen Mitarbeiter"
+        }
+      }
+    },
+    {
+      "id": "267",
+      "documentNumber": "200151",
+      "externalOrderNumber": "",
+      "customerOrderNumber": null,
+      "transactionNumber": "",
+      "externalOrderId": "",
+      "date": "2023-05-11",
+      "netSales": 211.24,
+      "total": 251.38,
+      "desiredDeliveryDate": null,
+      "desiredDeliveryDateAsCalendarWeek": false,
+      "reservationDate": null,
+      "editor": "Administrator",
+      "sales": {
+        "id": 1,
+        "name": "Administrator"
+      },
+      "status": "released",
+      "customer": {
+        "id": "20",
+        "number": "11000"
+      },
+      "comment": "",
+      "project": {
+        "id": "6"
+      },
+      "bodyOutroduction": "",
+      "language": {
+        "iso2": "deutsch"
+      },
+      "financials": {
+        "paymentMethod": {
+          "id": "8"
+        },
+        "currency": "EUR",
+        "billingAddress": {
+          "name": "Paul Maier",
+          "department": "",
+          "subDepartment": "",
+          "street": "Turmweg 23",
+          "zipCode": "79341",
+          "city": "Kenzingen",
+          "state": "",
+          "country": "DE",
+          "type": "herr",
+          "title": "",
+          "contactPerson": "",
+          "addressSupplement": "",
+          "fax": "",
+          "email": "",
+          "salutation": "",
+          "gln": ""
+        },
+        "paymentTerms": {
+          "paymentTargetDiscount": 2,
+          "paymentTargetDays": 33,
+          "paymentTargetDiscountDays": 11
+        }
+      },
+      "delivery": {
+        "email": "",
+        "conditions": "",
+        "autoShipping": true,
+        "fastLane": false,
+        "shippingAddress": {
+          "name": "Paul Maier",
+          "department": "",
+          "subDepartment": "",
+          "street": "Turmweg 23",
+          "zipCode": "79341",
+          "city": "Kenzingen",
+          "state": "",
+          "country": "DE",
+          "gln": ""
+        }
+      },
+      "log": {
+        "createdAt": "2023-05-11T15:20:16+02:00",
+        "createdBy": {
+          "id": "1",
+          "name": "Administrator"
+        }
+      }
+    },
+    {
+      "id": "270",
+      "documentNumber": "200152",
+      "externalOrderNumber": "#1025",
+      "customerOrderNumber": "10004",
+      "transactionNumber": "",
+      "externalOrderId": "5256607695067",
+      "date": "2023-05-15",
+      "netSales": 60,
+      "total": 71.4,
+      "desiredDeliveryDate": null,
+      "desiredDeliveryDateAsCalendarWeek": false,
+      "reservationDate": null,
+      "editor": "Marco",
+      "sales": {
+        "id": null,
+        "name": null
+      },
+      "status": "released",
+      "customer": {
+        "id": "8",
+        "number": "10004"
+      },
+      "comment": "",
+      "project": {
+        "id": "1"
+      },
+      "bodyOutroduction": "Das ist ein Kommentar im Warenkorb",
+      "language": {
+        "iso2": "spanisch"
+      },
+      "financials": {
+        "paymentMethod": {
+          "id": "0"
+        },
+        "currency": "CHF",
+        "billingAddress": {
+          "name": "Christian Hofmann",
+          "department": "",
+          "subDepartment": "",
+          "street": "Schönerbergweg 9",
+          "zipCode": "86929",
+          "city": "Penzing",
+          "state": "",
+          "country": "DE",
+          "type": "other",
+          "title": "",
+          "contactPerson": "",
+          "addressSupplement": "",
+          "fax": "",
+          "email": "christian@digitalxl.de",
+          "salutation": "",
+          "gln": ""
+        },
+        "paymentTerms": {
+          "paymentTargetDiscount": 0,
+          "paymentTargetDays": 14,
+          "paymentTargetDiscountDays": 10
+        }
+      },
+      "delivery": {
+        "email": "",
+        "conditions": "",
+        "autoShipping": true,
+        "fastLane": false,
+        "shippingAddress": {
+          "name": "Christian Hofmann",
+          "department": "",
+          "subDepartment": "",
+          "street": "Schönerbergweg 9",
+          "zipCode": "86929",
+          "city": "Penzing",
+          "state": "",
+          "country": "DE",
+          "gln": ""
+        }
+      },
+      "log": {
+        "createdAt": "2023-05-15T15:27:03+02:00",
+        "createdBy": {
+          "id": "5",
+          "name": "Marco"
+        }
+      }
+    },
+    {
+      "id": "272",
+      "documentNumber": "200154",
+      "externalOrderNumber": "10038",
+      "customerOrderNumber": null,
+      "transactionNumber": "",
+      "externalOrderId": "d43c8f5ed9e445959b6f2fe644e4fc0c",
+      "date": "2023-05-16",
+      "netSales": 79.9,
+      "total": 79.9,
+      "desiredDeliveryDate": null,
+      "desiredDeliveryDateAsCalendarWeek": false,
+      "reservationDate": null,
+      "editor": "Kassen Mitarbeiter",
+      "sales": {
+        "id": null,
+        "name": null
+      },
+      "status": "released",
+      "customer": {
+        "id": "41",
+        "number": "10015"
+      },
+      "comment": "",
+      "project": {
+        "id": "5"
+      },
+      "bodyOutroduction": "",
+      "language": {
+        "iso2": ""
+      },
+      "financials": {
+        "paymentMethod": {
+          "id": "11"
+        },
+        "currency": "EUR",
+        "billingAddress": {
+          "name": "USA Kunde",
+          "department": "",
+          "subDepartment": "",
+          "street": "10 Columbus Cir",
+          "zipCode": "NY 10019",
+          "city": "New York",
+          "state": "",
+          "country": "US",
+          "type": "herr",
+          "title": "",
+          "contactPerson": "",
+          "addressSupplement": "",
+          "fax": "",
+          "email": "usa@digitalxl.de",
+          "salutation": "",
+          "gln": ""
+        },
+        "paymentTerms": {
+          "paymentTargetDiscount": 0,
+          "paymentTargetDays": 14,
+          "paymentTargetDiscountDays": 10
+        }
+      },
+      "delivery": {
+        "email": "",
+        "conditions": "",
+        "autoShipping": true,
+        "fastLane": false,
+        "shippingAddress": {
+          "name": "USA Kunde",
+          "department": "",
+          "subDepartment": "",
+          "street": "10 Columbus Cir",
+          "zipCode": "NY 10019",
+          "city": "New York",
+          "state": "",
+          "country": "US",
+          "gln": ""
+        }
+      },
+      "log": {
+        "createdAt": "2023-05-16T16:33:10+02:00",
+        "createdBy": {
+          "id": "5",
+          "name": "Kassen Mitarbeiter"
+        }
+      }
+    },
+    {
+      "id": "278",
+      "documentNumber": "200160",
+      "externalOrderNumber": "",
+      "customerOrderNumber": "",
+      "transactionNumber": "",
+      "externalOrderId": "",
+      "date": "2023-05-17",
+      "netSales": 160.12,
+      "total": 190.55,
+      "desiredDeliveryDate": null,
+      "desiredDeliveryDateAsCalendarWeek": false,
+      "reservationDate": null,
+      "editor": "Administrator",
+      "sales": {
+        "id": 1,
+        "name": "Administrator"
+      },
+      "status": "released",
+      "customer": {
+        "id": "20",
+        "number": "11000"
+      },
+      "comment": "",
+      "project": {
+        "id": "6"
+      },
+      "bodyOutroduction": "",
+      "language": {
+        "iso2": "deutsch"
+      },
+      "financials": {
+        "paymentMethod": {
+          "id": "8"
+        },
+        "currency": "EUR",
+        "billingAddress": {
+          "name": "Paul Maier",
+          "department": "",
+          "subDepartment": "",
+          "street": "Turmweg 23",
+          "zipCode": "79341",
+          "city": "Kenzingen",
+          "state": "",
+          "country": "DE",
+          "type": "herr",
+          "title": "",
+          "contactPerson": "",
+          "addressSupplement": "",
+          "fax": "",
+          "email": "",
+          "salutation": "",
+          "gln": ""
+        },
+        "paymentTerms": {
+          "paymentTargetDiscount": 2,
+          "paymentTargetDays": 33,
+          "paymentTargetDiscountDays": 11
+        }
+      },
+      "delivery": {
+        "email": "",
+        "conditions": "",
+        "autoShipping": true,
+        "fastLane": false,
+        "shippingAddress": {
+          "name": "Paul Maier",
+          "department": "",
+          "subDepartment": "",
+          "street": "Turmweg 23",
+          "zipCode": "79341",
+          "city": "Kenzingen",
+          "state": "",
+          "country": "DE",
+          "gln": ""
+        }
+      },
+      "log": {
+        "createdAt": "2023-05-17T16:14:53+02:00",
+        "createdBy": {
+          "id": "1",
+          "name": "Administrator"
+        }
+      }
+    },
+    {
+      "id": "280",
+      "documentNumber": "200162",
+      "externalOrderNumber": "123456",
+      "customerOrderNumber": "",
+      "transactionNumber": "Paypal_4456251",
+      "externalOrderId": "1",
+      "date": "2023-01-02",
+      "netSales": 184,
+      "total": 218.48,
+      "desiredDeliveryDate": "2023-10-10",
+      "desiredDeliveryDateAsCalendarWeek": false,
+      "reservationDate": null,
+      "editor": "Martin",
+      "sales": {
+        "id": null,
+        "name": null
+      },
+      "status": "released",
+      "customer": {
+        "id": "46",
+        "number": "10017"
+      },
+      "comment": "Interne Bemerkung",
+      "project": {
+        "id": "1"
+      },
+      "bodyOutroduction": "Freitext",
+      "language": {
+        "iso2": "deutsch"
+      },
+      "financials": {
+        "paymentMethod": {
+          "id": "13"
+        },
+        "currency": "EUR",
+        "billingAddress": {
+          "name": "Justus Jonas GmbH",
+          "department": "Detektiv",
+          "subDepartment": "Erster",
+          "street": "Unterer Zirkel 17",
+          "zipCode": "79336",
+          "city": "Rocky Beach",
+          "state": "",
+          "country": "DE",
+          "type": "firma",
+          "title": "Herr Dr.",
+          "contactPerson": "Peter Shaw",
+          "addressSupplement": "",
+          "fax": "",
+          "email": "justus@example.com",
+          "salutation": "Sehr geehrter Herr Shaw",
+          "gln": "GLN12345"
+        },
+        "paymentTerms": {
+          "paymentTargetDiscount": 2,
+          "paymentTargetDays": 14,
+          "paymentTargetDiscountDays": 10
+        }
+      },
+      "delivery": {
+        "email": "delivery@example.com",
+        "conditions": "Bis Bordsteinkante",
+        "autoShipping": true,
+        "fastLane": true,
+        "shippingAddress": {
+          "name": "Liefername",
+          "department": "Lieferabteilung",
+          "subDepartment": "Lieferunterabteilung",
+          "street": "Egalstrasse 13",
+          "zipCode": "88888",
+          "city": "Hausenhausen",
+          "state": "",
+          "country": "DE",
+          "gln": "GLN654321"
+        }
+      },
+      "log": {
+        "createdAt": "2023-05-23T15:36:49+02:00",
+        "createdBy": {
+          "id": "254",
+          "name": "Martin"
+        }
+      }
+    },
+    {
+      "id": "281",
+      "documentNumber": "200163",
+      "externalOrderNumber": "123456",
+      "customerOrderNumber": "",
+      "transactionNumber": "Paypal_4456251",
+      "externalOrderId": "1",
+      "date": "2023-01-02",
+      "netSales": 184,
+      "total": 218.48,
+      "desiredDeliveryDate": "2023-10-10",
+      "desiredDeliveryDateAsCalendarWeek": false,
+      "reservationDate": null,
+      "editor": "",
+      "sales": {
+        "id": null,
+        "name": null
+      },
+      "status": "released",
+      "customer": {
+        "id": "46",
+        "number": "10017"
+      },
+      "comment": "Interne Bemerkung",
+      "project": {
+        "id": "1"
+      },
+      "bodyOutroduction": "Freitext",
+      "language": {
+        "iso2": "deutsch"
+      },
+      "financials": {
+        "paymentMethod": {
+          "id": "13"
+        },
+        "currency": "EUR",
+        "billingAddress": {
+          "name": "Justus Jonas GmbH",
+          "department": "Detektiv",
+          "subDepartment": "Erster",
+          "street": "Unterer Zirkel 17",
+          "zipCode": "79336",
+          "city": "Rocky Beach",
+          "state": "",
+          "country": "DE",
+          "type": "firma",
+          "title": "Herr Dr.",
+          "contactPerson": "Peter Shaw",
+          "addressSupplement": "",
+          "fax": "",
+          "email": "justus@example.com",
+          "salutation": "Sehr geehrter Herr Shaw",
+          "gln": "GLN12345"
+        },
+        "paymentTerms": {
+          "paymentTargetDiscount": 2,
+          "paymentTargetDays": 14,
+          "paymentTargetDiscountDays": 10
+        }
+      },
+      "delivery": {
+        "email": "delivery@example.com",
+        "conditions": "Bis Bordsteinkante",
+        "autoShipping": true,
+        "fastLane": true,
+        "shippingAddress": {
+          "name": "Liefername",
+          "department": "Lieferabteilung",
+          "subDepartment": "Lieferunterabteilung",
+          "street": "Egalstrasse 13",
+          "zipCode": "88888",
+          "city": "Hausenhausen",
+          "state": "",
+          "country": "DE",
+          "gln": "GLN654321"
+        }
+      },
+      "log": {
+        "createdAt": "2023-05-23T15:37:21+02:00",
+        "createdBy": {
+          "id": "0",
+          "name": ""
+        }
+      }
+    },
+    {
+      "id": "282",
+      "documentNumber": "200164",
+      "externalOrderNumber": "123456",
+      "customerOrderNumber": "",
+      "transactionNumber": "Paypal_4456251",
+      "externalOrderId": "1",
+      "date": "2023-01-02",
+      "netSales": 184,
+      "total": 218.48,
+      "desiredDeliveryDate": "2023-10-10",
+      "desiredDeliveryDateAsCalendarWeek": false,
+      "reservationDate": null,
+      "editor": "Nathalie Iskalla",
+      "sales": {
+        "id": null,
+        "name": null
+      },
+      "status": "released",
+      "customer": {
+        "id": "46",
+        "number": "10017"
+      },
+      "comment": "Interne Bemerkung",
+      "project": {
+        "id": "1"
+      },
+      "bodyOutroduction": "Freitext",
+      "language": {
+        "iso2": "deutsch"
+      },
+      "financials": {
+        "paymentMethod": {
+          "id": "13"
+        },
+        "currency": "EUR",
+        "billingAddress": {
+          "name": "Justus Jonas GmbH",
+          "department": "Detektiv",
+          "subDepartment": "Erster",
+          "street": "Unterer Zirkel 17",
+          "zipCode": "79336",
+          "city": "Rocky Beach",
+          "state": "",
+          "country": "DE",
+          "type": "firma",
+          "title": "Herr Dr.",
+          "contactPerson": "Peter Shaw",
+          "addressSupplement": "",
+          "fax": "",
+          "email": "justus@example.com",
+          "salutation": "Sehr geehrter Herr Shaw",
+          "gln": "GLN12345"
+        },
+        "paymentTerms": {
+          "paymentTargetDiscount": 2,
+          "paymentTargetDays": 14,
+          "paymentTargetDiscountDays": 10
+        }
+      },
+      "delivery": {
+        "email": "delivery@example.com",
+        "conditions": "Bis Bordsteinkante",
+        "autoShipping": true,
+        "fastLane": true,
+        "shippingAddress": {
+          "name": "Liefername",
+          "department": "Lieferabteilung",
+          "subDepartment": "Lieferunterabteilung",
+          "street": "Egalstrasse 13",
+          "zipCode": "88888",
+          "city": "Hausenhausen",
+          "state": "",
+          "country": "DE",
+          "gln": "GLN654321"
+        }
+      },
+      "log": {
+        "createdAt": "2023-05-23T15:43:12+02:00",
+        "createdBy": {
+          "id": "63",
+          "name": "Nathalie Iskalla"
+        }
+      }
+    },
+    {
+      "id": "283",
+      "documentNumber": "CH3",
+      "externalOrderNumber": "SAL23158536",
+      "customerOrderNumber": null,
+      "transactionNumber": "1K631176NA000035L",
+      "externalOrderId": "ed0e391f8c7d4ab99d6e1c43792e4a58",
+      "date": "2023-05-23",
+      "netSales": 933.49,
+      "total": 1110.85,
+      "desiredDeliveryDate": null,
+      "desiredDeliveryDateAsCalendarWeek": false,
+      "reservationDate": null,
+      "editor": "Kassen Mitarbeiter",
+      "sales": {
+        "id": null,
+        "name": null
+      },
+      "status": "released",
+      "customer": {
+        "id": "47",
+        "number": "CH30000"
+      },
+      "comment": "",
+      "project": {
+        "id": "18"
+      },
+      "bodyOutroduction": "",
+      "language": {
+        "iso2": ""
+      },
+      "financials": {
+        "paymentMethod": {
+          "id": "0"
+        },
+        "currency": "EUR",
+        "billingAddress": {
+          "name": "Melanie Enzmann",
+          "department": "",
+          "subDepartment": "",
+          "street": "Friedenstr., 21",
+          "zipCode": "77654",
+          "city": "Offenburg",
+          "state": "",
+          "country": "DE",
+          "type": "frau",
+          "title": "",
+          "contactPerson": "",
+          "addressSupplement": "",
+          "fax": "",
+          "email": "m.enzmann91@gmx.de",
+          "salutation": "",
+          "gln": ""
+        },
+        "paymentTerms": {
+          "paymentTargetDiscount": 0,
+          "paymentTargetDays": 14,
+          "paymentTargetDiscountDays": 10
+        }
+      },
+      "delivery": {
+        "email": "",
+        "conditions": "",
+        "autoShipping": true,
+        "fastLane": false,
+        "shippingAddress": {
+          "name": "Melanie Enzmann",
+          "department": "",
+          "subDepartment": "",
+          "street": "Friedenstr., 21",
+          "zipCode": "77654",
+          "city": "Offenburg",
+          "state": "",
+          "country": "DE",
+          "gln": ""
+        }
+      },
+      "log": {
+        "createdAt": "2023-05-23T17:21:59+02:00",
+        "createdBy": {
+          "id": "5",
+          "name": "Kassen Mitarbeiter"
+        }
+      }
+    },
+    {
+      "id": "284",
+      "documentNumber": "200165",
+      "externalOrderNumber": "#1020",
+      "customerOrderNumber": null,
+      "transactionNumber": "",
+      "externalOrderId": "5137160339675",
+      "date": "2023-02-08",
+      "netSales": 4.2,
+      "total": 5,
+      "desiredDeliveryDate": null,
+      "desiredDeliveryDateAsCalendarWeek": false,
+      "reservationDate": null,
+      "editor": "Kassen Mitarbeiter",
+      "sales": {
+        "id": null,
+        "name": null
+      },
+      "status": "released",
+      "customer": {
+        "id": "48",
+        "number": "10018"
+      },
+      "comment": "",
+      "project": {
+        "id": "1"
+      },
+      "bodyOutroduction": "",
+      "language": {
+        "iso2": ""
+      },
+      "financials": {
+        "paymentMethod": {
+          "id": "11"
+        },
+        "currency": "EUR",
+        "billingAddress": {
+          "name": "Tester Ohne eMail Adresse",
+          "department": "",
+          "subDepartment": "",
+          "street": "Augsburger Straße 460",
+          "zipCode": "70327",
+          "city": "Stuttgart",
+          "state": "",
+          "country": "DE",
+          "type": "other",
+          "title": "",
+          "contactPerson": "",
+          "addressSupplement": "",
+          "fax": "",
+          "email": "",
+          "salutation": "",
+          "gln": ""
+        },
+        "paymentTerms": {
+          "paymentTargetDiscount": 0,
+          "paymentTargetDays": 14,
+          "paymentTargetDiscountDays": 10
+        }
+      },
+      "delivery": {
+        "email": "",
+        "conditions": "",
+        "autoShipping": false,
+        "fastLane": false,
+        "shippingAddress": {
+          "name": "Tester Ohne eMail Adresse",
+          "department": "",
+          "subDepartment": "",
+          "street": "Augsburger Straße 460",
+          "zipCode": "70327",
+          "city": "Stuttgart",
+          "state": "",
+          "country": "DE",
+          "gln": ""
+        }
+      },
+      "log": {
+        "createdAt": "2023-05-23T17:49:05+02:00",
+        "createdBy": {
+          "id": "5",
+          "name": "Kassen Mitarbeiter"
+        }
+      }
+    },
+    {
+      "id": "285",
+      "documentNumber": "200166",
+      "externalOrderNumber": "#1013",
+      "customerOrderNumber": "10004",
+      "transactionNumber": "",
+      "externalOrderId": "5019820359899",
+      "date": "2022-11-16",
+      "netSales": 10,
+      "total": 11.9,
+      "desiredDeliveryDate": null,
+      "desiredDeliveryDateAsCalendarWeek": false,
+      "reservationDate": null,
+      "editor": "Marco",
+      "sales": {
+        "id": null,
+        "name": null
+      },
+      "status": "released",
+      "customer": {
+        "id": "8",
+        "number": "10004"
+      },
+      "comment": "",
+      "project": {
+        "id": "1"
+      },
+      "bodyOutroduction": "",
+      "language": {
+        "iso2": "englisch"
+      },
+      "financials": {
+        "paymentMethod": {
+          "id": "11"
+        },
+        "currency": "EUR",
+        "billingAddress": {
+          "name": "Christian Hofmann",
+          "department": "",
+          "subDepartment": "",
+          "street": "Schönerbergweg 9",
+          "zipCode": "86929",
+          "city": "Penzing",
+          "state": "",
+          "country": "DE",
+          "type": "other",
+          "title": "",
+          "contactPerson": "",
+          "addressSupplement": "",
+          "fax": "",
+          "email": "christian@digitalxl.de",
+          "salutation": "",
+          "gln": ""
+        },
+        "paymentTerms": {
+          "paymentTargetDiscount": 0,
+          "paymentTargetDays": 14,
+          "paymentTargetDiscountDays": 10
+        }
+      },
+      "delivery": {
+        "email": "",
+        "conditions": "",
+        "autoShipping": true,
+        "fastLane": false,
+        "shippingAddress": {
+          "name": "Christian Hofmann",
+          "department": "",
+          "subDepartment": "",
+          "street": "Schönerbergweg 9",
+          "zipCode": "86929",
+          "city": "Penzing",
+          "state": "",
+          "country": "DE",
+          "gln": ""
+        }
+      },
+      "log": {
+        "createdAt": "2023-05-23T17:49:06+02:00",
+        "createdBy": {
+          "id": "5",
+          "name": "Marco"
+        }
+      }
+    },
+    {
+      "id": "290",
+      "documentNumber": "CH4",
+      "externalOrderNumber": "SAL23158664",
+      "customerOrderNumber": null,
+      "transactionNumber": "5T3838685P4076631",
+      "externalOrderId": "1f954f6b947f403ba526aef02a371c1f",
+      "date": "2023-05-23",
+      "netSales": 103.61,
+      "total": 103.61,
+      "desiredDeliveryDate": null,
+      "desiredDeliveryDateAsCalendarWeek": false,
+      "reservationDate": null,
+      "editor": "Kassen Mitarbeiter",
+      "sales": {
+        "id": null,
+        "name": null
+      },
+      "status": "released",
+      "customer": {
+        "id": "50",
+        "number": "CH30001"
+      },
+      "comment": "",
+      "project": {
+        "id": "18"
+      },
+      "bodyOutroduction": "",
+      "language": {
+        "iso2": ""
+      },
+      "financials": {
+        "paymentMethod": {
+          "id": "0"
+        },
+        "currency": "EUR",
+        "billingAddress": {
+          "name": "Nicole Dehner",
+          "department": "",
+          "subDepartment": "",
+          "street": "Staanackerstrasse 4A",
+          "zipCode": "8232",
+          "city": "Merishausen",
+          "state": "",
+          "country": "CH",
+          "type": "frau",
+          "title": "",
+          "contactPerson": "",
+          "addressSupplement": "",
+          "fax": "",
+          "email": "n.dehner@icloud.com",
+          "salutation": "",
+          "gln": ""
+        },
+        "paymentTerms": {
+          "paymentTargetDiscount": 0,
+          "paymentTargetDays": 14,
+          "paymentTargetDiscountDays": 10
+        }
+      },
+      "delivery": {
+        "email": "",
+        "conditions": "",
+        "autoShipping": false,
+        "fastLane": false,
+        "shippingAddress": {
+          "name": "Nicole Dehner",
+          "department": "",
+          "subDepartment": "",
+          "street": "Staanackerstrasse 4A",
+          "zipCode": "8232",
+          "city": "Merishausen",
+          "state": "",
+          "country": "CH",
+          "gln": ""
+        }
+      },
+      "log": {
+        "createdAt": "2023-05-23T18:46:10+02:00",
+        "createdBy": {
+          "id": "5",
+          "name": "Kassen Mitarbeiter"
+        }
+      }
+    },
+    {
+      "id": "291",
+      "documentNumber": "CH5",
+      "externalOrderNumber": "SAL23158615",
+      "customerOrderNumber": null,
+      "transactionNumber": "50V35254SR1706942",
+      "externalOrderId": "a330ecfdc80c49d3ba4b64c454544740",
+      "date": "2023-05-23",
+      "netSales": 8.77,
+      "total": 10.44,
+      "desiredDeliveryDate": null,
+      "desiredDeliveryDateAsCalendarWeek": false,
+      "reservationDate": null,
+      "editor": "Kassen Mitarbeiter",
+      "sales": {
+        "id": null,
+        "name": null
+      },
+      "status": "released",
+      "customer": {
+        "id": "51",
+        "number": "CH30002"
+      },
+      "comment": "",
+      "project": {
+        "id": "18"
+      },
+      "bodyOutroduction": "",
+      "language": {
+        "iso2": ""
+      },
+      "financials": {
+        "paymentMethod": {
+          "id": "0"
+        },
+        "currency": "EUR",
+        "billingAddress": {
+          "name": "Stefanie  Fischer",
+          "department": "",
+          "subDepartment": "",
+          "street": "Henkelsweg  8a",
+          "zipCode": "87463",
+          "city": "Dietmannsried",
+          "state": "",
+          "country": "DE",
+          "type": "frau",
+          "title": "",
+          "contactPerson": "",
+          "addressSupplement": "Henkelsweg  8a",
+          "fax": "",
+          "email": "fischerstefanie007@outlook.com",
+          "salutation": "",
+          "gln": ""
+        },
+        "paymentTerms": {
+          "paymentTargetDiscount": 0,
+          "paymentTargetDays": 14,
+          "paymentTargetDiscountDays": 10
+        }
+      },
+      "delivery": {
+        "email": "",
+        "conditions": "",
+        "autoShipping": true,
+        "fastLane": false,
+        "shippingAddress": {
+          "name": "Stefanie  Fischer",
+          "department": "",
+          "subDepartment": "",
+          "street": "Henkelsweg  8a",
+          "zipCode": "87463",
+          "city": "Dietmannsried",
+          "state": "",
+          "country": "DE",
+          "gln": ""
+        }
+      },
+      "log": {
+        "createdAt": "2023-05-23T18:55:30+02:00",
+        "createdBy": {
+          "id": "5",
+          "name": "Kassen Mitarbeiter"
+        }
+      }
+    },
+    {
+      "id": "292",
+      "documentNumber": "CH6",
+      "externalOrderNumber": "SAL23158697",
+      "customerOrderNumber": null,
+      "transactionNumber": "0UU29598GD2237820",
+      "externalOrderId": "253106f2a48f4e43a8c071722cc9d376",
+      "date": "2023-05-23",
+      "netSales": 50.4,
+      "total": 59.98,
+      "desiredDeliveryDate": null,
+      "desiredDeliveryDateAsCalendarWeek": false,
+      "reservationDate": null,
+      "editor": "Kassen Mitarbeiter",
+      "sales": {
+        "id": null,
+        "name": null
+      },
+      "status": "released",
+      "customer": {
+        "id": "52",
+        "number": "CH30003"
+      },
+      "comment": "",
+      "project": {
+        "id": "18"
+      },
+      "bodyOutroduction": "",
+      "language": {
+        "iso2": ""
+      },
+      "financials": {
+        "paymentMethod": {
+          "id": "0"
+        },
+        "currency": "EUR",
+        "billingAddress": {
+          "name": "Katrin Baumüller",
+          "department": "",
+          "subDepartment": "",
+          "street": "Sommerhalde 26",
+          "zipCode": "72213",
+          "city": "Altensteig",
+          "state": "",
+          "country": "DE",
+          "type": "frau",
+          "title": "",
+          "contactPerson": "",
+          "addressSupplement": "",
+          "fax": "",
+          "email": "Katrin_Benser@gmx.de",
+          "salutation": "",
+          "gln": ""
+        },
+        "paymentTerms": {
+          "paymentTargetDiscount": 0,
+          "paymentTargetDays": 14,
+          "paymentTargetDiscountDays": 10
+        }
+      },
+      "delivery": {
+        "email": "",
+        "conditions": "",
+        "autoShipping": true,
+        "fastLane": false,
+        "shippingAddress": {
+          "name": "Katrin Baumüller",
+          "department": "",
+          "subDepartment": "",
+          "street": "Sommerhalde 26",
+          "zipCode": "72213",
+          "city": "Altensteig",
+          "state": "",
+          "country": "DE",
+          "gln": ""
+        }
+      },
+      "log": {
+        "createdAt": "2023-05-23T18:59:19+02:00",
+        "createdBy": {
+          "id": "5",
+          "name": "Kassen Mitarbeiter"
+        }
+      }
+    },
+    {
+      "id": "293",
+      "documentNumber": "CH7",
+      "externalOrderNumber": "SAL23158319",
+      "customerOrderNumber": null,
+      "transactionNumber": "60190394MY962762W",
+      "externalOrderId": "45ea60e778c44a52a0fe94cc2ccaeac2",
+      "date": "2023-05-23",
+      "netSales": 109.55,
+      "total": 130.37,
+      "desiredDeliveryDate": null,
+      "desiredDeliveryDateAsCalendarWeek": false,
+      "reservationDate": null,
+      "editor": "Kassen Mitarbeiter",
+      "sales": {
+        "id": null,
+        "name": null
+      },
+      "status": "released",
+      "customer": {
+        "id": "53",
+        "number": "CH30004"
+      },
+      "comment": "",
+      "project": {
+        "id": "18"
+      },
+      "bodyOutroduction": "",
+      "language": {
+        "iso2": ""
+      },
+      "financials": {
+        "paymentMethod": {
+          "id": "0"
+        },
+        "currency": "EUR",
+        "billingAddress": {
+          "name": "Luisa Colorado",
+          "department": "",
+          "subDepartment": "",
+          "street": "Am Haarberg 4",
+          "zipCode": "97717",
+          "city": "Euerdorf",
+          "state": "",
+          "country": "DE",
+          "type": "frau",
+          "title": "",
+          "contactPerson": "",
+          "addressSupplement": "",
+          "fax": "",
+          "email": "luisa.coloradob.1989@gmail.com",
+          "salutation": "",
+          "gln": ""
+        },
+        "paymentTerms": {
+          "paymentTargetDiscount": 0,
+          "paymentTargetDays": 14,
+          "paymentTargetDiscountDays": 10
+        }
+      },
+      "delivery": {
+        "email": "",
+        "conditions": "",
+        "autoShipping": true,
+        "fastLane": false,
+        "shippingAddress": {
+          "name": "Luisa Colorado",
+          "department": "",
+          "subDepartment": "",
+          "street": "Am Haarberg 4",
+          "zipCode": "97717",
+          "city": "Euerdorf",
+          "state": "",
+          "country": "DE",
+          "gln": ""
+        }
+      },
+      "log": {
+        "createdAt": "2023-05-23T19:03:29+02:00",
+        "createdBy": {
+          "id": "5",
+          "name": "Kassen Mitarbeiter"
+        }
+      }
+    },
+    {
+      "id": "294",
+      "documentNumber": "CH8",
+      "externalOrderNumber": "SAL23158669",
+      "customerOrderNumber": null,
+      "transactionNumber": "42W210736X081445V",
+      "externalOrderId": "a048ca887c28491786bc1bfd7e77a624",
+      "date": "2023-05-23",
+      "netSales": 50.45,
+      "total": 53.98,
+      "desiredDeliveryDate": null,
+      "desiredDeliveryDateAsCalendarWeek": false,
+      "reservationDate": null,
+      "editor": "Kassen Mitarbeiter",
+      "sales": {
+        "id": null,
+        "name": null
+      },
+      "status": "released",
+      "customer": {
+        "id": "54",
+        "number": "CH30005"
+      },
+      "comment": "",
+      "project": {
+        "id": "18"
+      },
+      "bodyOutroduction": "",
+      "language": {
+        "iso2": ""
+      },
+      "financials": {
+        "paymentMethod": {
+          "id": "0"
+        },
+        "currency": "EUR",
+        "billingAddress": {
+          "name": "Belgin Aktas",
+          "department": "",
+          "subDepartment": "",
+          "street": "Bert-Brecht-Str., 55",
+          "zipCode": "65201",
+          "city": "Wiesbaden",
+          "state": "",
+          "country": "DE",
+          "type": "frau",
+          "title": "",
+          "contactPerson": "",
+          "addressSupplement": "Könemann",
+          "fax": "",
+          "email": "silvancem@hotmail.de",
+          "salutation": "",
+          "gln": ""
+        },
+        "paymentTerms": {
+          "paymentTargetDiscount": 0,
+          "paymentTargetDays": 14,
+          "paymentTargetDiscountDays": 10
+        }
+      },
+      "delivery": {
+        "email": "",
+        "conditions": "",
+        "autoShipping": true,
+        "fastLane": false,
+        "shippingAddress": {
+          "name": "Belgin Aktas",
+          "department": "",
+          "subDepartment": "",
+          "street": "Bert-Brecht-Str., 55",
+          "zipCode": "65201",
+          "city": "Wiesbaden",
+          "state": "",
+          "country": "DE",
+          "gln": ""
+        }
+      },
+      "log": {
+        "createdAt": "2023-05-23T19:07:03+02:00",
+        "createdBy": {
+          "id": "5",
+          "name": "Kassen Mitarbeiter"
+        }
+      }
+    },
+    {
+      "id": "297",
+      "documentNumber": "CH9",
+      "externalOrderNumber": "SAL23159105",
+      "customerOrderNumber": null,
+      "transactionNumber": "0TY449236W288092S",
+      "externalOrderId": "dd369f238e954f8dbbd5bb00a1d06d6e",
+      "date": "2023-05-24",
+      "netSales": 53.76,
+      "total": 63.97,
+      "desiredDeliveryDate": null,
+      "desiredDeliveryDateAsCalendarWeek": false,
+      "reservationDate": null,
+      "editor": "Administrator",
+      "sales": {
+        "id": null,
+        "name": null
+      },
+      "status": "released",
+      "customer": {
+        "id": "55",
+        "number": "CH30006"
+      },
+      "comment": "",
+      "project": {
+        "id": "18"
+      },
+      "bodyOutroduction": "",
+      "language": {
+        "iso2": ""
+      },
+      "financials": {
+        "paymentMethod": {
+          "id": "0"
+        },
+        "currency": "EUR",
+        "billingAddress": {
+          "name": "Silvia Engels-Heiny",
+          "department": "",
+          "subDepartment": "",
+          "street": "In Der Haag 29",
+          "zipCode": "41379",
+          "city": "Brüggen",
+          "state": "",
+          "country": "DE",
+          "type": "frau",
+          "title": "",
+          "contactPerson": "",
+          "addressSupplement": "",
+          "fax": "",
+          "email": "silvia.heiny@web.de",
+          "salutation": "",
+          "gln": ""
+        },
+        "paymentTerms": {
+          "paymentTargetDiscount": 0,
+          "paymentTargetDays": 14,
+          "paymentTargetDiscountDays": 10
+        }
+      },
+      "delivery": {
+        "email": "",
+        "conditions": "",
+        "autoShipping": true,
+        "fastLane": false,
+        "shippingAddress": {
+          "name": "Silvia Engels-Heiny",
+          "department": "",
+          "subDepartment": "",
+          "street": "In Der Haag 29",
+          "zipCode": "41379",
+          "city": "Brüggen",
+          "state": "",
+          "country": "DE",
+          "gln": ""
+        }
+      },
+      "log": {
+        "createdAt": "2023-05-24T15:46:55+02:00",
+        "createdBy": {
+          "id": "1",
+          "name": "Administrator"
+        }
+      }
+    },
+    {
+      "id": "298",
+      "documentNumber": "CH10",
+      "externalOrderNumber": "SAL23158966",
+      "customerOrderNumber": null,
+      "transactionNumber": "4NP12145W5630220V",
+      "externalOrderId": "18cf4d804ab14057b03b1f0c9eacff71",
+      "date": "2023-05-24",
+      "netSales": 32.81,
+      "total": 36.32,
+      "desiredDeliveryDate": null,
+      "desiredDeliveryDateAsCalendarWeek": false,
+      "reservationDate": null,
+      "editor": "Kassen Mitarbeiter",
+      "sales": {
+        "id": null,
+        "name": null
+      },
+      "status": "released",
+      "customer": {
+        "id": "56",
+        "number": "CH30007"
+      },
+      "comment": "",
+      "project": {
+        "id": "18"
+      },
+      "bodyOutroduction": "",
+      "language": {
+        "iso2": ""
+      },
+      "financials": {
+        "paymentMethod": {
+          "id": "0"
+        },
+        "currency": "EUR",
+        "billingAddress": {
+          "name": "Melanie  Zorndt",
+          "department": "",
+          "subDepartment": "",
+          "street": "Waldsiedlung 20",
+          "zipCode": "29484",
+          "city": "Langendorf",
+          "state": "",
+          "country": "DE",
+          "type": "frau",
+          "title": "",
+          "contactPerson": "",
+          "addressSupplement": "",
+          "fax": "",
+          "email": "Melanie.zorndt@googlemail.com",
+          "salutation": "",
+          "gln": ""
+        },
+        "paymentTerms": {
+          "paymentTargetDiscount": 0,
+          "paymentTargetDays": 14,
+          "paymentTargetDiscountDays": 10
+        }
+      },
+      "delivery": {
+        "email": "",
+        "conditions": "",
+        "autoShipping": true,
+        "fastLane": false,
+        "shippingAddress": {
+          "name": "Melanie  Zorndt",
+          "department": "",
+          "subDepartment": "",
+          "street": "Waldsiedlung 20",
+          "zipCode": "29484",
+          "city": "Langendorf",
+          "state": "",
+          "country": "DE",
+          "gln": ""
+        }
+      },
+      "log": {
+        "createdAt": "2023-05-24T15:56:00+02:00",
+        "createdBy": {
+          "id": "5",
+          "name": "Kassen Mitarbeiter"
+        }
+      }
+    },
+    {
+      "id": "299",
+      "documentNumber": "CH11",
+      "externalOrderNumber": "SAL23151732",
+      "customerOrderNumber": null,
+      "transactionNumber": "79S70582EL734780S",
+      "externalOrderId": "fec470e75e0745ae83885544c65e71bd",
+      "date": "2023-05-24",
+      "netSales": 9.29,
+      "total": 9.94,
+      "desiredDeliveryDate": null,
+      "desiredDeliveryDateAsCalendarWeek": false,
+      "reservationDate": null,
+      "editor": "Kassen Mitarbeiter",
+      "sales": {
+        "id": null,
+        "name": null
+      },
+      "status": "released",
+      "customer": {
+        "id": "57",
+        "number": "CH30008"
+      },
+      "comment": "",
+      "project": {
+        "id": "18"
+      },
+      "bodyOutroduction": "",
+      "language": {
+        "iso2": ""
+      },
+      "financials": {
+        "paymentMethod": {
+          "id": "0"
+        },
+        "currency": "EUR",
+        "billingAddress": {
+          "name": "Dominik Hübner",
+          "department": "",
+          "subDepartment": "",
+          "street": "Schrambergerstraße 45a",
+          "zipCode": "78628",
+          "city": "Rottweil",
+          "state": "",
+          "country": "DE",
+          "type": "herr",
+          "title": "",
+          "contactPerson": "",
+          "addressSupplement": "",
+          "fax": "",
+          "email": "dome.huebner@web.de",
+          "salutation": "",
+          "gln": ""
+        },
+        "paymentTerms": {
+          "paymentTargetDiscount": 0,
+          "paymentTargetDays": 14,
+          "paymentTargetDiscountDays": 10
+        }
+      },
+      "delivery": {
+        "email": "",
+        "conditions": "",
+        "autoShipping": true,
+        "fastLane": false,
+        "shippingAddress": {
+          "name": "Dominik Hübner",
+          "department": "",
+          "subDepartment": "",
+          "street": "Schrambergerstraße 45a",
+          "zipCode": "78628",
+          "city": "Rottweil",
+          "state": "",
+          "country": "DE",
+          "gln": ""
+        }
+      },
+      "log": {
+        "createdAt": "2023-05-24T16:00:43+02:00",
+        "createdBy": {
+          "id": "5",
+          "name": "Kassen Mitarbeiter"
+        }
+      }
+    }
+  ],
+  "extra": {
+    "totalCount": 497,
+    "page": {
+      "number": 1,
+      "size": 50
+    }
+  }
+}

@@ -6,8 +6,7 @@
       "method": "GET",
       "headers": {
         "Accept": "application/json",
-        "Content-Type": "application/json",
-        "Authorization": "Bearer 1159|isvdZaAzpS0jDoJKNkBQdiFIQa3i6MUrdtVROn29"
+        "Content-Type": "application/json"
       },
       "query": {
         "filter[0][key]": "status",
@@ -24,8 +23,7 @@
       "method": "GET",
       "headers": {
         "Accept": "application/json",
-        "Content-Type": "application/json",
-        "Authorization": "Bearer 1159|isvdZaAzpS0jDoJKNkBQdiFIQa3i6MUrdtVROn29"
+        "Content-Type": "application/json"
       },
       "query": {},
       "requiresId": true,
@@ -33,5 +31,3 @@
     }
   ]
 }
-
-

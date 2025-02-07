@@ -303,3 +303,152 @@ Fehlendes Feld: data[0].internalDesignation
 Fehlendes Feld: data[0].salesChannel
 Neues Feld gefunden: data[0].netSales
 Neues Feld gefunden: data[0].total
+[2025-02-07T10:14:56.509Z] Unterschiede bei Get SalesOrder View:
+Fehlendes Feld: data[0].autoCreateDocuments
+Fehlendes Feld: data[0].earliestFulfillmentDate
+Fehlendes Feld: data[0].financials.netSales
+Fehlendes Feld: data[0].financials.total
+Fehlendes Feld: data[0].delivery.shippingMethod
+Fehlendes Feld: data[0].delivery.deliveryTerms
+Fehlendes Feld: data[0].positions
+Fehlendes Feld: data[0].bodyIntroduction
+Fehlendes Feld: data[0].internalDesignation
+Fehlendes Feld: data[0].salesChannel
+Neues Feld gefunden: data[0].netSales
+Neues Feld gefunden: data[0].total
+[2025-02-07T10:15:23.265Z] Unterschiede bei Get SalesOrder View:
+Fehlendes Feld: data[0].autoCreateDocuments
+Fehlendes Feld: data[0].earliestFulfillmentDate
+Fehlendes Feld: data[0].financials.netSales
+Fehlendes Feld: data[0].financials.total
+Fehlendes Feld: data[0].delivery.shippingMethod
+Fehlendes Feld: data[0].delivery.deliveryTerms
+Fehlendes Feld: data[0].positions
+Fehlendes Feld: data[0].bodyIntroduction
+Fehlendes Feld: data[0].internalDesignation
+Fehlendes Feld: data[0].salesChannel
+Neues Feld gefunden: data[0].netSales
+Neues Feld gefunden: data[0].total
+[2025-02-07T10:18:08.450Z] Unterschiede bei Get SalesOrder View:
+Fehlendes Feld: data[0].autoCreateDocuments
+Falscher Typ für Feld data[0].netSales: erwartet string, erhalten number
+Falscher Typ für Feld data[0].total: erwartet string, erhalten number
+Fehlendes Feld: data[0].earliestFulfillmentDate
+Fehlendes Feld: data[0].financials.netSales
+Fehlendes Feld: data[0].financials.total
+Fehlendes Feld: data[0].delivery.shippingMethod
+Fehlendes Feld: data[0].delivery.deliveryTerms
+Fehlendes Feld: data[0].positions
+Fehlendes Feld: data[0].bodyIntroduction
+Fehlendes Feld: data[0].internalDesignation
+Fehlendes Feld: data[0].salesChannel
+[2025-02-07T10:19:22.610Z] Unterschiede bei Get SalesOrder View:
+Fehlendes Feld: data[0].autoCreateDocuments
+Fehlendes Feld: data[0].earliestFulfillmentDate
+Fehlendes Feld: data[0].financials.netSales
+Fehlendes Feld: data[0].financials.total
+Fehlendes Feld: data[0].delivery.shippingMethod
+Fehlendes Feld: data[0].delivery.deliveryTerms
+Fehlendes Feld: data[0].positions
+Fehlendes Feld: data[0].bodyIntroduction
+Fehlendes Feld: data[0].internalDesignation
+Fehlendes Feld: data[0].salesChannel
+[2025-02-07T10:19:41.943Z] Unterschiede bei Get SalesOrder View:
+Fehlendes Feld: data[0].autoCreateDocuments
+Fehlendes Feld: data[0].earliestFulfillmentDate
+Fehlendes Feld: data[0].financials.netSales
+Fehlendes Feld: data[0].financials.total
+Fehlendes Feld: data[0].delivery.shippingMethod
+Fehlendes Feld: data[0].delivery.deliveryTerms
+Fehlendes Feld: data[0].positions
+Fehlendes Feld: data[0].bodyIntroduction
+Fehlendes Feld: data[0].internalDesignation
+Fehlendes Feld: data[0].salesChannel
+[2025-02-07T10:19:54.366Z] Unterschiede bei Get SalesOrder View:
+Fehlendes Feld: data[0].autoCreateDocuments
+Fehlendes Feld: data[0].earliestFulfillmentDate
+Fehlendes Feld: data[0].financials.netSales
+Fehlendes Feld: data[0].financials.total
+Fehlendes Feld: data[0].delivery.shippingMethod
+Fehlendes Feld: data[0].delivery.deliveryTerms
+Fehlendes Feld: data[0].positions
+Fehlendes Feld: data[0].bodyIntroduction
+Fehlendes Feld: data[0].internalDesignation
+Fehlendes Feld: data[0].salesChannel
+[2025-02-07T10:19:59.257Z] Unterschiede bei Get SalesOrder View:
+Fehlendes Feld: data[0].autoCreateDocuments
+Fehlendes Feld: data[0].earliestFulfillmentDate
+Fehlendes Feld: data[0].financials.netSales
+Fehlendes Feld: data[0].financials.total
+Fehlendes Feld: data[0].delivery.shippingMethod
+Fehlendes Feld: data[0].delivery.deliveryTerms
+Fehlendes Feld: data[0].positions
+Fehlendes Feld: data[0].bodyIntroduction
+Fehlendes Feld: data[0].internalDesignation
+Fehlendes Feld: data[0].salesChannel
+[2025-02-07T10:20:03.451Z] Unterschiede bei Get SalesOrder View:
+Fehlendes Feld: data[0].autoCreateDocuments
+Fehlendes Feld: data[0].earliestFulfillmentDate
+Fehlendes Feld: data[0].financials.netSales
+Fehlendes Feld: data[0].financials.total
+Fehlendes Feld: data[0].delivery.shippingMethod
+Fehlendes Feld: data[0].delivery.deliveryTerms
+Fehlendes Feld: data[0].positions
+Fehlendes Feld: data[0].bodyIntroduction
+Fehlendes Feld: data[0].internalDesignation
+Fehlendes Feld: data[0].salesChannel
+[2025-02-07T10:20:09.593Z] Unterschiede bei Get SalesOrder View:
+Fehlendes Feld: data[0].autoCreateDocuments
+Fehlendes Feld: data[0].earliestFulfillmentDate
+Fehlendes Feld: data[0].financials.netSales
+Fehlendes Feld: data[0].financials.total
+Fehlendes Feld: data[0].delivery.shippingMethod
+Fehlendes Feld: data[0].delivery.deliveryTerms
+Fehlendes Feld: data[0].positions
+Fehlendes Feld: data[0].bodyIntroduction
+Fehlendes Feld: data[0].internalDesignation
+Fehlendes Feld: data[0].salesChannel
+[2025-02-07T10:21:27.464Z] Unterschiede bei Get SalesOrder View:
+Fehlendes Feld: data[0].autoCreateDocuments
+Fehlendes Feld: data[0].earliestFulfillmentDate
+Fehlendes Feld: data[0].financials.netSales
+Fehlendes Feld: data[0].financials.total
+Fehlendes Feld: data[0].delivery.shippingMethod
+Fehlendes Feld: data[0].delivery.deliveryTerms
+Fehlendes Feld: data[0].positions
+Fehlendes Feld: data[0].bodyIntroduction
+Fehlendes Feld: data[0].internalDesignation
+Fehlendes Feld: data[0].salesChannel
+[2025-02-07T10:21:39.775Z] Unterschiede bei Get SalesOrder View:
+Fehlendes Feld: data[0].autoCreateDocuments
+Fehlendes Feld: data[0].earliestFulfillmentDate
+Fehlendes Feld: data[0].financials.netSales
+Fehlendes Feld: data[0].financials.total
+Fehlendes Feld: data[0].delivery.shippingMethod
+Fehlendes Feld: data[0].delivery.deliveryTerms
+Fehlendes Feld: data[0].positions
+Fehlendes Feld: data[0].bodyIntroduction
+Fehlendes Feld: data[0].internalDesignation
+Fehlendes Feld: data[0].salesChannel
+[2025-02-07T10:21:53.739Z] Unterschiede bei Get SalesOrder View:
+Fehlendes Feld: data[0].autoCreateDocuments
+Fehlendes Feld: data[0].earliestFulfillmentDate
+Fehlendes Feld: data[0].financials.netSales
+Fehlendes Feld: data[0].financials.total
+Fehlendes Feld: data[0].delivery.shippingMethod
+Fehlendes Feld: data[0].delivery.deliveryTerms
+Fehlendes Feld: data[0].positions
+Fehlendes Feld: data[0].bodyIntroduction
+Fehlendes Feld: data[0].internalDesignation
+Fehlendes Feld: data[0].salesChannel
+[2025-02-07T10:22:13.151Z] Unterschiede bei Get SalesOrder View:
+Fehlendes Feld: data[0].autoCreateDocuments
+Fehlendes Feld: data[0].earliestFulfillmentDate
+Fehlendes Feld: data[0].financials.netSales
+Fehlendes Feld: data[0].financials.total
+Fehlendes Feld: data[0].delivery.shippingMethod
+Fehlendes Feld: data[0].delivery.deliveryTerms
+Fehlendes Feld: data[0].positions
+Fehlendes Feld: data[0].bodyIntroduction
+Fehlendes Feld: data[0].internalDesignation
+Fehlendes Feld: data[0].salesChannel

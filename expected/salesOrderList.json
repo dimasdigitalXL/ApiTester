@@ -8,8 +8,6 @@
       "transactionNumber": "string",
       "externalOrderId": "string",
       "date": "string",
-      "netSales": 0,  
-      "total": 0,     
       "desiredDeliveryDate": "string",
       "desiredDeliveryDateAsCalendarWeek": false,  
       "reservationDate": "string",

@@ -37,14 +37,27 @@ async function testEndpoint(endpoint, dynamicParams = {}) {
     console.log(`   📁 ${filePath}\n`);
 
     const expectedStructure = await fs.readJson(endpoint.expectedStructure);
-    const differences = compareStructures(expectedStructure, responseData);
+    const { missingFields, extraFields, typeMismatches } = compareStructures(expectedStructure, responseData);
 
-    if (differences.length > 0) {
-      console.warn("\n⚠️ WARNUNG:");
-      differences.forEach(diff => console.warn(`   ${diff}`));
-      console.log("");
-      logDifferences(endpoint.name, differences);
-    } else {
+    if (missingFields.length > 0) {
+      console.warn("\n⚠️ WARNUNG: Erwartete Felder fehlen:");
+      missingFields.forEach(field => console.warn(`   ❌ ${field}`));
+    }
+    
+    if (extraFields.length > 0) {
+      console.error("\n🚨 FEHLER: Unerwartete Felder gefunden:");
+      extraFields.forEach(field => console.error(`   🛑 ${field}`));
+    }
+    
+    if (typeMismatches.length > 0) {
+      console.warn("\n⚠️ WARNUNG: Typabweichungen:");
+      typeMismatches.forEach(typeIssue => console.warn(`   ⚡ ${typeIssue}`));
+    }
+    
+    if (missingFields.length === 0 && extraFields.length === 0 && typeMismatches.length === 0) {
+      console.log(`✅ ${endpoint.name}: Struktur ist korrekt.\n`);
+    }
+     else {
       console.log(`✅ ${endpoint.name}: Struktur ist korrekt.\n`);
     }
 
@@ -59,57 +72,64 @@ async function testEndpoint(endpoint, dynamicParams = {}) {
 
 // Funktion zum Vergleichen der Datenstruktur
 function compareStructures(expected, actual, path = "") {
-  const differences = [];
+  const missingFields = [];
+  const extraFields = [];
+  const typeMismatches = [];
 
   // Prüfen, ob eines der Objekte ein Array ist und das andere nicht
   if (Array.isArray(expected) !== Array.isArray(actual)) {
-    differences.push(
+    typeMismatches.push(
       `Typen stimmen nicht überein bei ${path || "root"}: erwartet ${
         Array.isArray(expected) ? "Array" : "Object"
       }, erhalten ${Array.isArray(actual) ? "Array" : "Object"}`
     );
-    return differences;
+    return { missingFields, extraFields, typeMismatches };
   }
 
   // Falls das erwartete Objekt ein Array ist, prüfen wir die Elemente
   if (Array.isArray(expected)) {
     if (actual.length === 0) {
-      differences.push(`Array ${path} ist leer, erwartet wurde mindestens ein Element.`);
+      missingFields.push(`Array ${path} ist leer, erwartet wurde mindestens ein Element.`);
     } else {
       for (let i = 0; i < expected.length; i++) {
-        differences.push(
-          ...compareStructures(expected[0], actual[i], `${path}[${i}]`)
-        );
+        const result = compareStructures(expected[0], actual[i], `${path}[${i}]`);
+        missingFields.push(...result.missingFields);
+        extraFields.push(...result.extraFields);
+        typeMismatches.push(...result.typeMismatches);
       }
     }
-    return differences;
+    return { missingFields, extraFields, typeMismatches };
   }
 
   // Überprüfen, ob Felder fehlen oder Typen nicht übereinstimmen
   for (const key in expected) {
     if (!Object.hasOwn(actual, key)) {
-      differences.push(`Fehlendes Feld: ${path ? path + "." : ""}${key}`);
+      missingFields.push(`Feld fehlt: ${path ? path + "." : ""}${key} (Erwartet, aber nicht gefunden)`);
     } else if (
       typeof actual[key] !== typeof expected[key] &&
       !(typeof expected[key] === "string" && (actual[key] === null || typeof actual[key] === "object"))
     ) {
-      differences.push(
+      typeMismatches.push(
         `Falscher Typ für Feld ${path ? path + "." : ""}${key}: erwartet ${typeof expected[key]}, erhalten ${typeof actual[key]}`
       );
     } else if (typeof expected[key] === "object" && expected[key] !== null) {
-      differences.push(...compareStructures(expected[key], actual[key], `${path ? path + "." : ""}${key}`));
+      const result = compareStructures(expected[key], actual[key], `${path ? path + "." : ""}${key}`);
+      missingFields.push(...result.missingFields);
+      extraFields.push(...result.extraFields);
+      typeMismatches.push(...result.typeMismatches);
     }
   }
 
   // Prüfen, ob es zusätzliche Felder in der API-Response gibt
   for (const key in actual) {
     if (!Object.hasOwn(expected, key)) {
-      differences.push(`Neues Feld gefunden: ${path ? path + "." : ""}${key}`);
+      extraFields.push(`Neues Feld gefunden: ${path ? path + "." : ""}${key} (Nicht erwartet, aber erhalten)`);
     }
   }
 
-  return differences;
+  return { missingFields, extraFields, typeMismatches };
 }
+
 
 // Fehler protokollieren
 function logError(endpointName, errorMessage) {

@@ -1,3 +1,4 @@
+require("dotenv").config();
 const fs = require("fs-extra");
 const schedule = require("node-schedule");
 const querystring = require("querystring");
@@ -16,8 +17,12 @@ async function testEndpoint(endpoint, dynamicParams = {}) {
     const queryParams = new URLSearchParams(endpoint.query || {});
     const response = await fetch(`${url}?${queryParams.toString()}`, {
       method: endpoint.method,
-      headers: endpoint.headers,
+      headers: {
+        ...endpoint.headers,
+        "Authorization": `Bearer ${process.env.BEARER_TOKEN}`
+      },
     });
+    
 
     if (!response.ok) {
       throw new Error(`HTTP-Fehler: ${response.status} ${response.statusText}`);

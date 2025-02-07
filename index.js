@@ -5,7 +5,7 @@ const path = require("path");
 
 async function testEndpoint(endpoint, dynamicParams = {}) {
   try {
-    console.log(`Starte Test für Endpunkt: ${endpoint.name}`);
+    console.log(`\n🔍 Starte Test für Endpunkt: ${endpoint.name}\n`);
 
     // Ersetze Platzhalter in der URL (z. B. {id})
     let url = endpoint.url;
@@ -21,7 +21,6 @@ async function testEndpoint(endpoint, dynamicParams = {}) {
         "Authorization": `Bearer ${process.env.BEARER_TOKEN}`
       },
     });
-    
 
     if (!response.ok) {
       throw new Error(`HTTP-Fehler: ${response.status} ${response.statusText}`);
@@ -33,22 +32,26 @@ async function testEndpoint(endpoint, dynamicParams = {}) {
     const fileName = `${endpoint.name.replace(/\s+/g, "_")}_response.json`;
     const filePath = path.join(__dirname, "responses", fileName);
     fs.writeFileSync(filePath, JSON.stringify(responseData, null, 2));
-    console.log(`Response für ${endpoint.name} gespeichert unter: ${filePath}`);
+
+    console.log(`✅ Response für ${endpoint.name} gespeichert unter:`);
+    console.log(`   📁 ${filePath}\n`);
 
     const expectedStructure = await fs.readJson(endpoint.expectedStructure);
     const differences = compareStructures(expectedStructure, responseData);
 
     if (differences.length > 0) {
-      console.warn(`WARNUNG: Unterschiede bei ${endpoint.name}`);
-      console.log("Unterschiede:", differences.join("\n"));
+      console.warn("\n⚠️ WARNUNG:");
+      differences.forEach(diff => console.warn(`   ${diff}`));
+      console.log("");
       logDifferences(endpoint.name, differences);
     } else {
-      console.log(`${endpoint.name}: Struktur ist korrekt.`);
+      console.log(`✅ ${endpoint.name}: Struktur ist korrekt.\n`);
     }
 
     return responseData; // Gibt die Antwort zurück (nützlich für Sales Order View)
   } catch (error) {
-    console.error(`Fehler bei ${endpoint.name}: ${error.message}`);
+    console.error("\n❌ FEHLER:");
+    console.error(`   ${error.message}\n`);
     logError(endpoint.name, error.message);
     return null;
   }
@@ -125,7 +128,7 @@ function logDifferences(endpointName, differences) {
 // Hauptfunktion
 async function main() {
   try {
-    console.log("Lade Config-Datei...");
+    console.log("\n📂 Lade Config-Datei...\n");
     const config = await fs.readJson("config.json");
     const endpoints = config.endpoints;
 
@@ -143,16 +146,16 @@ async function main() {
     });
 
     if (selectedApi) {
-      console.log(`🔍 Starte gezielten API-Test für: ${selectedApi}`);
+      console.log(`🚀 Starte gezielten API-Test für: ${selectedApi}\n`);
       const endpoint = endpoints.find(ep => ep.name === selectedApi);
 
       if (endpoint) {
         await testEndpoint(endpoint, dynamicParams);
       } else {
-        console.error(`❌ Fehler: Kein API-Call mit dem Namen "${selectedApi}" gefunden.`);
+        console.error(`❌ Fehler: Kein API-Call mit dem Namen "${selectedApi}" gefunden.\n`);
       }
     } else {
-      console.log(`🚀 Starte alle API-Tests um ${new Date().toISOString()}`);
+      console.log(`🚀 Starte alle API-Tests um ${new Date().toISOString()}\n`);
 
       let firstOrderId = null;
       for (const endpoint of endpoints) {
@@ -160,7 +163,7 @@ async function main() {
           const responseData = await testEndpoint(endpoint);
           if (responseData?.data?.length > 0) {
             firstOrderId = responseData.data[0].id;
-            console.log(`Gefundene SalesOrder ID für Detailansicht: ${firstOrderId}`);
+            console.log(`🔗 Gefundene SalesOrder ID für Detailansicht: ${firstOrderId}\n`);
           }
         } else if (endpoint.name === "Get SalesOrder View" && firstOrderId) {
           await testEndpoint(endpoint, { id: firstOrderId });
@@ -170,9 +173,10 @@ async function main() {
       }
     }
 
-    console.log("✅ Alle Tests abgeschlossen.");
+    console.log("\n✅ Alle Tests abgeschlossen.\n");
   } catch (error) {
-    console.error("❌ Fehler beim Ausführen des Skripts:", error.message);
+    console.error("\n❌ Fehler beim Ausführen des Skripts:");
+    console.error(`   ${error.message}\n`);
   }
 }
 

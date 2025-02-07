@@ -10,6 +10,9 @@
       "autoCreateDocuments": "string",
       "date": "string",
       "earliestFulfillmentDate": "string",
+      "desiredDeliveryDate": "string",
+      "desiredDeliveryDateAsCalendarWeek": false,
+      "reservationDate": "string",
       "editor": "string",
       "sales": {
         "id": "string",
@@ -123,8 +126,13 @@
     }
   ],
   "extra": {
-    "totalCount": 0
+    "totalCount": 0,
+    "page": {
+      "number": 0,
+      "size": 0
+    }
   }
 }
+
 
 

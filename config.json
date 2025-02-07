@@ -31,8 +31,7 @@
       "requiresId": true,
       "expectedStructure": "expected/salesOrderView.json"
     }
-  ],
-  "schedule": "0 6 * * *"
+  ]
 }
 
 

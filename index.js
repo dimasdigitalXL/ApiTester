@@ -1,6 +1,5 @@
 require("dotenv").config();
 const fs = require("fs-extra");
-const schedule = require("node-schedule");
 const querystring = require("querystring");
 const path = require("path");
 
@@ -176,11 +175,6 @@ async function main() {
     console.error("❌ Fehler beim Ausführen des Skripts:", error.message);
   }
 }
-
-
-// Zeitgesteuerte Ausführung konfigurieren
-const config = fs.readJsonSync("config.json");
-schedule.scheduleJob(config.schedule, main);
 
 // Direktes Ausführen, wenn das Skript gestartet wird
 if (require.main === module) {

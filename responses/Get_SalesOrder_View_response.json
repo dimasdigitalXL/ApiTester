@@ -1,0 +1,861 @@
+{
+  "data": [
+    {
+      "id": "19",
+      "documentNumber": "200000",
+      "externalOrderNumber": "10035",
+      "customerOrderNumber": "",
+      "transactionNumber": "",
+      "externalOrderId": "4503c227e47d43f5895c7447eeeb44f4",
+      "date": "2023-01-23",
+      "netSales": 1.6,
+      "total": 1.9,
+      "desiredDeliveryDate": null,
+      "desiredDeliveryDateAsCalendarWeek": false,
+      "reservationDate": null,
+      "editor": "Kassen Mitarbeiter",
+      "sales": {
+        "id": null,
+        "name": null
+      },
+      "status": "completed",
+      "customer": {
+        "id": "8",
+        "number": "10004"
+      },
+      "comment": "",
+      "project": {
+        "id": "1"
+      },
+      "bodyOutroduction": "",
+      "language": {
+        "iso2": "deutsch"
+      },
+      "financials": {
+        "paymentMethod": {
+          "id": "11"
+        },
+        "currency": "EUR",
+        "billingAddress": {
+          "name": "Test Kunde",
+          "department": "",
+          "subDepartment": "",
+          "street": "Werner-von-Siemens-Straße 6",
+          "zipCode": "86159",
+          "city": "Augsburg",
+          "state": "BY",
+          "country": "DE",
+          "type": "herr",
+          "title": "",
+          "contactPerson": "",
+          "addressSupplement": "Gebäude 15 L",
+          "fax": "",
+          "email": "christian@digitalxl.de",
+          "salutation": "",
+          "gln": ""
+        },
+        "paymentTerms": {
+          "paymentTargetDiscount": 0,
+          "paymentTargetDays": 14,
+          "paymentTargetDiscountDays": 10
+        }
+      },
+      "delivery": {
+        "email": "",
+        "conditions": "",
+        "autoShipping": true,
+        "fastLane": false,
+        "shippingAddress": {
+          "name": "Test Kunde",
+          "department": "",
+          "subDepartment": "",
+          "street": "Werner-von-Siemens-Straße 6",
+          "zipCode": "86159",
+          "city": "Augsburg",
+          "state": "BY",
+          "country": "DE",
+          "gln": ""
+        }
+      },
+      "log": {
+        "createdAt": "-0001-11-30T00:00:00+00:53",
+        "createdBy": {
+          "id": "5",
+          "name": "Kassen Mitarbeiter"
+        }
+      }
+    },
+    {
+      "id": "20",
+      "documentNumber": "200001",
+      "externalOrderNumber": "10036",
+      "customerOrderNumber": null,
+      "transactionNumber": "",
+      "externalOrderId": "859e405f5ff84bfd846339b7683dcc3b",
+      "date": "2023-01-23",
+      "netSales": 0.8,
+      "total": 0.95,
+      "desiredDeliveryDate": null,
+      "desiredDeliveryDateAsCalendarWeek": false,
+      "reservationDate": null,
+      "editor": "Kassen Mitarbeiter",
+      "sales": {
+        "id": null,
+        "name": null
+      },
+      "status": "completed",
+      "customer": {
+        "id": "8",
+        "number": "10004"
+      },
+      "comment": "",
+      "project": {
+        "id": "1"
+      },
+      "bodyOutroduction": "",
+      "language": {
+        "iso2": ""
+      },
+      "financials": {
+        "paymentMethod": {
+          "id": "11"
+        },
+        "currency": "EUR",
+        "billingAddress": {
+          "name": "Test Kunde",
+          "department": "",
+          "subDepartment": "",
+          "street": "Werner-von-Siemens-Straße 6",
+          "zipCode": "86159",
+          "city": "Augsburg",
+          "state": "BY",
+          "country": "DE",
+          "type": "herr",
+          "title": "",
+          "contactPerson": "",
+          "addressSupplement": "Gebäude 15 L",
+          "fax": "",
+          "email": "christian@digitalxl.de",
+          "salutation": "",
+          "gln": ""
+        },
+        "paymentTerms": {
+          "paymentTargetDiscount": 0,
+          "paymentTargetDays": 14,
+          "paymentTargetDiscountDays": 10
+        }
+      },
+      "delivery": {
+        "email": "",
+        "conditions": "",
+        "autoShipping": true,
+        "fastLane": false,
+        "shippingAddress": {
+          "name": "Test Kunde",
+          "department": "",
+          "subDepartment": "",
+          "street": "Werner-von-Siemens-Straße 6",
+          "zipCode": "86159",
+          "city": "Augsburg",
+          "state": "BY",
+          "country": "DE",
+          "gln": ""
+        }
+      },
+      "log": {
+        "createdAt": "2023-01-23T11:05:13+01:00",
+        "createdBy": {
+          "id": "5",
+          "name": "Kassen Mitarbeiter"
+        }
+      }
+    },
+    {
+      "id": "21",
+      "documentNumber": "200002",
+      "externalOrderNumber": "",
+      "customerOrderNumber": "",
+      "transactionNumber": "",
+      "externalOrderId": "859e405f5ff84bfd846339b7683dcc3b",
+      "date": "2023-01-25",
+      "netSales": 5.55,
+      "total": 6.6,
+      "desiredDeliveryDate": null,
+      "desiredDeliveryDateAsCalendarWeek": false,
+      "reservationDate": null,
+      "editor": "Kassen Mitarbeiter",
+      "sales": {
+        "id": 5,
+        "name": "Kassen Mitarbeiter"
+      },
+      "status": "completed",
+      "customer": {
+        "id": "8",
+        "number": "10004"
+      },
+      "comment": "",
+      "project": {
+        "id": "1"
+      },
+      "bodyOutroduction": "",
+      "language": {
+        "iso2": "deutsch"
+      },
+      "financials": {
+        "paymentMethod": {
+          "id": "11"
+        },
+        "currency": "EUR",
+        "billingAddress": {
+          "name": "Test Kunde",
+          "department": "",
+          "subDepartment": "",
+          "street": "Werner-von-Siemens-Straße 6",
+          "zipCode": "86159",
+          "city": "Augsburg",
+          "state": "BY",
+          "country": "DE",
+          "type": "herr",
+          "title": "",
+          "contactPerson": "",
+          "addressSupplement": "Gebäude 15 L",
+          "fax": "",
+          "email": "christian@digitalxl.de",
+          "salutation": "",
+          "gln": ""
+        },
+        "paymentTerms": {
+          "paymentTargetDiscount": 0,
+          "paymentTargetDays": 14,
+          "paymentTargetDiscountDays": 10
+        }
+      },
+      "delivery": {
+        "email": "",
+        "conditions": "",
+        "autoShipping": true,
+        "fastLane": false,
+        "shippingAddress": {
+          "name": "Test Kunde",
+          "department": "",
+          "subDepartment": "",
+          "street": "Werner-von-Siemens-Straße 6",
+          "zipCode": "86159",
+          "city": "Augsburg",
+          "state": "BY",
+          "country": "DE",
+          "gln": ""
+        }
+      },
+      "log": {
+        "createdAt": "-0001-11-30T00:00:00+00:53",
+        "createdBy": {
+          "id": "5",
+          "name": "Kassen Mitarbeiter"
+        }
+      }
+    },
+    {
+      "id": "22",
+      "documentNumber": "200003",
+      "externalOrderNumber": "",
+      "customerOrderNumber": null,
+      "transactionNumber": "",
+      "externalOrderId": "",
+      "date": "2023-01-25",
+      "netSales": 12.61,
+      "total": 15,
+      "desiredDeliveryDate": null,
+      "desiredDeliveryDateAsCalendarWeek": false,
+      "reservationDate": null,
+      "editor": "Kassen Mitarbeiter",
+      "sales": {
+        "id": 5,
+        "name": "Kassen Mitarbeiter"
+      },
+      "status": "completed",
+      "customer": {
+        "id": "8",
+        "number": "10004"
+      },
+      "comment": "",
+      "project": {
+        "id": "3"
+      },
+      "bodyOutroduction": "",
+      "language": {
+        "iso2": ""
+      },
+      "financials": {
+        "paymentMethod": {
+          "id": "13"
+        },
+        "currency": "EUR",
+        "billingAddress": {
+          "name": "Test Kunde",
+          "department": "",
+          "subDepartment": "",
+          "street": "Werner-von-Siemens-Straße 6",
+          "zipCode": "86159",
+          "city": "Augsburg",
+          "state": "",
+          "country": "DE",
+          "type": "herr",
+          "title": "",
+          "contactPerson": "",
+          "addressSupplement": "Gebäude 15 L",
+          "fax": "",
+          "email": "christian@digitalxl.de",
+          "salutation": "",
+          "gln": ""
+        },
+        "paymentTerms": {
+          "paymentTargetDiscount": 2,
+          "paymentTargetDays": 14,
+          "paymentTargetDiscountDays": 10
+        }
+      },
+      "delivery": {
+        "email": "",
+        "conditions": "",
+        "autoShipping": true,
+        "fastLane": false,
+        "shippingAddress": {
+          "name": "Test Kunde",
+          "department": "",
+          "subDepartment": "",
+          "street": "Werner-von-Siemens-Straße 6",
+          "zipCode": "86159",
+          "city": "Augsburg",
+          "state": "",
+          "country": "DE",
+          "gln": ""
+        }
+      },
+      "log": {
+        "createdAt": "2023-01-25T15:23:29+01:00",
+        "createdBy": {
+          "id": "5",
+          "name": "Kassen Mitarbeiter"
+        }
+      }
+    },
+    {
+      "id": "23",
+      "documentNumber": "200004",
+      "externalOrderNumber": "",
+      "customerOrderNumber": null,
+      "transactionNumber": "",
+      "externalOrderId": "",
+      "date": "2023-01-25",
+      "netSales": 12.61,
+      "total": 15,
+      "desiredDeliveryDate": null,
+      "desiredDeliveryDateAsCalendarWeek": false,
+      "reservationDate": null,
+      "editor": "Kassen Mitarbeiter",
+      "sales": {
+        "id": 5,
+        "name": "Kassen Mitarbeiter"
+      },
+      "status": "completed",
+      "customer": {
+        "id": "8",
+        "number": "10004"
+      },
+      "comment": "",
+      "project": {
+        "id": "3"
+      },
+      "bodyOutroduction": "",
+      "language": {
+        "iso2": ""
+      },
+      "financials": {
+        "paymentMethod": {
+          "id": "13"
+        },
+        "currency": "EUR",
+        "billingAddress": {
+          "name": "Test Kunde",
+          "department": "",
+          "subDepartment": "",
+          "street": "Werner-von-Siemens-Straße 6",
+          "zipCode": "86159",
+          "city": "Augsburg",
+          "state": "",
+          "country": "DE",
+          "type": "herr",
+          "title": "",
+          "contactPerson": "",
+          "addressSupplement": "Gebäude 15 L",
+          "fax": "",
+          "email": "christian@digitalxl.de",
+          "salutation": "",
+          "gln": ""
+        },
+        "paymentTerms": {
+          "paymentTargetDiscount": 2,
+          "paymentTargetDays": 14,
+          "paymentTargetDiscountDays": 10
+        }
+      },
+      "delivery": {
+        "email": "",
+        "conditions": "",
+        "autoShipping": true,
+        "fastLane": false,
+        "shippingAddress": {
+          "name": "Test Kunde",
+          "department": "",
+          "subDepartment": "",
+          "street": "Werner-von-Siemens-Straße 6",
+          "zipCode": "86159",
+          "city": "Augsburg",
+          "state": "",
+          "country": "DE",
+          "gln": ""
+        }
+      },
+      "log": {
+        "createdAt": "2023-01-25T15:26:06+01:00",
+        "createdBy": {
+          "id": "5",
+          "name": "Kassen Mitarbeiter"
+        }
+      }
+    },
+    {
+      "id": "24",
+      "documentNumber": "200005",
+      "externalOrderNumber": "",
+      "customerOrderNumber": null,
+      "transactionNumber": "",
+      "externalOrderId": "",
+      "date": "2023-01-26",
+      "netSales": 10,
+      "total": 11.9,
+      "desiredDeliveryDate": null,
+      "desiredDeliveryDateAsCalendarWeek": false,
+      "reservationDate": null,
+      "editor": "Administrator",
+      "sales": {
+        "id": 1,
+        "name": "Administrator"
+      },
+      "status": "completed",
+      "customer": {
+        "id": "2",
+        "number": "10000"
+      },
+      "comment": "",
+      "project": {
+        "id": "1"
+      },
+      "bodyOutroduction": "",
+      "language": {
+        "iso2": "deutsch"
+      },
+      "financials": {
+        "paymentMethod": {
+          "id": "13"
+        },
+        "currency": "EUR",
+        "billingAddress": {
+          "name": "Karlo Kunde GmbH & Co. KG",
+          "department": "Geschäftsführung",
+          "subDepartment": "Unterabteilung",
+          "street": "Beispielstrasse 1",
+          "zipCode": "81245",
+          "city": "München",
+          "state": "BY",
+          "country": "DE",
+          "type": "firma",
+          "title": "Dr.",
+          "contactPerson": "Karlo Kunde",
+          "addressSupplement": "Adresszusatz",
+          "fax": "089 111222334",
+          "email": "me@example.com",
+          "salutation": "",
+          "gln": ""
+        },
+        "paymentTerms": {
+          "paymentTargetDiscount": 0,
+          "paymentTargetDays": 14,
+          "paymentTargetDiscountDays": 10
+        }
+      },
+      "delivery": {
+        "email": "",
+        "conditions": "",
+        "autoShipping": true,
+        "fastLane": false,
+        "shippingAddress": {
+          "name": "Karlo Kunde GmbH & Co. KG",
+          "department": "Geschäftsführung",
+          "subDepartment": "Unterabteilung",
+          "street": "Beispielstrasse 1",
+          "zipCode": "81245",
+          "city": "München",
+          "state": "BY",
+          "country": "DE",
+          "gln": ""
+        }
+      },
+      "log": {
+        "createdAt": "2023-01-26T08:11:23+01:00",
+        "createdBy": {
+          "id": "1",
+          "name": "Administrator"
+        }
+      }
+    },
+    {
+      "id": "25",
+      "documentNumber": "200006",
+      "externalOrderNumber": "",
+      "customerOrderNumber": "",
+      "transactionNumber": "",
+      "externalOrderId": "",
+      "date": "2023-01-26",
+      "netSales": 10,
+      "total": 11.9,
+      "desiredDeliveryDate": null,
+      "desiredDeliveryDateAsCalendarWeek": false,
+      "reservationDate": null,
+      "editor": "Administrator",
+      "sales": {
+        "id": 1,
+        "name": "Administrator"
+      },
+      "status": "completed",
+      "customer": {
+        "id": "2",
+        "number": "10000"
+      },
+      "comment": "",
+      "project": {
+        "id": "4"
+      },
+      "bodyOutroduction": "",
+      "language": {
+        "iso2": "deutsch"
+      },
+      "financials": {
+        "paymentMethod": {
+          "id": "13"
+        },
+        "currency": "EUR",
+        "billingAddress": {
+          "name": "Karlo Kunde GmbH & Co. KG",
+          "department": "Geschäftsführung",
+          "subDepartment": "Unterabteilung",
+          "street": "Beispielstrasse 1",
+          "zipCode": "81245",
+          "city": "München",
+          "state": "BY",
+          "country": "DE",
+          "type": "firma",
+          "title": "Dr.",
+          "contactPerson": "Karlo Kunde",
+          "addressSupplement": "Adresszusatz",
+          "fax": "089 111222334",
+          "email": "me@example.com",
+          "salutation": "",
+          "gln": ""
+        },
+        "paymentTerms": {
+          "paymentTargetDiscount": 0,
+          "paymentTargetDays": 14,
+          "paymentTargetDiscountDays": 10
+        }
+      },
+      "delivery": {
+        "email": "",
+        "conditions": "",
+        "autoShipping": true,
+        "fastLane": false,
+        "shippingAddress": {
+          "name": "Karlo Kunde GmbH & Co. KG",
+          "department": "Geschäftsführung",
+          "subDepartment": "Unterabteilung",
+          "street": "Beispielstrasse 1",
+          "zipCode": "81245",
+          "city": "München",
+          "state": "BY",
+          "country": "DE",
+          "gln": ""
+        }
+      },
+      "log": {
+        "createdAt": "-0001-11-30T00:00:00+00:53",
+        "createdBy": {
+          "id": "1",
+          "name": "Administrator"
+        }
+      }
+    },
+    {
+      "id": "26",
+      "documentNumber": "200007",
+      "externalOrderNumber": "",
+      "customerOrderNumber": "",
+      "transactionNumber": "",
+      "externalOrderId": "",
+      "date": "2023-01-27",
+      "netSales": 15,
+      "total": 17.85,
+      "desiredDeliveryDate": null,
+      "desiredDeliveryDateAsCalendarWeek": false,
+      "reservationDate": null,
+      "editor": "Kassen Mitarbeiter",
+      "sales": {
+        "id": 1,
+        "name": "Administrator"
+      },
+      "status": "completed",
+      "customer": {
+        "id": "2",
+        "number": "10000"
+      },
+      "comment": "",
+      "project": {
+        "id": "4"
+      },
+      "bodyOutroduction": "",
+      "language": {
+        "iso2": "deutsch"
+      },
+      "financials": {
+        "paymentMethod": {
+          "id": "13"
+        },
+        "currency": "EUR",
+        "billingAddress": {
+          "name": "Karlo Kunde GmbH & Co. KG",
+          "department": "Geschäftsführung",
+          "subDepartment": "Unterabteilung",
+          "street": "Beispielstrasse 1",
+          "zipCode": "81245",
+          "city": "München",
+          "state": "BY",
+          "country": "DE",
+          "type": "firma",
+          "title": "Dr.",
+          "contactPerson": "Karlo Kunde",
+          "addressSupplement": "Adresszusatz",
+          "fax": "089 111222334",
+          "email": "me@example.com",
+          "salutation": "",
+          "gln": ""
+        },
+        "paymentTerms": {
+          "paymentTargetDiscount": 0,
+          "paymentTargetDays": 14,
+          "paymentTargetDiscountDays": 10
+        }
+      },
+      "delivery": {
+        "email": "",
+        "conditions": "",
+        "autoShipping": true,
+        "fastLane": false,
+        "shippingAddress": {
+          "name": "Karlo Kunde GmbH & Co. KG",
+          "department": "Geschäftsführung",
+          "subDepartment": "Unterabteilung",
+          "street": "Beispielstrasse 1",
+          "zipCode": "81245",
+          "city": "München",
+          "state": "BY",
+          "country": "DE",
+          "gln": ""
+        }
+      },
+      "log": {
+        "createdAt": "-0001-11-30T00:00:00+00:53",
+        "createdBy": {
+          "id": "5",
+          "name": "Kassen Mitarbeiter"
+        }
+      }
+    },
+    {
+      "id": "28",
+      "documentNumber": "200008",
+      "externalOrderNumber": "",
+      "customerOrderNumber": "",
+      "transactionNumber": "",
+      "externalOrderId": "",
+      "date": "2023-01-30",
+      "netSales": 10,
+      "total": 11.9,
+      "desiredDeliveryDate": null,
+      "desiredDeliveryDateAsCalendarWeek": false,
+      "reservationDate": null,
+      "editor": "Administrator",
+      "sales": {
+        "id": 1,
+        "name": "Administrator"
+      },
+      "status": "completed",
+      "customer": {
+        "id": "2",
+        "number": "10000"
+      },
+      "comment": "",
+      "project": {
+        "id": "4"
+      },
+      "bodyOutroduction": "",
+      "language": {
+        "iso2": "deutsch"
+      },
+      "financials": {
+        "paymentMethod": {
+          "id": "13"
+        },
+        "currency": "EUR",
+        "billingAddress": {
+          "name": "Karlo Kunde GmbH & Co. KG",
+          "department": "Geschäftsführung",
+          "subDepartment": "Unterabteilung",
+          "street": "Beispielstrasse 1",
+          "zipCode": "81245",
+          "city": "München",
+          "state": "BY",
+          "country": "DE",
+          "type": "firma",
+          "title": "Dr.",
+          "contactPerson": "Karlo Kunde",
+          "addressSupplement": "Adresszusatz",
+          "fax": "089 111222334",
+          "email": "me@example.com",
+          "salutation": "",
+          "gln": ""
+        },
+        "paymentTerms": {
+          "paymentTargetDiscount": 0,
+          "paymentTargetDays": 14,
+          "paymentTargetDiscountDays": 10
+        }
+      },
+      "delivery": {
+        "email": "",
+        "conditions": "",
+        "autoShipping": true,
+        "fastLane": false,
+        "shippingAddress": {
+          "name": "Karlo Kunde GmbH & Co. KG",
+          "department": "Geschäftsführung",
+          "subDepartment": "Unterabteilung",
+          "street": "Beispielstrasse 1",
+          "zipCode": "81245",
+          "city": "München",
+          "state": "BY",
+          "country": "DE",
+          "gln": ""
+        }
+      },
+      "log": {
+        "createdAt": "-0001-11-30T00:00:00+00:53",
+        "createdBy": {
+          "id": "1",
+          "name": "Administrator"
+        }
+      }
+    },
+    {
+      "id": "29",
+      "documentNumber": "200009",
+      "externalOrderNumber": "",
+      "customerOrderNumber": "",
+      "transactionNumber": "",
+      "externalOrderId": "",
+      "date": "2023-01-30",
+      "netSales": 20,
+      "total": 23.8,
+      "desiredDeliveryDate": null,
+      "desiredDeliveryDateAsCalendarWeek": false,
+      "reservationDate": null,
+      "editor": "Administrator",
+      "sales": {
+        "id": 1,
+        "name": "Administrator"
+      },
+      "status": "completed",
+      "customer": {
+        "id": "2",
+        "number": "10000"
+      },
+      "comment": "",
+      "project": {
+        "id": "4"
+      },
+      "bodyOutroduction": "",
+      "language": {
+        "iso2": "deutsch"
+      },
+      "financials": {
+        "paymentMethod": {
+          "id": "13"
+        },
+        "currency": "EUR",
+        "billingAddress": {
+          "name": "Karlo Kunde GmbH & Co. KG",
+          "department": "Geschäftsführung",
+          "subDepartment": "Unterabteilung",
+          "street": "Beispielstrasse 1",
+          "zipCode": "81245",
+          "city": "München",
+          "state": "BY",
+          "country": "DE",
+          "type": "firma",
+          "title": "Dr.",
+          "contactPerson": "Karlo Kunde",
+          "addressSupplement": "Adresszusatz",
+          "fax": "089 111222334",
+          "email": "me@example.com",
+          "salutation": "",
+          "gln": ""
+        },
+        "paymentTerms": {
+          "paymentTargetDiscount": 0,
+          "paymentTargetDays": 14,
+          "paymentTargetDiscountDays": 10
+        }
+      },
+      "delivery": {
+        "email": "",
+        "conditions": "",
+        "autoShipping": true,
+        "fastLane": false,
+        "shippingAddress": {
+          "name": "Karlo Kunde GmbH & Co. KG",
+          "department": "Geschäftsführung",
+          "subDepartment": "Unterabteilung",
+          "street": "Beispielstrasse 1",
+          "zipCode": "81245",
+          "city": "München",
+          "state": "BY",
+          "country": "DE",
+          "gln": ""
+        }
+      },
+      "log": {
+        "createdAt": "2023-01-30T14:47:19+01:00",
+        "createdBy": {
+          "id": "1",
+          "name": "Administrator"
+        }
+      }
+    }
+  ],
+  "extra": {
+    "totalCount": 1429,
+    "page": {
+      "number": 1,
+      "size": 10
+    }
+  }
+}

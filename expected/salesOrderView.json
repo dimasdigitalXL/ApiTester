@@ -1,0 +1,130 @@
+{
+  "data": [
+    {
+      "id": "string",
+      "documentNumber": "string",
+      "externalOrderNumber": "string",
+      "customerOrderNumber": "string",
+      "transactionNumber": "string",
+      "externalOrderId": "string",
+      "autoCreateDocuments": "string",
+      "date": "string",
+      "earliestFulfillmentDate": "string",
+      "editor": "string",
+      "sales": {
+        "id": "string",
+        "name": "string"
+      },
+      "status": "string",
+      "customer": {
+        "id": "string",
+        "number": "string"
+      },
+      "project": {
+        "id": "string"
+      },
+      "language": {
+        "iso2": "string"
+      },
+      "financials": {
+        "currency": "string",
+        "netSales": 0,
+        "total": 0,
+        "billingAddress": {
+          "name": "string",
+          "department": "string",
+          "subDepartment": "string",
+          "street": "string",
+          "zipCode": "string",
+          "city": "string",
+          "state": "string",
+          "country": "string",
+          "type": "string",
+          "title": "string",
+          "contactPerson": "string",
+          "addressSupplement": "string",
+          "fax": "string",
+          "email": "string",
+          "salutation": "string",
+          "gln": "string"
+        },
+        "paymentMethod": {
+          "id": "string"
+        },
+        "paymentTerms": {
+          "paymentTargetDiscount": 0,
+          "paymentTargetDays": 0,
+          "paymentTargetDiscountDays": 0
+        }
+      },
+      "delivery": {
+        "email": "string",
+        "conditions": "string",
+        "autoShipping": true,
+        "fastLane": false,
+        "shippingMethod": {
+          "id": "string"
+        },
+        "deliveryTerms": "string",
+        "shippingAddress": {
+          "name": "string",
+          "department": "string",
+          "subDepartment": "string",
+          "street": "string",
+          "zipCode": "string",
+          "city": "string",
+          "state": "string",
+          "country": "string",
+          "gln": "string"
+        }
+      },
+      "positions": [
+        {
+          "id": "string",
+          "quantity": 0,
+          "discount": 0,
+          "comment": "string",
+          "product": {
+            "id": "string",
+            "number": "string",
+            "name": "string",
+            "description": "string"
+          },
+          "price": {
+            "amount": "string",
+            "currency": "string"
+          },
+          "tax": {
+            "rate": 0,
+            "taxText": "string",
+            "effectiveVatRate": 0
+          },
+          "webId": "string",
+          "hasChildren": false,
+          "parent": "string",
+          "sort": 0
+        }
+      ],
+      "comment": "string",
+      "bodyOutroduction": "string",
+      "bodyIntroduction": "string",
+      "internalDesignation": "string",
+      "log": {
+        "createdAt": "string",
+        "createdBy": {
+          "id": "string",
+          "name": "string"
+        }
+      },
+      "salesChannel": {
+        "id": "string",
+        "name": "string"
+      }
+    }
+  ],
+  "extra": {
+    "totalCount": 0
+  }
+}
+
+

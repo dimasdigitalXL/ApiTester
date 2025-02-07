@@ -1,7 +1,7 @@
 {
   "endpoints": [
     {
-      "name": "Get SalesOrders",
+      "name": "Get SalesOrders List",
       "url": "https://636a1d639f14e.xentral.biz/api/salesOrders",
       "method": "GET",
       "headers": {
@@ -16,8 +16,23 @@
         "page[number]": 1,
         "page[size]": 50
       },
-      "expectedStructure": "expected/salesOrder.json"
+      "expectedStructure": "expected/salesOrderList.json"
+    },
+    {
+      "name": "Get SalesOrder View",
+      "url": "https://636a1d639f14e.xentral.biz/api/salesOrders",
+      "method": "GET",
+      "headers": {
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+        "Authorization": "Bearer 1159|isvdZaAzpS0jDoJKNkBQdiFIQa3i6MUrdtVROn29"
+      },
+      "query": {},
+      "requiresId": true,
+      "expectedStructure": "expected/salesOrderView.json"
     }
   ],
   "schedule": "0 6 * * *"
 }
+
+

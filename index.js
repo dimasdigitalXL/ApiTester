@@ -7,6 +7,11 @@ async function testEndpoint(endpoint, dynamicParams = {}) {
   try {
     console.log(`\n🔍 Starte Test für Endpunkt: ${endpoint.name}\n`);
 
+    // Überprüfen, ob die ID erforderlich ist, aber nicht übergeben wurde
+    if (endpoint.requiresId && (!dynamicParams.id || dynamicParams.id.trim() === "")) {
+      throw new Error(`❌ Fehler: Der Endpunkt "${endpoint.name}" benötigt eine ID, aber keine wurde angegeben.\n\n💡 Verwende: node index.js "${endpoint.name}" --id=<SalesOrder-ID>\n`);
+    }
+
     // Ersetze Platzhalter in der URL (z. B. {id})
     let url = endpoint.url;
     for (const param in dynamicParams) {
@@ -63,7 +68,7 @@ async function testEndpoint(endpoint, dynamicParams = {}) {
 
     return responseData; // Gibt die Antwort zurück (nützlich für Sales Order View)
   } catch (error) {
-    console.error("\n❌ FEHLER:");
+    console.error("\n❌ FEHLER:\n");
     console.error(`   ${error.message}\n`);
     logError(endpoint.name, error.message);
     return null;

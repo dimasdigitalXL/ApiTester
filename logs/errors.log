@@ -10,3 +10,13 @@
 [2025-02-04T08:29:56.642Z] Fehler bei Get SalesOrders: fetch failed
 [2025-02-05T19:04:10.305Z] Fehler bei Get SalesOrders: fetch failed
 [2025-02-06T07:26:14.453Z] Fehler bei Get SalesOrders: fetch failed
+[2025-02-10T08:01:38.175Z] Fehler bei Get SalesOrder View: ❌ Fehler: Der Endpunkt "Get SalesOrder View" benötigt eine ID, aber keine wurde angegeben.
+💡 Verwende: node index.js "Get SalesOrder View" --id=<SalesOrder-ID>
+
+[2025-02-10T08:01:44.765Z] Fehler bei Get SalesOrder View: ❌ Fehler: Der Endpunkt "Get SalesOrder View" benötigt eine ID, aber keine wurde angegeben.
+💡 Verwende: node index.js "Get SalesOrder View" --id=<SalesOrder-ID>
+
+[2025-02-10T08:05:44.109Z] Fehler bei Get SalesOrder View: ❌ Fehler: Der Endpunkt "Get SalesOrder View" benötigt eine ID, aber keine wurde angegeben.
+
+💡 Verwende: node index.js "Get SalesOrder View" --id=<SalesOrder-ID>
+

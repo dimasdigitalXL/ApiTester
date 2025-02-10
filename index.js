@@ -178,6 +178,11 @@ async function main() {
         await testEndpoint(endpoint, dynamicParams);
       } else {
         console.error(`❌ Fehler: Kein API-Call mit dem Namen "${selectedApi}" gefunden.\n`);
+        
+        console.log("📌 Verfügbare API-Calls:");
+        endpoints.forEach(ep => console.log(`   ➡️ ${ep.name}`));
+
+        console.log("\n💡 Verwende einen der oben genannten API-Calls.\n");
       }
     } else {
       console.log(`🚀 Starte alle API-Tests um ${new Date().toISOString()}\n`);

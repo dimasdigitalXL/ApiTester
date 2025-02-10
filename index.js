@@ -2,6 +2,20 @@ require("dotenv").config();
 const fs = require("fs-extra");
 const querystring = require("querystring");
 const path = require("path");
+const axios = require("axios");
+
+async function sendSlackNotification(message, isError = false) {
+  try {
+    const payload = {
+      text: isError ? `🚨 *FEHLER*: ${message}` : `✅ *Erfolg*: ${message}`,
+    };
+
+    await axios.post(process.env.SLACK_WEBHOOK_URL, payload);
+    console.log("📩 Slack-Benachrichtigung gesendet.\n");
+  } catch (error) {
+    console.error("❌ Fehler beim Senden der Slack-Benachrichtigung:", error.message);
+  }
+}
 
 async function testEndpoint(endpoint, dynamicParams = {}) {
   try {
@@ -44,33 +58,47 @@ async function testEndpoint(endpoint, dynamicParams = {}) {
     const expectedStructure = await fs.readJson(endpoint.expectedStructure);
     const { missingFields, extraFields, typeMismatches } = compareStructures(expectedStructure, responseData);
 
+    let hasErrors = false;
+    let slackMessage = `:rocket: API-Test für *${endpoint.name}* abgeschlossen.\n`;
+
     if (missingFields.length > 0) {
       console.warn("\n⚠️ WARNUNG: Erwartete Felder fehlen:");
       missingFields.forEach(field => console.warn(`   ❌ ${field}`));
+      hasErrors = true;
+      slackMessage += `:warning: *Fehlende Felder:*\n${missingFields.map(field => `- ${field}`).join("\n")}\n`;
     }
     
     if (extraFields.length > 0) {
       console.error("\n🚨 FEHLER: Unerwartete Felder gefunden:");
       extraFields.forEach(field => console.error(`   🛑 ${field}`));
+      hasErrors = true;
+      slackMessage += `:rotating_light: *Unerwartete Felder:*\n${extraFields.map(field => `- ${field}`).join("\n")}\n`;
     }
     
     if (typeMismatches.length > 0) {
       console.warn("\n⚠️ WARNUNG: Typabweichungen:");
       typeMismatches.forEach(typeIssue => console.warn(`   ⚡ ${typeIssue}`));
+      hasErrors = true;
+      slackMessage += `:zap: *Typabweichungen:*\n${typeMismatches.map(type => `- ${type}`).join("\n")}\n`;
     }
-    
-    if (missingFields.length === 0 && extraFields.length === 0 && typeMismatches.length === 0) {
+
+    if (!hasErrors) {
       console.log(`✅ ${endpoint.name}: Struktur ist korrekt.\n`);
+      slackMessage += `:white_check_mark: *Erfolg: API-Test für ${endpoint.name} erfolgreich.*\n`;
     }
-     else {
-      console.log(`✅ ${endpoint.name}: Struktur ist korrekt.\n`);
-    }
+
+    // Sende eine einzige Slack-Benachrichtigung
+    sendSlackNotification(slackMessage);
 
     return responseData; // Gibt die Antwort zurück (nützlich für Sales Order View)
   } catch (error) {
     console.error("\n❌ FEHLER:\n");
     console.error(`   ${error.message}\n`);
     logError(endpoint.name, error.message);
+
+    // Slack-Benachrichtigung für Fehler senden
+    sendSlackNotification(`:rotating_light: *FEHLER: API-Test für ${endpoint.name} fehlgeschlagen.*\n\n❌ ${error.message}`);
+
     return null;
   }
 }
@@ -134,7 +162,6 @@ function compareStructures(expected, actual, path = "") {
 
   return { missingFields, extraFields, typeMismatches };
 }
-
 
 // Fehler protokollieren
 function logError(endpointName, errorMessage) {
@@ -214,4 +241,3 @@ async function main() {
 if (require.main === module) {
   main();
 }
-

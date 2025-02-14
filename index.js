@@ -263,7 +263,6 @@ async function sendSlackReport(testResults) {
     const successCount = testResults.filter(r => r.success).length;
     const warnings = testResults.filter(r => !r.success && !r.isCritical);
     const criticals = testResults.filter(r => r.isCritical);
-    const successfulTests = testResults.filter(r => r.success); // Erfolgreiche Tests filtern
 
     const totalTests = testResults.length;
     const warningCount = warnings.length;
@@ -277,44 +276,29 @@ async function sendSlackReport(testResults) {
 
     [...warnings, ...criticals].forEach(issue => {
       const statusIcon = issue.isCritical ? ":red_circle:" : ":large_orange_circle:";
-      message += `${issueCounter}️⃣ [${issue.method}] ${issue.endpointName} ${statusIcon}\n\n`;
+      message += `${issueCounter}️⃣ [${issue.method}] ${issue.endpointName} ${statusIcon}\n`;
 
+      // Fehlende Attribute
       if (issue.missingFields.length > 0) {
-        message += `:warning: *Fehlende Felder:*\n`;
-        issue.missingFields.forEach(field => {
-          message += `-> ${field}\n`;
-        });
-        message += `\n`;
+        const missingFieldsShort = issue.missingFields.map(f => f.replace(/Feld fehlt: data\[0]\./, "").split(" ")[0]);
+        message += `:warning: *Fehlende Attribute:* ["${missingFieldsShort.join('", "')}"]\n`;
       }
 
+      // Neue Attribute
       if (issue.extraFields.length > 0) {
-        message += `:warning: *Neue Felder:*\n`;
-        issue.extraFields.forEach(field => {
-          message += `-> ${field}\n`;
-        });
-        message += `\n`;
+        const extraFieldsShort = issue.extraFields.map(f => f.replace(/Neues Feld gefunden: data\[0]\./, "").split(" ")[0]);
+        message += `:warning: *Neue Attribute:* ["${extraFieldsShort.join('", "')}"]\n`;
       }
 
       if (issue.isCritical && issue.errorMessage) {
-        message += `:x: *Fehler:*\n`;
-        message += `-> ${issue.errorMessage}\n\n`;
+        message += `:x: *Fehler:*\n -> ${issue.errorMessage}\n`;
       }
 
+      message += `\n`;
       issueCounter++;
     });
 
-    // Fehlerfreie Sektion hinzufügen
-    if (successfulTests.length > 0) {
-      message += `---------------------------------------------\n`;
-      message += `:white_check_mark: *Fehlerfrei:*\n`;
-      let successCounter = 1;
-      successfulTests.forEach(s => {
-        message += `${successCounter}️⃣ [${s.method}] ${s.endpointName} :large_green_circle:\n\n`;
-        successCounter++;
-      });
-    }
-
-    //Gesamtstatistik
+    // Gesamtstatistik
     message += `---------------------------------------------\n`;
     message += `:bar_chart: *Gesamtstatistik:* ${totalTests} API-Calls\n`;
     message += `:small_blue_diamond: :large_green_circle: *Erfolgreich:* ${successCount}\n`;

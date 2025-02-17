@@ -1,0 +1,13 @@
+{
+    "name": "Testprodukt API",
+    "description": "Dieses Produkt wurde über die API erstellt.",
+    "project": {
+      "id": "3"
+    },
+    "category": {
+        "id": "1"
+    },
+    "ean": "1234567890123",
+    "customsTariffNumber": "12345678"
+}
+  

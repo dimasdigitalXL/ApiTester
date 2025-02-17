@@ -2,7 +2,7 @@
   "endpoints": [
     {
       "name": "Get SalesOrders List",
-      "url": "https://636a1d639f14e.xentral.biz/api/salesOrders",
+      "url": "https://${XENTRAL_ID}.xentral.biz/api/salesOrders",
       "method": "GET",
       "headers": {
         "Accept": "application/json",
@@ -19,7 +19,7 @@
     },
     {
       "name": "Get SalesOrder View",
-      "url": "https://636a1d639f14e.xentral.biz/api/salesOrders",
+      "url": "https://${XENTRAL_ID}.xentral.biz/api/salesOrders",
       "method": "GET",
       "headers": {
         "Accept": "application/json",
@@ -28,6 +28,16 @@
       "query": {},
       "requiresId": true,
       "expectedStructure": "expected/salesOrderView.json"
+    },
+    {
+      "name": "Create New Product",
+      "url": "https://${XENTRAL_ID}.xentral.biz/api/products",
+      "method": "POST",
+      "headers": {
+        "Content-Type": "application/vnd.xentral.default.v2-beta+json",
+        "Accept": "application/json"
+      },
+      "bodyFile": "requestBodies/createProduct.json"
     }
   ]
 }

@@ -4,116 +4,6 @@ const querystring = require("querystring");
 const path = require("path");
 const axios = require("axios");
 
-// Funktion für API-Endpunkte
-async function testEndpoint(endpoint, dynamicParams = {}) {
-  try {
-    console.log(`\n🔍 Starte Test für Endpunkt: ${endpoint.name}\n`);
-
-    // Überprüfen, ob eine ID erforderlich ist, aber nicht übergeben wurde
-    if (endpoint.requiresId && (!dynamicParams.id || dynamicParams.id.trim() === "")) {
-      throw new Error(
-        `Der Endpunkt "${endpoint.name}" benötigt eine ID, aber keine wurde angegeben.\n\n💡 *Hinweis*:\n -> Verwende node index.js "${endpoint.name}" --id=<SalesOrder-ID>`
-      );
-    }
-
-    // URL vorbereiten und Platzhalter in der URL durch dynamische Parameter ersetzen
-    let url = endpoint.url;
-    for (const param in dynamicParams) {
-      url = url.replace(`{${param}}`, dynamicParams[param]);
-    }
-
-    // Erstellen der URL-Parameter (Query-String)
-    const queryParams = new URLSearchParams(endpoint.query || {});
-
-    // API-Request durchführen
-    const response = await fetch(`${url}?${queryParams.toString()}`, {
-      method: endpoint.method, // HTTP-Methode (GET, POST, PUT, DELETE etc.)
-      headers: {
-        ...endpoint.headers, // Zusätzliche Header aus der Konfiguration übernehmen
-        Authorization: `Bearer ${process.env.BEARER_TOKEN}`, // Authentifizierung mit Bearer-Token
-      },
-    });
-
-    // Fehler ausgeben, falls der API-Request fehlschlägt
-    if (!response.ok) {
-      throw new Error(`HTTP-Fehler: ${response.status} ${response.statusText}`);
-    }
-
-    // Antwort der API in JSON umwandeln
-    const responseData = await response.json();
-
-    // Speichert die API-Response in einer Datei für spätere Analyse
-    const fileName = `${endpoint.name.replace(/\s+/g, "_")}_response.json`;
-    const filePath = path.join(__dirname, "responses", fileName);
-    fs.writeFileSync(filePath, JSON.stringify(responseData, null, 2));
-
-    console.log(`✅ Response für ${endpoint.name} gespeichert unter:`);
-    console.log(`   📁 ${filePath}\n`);
-
-    // Erwartete Struktur aus Datei laden
-    const expectedStructure = await fs.readJson(endpoint.expectedStructure);
-
-    // Vergleich der API-Antwort mit der erwarteten Struktur
-    const { missingFields, extraFields, typeMismatches } = compareStructures(expectedStructure, responseData);
-
-    // Initialisierung der Warnungs- und Fehlerlisten
-    let warnings = [];
-    let criticalErrors = [];
-
-    // Prüft, ob erwartete Felder fehlen
-    if (missingFields.length > 0) {
-      warnings.push(`⚠️ Fehlende Felder: ${missingFields.join(", ")}`);
-    }
-
-    // Prüft, ob neue (unerwartete) Felder in der API-Response enthalten sind
-    if (extraFields.length > 0) {
-      warnings.push(`⚠️ Neue Felder: ${extraFields.join(", ")}`);
-    }
-
-    // Prüft, ob es Typabweichungen gibt
-    if (typeMismatches.length > 0) {
-      warnings.push(`⚠️ Typabweichungen: ${typeMismatches.join(", ")}`);
-    }
-
-    // Ausgabe der Ergebnisse in der Konsole
-    if (warnings.length === 0) {
-      console.log(`✅ ${endpoint.name}: Struktur ist korrekt.\n`);
-    } else {
-      console.warn("\n🟠 ACHTUNG:");
-      warnings.forEach(msg => console.warn(`   ${msg}`));
-    }
-
-    // Rückgabe des Testergebnisses zur späteren Verarbeitung (z. B. für den Slack-Report)
-    return {
-      endpointName: endpoint.name,
-      method: endpoint.method,
-      success: warnings.length === 0, // Erfolgreich, wenn keine Warnungen vorhanden sind
-      isCritical: false, // Diese API-Tests sind standardmäßig nicht kritisch
-      statusCode: response.status, // HTTP-Statuscode des Requests
-      errorMessage: response.ok ? null : `HTTP-Fehler: ${response.status} ${response.statusText}`, // Falls vorhanden, die Fehlermeldung
-      missingFields,
-      extraFields,
-    };
-
-  } catch (error) {
-    console.error("\n❌ FEHLER:\n");
-    console.error(`   ${error.message}\n`);
-    logError(endpoint.name, error.message);
-
-    // Falls ein kritischer Fehler auftritt, wird das als kritisches Problem markiert
-    return {
-      endpointName: endpoint.name,
-      method: endpoint.method,
-      success: false, // Fehlgeschlagen
-      isCritical: true, // Kritischer Fehler
-      statusCode: null, // Kein HTTP-Statuscode verfügbar
-      errorMessage: error.message, // Fehlermeldung speichern
-      missingFields: [],
-      extraFields: [],
-    };
-  }
-}
-
 // Funktion zum Vergleichen der Datenstruktur
 function compareStructures(expected, actual, path = "") {
   const missingFields = [];
@@ -148,13 +38,10 @@ function compareStructures(expected, actual, path = "") {
   // Überprüfen, ob Felder fehlen oder Typen nicht übereinstimmen
   for (const key in expected) {
     if (!Object.hasOwn(actual, key)) {
-      missingFields.push(`Feld fehlt: ${path ? path + "." : ""}${key} (Erwartet, aber nicht gefunden)`);
-    } else if (
-      typeof actual[key] !== typeof expected[key] &&
-      !(typeof expected[key] === "string" && (actual[key] === null || typeof actual[key] === "object"))
-    ) {
+      missingFields.push(`${path ? path + "." : ""}${key}`);
+    } else if (typeof actual[key] !== typeof expected[key]) {
       typeMismatches.push(
-        `Falscher Typ für Feld ${path ? path + "." : ""}${key}: erwartet ${typeof expected[key]}, erhalten ${typeof actual[key]}`
+        `${path ? path + "." : ""}${key}: erwartet ${typeof expected[key]}, erhalten ${typeof actual[key]}`
       );
     } else if (typeof expected[key] === "object" && expected[key] !== null) {
       const result = compareStructures(expected[key], actual[key], `${path ? path + "." : ""}${key}`);
@@ -167,11 +54,123 @@ function compareStructures(expected, actual, path = "") {
   // Prüfen, ob es zusätzliche Felder in der API-Response gibt
   for (const key in actual) {
     if (!Object.hasOwn(expected, key)) {
-      extraFields.push(`Neues Feld gefunden: ${path ? path + "." : ""}${key} (Nicht erwartet, aber erhalten)`);
+      extraFields.push(`${path ? path + "." : ""}${key}`);
     }
   }
 
   return { missingFields, extraFields, typeMismatches };
+}
+
+// Funktion für API-Endpunkte
+async function testEndpoint(endpoint, dynamicParams = {}) {
+  try {
+    console.log(`\n🔍 Starte Test für Endpunkt: ${endpoint.name}\n`);
+
+    // Überprüfen, ob eine ID erforderlich ist, aber nicht übergeben wurde
+    if (endpoint.requiresId && (!dynamicParams.id || dynamicParams.id.trim() === "")) {
+      throw new Error(
+        `Der Endpunkt "${endpoint.name}" benötigt eine ID, aber keine wurde angegeben.\n\n💡 *Hinweis*:\n -> Verwende node index.js "${endpoint.name}" --id=<SalesOrder-ID>`
+      );
+    }
+
+    // URL vorbereiten und Platzhalter in der URL durch dynamische Parameter ersetzen
+    let url = endpoint.url.replace("${XENTRAL_ID}", process.env.XENTRAL_ID);
+    for (const param in dynamicParams) {
+      url = url.replace(`{${param}}`, dynamicParams[param]);
+    }
+
+    // Erstellen der URL-Parameter (Query-String)
+    const queryParams = new URLSearchParams(endpoint.query || {});
+
+    // Request-Body aus Datei laden, falls vorhanden (nur für POST, PUT, PATCH)
+    let body = null;
+    if (["POST", "PUT", "PATCH"].includes(endpoint.method) && endpoint.bodyFile) {
+      const bodyPath = path.join(__dirname, endpoint.bodyFile);
+      if (fs.existsSync(bodyPath)) {
+        const bodyContent = fs.readFileSync(bodyPath, "utf-8").trim();
+        body = JSON.parse(bodyContent);
+      } else {
+        throw new Error(`❌ Fehler: Die Datei für den Request-Body existiert nicht: ${bodyPath}`);
+      }
+    }
+
+    // API-Request durchführen
+    const response = await fetch(`${url}?${queryParams.toString()}`, {
+      method: endpoint.method,
+      headers: {
+        ...endpoint.headers,
+        Authorization: `Bearer ${process.env.BEARER_TOKEN}`,
+        "Content-Type": "application/json"
+      },
+      body: body ? JSON.stringify(body) : undefined
+    });
+
+    // Fehler ausgeben, falls der API-Request fehlschlägt
+    if (!response.ok) {
+      throw new Error(`HTTP-Fehler: ${response.status} ${response.statusText}`);
+    }
+
+    // API-Antwort 
+    let responseData;
+    const contentType = response.headers.get("content-type") || "";
+
+    if (contentType.includes("application/json")) {
+      responseData = await response.json();
+    } else {
+      responseData = null; // Falls kein JSON, wird die Response nicht gespeichert
+    }
+
+    // Speichert die API-Response in einer Datei, falls vorhanden
+    if (responseData) {
+      const fileName = `${endpoint.name.replace(/\s+/g, "_")}_response.json`;
+      const filePath = path.join(__dirname, "responses", fileName);
+      fs.writeFileSync(filePath, JSON.stringify(responseData, null, 2));
+    }
+
+    // Erwartete Struktur aus Datei laden, falls vorhanden
+    let expectedStructure = null;
+    if (endpoint.expectedStructure) {
+      expectedStructure = await fs.readJson(endpoint.expectedStructure);
+    }
+
+    // Falls eine erwartete Struktur existiert, wird sie mit der API-Response verglichen
+    let warnings = [];
+    if (expectedStructure && responseData) {
+      const { missingFields, extraFields, typeMismatches } = compareStructures(expectedStructure, responseData);
+
+      if (missingFields.length > 0) warnings.push(`⚠️ Fehlende Felder: ${missingFields.join(", ")}`);
+      if (extraFields.length > 0) warnings.push(`⚠️ Neue Felder: ${extraFields.join(", ")}`);
+      if (typeMismatches.length > 0) warnings.push(`⚠️ Typabweichungen: ${typeMismatches.join(", ")}`);
+    }
+
+    // Rückgabe des Testergebnisses
+    return {
+      endpointName: endpoint.name,
+      method: endpoint.method,
+      success: warnings.length === 0,
+      isCritical: false,
+      statusCode: response.status,
+      errorMessage: response.ok ? null : `HTTP-Fehler: ${response.status} ${response.statusText}`,
+      missingFields: warnings.includes("⚠️ Fehlende Felder") ? warnings : [],
+      extraFields: warnings.includes("⚠️ Neue Felder") ? warnings : []
+    };
+
+  } catch (error) {
+    console.error("\n❌ FEHLER:\n");
+    console.error(`   ${error.message}\n`);
+    logError(endpoint.name, error.message);
+
+    return {
+      endpointName: endpoint.name,
+      method: endpoint.method,
+      success: false,
+      isCritical: true,
+      statusCode: null,
+      errorMessage: error.message,
+      missingFields: [],
+      extraFields: []
+    };
+  }
 }
 
 // Fehler protokollieren
@@ -248,8 +247,12 @@ async function main() {
 
     console.log("\n✅ Alle Tests abgeschlossen.\n");
 
-    // Hier wird nach Abschluss der Tests das Slack-Reporting aufgerufen
-    sendSlackReport(testResults);
+    // Slack nur ausführen, wenn DISABLE_SLACK nicht gesetzt ist
+    if (!process.env.DISABLE_SLACK) {
+      sendSlackReport(testResults);
+    } else {
+      console.log("\n🔕 Slack-Benachrichtigung ist deaktiviert (DISABLE_SLACK=true).\n");
+    }
 
   } catch (error) {
     console.error("\n❌ Fehler beim Ausführen des Skripts:");

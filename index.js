@@ -3,12 +3,13 @@ const fs = require("fs-extra");
 const path = require("path");
 const axios = require("axios");
 
-// Funktion zum Vergleichen der Datenstruktur
+// Funktion zum Vergleichen der Datenstruktur zwischen der erwarteten und der tatsächlichen API-Response
 function compareStructures(expected, actual, path = "") {
   const missingFields = [];
   const extraFields = [];
   const typeMismatches = [];
 
+  // Prüfen, ob eines der Objekte ein Array ist und das andere nicht
   if (Array.isArray(expected) !== Array.isArray(actual)) {
     typeMismatches.push(
       `Typen stimmen nicht überein bei ${path || "root"}: erwartet ${
@@ -18,6 +19,7 @@ function compareStructures(expected, actual, path = "") {
     return { missingFields, extraFields, typeMismatches };
   }
 
+  // Falls das erwartete Objekt ein Array ist, prüfen wir die Elemente
   if (Array.isArray(expected)) {
     if (actual.length === 0) {
       console.log(`🔹 Array ${path} ist leer, wird aber nicht als Fehler gewertet.`);
@@ -32,6 +34,7 @@ function compareStructures(expected, actual, path = "") {
     return { missingFields, extraFields, typeMismatches };
   }
 
+  // Überprüfen, ob Felder fehlen oder Typen nicht übereinstimmen
   for (const key in expected) {
     if (!Object.hasOwn(actual, key)) {
       missingFields.push(`${path ? path + "." : ""}${key}`);
@@ -45,6 +48,7 @@ function compareStructures(expected, actual, path = "") {
     }
   }
 
+  // Prüfen, ob es zusätzliche Felder in der API-Response gibt
   for (const key in actual) {
     if (!Object.hasOwn(expected, key)) {
       extraFields.push(`${path ? path + "." : ""}${key}`);
@@ -52,13 +56,13 @@ function compareStructures(expected, actual, path = "") {
   }
 
   return {
-    missingFields: missingFields.map(f => f.replace(/^data\[0]\./, "")), 
-    extraFields: extraFields.map(f => f.replace(/^data\[0]\./, "")), 
+    missingFields: missingFields.map(f => f.replace(/^data\[0]\./, "")), // Entfernt "data[0]." für eine bessere Anzeige
+    extraFields: extraFields.map(f => f.replace(/^data\[0]\./, "")), // Entfernt "data[0]."
     typeMismatches
   };
 }
 
-// Funktion für API-Endpunkte
+// Funktion für API-Endpunkte: führt den Request aus und vergleicht das Ergebnis mit der erwarteten Struktur
 async function testEndpoint(endpoint, dynamicParams = {}) {
   try {
     console.log(`\n🔍 Starte Test für Endpunkt: ${endpoint.name}\n`);
@@ -75,6 +79,7 @@ async function testEndpoint(endpoint, dynamicParams = {}) {
     const queryParams = new URLSearchParams(endpoint.query || {});
     let body = null;
 
+    // Falls der Request-Body aus einer Datei geladen werden muss (bei POST, PUT, PATCH)
     if (["POST", "PUT", "PATCH"].includes(endpoint.method) && endpoint.bodyFile) {
       const bodyPath = path.join(__dirname, endpoint.bodyFile);
       if (fs.existsSync(bodyPath)) {
@@ -85,6 +90,7 @@ async function testEndpoint(endpoint, dynamicParams = {}) {
       }
     }
 
+    // API-Request durchführen
     const response = await fetch(`${url}?${queryParams.toString()}`, {
       method: endpoint.method,
       headers: {
@@ -102,15 +108,18 @@ async function testEndpoint(endpoint, dynamicParams = {}) {
     let responseData = null;
     const contentType = response.headers.get("content-type") || "";
 
+    // Falls JSON-Response, dann verarbeiten
     if (contentType.includes("application/json")) {
       responseData = await response.json();
     }
 
+    // Falls keine Antwort vorhanden ist
     if (!responseData) {
       console.warn(`⚠️ Keine API-Response zum Speichern für ${endpoint.name}.`);
       responseData = {};
     }
 
+    // Falls der Endpunkt ein POST, PUT oder PATCH ist, brauchen wir keine Strukturvalidierung
     if (["POST", "PUT", "PATCH"].includes(endpoint.method)) {
       return {
         endpointName: endpoint.name,
@@ -124,11 +133,13 @@ async function testEndpoint(endpoint, dynamicParams = {}) {
       };
     }
 
+    // Erwartete Struktur laden
     let expectedStructure = null;
     if (endpoint.expectedStructure && fs.existsSync(endpoint.expectedStructure)) {
       expectedStructure = await fs.readJson(endpoint.expectedStructure);
     }
 
+    // Falls keine erwartete Struktur vorhanden ist
     if (!expectedStructure) {
       console.warn(`⚠️ Erwartete Vergleichsstruktur für ${endpoint.name} nicht vorhanden.`);
       return {
@@ -143,6 +154,7 @@ async function testEndpoint(endpoint, dynamicParams = {}) {
       };
     }
 
+    // Strukturvergleich durchführen
     const { missingFields, extraFields } = compareStructures(expectedStructure, responseData);
 
     return {
@@ -185,7 +197,7 @@ function logDifferences(endpointName, differences) {
   fs.appendFileSync("logs/differences.log", logMessage);
 }
 
-// Hauptfunktion
+// Hauptfunktion, die alle API-Tests ausführt
 async function main() {
   try {
     console.log("\n📂 Lade Config-Datei...\n");

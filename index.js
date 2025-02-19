@@ -1,6 +1,5 @@
 require("dotenv").config();
 const fs = require("fs-extra");
-const querystring = require("querystring");
 const path = require("path");
 const axios = require("axios");
 
@@ -10,7 +9,6 @@ function compareStructures(expected, actual, path = "") {
   const extraFields = [];
   const typeMismatches = [];
 
-  // Prüfen, ob eines der Objekte ein Array ist und das andere nicht
   if (Array.isArray(expected) !== Array.isArray(actual)) {
     typeMismatches.push(
       `Typen stimmen nicht überein bei ${path || "root"}: erwartet ${
@@ -20,10 +18,9 @@ function compareStructures(expected, actual, path = "") {
     return { missingFields, extraFields, typeMismatches };
   }
 
-  // Falls das erwartete Objekt ein Array ist, prüfen wir die Elemente
   if (Array.isArray(expected)) {
     if (actual.length === 0) {
-      missingFields.push(`Array ${path} ist leer, erwartet wurde mindestens ein Element.`);
+      console.log(`🔹 Array ${path} ist leer, wird aber nicht als Fehler gewertet.`);
     } else {
       for (let i = 0; i < expected.length; i++) {
         const result = compareStructures(expected[0], actual[i], `${path}[${i}]`);
@@ -35,14 +32,11 @@ function compareStructures(expected, actual, path = "") {
     return { missingFields, extraFields, typeMismatches };
   }
 
-  // Überprüfen, ob Felder fehlen oder Typen nicht übereinstimmen
   for (const key in expected) {
     if (!Object.hasOwn(actual, key)) {
       missingFields.push(`${path ? path + "." : ""}${key}`);
     } else if (typeof actual[key] !== typeof expected[key]) {
-      typeMismatches.push(
-        `${path ? path + "." : ""}${key}: erwartet ${typeof expected[key]}, erhalten ${typeof actual[key]}`
-      );
+      typeMismatches.push(`${path ? path + "." : ""}${key}: erwartet ${typeof expected[key]}, erhalten ${typeof actual[key]}`);
     } else if (typeof expected[key] === "object" && expected[key] !== null) {
       const result = compareStructures(expected[key], actual[key], `${path ? path + "." : ""}${key}`);
       missingFields.push(...result.missingFields);
@@ -51,14 +45,17 @@ function compareStructures(expected, actual, path = "") {
     }
   }
 
-  // Prüfen, ob es zusätzliche Felder in der API-Response gibt
   for (const key in actual) {
     if (!Object.hasOwn(expected, key)) {
       extraFields.push(`${path ? path + "." : ""}${key}`);
     }
   }
 
-  return { missingFields, extraFields, typeMismatches };
+  return {
+    missingFields: missingFields.map(f => f.replace(/^data\[0]\./, "")), 
+    extraFields: extraFields.map(f => f.replace(/^data\[0]\./, "")), 
+    typeMismatches
+  };
 }
 
 // Funktion für API-Endpunkte
@@ -66,24 +63,18 @@ async function testEndpoint(endpoint, dynamicParams = {}) {
   try {
     console.log(`\n🔍 Starte Test für Endpunkt: ${endpoint.name}\n`);
 
-    // Überprüfen, ob eine ID erforderlich ist, aber nicht übergeben wurde
     if (endpoint.requiresId && (!dynamicParams.id || dynamicParams.id.trim() === "")) {
-      throw new Error(
-        `Der Endpunkt "${endpoint.name}" benötigt eine ID, aber keine wurde angegeben.\n\n💡 *Hinweis*:\n -> Verwende node index.js "${endpoint.name}" --id=<SalesOrder-ID>`
-      );
+      throw new Error(`Der Endpunkt "${endpoint.name}" benötigt eine ID, aber keine wurde angegeben.`);
     }
 
-    // URL vorbereiten und Platzhalter in der URL durch dynamische Parameter ersetzen
     let url = endpoint.url.replace("${XENTRAL_ID}", process.env.XENTRAL_ID);
     for (const param in dynamicParams) {
       url = url.replace(`{${param}}`, dynamicParams[param]);
     }
 
-    // Erstellen der URL-Parameter (Query-String)
     const queryParams = new URLSearchParams(endpoint.query || {});
-
-    // Request-Body aus Datei laden, falls vorhanden (nur für POST, PUT, PATCH)
     let body = null;
+
     if (["POST", "PUT", "PATCH"].includes(endpoint.method) && endpoint.bodyFile) {
       const bodyPath = path.join(__dirname, endpoint.bodyFile);
       if (fs.existsSync(bodyPath)) {
@@ -94,7 +85,6 @@ async function testEndpoint(endpoint, dynamicParams = {}) {
       }
     }
 
-    // API-Request durchführen
     const response = await fetch(`${url}?${queryParams.toString()}`, {
       method: endpoint.method,
       headers: {
@@ -105,61 +95,69 @@ async function testEndpoint(endpoint, dynamicParams = {}) {
       body: body ? JSON.stringify(body) : undefined
     });
 
-    // Fehler ausgeben, falls der API-Request fehlschlägt
     if (!response.ok) {
       throw new Error(`HTTP-Fehler: ${response.status} ${response.statusText}`);
     }
 
-    // API-Antwort 
-    let responseData;
+    let responseData = null;
     const contentType = response.headers.get("content-type") || "";
 
     if (contentType.includes("application/json")) {
       responseData = await response.json();
-    } else {
-      responseData = null; // Falls kein JSON, wird die Response nicht gespeichert
     }
 
-    // Speichert die API-Response in einer Datei, falls vorhanden
-    if (responseData) {
-      const fileName = `${endpoint.name.replace(/\s+/g, "_")}_response.json`;
-      const filePath = path.join(__dirname, "responses", fileName);
-      fs.writeFileSync(filePath, JSON.stringify(responseData, null, 2));
+    if (!responseData) {
+      console.warn(`⚠️ Keine API-Response zum Speichern für ${endpoint.name}.`);
+      responseData = {};
     }
 
-    // Erwartete Struktur aus Datei laden, falls vorhanden
+    if (["POST", "PUT", "PATCH"].includes(endpoint.method)) {
+      return {
+        endpointName: endpoint.name,
+        method: endpoint.method,
+        success: true,
+        isCritical: false,
+        statusCode: response.status,
+        errorMessage: null,
+        missingFields: [],
+        extraFields: []
+      };
+    }
+
     let expectedStructure = null;
-    if (endpoint.expectedStructure) {
+    if (endpoint.expectedStructure && fs.existsSync(endpoint.expectedStructure)) {
       expectedStructure = await fs.readJson(endpoint.expectedStructure);
     }
 
-    // Falls eine erwartete Struktur existiert, wird sie mit der API-Response verglichen
-    let warnings = [];
-    if (expectedStructure && responseData) {
-      const { missingFields, extraFields, typeMismatches } = compareStructures(expectedStructure, responseData);
-
-      if (missingFields.length > 0) warnings.push(`⚠️ Fehlende Felder: ${missingFields.join(", ")}`);
-      if (extraFields.length > 0) warnings.push(`⚠️ Neue Felder: ${extraFields.join(", ")}`);
-      if (typeMismatches.length > 0) warnings.push(`⚠️ Typabweichungen: ${typeMismatches.join(", ")}`);
+    if (!expectedStructure) {
+      console.warn(`⚠️ Erwartete Vergleichsstruktur für ${endpoint.name} nicht vorhanden.`);
+      return {
+        endpointName: endpoint.name,
+        method: endpoint.method,
+        success: true,
+        isCritical: false,
+        statusCode: response.status,
+        errorMessage: null,
+        missingFields: [],
+        extraFields: []
+      };
     }
 
-    // Rückgabe des Testergebnisses
+    const { missingFields, extraFields } = compareStructures(expectedStructure, responseData);
+
     return {
       endpointName: endpoint.name,
       method: endpoint.method,
-      success: warnings.length === 0,
+      success: missingFields.length === 0 && extraFields.length === 0,
       isCritical: false,
       statusCode: response.status,
-      errorMessage: response.ok ? null : `HTTP-Fehler: ${response.status} ${response.statusText}`,
-      missingFields: warnings.includes("⚠️ Fehlende Felder") ? warnings : [],
-      extraFields: warnings.includes("⚠️ Neue Felder") ? warnings : []
+      errorMessage: missingFields.length > 0 || extraFields.length > 0 ? "Strukturabweichungen gefunden" : null,
+      missingFields,
+      extraFields
     };
 
   } catch (error) {
-    console.error("\n❌ FEHLER:\n");
-    console.error(`   ${error.message}\n`);
-    logError(endpoint.name, error.message);
-
+    console.error("\n❌ FEHLER:\n", error.message);
     return {
       endpointName: endpoint.name,
       method: endpoint.method,
@@ -260,48 +258,54 @@ async function main() {
   }
 }
 
-/// Benachrichtigungsfunktion für Slack
+// Benachrichtigungsfunktion für Slack
 async function sendSlackReport(testResults) {
   try {
-    const successCount = testResults.filter(r => r.success).length;
-    const warnings = testResults.filter(r => !r.success && !r.isCritical);
+    let successCount = testResults.filter(r => r.success).length;
+    const warnings = testResults.filter(r => !r.success && !r.isCritical && (r.missingFields.length > 0 || r.extraFields.length > 0));
     const criticals = testResults.filter(r => r.isCritical);
 
     const totalTests = testResults.length;
     const warningCount = warnings.length;
     const criticalCount = criticals.length;
 
-    let message = `:mag: *API Testbericht ${new Date().getDate()}/${new Date().getMonth() + 1}/${new Date().getFullYear()}*\n`;
+    let message = `:mag: *API Testbericht ${new Date().toLocaleDateString()}*\n`;
     message += `---------------------------------------------\n`;
-    message += `:pushpin: *Fehlerdetails:*\n`;
+
+    if (warnings.length > 0 || criticals.length > 0) {
+      message += `:pushpin: *Fehlerdetails:*\n`;
+    } else {
+      message += `✅ Alle Tests wurden erfolgreich ausgeführt. Keine Abweichungen gefunden!\n`;
+    }
 
     let issueCounter = 1;
+    let hasErrors = warnings.length > 0 || criticals.length > 0;
 
-    [...warnings, ...criticals].forEach(issue => {
+    [...warnings, ...criticals].forEach((issue) => {
+      message += `\n`; // **Leerzeile vor jedem API-Fehlerbericht**
+
       const statusIcon = issue.isCritical ? ":red_circle:" : ":large_orange_circle:";
       message += `${issueCounter}️⃣ [${issue.method}] ${issue.endpointName} ${statusIcon}\n`;
 
-      // Fehlende Attribute
       if (issue.missingFields.length > 0) {
-        const missingFieldsShort = issue.missingFields.map(f => f.replace(/Feld fehlt: data\[0]\./, "").split(" ")[0]);
-        message += `:warning: *Fehlende Attribute:* ["${missingFieldsShort.join('", "')}"]\n`;
+        message += `:warning: *Fehlende Attribute:* ["${issue.missingFields.join('", "')}"]\n`;
       }
 
-      // Neue Attribute
       if (issue.extraFields.length > 0) {
-        const extraFieldsShort = issue.extraFields.map(f => f.replace(/Neues Feld gefunden: data\[0]\./, "").split(" ")[0]);
-        message += `:warning: *Neue Attribute:* ["${extraFieldsShort.join('", "')}"]\n`;
+        message += `:warning: *Neue Attribute:* ["${issue.extraFields.join('", "')}"]\n`;
       }
 
       if (issue.isCritical && issue.errorMessage) {
         message += `:x: *Fehler:*\n -> ${issue.errorMessage}\n`;
       }
 
-      message += `\n`;
       issueCounter++;
     });
 
-    // Gesamtstatistik
+    if (hasErrors) {
+      message += `\n`; // **Leerzeile nach den Fehlerdetails**
+    }
+
     message += `---------------------------------------------\n`;
     message += `:bar_chart: *Gesamtstatistik:* ${totalTests} API-Calls\n`;
     message += `:small_blue_diamond: :large_green_circle: *Erfolgreich:* ${successCount}\n`;

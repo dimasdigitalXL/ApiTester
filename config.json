@@ -1,6 +1,6 @@
 {
   "endpoints": [
-    {
+    { 
       "name": "Get SalesOrders List",
       "url": "https://${XENTRAL_ID}.xentral.biz/api/salesOrders",
       "method": "GET",
@@ -38,6 +38,22 @@
         "Accept": "application/json"
       },
       "bodyFile": "requestBodies/createProduct.json"
+    },
+    {
+      "name": "Get List Products",
+      "url": "https://${XENTRAL_ID}.xentral.biz/api/products",
+      "method": "GET",
+      "headers": {
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      },
+      "query": {
+        "order[0][field]": "id",
+        "order[0][dir]": "desc",
+        "page[number]": 1,
+        "page[size]": 10
+      },
+      "expectedStructure": "expected/listProducts.json"
     }
   ]
 }

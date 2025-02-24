@@ -1,0 +1,12 @@
+{
+    "name": "Grüße aus API-Tester",
+    "description": "Neue Beschreibung für das Produkt",
+    "discount": {
+      "isDiscountProduct": true,
+      "discountPercentage": 10.5
+    },
+    "stockTaking": {
+      "hasStockTakingValue": true,
+      "stockTakingValue": 50
+    }
+  }

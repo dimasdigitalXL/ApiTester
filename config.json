@@ -54,6 +54,28 @@
         "page[size]": 10
       },
       "expectedStructure": "expected/listProducts.json"
+    },
+    {
+      "name": "Delete Product",
+      "url": "https://${XENTRAL_ID}.xentral.biz/api/products/{id}",
+      "method": "DELETE",
+      "headers": {
+        "Accept": "application/json",
+        "Authorization": "Bearer ${BEARER_TOKEN}"
+      },
+      "requiresId": true
+    },
+    {
+      "name": "Update Product",
+      "url": "https://${XENTRAL_ID}.xentral.biz/api/products/{id}",
+      "method": "PATCH",
+      "headers": {
+        "Accept": "application/json",
+        "Authorization": "Bearer ${BEARER_TOKEN}",
+        "Content-Type": "application/json"
+      },
+      "bodyFile": "requestBodies/updateProduct.json",
+      "requiresId": true
     }
   ]
 }

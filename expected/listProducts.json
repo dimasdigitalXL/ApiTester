@@ -24,20 +24,20 @@
           "inProductionCount": "string"
         },
         "purchasePriceNet": {
-          "currency": "string",
-          "amount": "string"
+          "currency": "string|null",
+          "amount": "string|null"
         },
         "purchasePriceGross": {
-          "currency": "string",
-          "amount": "string"
+          "currency": "string|null",
+          "amount": "string|null"
         },
         "salesPriceNet": {
-          "currency": "string",
-          "amount": "string"
+          "currency": "string|null",
+          "amount": "string|null"
         },
         "salesPriceGross": {
-          "currency": "string",
-          "amount": "string"
+          "currency": "string|null",
+          "amount": "string|null"
         },
         "shopPriceDisplay": "null|string",
         "ean": "string",
@@ -108,8 +108,8 @@
         "calculatedPurchasePrice": {
           "hasCalculatedPurchasePrice": false,
           "price": {
-            "amount": "string",
-            "currency": "string"
+            "amount": "string|null",
+            "currency": "string|null"
           }
         },
         "unit": {

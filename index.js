@@ -2,12 +2,27 @@ require("dotenv").config();
 const fs = require("fs-extra");
 const path = require("path");
 const axios = require("axios");
+const { appendFileSync } = require("fs");
+
+// Funktion zum Speichern von Logs
+function logToFile(filename, message) {
+    const logPath = path.join(__dirname, "logs", filename);
+    const timestamp = new Date().toISOString();
+    appendFileSync(logPath, `[${timestamp}] ${message}\n`);
+}
 
 // Funktion zum Vergleichen der Datenstruktur zwischen der erwarteten und der tatsächlichen API-Response
 function compareStructures(expected, actual, path = "") {
   const missingFields = [];
   const extraFields = [];
   const typeMismatches = [];
+
+  if (!expected || !actual || typeof expected !== "object" || typeof actual !== "object") {
+    console.error("❌ Fehler: Erwartete oder tatsächliche Struktur ist ungültig.");
+    console.log("🔍 Erwartete Struktur:", JSON.stringify(expected, null, 2));
+    console.log("🔍 Tatsächliche API-Response:", JSON.stringify(actual, null, 2));
+    return { missingFields, extraFields, typeMismatches };
+  }
 
   // Prüfen, ob eines der Objekte ein Array ist und das andere nicht
   if (Array.isArray(expected) !== Array.isArray(actual)) {
@@ -22,14 +37,14 @@ function compareStructures(expected, actual, path = "") {
   // Falls das erwartete Objekt ein Array ist, prüfen wir die Elemente
   if (Array.isArray(expected)) {
     if (actual.length === 0) {
-      console.log(`🔹 Array ${path} ist leer, wird aber nicht als Fehler gewertet.`);
-    } else {
-      for (let i = 0; i < expected.length; i++) {
-        const result = compareStructures(expected[0], actual[i], `${path}[${i}]`);
-        missingFields.push(...result.missingFields);
-        extraFields.push(...result.extraFields);
-        typeMismatches.push(...result.typeMismatches);
-      }
+      return { missingFields, extraFields, typeMismatches }; // Kein Fehler, wenn `actual` leer ist
+    }
+
+    for (let i = 0; i < expected.length; i++) {
+      const result = compareStructures(expected[0], actual[i], `${path}[${i}]`);
+      missingFields.push(...result.missingFields);
+      extraFields.push(...result.extraFields);
+      typeMismatches.push(...result.typeMismatches);
     }
     return { missingFields, extraFields, typeMismatches };
   }
@@ -38,13 +53,37 @@ function compareStructures(expected, actual, path = "") {
   for (const key in expected) {
     if (!Object.hasOwn(actual, key)) {
       missingFields.push(`${path ? path + "." : ""}${key}`);
-    } else if (typeof actual[key] !== typeof expected[key]) {
-      typeMismatches.push(`${path ? path + "." : ""}${key}: erwartet ${typeof expected[key]}, erhalten ${typeof actual[key]}`);
-    } else if (typeof expected[key] === "object" && expected[key] !== null) {
-      const result = compareStructures(expected[key], actual[key], `${path ? path + "." : ""}${key}`);
-      missingFields.push(...result.missingFields);
-      extraFields.push(...result.extraFields);
-      typeMismatches.push(...result.typeMismatches);
+    } else {
+      const expectedValue = expected[key];
+      const actualValue = actual[key];
+      const expectedType = typeof expectedValue;
+      const actualType = typeof actualValue;
+
+      // Erlaube `null` für bestimmte erwartete Typen
+      const isNullableString = expectedValue === "string|null" && (actualValue === null || actualType === "string");
+      const isNullableNumber = expectedValue === "number|null" && (actualValue === null || actualType === "number");
+      const isNullableBoolean = expectedValue === "boolean|null" && (actualValue === null || actualType === "boolean");
+      const isNullableObject = expectedValue && expectedType === "object" && actualValue === null;
+
+      if (
+        actualValue !== null &&
+        expectedType !== "object" &&
+        actualType !== expectedType &&
+        !isNullableString &&
+        !isNullableNumber &&
+        !isNullableBoolean &&
+        !isNullableObject
+      ) {
+        typeMismatches.push(`${path ? path + "." : ""}${key}: erwartet ${expectedType}, erhalten ${actualType}`);
+      }
+
+      // Falls der Wert ein Objekt ist, rekursiv weiter prüfen
+      if (expectedType === "object" && expectedValue !== null && actualValue !== null) {
+        const result = compareStructures(expectedValue, actualValue, `${path ? path + "." : ""}${key}`);
+        missingFields.push(...result.missingFields);
+        extraFields.push(...result.extraFields);
+        typeMismatches.push(...result.typeMismatches);
+      }
     }
   }
 
@@ -56,9 +95,9 @@ function compareStructures(expected, actual, path = "") {
   }
 
   return {
-    missingFields: missingFields.map(f => f.replace(/^data\[0]\./, "")), // Entfernt "data[0]." für eine bessere Anzeige
-    extraFields: extraFields.map(f => f.replace(/^data\[0]\./, "")), // Entfernt "data[0]."
-    typeMismatches
+    missingFields: missingFields.map((f) => f.replace(/^data\[0]\./, "")), // Entfernt "data[0]." für eine bessere Anzeige
+    extraFields: extraFields.map((f) => f.replace(/^data\[0]\./, "")), // Entfernt "data[0]."
+    typeMismatches,
   };
 }
 
@@ -79,32 +118,42 @@ async function testEndpoint(endpoint, dynamicParams = {}) {
     const queryParams = new URLSearchParams(endpoint.query || {});
     let body = null;
 
-    // Falls der Request-Body aus einer Datei geladen werden muss (bei POST, PUT, PATCH)
-    if (["POST", "PUT", "PATCH"].includes(endpoint.method) && endpoint.bodyFile) {
-      const bodyPath = path.join(__dirname, endpoint.bodyFile);
-      if (fs.existsSync(bodyPath)) {
-        const bodyContent = fs.readFileSync(bodyPath, "utf-8").trim();
-        body = JSON.parse(bodyContent);
-      } else {
-        throw new Error(`❌ Fehler: Die Datei für den Request-Body existiert nicht: ${bodyPath}`);
+    // Falls der Request-Body aus einer Datei geladen werden muss (bei POST, PUT, PATCH, DELETE)
+    if (["POST", "PUT", "PATCH", "DELETE"].includes(endpoint.method)) {
+      if (endpoint.bodyFile) {
+          const bodyPath = path.join(__dirname, endpoint.bodyFile);
+          if (fs.existsSync(bodyPath)) {
+              body = fs.readJsonSync(bodyPath);
+          } else {
+              throw new Error(`❌ Fehler: Die Datei für den Request-Body existiert nicht: ${bodyPath}`);
+          }
+      } else if (endpoint.method === "DELETE") {
+          body = null; // DELETE-Requests haben oft keinen Body
       }
-    }
+  }
 
     // API-Request durchführen
     const response = await fetch(`${url}?${queryParams.toString()}`, {
       method: endpoint.method,
       headers: {
-        ...endpoint.headers,
-        Authorization: `Bearer ${process.env.BEARER_TOKEN}`,
-        "Content-Type": "application/json"
+          ...endpoint.headers,
+          Authorization: `Bearer ${process.env.BEARER_TOKEN}`,
+          "Content-Type": "application/json"
       },
-      body: body ? JSON.stringify(body) : undefined
+      body: body ? JSON.stringify(body) : (endpoint.method === "DELETE" ? null : undefined)
     });
 
-    if (!response.ok) {
-      throw new Error(`HTTP-Fehler: ${response.status} ${response.statusText}`);
+    if ([500, 502, 503].includes(response.status) && retryCount < 3) {
+      console.warn(`⚠️ API-Fehler ${response.status}. Wiederhole Anfrage (${retryCount + 1}/3)...`);
+      return testEndpoint(endpoint, dynamicParams, retryCount + 1);
     }
-
+  
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error(`❌ API-Fehler: ${response.status} ${response.statusText} - Antwort: ${errorText}`);
+      throw new Error(`HTTP-Fehler: ${response.status} ${response.statusText}`);
+    }    
+  
     let responseData = null;
     const contentType = response.headers.get("content-type") || "";
 
@@ -122,17 +171,17 @@ async function testEndpoint(endpoint, dynamicParams = {}) {
     // Falls der Endpunkt ein POST, PUT oder PATCH ist, brauchen wir keine Strukturvalidierung
     if (["POST", "PUT", "PATCH"].includes(endpoint.method)) {
       return {
-        endpointName: endpoint.name,
-        method: endpoint.method,
-        success: true,
-        isCritical: false,
-        statusCode: response.status,
-        errorMessage: null,
-        missingFields: [],
-        extraFields: []
+          endpointName: endpoint.name,
+          method: endpoint.method,
+          success: response.status >= 200 && response.status < 300, // Erfolg bei 2xx-Statuscodes
+          isCritical: response.status >= 400, // Fehlerhaft bei 4xx+
+          statusCode: response.status,
+          errorMessage: response.status >= 400 ? `Fehlercode: ${response.status}` : null,
+          missingFields: [],
+          extraFields: []
       };
-    }
-
+  }
+  
     // Erwartete Struktur laden
     let expectedStructure = null;
     if (endpoint.expectedStructure && fs.existsSync(endpoint.expectedStructure)) {
@@ -140,24 +189,46 @@ async function testEndpoint(endpoint, dynamicParams = {}) {
     }
 
     // Falls keine erwartete Struktur vorhanden ist
-    if (!expectedStructure) {
-      console.warn(`⚠️ Erwartete Vergleichsstruktur für ${endpoint.name} nicht vorhanden.`);
+    if (!expectedStructure || typeof expectedStructure !== "object") {
+      if (endpoint.method === "DELETE") {
+          console.warn(`⚠️ Erwartete Struktur für ${endpoint.name} wird ignoriert (DELETE-Request).`);
+      } else {
+          console.error(`❌ Fehler: Erwartete Struktur für ${endpoint.name} konnte nicht geladen werden.`);
+          return {
+              endpointName: endpoint.name,
+              method: endpoint.method,
+              success: false,
+              isCritical: true,
+              statusCode: response.status,
+              errorMessage: "Erwartete Struktur fehlt",
+              missingFields: [],
+              extraFields: []
+          };
+      }
+  }
+
+    // Strukturvergleich durchführen
+    let missingFields = [];
+    let extraFields = [];
+
+    if (expectedStructure && responseData && typeof responseData === "object") {
+        ({ missingFields, extraFields } = compareStructures(expectedStructure, responseData));
+    } 
+    if (!responseData || typeof responseData !== "object") {
+      console.error("❌ Fehler: API-Response ist leer oder kein gültiges Objekt");
       return {
-        endpointName: endpoint.name,
-        method: endpoint.method,
-        success: true,
-        isCritical: false,
-        statusCode: response.status,
-        errorMessage: null,
-        missingFields: [],
-        extraFields: []
+          endpointName: endpoint.name,
+          method: endpoint.method,
+          success: false,
+          isCritical: true,
+          statusCode: response.status,
+          errorMessage: "Ungültige API-Response",
+          missingFields: [],
+          extraFields: []
       };
     }
 
-    // Strukturvergleich durchführen
-    const { missingFields, extraFields } = compareStructures(expectedStructure, responseData);
-
-    return {
+    const result = {
       endpointName: endpoint.name,
       method: endpoint.method,
       success: missingFields.length === 0 && extraFields.length === 0,
@@ -166,19 +237,28 @@ async function testEndpoint(endpoint, dynamicParams = {}) {
       errorMessage: missingFields.length > 0 || extraFields.length > 0 ? "Strukturabweichungen gefunden" : null,
       missingFields,
       extraFields
-    };
+  };
+  
+  // Logge erfolgreiche API-Tests
+  logToFile("test-results.log", `✅ Erfolgreich getestet: ${endpoint.name} (${response.status})`);
+  
+  return result;  
 
   } catch (error) {
     console.error("\n❌ FEHLER:\n", error.message);
+    
+    // Logge Fehler in errors.log
+    logToFile("errors.log", `❌ Fehler bei ${endpoint.name}: ${error.message}`);
+
     return {
-      endpointName: endpoint.name,
-      method: endpoint.method,
-      success: false,
-      isCritical: true,
-      statusCode: null,
-      errorMessage: error.message,
-      missingFields: [],
-      extraFields: []
+        endpointName: endpoint.name,
+        method: endpoint.method,
+        success: false,
+        isCritical: true,
+        statusCode: null,
+        errorMessage: error.message,
+        missingFields: [],
+        extraFields: []
     };
   }
 }
@@ -208,7 +288,7 @@ async function main() {
     const selectedApi = args[0]?.startsWith("--") ? null : args[0]; // Prüft, ob ein API-Name übergeben wurde
     const dynamicParams = {};
 
-    // Verarbeite Argumente wie --id=123
+    // Verarbeite Argumente wie --id=123, --deleteId=456, --updateId=789
     args.forEach(arg => {
       const [key, value] = arg.split("=");
       if (key.startsWith("--")) {
@@ -216,8 +296,12 @@ async function main() {
       }
     });
 
+    // IDs für verschiedene API-Calls
+    let firstOrderId = dynamicParams.id || null; // Für "Get SalesOrder View"
+    let deleteId = dynamicParams.deleteId || null; // Für "Delete Product"
+    let updateId = dynamicParams.updateId || null; // Für "Update Product"
+
     let testResults = []; // Hier speichern wir alle Testergebnisse
-    let firstOrderId = dynamicParams.id || null; // Falls ID übergeben wurde, direkt nutzen
 
     if (selectedApi) {
       console.log(`🚀 Starte gezielten API-Test für: ${selectedApi}\n`);
@@ -248,9 +332,17 @@ async function main() {
           } else {
             console.warn(`⚠️ "Get SalesOrder View" konnte nicht getestet werden, da keine ID verfügbar ist.`);
           }
-        } else {
+        } else if (endpoint.name === "Delete Product" && deleteId) {
+          const result = await testEndpoint(endpoint, { id: deleteId });
+          testResults.push(result);
+        } else if (endpoint.name === "Update Product" && updateId) {
+          const result = await testEndpoint(endpoint, { id: updateId });
+          testResults.push(result);
+        } else if (!endpoint.requiresId) {
           const result = await testEndpoint(endpoint);
           testResults.push(result);
+        } else {
+          console.warn(`⚠️ Der Endpunkt "${endpoint.name}" benötigt eine ID, aber keine wurde angegeben.`);
         }
       }
     }

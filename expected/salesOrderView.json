@@ -1,5 +1,5 @@
 {
-  "data": [
+  "data": 
     {
       "id": "string",
       "documentNumber": "string",
@@ -91,7 +91,13 @@
             "id": "string",
             "number": "string",
             "name": "string",
-            "description": "string"
+            "description": "string",
+            "freeFields": [
+              {
+                "id": "string",
+                "value": "string"
+              }
+            ]
           },
           "price": {
             "amount": "string",
@@ -124,14 +130,6 @@
         "name": "string"
       }
     }
-  ],
-  "extra": {
-    "totalCount": 0,
-    "page": {
-      "number": 0,
-      "size": 0
-    }
-  }
 }
 
 

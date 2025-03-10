@@ -4,6 +4,9 @@ const path = require("path");
 const axios = require("axios");
 const { appendFileSync } = require("fs");
 
+console.log("BEARER_TOKEN aus .env:", process.env.BEARER_TOKEN);
+console.log("XENTRAL_ID aus .env:", process.env.XENTRAL_ID);
+
 // Funktion zum Speichern von Logs
 function logToFile(filename, message) {
     const logPath = path.join(__dirname, "logs", filename);
@@ -20,7 +23,7 @@ function compareStructures(expected, actual, path = "") {
   if (!expected || !actual || typeof expected !== "object" || typeof actual !== "object") {
     console.error("❌ Fehler: Erwartete oder tatsächliche Struktur ist ungültig.");
     console.log("🔍 Erwartete Struktur:", JSON.stringify(expected, null, 2));
-    console.log("🔍 Tatsächliche API-Response:", JSON.stringify(actual, null, 2));
+    console.log("🔍 Tatsächliche API-Response:", JSON.stringify(responseData, null, 2));
     return { missingFields, extraFields, typeMismatches };
   }
 
@@ -110,7 +113,12 @@ async function testEndpoint(endpoint, dynamicParams = {}) {
       throw new Error(`Der Endpunkt "${endpoint.name}" benötigt eine ID, aber keine wurde angegeben.`);
     }
 
+    if (!process.env.XENTRAL_ID) {
+      throw new Error("❌ Fehler: XENTRAL_ID ist nicht definiert. Prüfe deine .env-Datei.");
+    }
+    
     let url = endpoint.url.replace("${XENTRAL_ID}", process.env.XENTRAL_ID);
+    
     for (const param in dynamicParams) {
       url = url.replace(`{${param}}`, dynamicParams[param]);
     }
@@ -160,12 +168,38 @@ async function testEndpoint(endpoint, dynamicParams = {}) {
     // Falls JSON-Response, dann verarbeiten
     if (contentType.includes("application/json")) {
       responseData = await response.json();
+    
+      // Speicherort für die Response-Datei
+      const responseFilePath = path.join(__dirname, "responses", `${endpoint.name.replace(/\s+/g, "_")}_response.json`);
+    
+      // Debugging-Log für den Speicherpfad
+      console.log(`📝 Speichere API-Response in: ${responseFilePath}\n`);
+    
+      // API-Response speichern
+      fs.writeFileSync(responseFilePath, JSON.stringify(responseData, null, 2));
+    
+      console.log("✅ API-Response erfolgreich gespeichert!\n");
     }
 
     // Falls keine Antwort vorhanden ist
     if (!responseData) {
       console.warn(`⚠️ Keine API-Response zum Speichern für ${endpoint.name}.`);
       responseData = {};
+    }
+
+    // Falls DELETE, ignorieren wir den Strukturvergleich
+    if (endpoint.method === "DELETE") {
+      console.warn(`⚠️ Erwartete Struktur für ${endpoint.name} wird ignoriert (DELETE-Request).`);
+      return {
+        endpointName: endpoint.name,
+        method: endpoint.method,
+        success: response.ok,
+        isCritical: !response.ok,
+        statusCode: response.status,
+        errorMessage: response.ok ? null : `Fehlercode: ${response.status}`,
+        missingFields: [],
+        extraFields: []
+      };
     }
 
     // Falls der Endpunkt ein POST, PUT oder PATCH ist, brauchen wir keine Strukturvalidierung
@@ -186,6 +220,7 @@ async function testEndpoint(endpoint, dynamicParams = {}) {
     let expectedStructure = null;
     if (endpoint.expectedStructure && fs.existsSync(endpoint.expectedStructure)) {
       expectedStructure = await fs.readJson(endpoint.expectedStructure);
+      console.log("📂 Erwartete Struktur geladen.\n");
     }
 
     // Falls keine erwartete Struktur vorhanden ist
@@ -210,6 +245,30 @@ async function testEndpoint(endpoint, dynamicParams = {}) {
     // Strukturvergleich durchführen
     let missingFields = [];
     let extraFields = [];
+
+    console.log("🔍 Strukturvergleich gestartet...");
+    ({ missingFields, extraFields } = compareStructures(expectedStructure, responseData));
+
+    console.log("🔎 Debug: missingFields:", missingFields);
+    console.log("🔎 Debug: extraFields:", extraFields);
+
+    if (missingFields.length > 0 || extraFields.length > 0) {
+      console.log("\n❌ Strukturabweichungen gefunden!\n");
+  
+      if (missingFields.length > 0) {
+          console.log("🚨 Fehlende Felder:");
+          missingFields.forEach(field => console.log(`   ➤ ${field}`));
+      }
+  
+      if (extraFields.length > 0) {
+          console.log("\n🚨 Zusätzliche Felder:");
+          extraFields.forEach(field => console.log(`   ➤ ${field}`));
+      }
+  
+      console.log(""); // Fügt eine Leerzeile für bessere Lesbarkeit hinzu
+  } else {
+      console.log("\n✅ Struktur der API-Response ist korrekt.\n");
+  }  
 
     if (expectedStructure && responseData && typeof responseData === "object") {
         ({ missingFields, extraFields } = compareStructures(expectedStructure, responseData));

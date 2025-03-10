@@ -1,861 +1,917 @@
 {
-  "data": [
-    {
-      "id": "19",
-      "documentNumber": "200000",
-      "externalOrderNumber": "10035",
-      "customerOrderNumber": "",
-      "transactionNumber": "",
-      "externalOrderId": "4503c227e47d43f5895c7447eeeb44f4",
-      "date": "2023-01-23",
-      "netSales": 1.6,
-      "total": 1.9,
-      "desiredDeliveryDate": null,
-      "desiredDeliveryDateAsCalendarWeek": false,
-      "reservationDate": null,
-      "editor": "Kassen Mitarbeiter",
-      "sales": {
-        "id": null,
-        "name": null
+  "data": {
+    "id": "1508",
+    "documentNumber": "",
+    "externalOrderNumber": "",
+    "customerOrderNumber": "",
+    "transactionNumber": "",
+    "externalOrderId": "",
+    "autoCreateDocuments": "deliveryNote+invoice",
+    "date": "2025-02-25",
+    "earliestFulfillmentDate": null,
+    "desiredDeliveryDate": null,
+    "desiredDeliveryDateCw": false,
+    "reservationDate": null,
+    "editor": "Dimas ",
+    "sales": {
+      "id": 345,
+      "name": "Dimas "
+    },
+    "status": "created",
+    "customer": {
+      "id": "440",
+      "number": "16"
+    },
+    "comment": "",
+    "project": {
+      "id": "32"
+    },
+    "bodyOutroduction": "",
+    "bodyIntroduction": "",
+    "internalDesignation": "",
+    "language": {
+      "iso2": "DE"
+    },
+    "financials": {
+      "paymentMethod": {
+        "id": "13"
       },
-      "status": "completed",
-      "customer": {
-        "id": "8",
-        "number": "10004"
+      "currency": "EUR",
+      "billingAddress": {
+        "name": "DimasTest",
+        "department": "",
+        "subDepartment": "",
+        "street": "",
+        "zipCode": "86165",
+        "city": "Augsburg",
+        "state": "BY",
+        "country": "DE",
+        "type": "other",
+        "title": "",
+        "contactPerson": "",
+        "addressSupplement": "",
+        "fax": "",
+        "email": "",
+        "salutation": "",
+        "gln": "",
+        "phoneNumber": ""
       },
-      "comment": "",
-      "project": {
+      "paymentTerms": {
+        "paymentTargetDiscount": 0,
+        "paymentTargetDays": 14,
+        "paymentTargetDiscountDays": 7
+      }
+    },
+    "delivery": {
+      "email": "",
+      "conditions": "",
+      "autoShipping": true,
+      "fastLane": false,
+      "shippingMethod": {
         "id": "1"
       },
-      "bodyOutroduction": "",
-      "language": {
-        "iso2": "deutsch"
-      },
-      "financials": {
-        "paymentMethod": {
-          "id": "11"
-        },
-        "currency": "EUR",
-        "billingAddress": {
-          "name": "Test Kunde",
-          "department": "",
-          "subDepartment": "",
-          "street": "Werner-von-Siemens-Straße 6",
-          "zipCode": "86159",
-          "city": "Augsburg",
-          "state": "BY",
-          "country": "DE",
-          "type": "herr",
-          "title": "",
-          "contactPerson": "",
-          "addressSupplement": "Gebäude 15 L",
-          "fax": "",
-          "email": "christian@digitalxl.de",
-          "salutation": "",
-          "gln": ""
-        },
-        "paymentTerms": {
-          "paymentTargetDiscount": 0,
-          "paymentTargetDays": 14,
-          "paymentTargetDiscountDays": 10
-        }
-      },
-      "delivery": {
-        "email": "",
-        "conditions": "",
-        "autoShipping": true,
-        "fastLane": false,
-        "shippingAddress": {
-          "name": "Test Kunde",
-          "department": "",
-          "subDepartment": "",
-          "street": "Werner-von-Siemens-Straße 6",
-          "zipCode": "86159",
-          "city": "Augsburg",
-          "state": "BY",
-          "country": "DE",
-          "gln": ""
-        }
-      },
-      "log": {
-        "createdAt": "-0001-11-30T00:00:00+00:53",
-        "createdBy": {
-          "id": "5",
-          "name": "Kassen Mitarbeiter"
-        }
+      "deliveryTerms": null,
+      "shippingAddress": {
+        "name": "DimasTest",
+        "department": "",
+        "subDepartment": "",
+        "street": "",
+        "zipCode": "86165",
+        "city": "Augsburg",
+        "state": "BY",
+        "country": "DE",
+        "gln": ""
       }
     },
-    {
-      "id": "20",
-      "documentNumber": "200001",
-      "externalOrderNumber": "10036",
-      "customerOrderNumber": null,
-      "transactionNumber": "",
-      "externalOrderId": "859e405f5ff84bfd846339b7683dcc3b",
-      "date": "2023-01-23",
-      "netSales": 0.8,
-      "total": 0.95,
-      "desiredDeliveryDate": null,
-      "desiredDeliveryDateAsCalendarWeek": false,
-      "reservationDate": null,
-      "editor": "Kassen Mitarbeiter",
-      "sales": {
-        "id": null,
-        "name": null
-      },
-      "status": "completed",
-      "customer": {
-        "id": "8",
-        "number": "10004"
-      },
-      "comment": "",
-      "project": {
-        "id": "1"
-      },
-      "bodyOutroduction": "",
-      "language": {
-        "iso2": ""
-      },
-      "financials": {
-        "paymentMethod": {
-          "id": "11"
+    "netSales": {
+      "amount": "34.25",
+      "currency": "EUR"
+    },
+    "total": {
+      "amount": "40.76",
+      "currency": "EUR"
+    },
+    "positions": [
+      {
+        "id": "3605",
+        "quantity": 1.5,
+        "discount": 0,
+        "comment": "",
+        "product": {
+          "id": "1334",
+          "number": "1000279",
+          "name": "Wolkenhopser Cloud Weißbier: Der fruchtige Sprung in die Wolken mit Pfand",
+          "description": "",
+          "freeFields": [
+            {
+              "id": "1",
+              "value": ""
+            },
+            {
+              "id": "2",
+              "value": ""
+            },
+            {
+              "id": "3",
+              "value": ""
+            },
+            {
+              "id": "4",
+              "value": ""
+            },
+            {
+              "id": "5",
+              "value": ""
+            },
+            {
+              "id": "6",
+              "value": ""
+            },
+            {
+              "id": "7",
+              "value": ""
+            },
+            {
+              "id": "8",
+              "value": ""
+            },
+            {
+              "id": "9",
+              "value": ""
+            },
+            {
+              "id": "10",
+              "value": ""
+            },
+            {
+              "id": "11",
+              "value": ""
+            },
+            {
+              "id": "12",
+              "value": ""
+            },
+            {
+              "id": "13",
+              "value": ""
+            },
+            {
+              "id": "14",
+              "value": ""
+            },
+            {
+              "id": "15",
+              "value": ""
+            },
+            {
+              "id": "16",
+              "value": ""
+            },
+            {
+              "id": "17",
+              "value": ""
+            },
+            {
+              "id": "18",
+              "value": ""
+            },
+            {
+              "id": "19",
+              "value": ""
+            },
+            {
+              "id": "20",
+              "value": ""
+            },
+            {
+              "id": "21",
+              "value": ""
+            },
+            {
+              "id": "22",
+              "value": ""
+            },
+            {
+              "id": "23",
+              "value": ""
+            },
+            {
+              "id": "24",
+              "value": ""
+            },
+            {
+              "id": "25",
+              "value": ""
+            },
+            {
+              "id": "26",
+              "value": ""
+            },
+            {
+              "id": "27",
+              "value": ""
+            },
+            {
+              "id": "28",
+              "value": ""
+            },
+            {
+              "id": "29",
+              "value": ""
+            },
+            {
+              "id": "30",
+              "value": ""
+            },
+            {
+              "id": "31",
+              "value": ""
+            },
+            {
+              "id": "32",
+              "value": ""
+            },
+            {
+              "id": "33",
+              "value": ""
+            },
+            {
+              "id": "34",
+              "value": ""
+            },
+            {
+              "id": "35",
+              "value": ""
+            },
+            {
+              "id": "36",
+              "value": ""
+            },
+            {
+              "id": "37",
+              "value": ""
+            },
+            {
+              "id": "38",
+              "value": ""
+            },
+            {
+              "id": "39",
+              "value": ""
+            },
+            {
+              "id": "40",
+              "value": ""
+            }
+          ]
         },
-        "currency": "EUR",
-        "billingAddress": {
-          "name": "Test Kunde",
-          "department": "",
-          "subDepartment": "",
-          "street": "Werner-von-Siemens-Straße 6",
-          "zipCode": "86159",
-          "city": "Augsburg",
-          "state": "BY",
-          "country": "DE",
-          "type": "herr",
-          "title": "",
-          "contactPerson": "",
-          "addressSupplement": "Gebäude 15 L",
-          "fax": "",
-          "email": "christian@digitalxl.de",
-          "salutation": "",
-          "gln": ""
+        "tax": {
+          "vatCategory": "normal",
+          "taxText": "",
+          "effectiveVatRate": 19
         },
-        "paymentTerms": {
-          "paymentTargetDiscount": 0,
-          "paymentTargetDays": 14,
-          "paymentTargetDiscountDays": 10
-        }
+        "price": {
+          "amount": "15.69000000",
+          "currency": "EUR"
+        },
+        "netRevenueSingle": {
+          "amount": "15.6900",
+          "currency": "EUR"
+        },
+        "netRevenueTotal": {
+          "amount": "23.5350",
+          "currency": "EUR"
+        },
+        "grossRevenueSingle": {
+          "amount": "18.6711",
+          "currency": "EUR"
+        },
+        "grossRevenueTotal": {
+          "amount": "28.0067",
+          "currency": "EUR"
+        },
+        "webId": "",
+        "hasChildren": true,
+        "parent": null,
+        "sort": 1
       },
-      "delivery": {
-        "email": "",
-        "conditions": "",
-        "autoShipping": true,
-        "fastLane": false,
-        "shippingAddress": {
-          "name": "Test Kunde",
-          "department": "",
-          "subDepartment": "",
-          "street": "Werner-von-Siemens-Straße 6",
-          "zipCode": "86159",
-          "city": "Augsburg",
-          "state": "BY",
-          "country": "DE",
-          "gln": ""
-        }
+      {
+        "id": "3606",
+        "quantity": 1.5,
+        "discount": 0,
+        "comment": "",
+        "product": {
+          "id": "1335",
+          "number": "DS53",
+          "name": "Bierkasten (Pfand)",
+          "description": "",
+          "freeFields": [
+            {
+              "id": "1",
+              "value": ""
+            },
+            {
+              "id": "2",
+              "value": ""
+            },
+            {
+              "id": "3",
+              "value": ""
+            },
+            {
+              "id": "4",
+              "value": ""
+            },
+            {
+              "id": "5",
+              "value": ""
+            },
+            {
+              "id": "6",
+              "value": ""
+            },
+            {
+              "id": "7",
+              "value": ""
+            },
+            {
+              "id": "8",
+              "value": ""
+            },
+            {
+              "id": "9",
+              "value": ""
+            },
+            {
+              "id": "10",
+              "value": ""
+            },
+            {
+              "id": "11",
+              "value": ""
+            },
+            {
+              "id": "12",
+              "value": ""
+            },
+            {
+              "id": "13",
+              "value": ""
+            },
+            {
+              "id": "14",
+              "value": ""
+            },
+            {
+              "id": "15",
+              "value": ""
+            },
+            {
+              "id": "16",
+              "value": ""
+            },
+            {
+              "id": "17",
+              "value": ""
+            },
+            {
+              "id": "18",
+              "value": ""
+            },
+            {
+              "id": "19",
+              "value": ""
+            },
+            {
+              "id": "20",
+              "value": ""
+            },
+            {
+              "id": "21",
+              "value": ""
+            },
+            {
+              "id": "22",
+              "value": ""
+            },
+            {
+              "id": "23",
+              "value": ""
+            },
+            {
+              "id": "24",
+              "value": ""
+            },
+            {
+              "id": "25",
+              "value": ""
+            },
+            {
+              "id": "26",
+              "value": ""
+            },
+            {
+              "id": "27",
+              "value": ""
+            },
+            {
+              "id": "28",
+              "value": ""
+            },
+            {
+              "id": "29",
+              "value": ""
+            },
+            {
+              "id": "30",
+              "value": ""
+            },
+            {
+              "id": "31",
+              "value": ""
+            },
+            {
+              "id": "32",
+              "value": ""
+            },
+            {
+              "id": "33",
+              "value": ""
+            },
+            {
+              "id": "34",
+              "value": ""
+            },
+            {
+              "id": "35",
+              "value": ""
+            },
+            {
+              "id": "36",
+              "value": ""
+            },
+            {
+              "id": "37",
+              "value": ""
+            },
+            {
+              "id": "38",
+              "value": ""
+            },
+            {
+              "id": "39",
+              "value": ""
+            },
+            {
+              "id": "40",
+              "value": ""
+            }
+          ]
+        },
+        "tax": {
+          "vatCategory": "normal",
+          "taxText": "",
+          "effectiveVatRate": 19
+        },
+        "price": {
+          "amount": "2.94117647",
+          "currency": "EUR"
+        },
+        "netRevenueSingle": {
+          "amount": "2.9412",
+          "currency": "EUR"
+        },
+        "netRevenueTotal": {
+          "amount": "4.4118",
+          "currency": "EUR"
+        },
+        "grossRevenueSingle": {
+          "amount": "3.5000",
+          "currency": "EUR"
+        },
+        "grossRevenueTotal": {
+          "amount": "5.2500",
+          "currency": "EUR"
+        },
+        "webId": "",
+        "hasChildren": false,
+        "parent": null,
+        "sort": 3
       },
-      "log": {
-        "createdAt": "2023-01-23T11:05:13+01:00",
-        "createdBy": {
-          "id": "5",
-          "name": "Kassen Mitarbeiter"
-        }
+      {
+        "id": "3607",
+        "quantity": 30,
+        "discount": 0,
+        "comment": "",
+        "product": {
+          "id": "345",
+          "number": "1000501000028",
+          "name": "Wolkenhopser Cloud Weißbier: Der fruchtige Sprung in die Wolken",
+          "description": "",
+          "freeFields": [
+            {
+              "id": "1",
+              "value": ""
+            },
+            {
+              "id": "2",
+              "value": ""
+            },
+            {
+              "id": "3",
+              "value": ""
+            },
+            {
+              "id": "4",
+              "value": ""
+            },
+            {
+              "id": "5",
+              "value": ""
+            },
+            {
+              "id": "6",
+              "value": ""
+            },
+            {
+              "id": "7",
+              "value": ""
+            },
+            {
+              "id": "8",
+              "value": ""
+            },
+            {
+              "id": "9",
+              "value": ""
+            },
+            {
+              "id": "10",
+              "value": ""
+            },
+            {
+              "id": "11",
+              "value": ""
+            },
+            {
+              "id": "12",
+              "value": ""
+            },
+            {
+              "id": "13",
+              "value": ""
+            },
+            {
+              "id": "14",
+              "value": ""
+            },
+            {
+              "id": "15",
+              "value": ""
+            },
+            {
+              "id": "16",
+              "value": ""
+            },
+            {
+              "id": "17",
+              "value": ""
+            },
+            {
+              "id": "18",
+              "value": ""
+            },
+            {
+              "id": "19",
+              "value": ""
+            },
+            {
+              "id": "20",
+              "value": ""
+            },
+            {
+              "id": "21",
+              "value": ""
+            },
+            {
+              "id": "22",
+              "value": ""
+            },
+            {
+              "id": "23",
+              "value": ""
+            },
+            {
+              "id": "24",
+              "value": ""
+            },
+            {
+              "id": "25",
+              "value": ""
+            },
+            {
+              "id": "26",
+              "value": ""
+            },
+            {
+              "id": "27",
+              "value": ""
+            },
+            {
+              "id": "28",
+              "value": ""
+            },
+            {
+              "id": "29",
+              "value": ""
+            },
+            {
+              "id": "30",
+              "value": ""
+            },
+            {
+              "id": "31",
+              "value": ""
+            },
+            {
+              "id": "32",
+              "value": ""
+            },
+            {
+              "id": "33",
+              "value": ""
+            },
+            {
+              "id": "34",
+              "value": ""
+            },
+            {
+              "id": "35",
+              "value": ""
+            },
+            {
+              "id": "36",
+              "value": ""
+            },
+            {
+              "id": "37",
+              "value": ""
+            },
+            {
+              "id": "38",
+              "value": ""
+            },
+            {
+              "id": "39",
+              "value": ""
+            },
+            {
+              "id": "40",
+              "value": ""
+            }
+          ]
+        },
+        "tax": {
+          "vatCategory": "normal",
+          "taxText": "",
+          "effectiveVatRate": 19
+        },
+        "price": {
+          "amount": "0.00000000",
+          "currency": "EUR"
+        },
+        "netRevenueSingle": {
+          "amount": "0.0000",
+          "currency": "EUR"
+        },
+        "netRevenueTotal": {
+          "amount": "0.0000",
+          "currency": "EUR"
+        },
+        "grossRevenueSingle": {
+          "amount": "0.0000",
+          "currency": "EUR"
+        },
+        "grossRevenueTotal": {
+          "amount": "0.0000",
+          "currency": "EUR"
+        },
+        "webId": "",
+        "hasChildren": false,
+        "parent": "3605",
+        "sort": 2
+      },
+      {
+        "id": "3608",
+        "quantity": 30,
+        "discount": 0,
+        "comment": "",
+        "product": {
+          "id": "1336",
+          "number": "DS54",
+          "name": "Glasflasche (Pfand)",
+          "description": "",
+          "freeFields": [
+            {
+              "id": "1",
+              "value": ""
+            },
+            {
+              "id": "2",
+              "value": ""
+            },
+            {
+              "id": "3",
+              "value": ""
+            },
+            {
+              "id": "4",
+              "value": ""
+            },
+            {
+              "id": "5",
+              "value": ""
+            },
+            {
+              "id": "6",
+              "value": ""
+            },
+            {
+              "id": "7",
+              "value": ""
+            },
+            {
+              "id": "8",
+              "value": ""
+            },
+            {
+              "id": "9",
+              "value": ""
+            },
+            {
+              "id": "10",
+              "value": ""
+            },
+            {
+              "id": "11",
+              "value": ""
+            },
+            {
+              "id": "12",
+              "value": ""
+            },
+            {
+              "id": "13",
+              "value": ""
+            },
+            {
+              "id": "14",
+              "value": ""
+            },
+            {
+              "id": "15",
+              "value": ""
+            },
+            {
+              "id": "16",
+              "value": ""
+            },
+            {
+              "id": "17",
+              "value": ""
+            },
+            {
+              "id": "18",
+              "value": ""
+            },
+            {
+              "id": "19",
+              "value": ""
+            },
+            {
+              "id": "20",
+              "value": ""
+            },
+            {
+              "id": "21",
+              "value": ""
+            },
+            {
+              "id": "22",
+              "value": ""
+            },
+            {
+              "id": "23",
+              "value": ""
+            },
+            {
+              "id": "24",
+              "value": ""
+            },
+            {
+              "id": "25",
+              "value": ""
+            },
+            {
+              "id": "26",
+              "value": ""
+            },
+            {
+              "id": "27",
+              "value": ""
+            },
+            {
+              "id": "28",
+              "value": ""
+            },
+            {
+              "id": "29",
+              "value": ""
+            },
+            {
+              "id": "30",
+              "value": ""
+            },
+            {
+              "id": "31",
+              "value": ""
+            },
+            {
+              "id": "32",
+              "value": ""
+            },
+            {
+              "id": "33",
+              "value": ""
+            },
+            {
+              "id": "34",
+              "value": ""
+            },
+            {
+              "id": "35",
+              "value": ""
+            },
+            {
+              "id": "36",
+              "value": ""
+            },
+            {
+              "id": "37",
+              "value": ""
+            },
+            {
+              "id": "38",
+              "value": ""
+            },
+            {
+              "id": "39",
+              "value": ""
+            },
+            {
+              "id": "40",
+              "value": ""
+            }
+          ]
+        },
+        "tax": {
+          "vatCategory": "normal",
+          "taxText": "",
+          "effectiveVatRate": 19
+        },
+        "price": {
+          "amount": "0.21008403",
+          "currency": "EUR"
+        },
+        "netRevenueSingle": {
+          "amount": "0.2101",
+          "currency": "EUR"
+        },
+        "netRevenueTotal": {
+          "amount": "6.3025",
+          "currency": "EUR"
+        },
+        "grossRevenueSingle": {
+          "amount": "0.2500",
+          "currency": "EUR"
+        },
+        "grossRevenueTotal": {
+          "amount": "7.5000",
+          "currency": "EUR"
+        },
+        "webId": "",
+        "hasChildren": false,
+        "parent": null,
+        "sort": 4
+      }
+    ],
+    "log": {
+      "createdAt": "2025-02-25T12:42:30+01:00",
+      "createdBy": {
+        "id": "345",
+        "name": "Dimas "
       }
     },
-    {
-      "id": "21",
-      "documentNumber": "200002",
-      "externalOrderNumber": "",
-      "customerOrderNumber": "",
-      "transactionNumber": "",
-      "externalOrderId": "859e405f5ff84bfd846339b7683dcc3b",
-      "date": "2023-01-25",
-      "netSales": 5.55,
-      "total": 6.6,
-      "desiredDeliveryDate": null,
-      "desiredDeliveryDateAsCalendarWeek": false,
-      "reservationDate": null,
-      "editor": "Kassen Mitarbeiter",
-      "sales": {
-        "id": 5,
-        "name": "Kassen Mitarbeiter"
-      },
-      "status": "completed",
-      "customer": {
-        "id": "8",
-        "number": "10004"
-      },
-      "comment": "",
-      "project": {
-        "id": "1"
-      },
-      "bodyOutroduction": "",
-      "language": {
-        "iso2": "deutsch"
-      },
-      "financials": {
-        "paymentMethod": {
-          "id": "11"
-        },
-        "currency": "EUR",
-        "billingAddress": {
-          "name": "Test Kunde",
-          "department": "",
-          "subDepartment": "",
-          "street": "Werner-von-Siemens-Straße 6",
-          "zipCode": "86159",
-          "city": "Augsburg",
-          "state": "BY",
-          "country": "DE",
-          "type": "herr",
-          "title": "",
-          "contactPerson": "",
-          "addressSupplement": "Gebäude 15 L",
-          "fax": "",
-          "email": "christian@digitalxl.de",
-          "salutation": "",
-          "gln": ""
-        },
-        "paymentTerms": {
-          "paymentTargetDiscount": 0,
-          "paymentTargetDays": 14,
-          "paymentTargetDiscountDays": 10
-        }
-      },
-      "delivery": {
-        "email": "",
-        "conditions": "",
-        "autoShipping": true,
-        "fastLane": false,
-        "shippingAddress": {
-          "name": "Test Kunde",
-          "department": "",
-          "subDepartment": "",
-          "street": "Werner-von-Siemens-Straße 6",
-          "zipCode": "86159",
-          "city": "Augsburg",
-          "state": "BY",
-          "country": "DE",
-          "gln": ""
-        }
-      },
-      "log": {
-        "createdAt": "-0001-11-30T00:00:00+00:53",
-        "createdBy": {
-          "id": "5",
-          "name": "Kassen Mitarbeiter"
-        }
-      }
-    },
-    {
-      "id": "22",
-      "documentNumber": "200003",
-      "externalOrderNumber": "",
-      "customerOrderNumber": null,
-      "transactionNumber": "",
-      "externalOrderId": "",
-      "date": "2023-01-25",
-      "netSales": 12.61,
-      "total": 15,
-      "desiredDeliveryDate": null,
-      "desiredDeliveryDateAsCalendarWeek": false,
-      "reservationDate": null,
-      "editor": "Kassen Mitarbeiter",
-      "sales": {
-        "id": 5,
-        "name": "Kassen Mitarbeiter"
-      },
-      "status": "completed",
-      "customer": {
-        "id": "8",
-        "number": "10004"
-      },
-      "comment": "",
-      "project": {
-        "id": "3"
-      },
-      "bodyOutroduction": "",
-      "language": {
-        "iso2": ""
-      },
-      "financials": {
-        "paymentMethod": {
-          "id": "13"
-        },
-        "currency": "EUR",
-        "billingAddress": {
-          "name": "Test Kunde",
-          "department": "",
-          "subDepartment": "",
-          "street": "Werner-von-Siemens-Straße 6",
-          "zipCode": "86159",
-          "city": "Augsburg",
-          "state": "",
-          "country": "DE",
-          "type": "herr",
-          "title": "",
-          "contactPerson": "",
-          "addressSupplement": "Gebäude 15 L",
-          "fax": "",
-          "email": "christian@digitalxl.de",
-          "salutation": "",
-          "gln": ""
-        },
-        "paymentTerms": {
-          "paymentTargetDiscount": 2,
-          "paymentTargetDays": 14,
-          "paymentTargetDiscountDays": 10
-        }
-      },
-      "delivery": {
-        "email": "",
-        "conditions": "",
-        "autoShipping": true,
-        "fastLane": false,
-        "shippingAddress": {
-          "name": "Test Kunde",
-          "department": "",
-          "subDepartment": "",
-          "street": "Werner-von-Siemens-Straße 6",
-          "zipCode": "86159",
-          "city": "Augsburg",
-          "state": "",
-          "country": "DE",
-          "gln": ""
-        }
-      },
-      "log": {
-        "createdAt": "2023-01-25T15:23:29+01:00",
-        "createdBy": {
-          "id": "5",
-          "name": "Kassen Mitarbeiter"
-        }
-      }
-    },
-    {
-      "id": "23",
-      "documentNumber": "200004",
-      "externalOrderNumber": "",
-      "customerOrderNumber": null,
-      "transactionNumber": "",
-      "externalOrderId": "",
-      "date": "2023-01-25",
-      "netSales": 12.61,
-      "total": 15,
-      "desiredDeliveryDate": null,
-      "desiredDeliveryDateAsCalendarWeek": false,
-      "reservationDate": null,
-      "editor": "Kassen Mitarbeiter",
-      "sales": {
-        "id": 5,
-        "name": "Kassen Mitarbeiter"
-      },
-      "status": "completed",
-      "customer": {
-        "id": "8",
-        "number": "10004"
-      },
-      "comment": "",
-      "project": {
-        "id": "3"
-      },
-      "bodyOutroduction": "",
-      "language": {
-        "iso2": ""
-      },
-      "financials": {
-        "paymentMethod": {
-          "id": "13"
-        },
-        "currency": "EUR",
-        "billingAddress": {
-          "name": "Test Kunde",
-          "department": "",
-          "subDepartment": "",
-          "street": "Werner-von-Siemens-Straße 6",
-          "zipCode": "86159",
-          "city": "Augsburg",
-          "state": "",
-          "country": "DE",
-          "type": "herr",
-          "title": "",
-          "contactPerson": "",
-          "addressSupplement": "Gebäude 15 L",
-          "fax": "",
-          "email": "christian@digitalxl.de",
-          "salutation": "",
-          "gln": ""
-        },
-        "paymentTerms": {
-          "paymentTargetDiscount": 2,
-          "paymentTargetDays": 14,
-          "paymentTargetDiscountDays": 10
-        }
-      },
-      "delivery": {
-        "email": "",
-        "conditions": "",
-        "autoShipping": true,
-        "fastLane": false,
-        "shippingAddress": {
-          "name": "Test Kunde",
-          "department": "",
-          "subDepartment": "",
-          "street": "Werner-von-Siemens-Straße 6",
-          "zipCode": "86159",
-          "city": "Augsburg",
-          "state": "",
-          "country": "DE",
-          "gln": ""
-        }
-      },
-      "log": {
-        "createdAt": "2023-01-25T15:26:06+01:00",
-        "createdBy": {
-          "id": "5",
-          "name": "Kassen Mitarbeiter"
-        }
-      }
-    },
-    {
-      "id": "24",
-      "documentNumber": "200005",
-      "externalOrderNumber": "",
-      "customerOrderNumber": null,
-      "transactionNumber": "",
-      "externalOrderId": "",
-      "date": "2023-01-26",
-      "netSales": 10,
-      "total": 11.9,
-      "desiredDeliveryDate": null,
-      "desiredDeliveryDateAsCalendarWeek": false,
-      "reservationDate": null,
-      "editor": "Administrator",
-      "sales": {
-        "id": 1,
-        "name": "Administrator"
-      },
-      "status": "completed",
-      "customer": {
-        "id": "2",
-        "number": "10000"
-      },
-      "comment": "",
-      "project": {
-        "id": "1"
-      },
-      "bodyOutroduction": "",
-      "language": {
-        "iso2": "deutsch"
-      },
-      "financials": {
-        "paymentMethod": {
-          "id": "13"
-        },
-        "currency": "EUR",
-        "billingAddress": {
-          "name": "Karlo Kunde GmbH & Co. KG",
-          "department": "Geschäftsführung",
-          "subDepartment": "Unterabteilung",
-          "street": "Beispielstrasse 1",
-          "zipCode": "81245",
-          "city": "München",
-          "state": "BY",
-          "country": "DE",
-          "type": "firma",
-          "title": "Dr.",
-          "contactPerson": "Karlo Kunde",
-          "addressSupplement": "Adresszusatz",
-          "fax": "089 111222334",
-          "email": "me@example.com",
-          "salutation": "",
-          "gln": ""
-        },
-        "paymentTerms": {
-          "paymentTargetDiscount": 0,
-          "paymentTargetDays": 14,
-          "paymentTargetDiscountDays": 10
-        }
-      },
-      "delivery": {
-        "email": "",
-        "conditions": "",
-        "autoShipping": true,
-        "fastLane": false,
-        "shippingAddress": {
-          "name": "Karlo Kunde GmbH & Co. KG",
-          "department": "Geschäftsführung",
-          "subDepartment": "Unterabteilung",
-          "street": "Beispielstrasse 1",
-          "zipCode": "81245",
-          "city": "München",
-          "state": "BY",
-          "country": "DE",
-          "gln": ""
-        }
-      },
-      "log": {
-        "createdAt": "2023-01-26T08:11:23+01:00",
-        "createdBy": {
-          "id": "1",
-          "name": "Administrator"
-        }
-      }
-    },
-    {
-      "id": "25",
-      "documentNumber": "200006",
-      "externalOrderNumber": "",
-      "customerOrderNumber": "",
-      "transactionNumber": "",
-      "externalOrderId": "",
-      "date": "2023-01-26",
-      "netSales": 10,
-      "total": 11.9,
-      "desiredDeliveryDate": null,
-      "desiredDeliveryDateAsCalendarWeek": false,
-      "reservationDate": null,
-      "editor": "Administrator",
-      "sales": {
-        "id": 1,
-        "name": "Administrator"
-      },
-      "status": "completed",
-      "customer": {
-        "id": "2",
-        "number": "10000"
-      },
-      "comment": "",
-      "project": {
-        "id": "4"
-      },
-      "bodyOutroduction": "",
-      "language": {
-        "iso2": "deutsch"
-      },
-      "financials": {
-        "paymentMethod": {
-          "id": "13"
-        },
-        "currency": "EUR",
-        "billingAddress": {
-          "name": "Karlo Kunde GmbH & Co. KG",
-          "department": "Geschäftsführung",
-          "subDepartment": "Unterabteilung",
-          "street": "Beispielstrasse 1",
-          "zipCode": "81245",
-          "city": "München",
-          "state": "BY",
-          "country": "DE",
-          "type": "firma",
-          "title": "Dr.",
-          "contactPerson": "Karlo Kunde",
-          "addressSupplement": "Adresszusatz",
-          "fax": "089 111222334",
-          "email": "me@example.com",
-          "salutation": "",
-          "gln": ""
-        },
-        "paymentTerms": {
-          "paymentTargetDiscount": 0,
-          "paymentTargetDays": 14,
-          "paymentTargetDiscountDays": 10
-        }
-      },
-      "delivery": {
-        "email": "",
-        "conditions": "",
-        "autoShipping": true,
-        "fastLane": false,
-        "shippingAddress": {
-          "name": "Karlo Kunde GmbH & Co. KG",
-          "department": "Geschäftsführung",
-          "subDepartment": "Unterabteilung",
-          "street": "Beispielstrasse 1",
-          "zipCode": "81245",
-          "city": "München",
-          "state": "BY",
-          "country": "DE",
-          "gln": ""
-        }
-      },
-      "log": {
-        "createdAt": "-0001-11-30T00:00:00+00:53",
-        "createdBy": {
-          "id": "1",
-          "name": "Administrator"
-        }
-      }
-    },
-    {
-      "id": "26",
-      "documentNumber": "200007",
-      "externalOrderNumber": "",
-      "customerOrderNumber": "",
-      "transactionNumber": "",
-      "externalOrderId": "",
-      "date": "2023-01-27",
-      "netSales": 15,
-      "total": 17.85,
-      "desiredDeliveryDate": null,
-      "desiredDeliveryDateAsCalendarWeek": false,
-      "reservationDate": null,
-      "editor": "Kassen Mitarbeiter",
-      "sales": {
-        "id": 1,
-        "name": "Administrator"
-      },
-      "status": "completed",
-      "customer": {
-        "id": "2",
-        "number": "10000"
-      },
-      "comment": "",
-      "project": {
-        "id": "4"
-      },
-      "bodyOutroduction": "",
-      "language": {
-        "iso2": "deutsch"
-      },
-      "financials": {
-        "paymentMethod": {
-          "id": "13"
-        },
-        "currency": "EUR",
-        "billingAddress": {
-          "name": "Karlo Kunde GmbH & Co. KG",
-          "department": "Geschäftsführung",
-          "subDepartment": "Unterabteilung",
-          "street": "Beispielstrasse 1",
-          "zipCode": "81245",
-          "city": "München",
-          "state": "BY",
-          "country": "DE",
-          "type": "firma",
-          "title": "Dr.",
-          "contactPerson": "Karlo Kunde",
-          "addressSupplement": "Adresszusatz",
-          "fax": "089 111222334",
-          "email": "me@example.com",
-          "salutation": "",
-          "gln": ""
-        },
-        "paymentTerms": {
-          "paymentTargetDiscount": 0,
-          "paymentTargetDays": 14,
-          "paymentTargetDiscountDays": 10
-        }
-      },
-      "delivery": {
-        "email": "",
-        "conditions": "",
-        "autoShipping": true,
-        "fastLane": false,
-        "shippingAddress": {
-          "name": "Karlo Kunde GmbH & Co. KG",
-          "department": "Geschäftsführung",
-          "subDepartment": "Unterabteilung",
-          "street": "Beispielstrasse 1",
-          "zipCode": "81245",
-          "city": "München",
-          "state": "BY",
-          "country": "DE",
-          "gln": ""
-        }
-      },
-      "log": {
-        "createdAt": "-0001-11-30T00:00:00+00:53",
-        "createdBy": {
-          "id": "5",
-          "name": "Kassen Mitarbeiter"
-        }
-      }
-    },
-    {
-      "id": "28",
-      "documentNumber": "200008",
-      "externalOrderNumber": "",
-      "customerOrderNumber": "",
-      "transactionNumber": "",
-      "externalOrderId": "",
-      "date": "2023-01-30",
-      "netSales": 10,
-      "total": 11.9,
-      "desiredDeliveryDate": null,
-      "desiredDeliveryDateAsCalendarWeek": false,
-      "reservationDate": null,
-      "editor": "Administrator",
-      "sales": {
-        "id": 1,
-        "name": "Administrator"
-      },
-      "status": "completed",
-      "customer": {
-        "id": "2",
-        "number": "10000"
-      },
-      "comment": "",
-      "project": {
-        "id": "4"
-      },
-      "bodyOutroduction": "",
-      "language": {
-        "iso2": "deutsch"
-      },
-      "financials": {
-        "paymentMethod": {
-          "id": "13"
-        },
-        "currency": "EUR",
-        "billingAddress": {
-          "name": "Karlo Kunde GmbH & Co. KG",
-          "department": "Geschäftsführung",
-          "subDepartment": "Unterabteilung",
-          "street": "Beispielstrasse 1",
-          "zipCode": "81245",
-          "city": "München",
-          "state": "BY",
-          "country": "DE",
-          "type": "firma",
-          "title": "Dr.",
-          "contactPerson": "Karlo Kunde",
-          "addressSupplement": "Adresszusatz",
-          "fax": "089 111222334",
-          "email": "me@example.com",
-          "salutation": "",
-          "gln": ""
-        },
-        "paymentTerms": {
-          "paymentTargetDiscount": 0,
-          "paymentTargetDays": 14,
-          "paymentTargetDiscountDays": 10
-        }
-      },
-      "delivery": {
-        "email": "",
-        "conditions": "",
-        "autoShipping": true,
-        "fastLane": false,
-        "shippingAddress": {
-          "name": "Karlo Kunde GmbH & Co. KG",
-          "department": "Geschäftsführung",
-          "subDepartment": "Unterabteilung",
-          "street": "Beispielstrasse 1",
-          "zipCode": "81245",
-          "city": "München",
-          "state": "BY",
-          "country": "DE",
-          "gln": ""
-        }
-      },
-      "log": {
-        "createdAt": "-0001-11-30T00:00:00+00:53",
-        "createdBy": {
-          "id": "1",
-          "name": "Administrator"
-        }
-      }
-    },
-    {
-      "id": "29",
-      "documentNumber": "200009",
-      "externalOrderNumber": "",
-      "customerOrderNumber": "",
-      "transactionNumber": "",
-      "externalOrderId": "",
-      "date": "2023-01-30",
-      "netSales": 20,
-      "total": 23.8,
-      "desiredDeliveryDate": null,
-      "desiredDeliveryDateAsCalendarWeek": false,
-      "reservationDate": null,
-      "editor": "Administrator",
-      "sales": {
-        "id": 1,
-        "name": "Administrator"
-      },
-      "status": "completed",
-      "customer": {
-        "id": "2",
-        "number": "10000"
-      },
-      "comment": "",
-      "project": {
-        "id": "4"
-      },
-      "bodyOutroduction": "",
-      "language": {
-        "iso2": "deutsch"
-      },
-      "financials": {
-        "paymentMethod": {
-          "id": "13"
-        },
-        "currency": "EUR",
-        "billingAddress": {
-          "name": "Karlo Kunde GmbH & Co. KG",
-          "department": "Geschäftsführung",
-          "subDepartment": "Unterabteilung",
-          "street": "Beispielstrasse 1",
-          "zipCode": "81245",
-          "city": "München",
-          "state": "BY",
-          "country": "DE",
-          "type": "firma",
-          "title": "Dr.",
-          "contactPerson": "Karlo Kunde",
-          "addressSupplement": "Adresszusatz",
-          "fax": "089 111222334",
-          "email": "me@example.com",
-          "salutation": "",
-          "gln": ""
-        },
-        "paymentTerms": {
-          "paymentTargetDiscount": 0,
-          "paymentTargetDays": 14,
-          "paymentTargetDiscountDays": 10
-        }
-      },
-      "delivery": {
-        "email": "",
-        "conditions": "",
-        "autoShipping": true,
-        "fastLane": false,
-        "shippingAddress": {
-          "name": "Karlo Kunde GmbH & Co. KG",
-          "department": "Geschäftsführung",
-          "subDepartment": "Unterabteilung",
-          "street": "Beispielstrasse 1",
-          "zipCode": "81245",
-          "city": "München",
-          "state": "BY",
-          "country": "DE",
-          "gln": ""
-        }
-      },
-      "log": {
-        "createdAt": "2023-01-30T14:47:19+01:00",
-        "createdBy": {
-          "id": "1",
-          "name": "Administrator"
-        }
-      }
-    }
-  ],
-  "extra": {
-    "totalCount": 1431,
-    "page": {
-      "number": 1,
-      "size": 10
-    }
+    "salesChannel": null
   }
 }

@@ -9,9 +9,9 @@
         "Content-Type": "application/json"
       },
       "query": {
-        "filter[0][key]": "status",
+        "filter[0][key]": "customerNumber",
         "filter[0][op]": "equals",
-        "filter[0][value]": "released",
+        "filter[0][value]": "16",
         "page[number]": 1,
         "page[size]": 50
       },
@@ -19,7 +19,7 @@
     },
     {
       "name": "Get SalesOrder View",
-      "url": "https://${XENTRAL_ID}.xentral.biz/api/salesOrders",
+      "url": "https://${XENTRAL_ID}.xentral.biz/api/v1/salesOrders/{id}",
       "method": "GET",
       "headers": {
         "Accept": "application/json",

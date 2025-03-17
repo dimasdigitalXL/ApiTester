@@ -98,10 +98,10 @@ function compareStructures(expected, actual, path = "") {
   }
 
   return {
-    missingFields: missingFields.map((f) => f.replace(/^data\[0]\./, "")), // Entfernt "data[0]." für eine bessere Anzeige
-    extraFields: extraFields.map((f) => f.replace(/^data\[0]\./, "")), // Entfernt "data[0]."
+    missingFields: missingFields.map((f) => f.replace(/^data\./, "")), // Entfernt "data." für bessere Anzeige
+    extraFields: extraFields.map((f) => f.replace(/^data\./, "")), // Entfernt "data."
     typeMismatches,
-  };
+  };  
 }
 
 // Funktion für API-Endpunkte: führt den Request aus und vergleicht das Ergebnis mit der erwarteten Struktur
@@ -117,11 +117,21 @@ async function testEndpoint(endpoint, dynamicParams = {}) {
       throw new Error("❌ Fehler: XENTRAL_ID ist nicht definiert. Prüfe deine .env-Datei.");
     }
     
+    // URL mit XENTRAL_ID ersetzen
     let url = endpoint.url.replace("${XENTRAL_ID}", process.env.XENTRAL_ID);
+
+    // Debugging: Generierte URL ausgeben
+    //console.log("🔗 Generierte API-URL:", url, "\n");
     
     for (const param in dynamicParams) {
-      url = url.replace(`{${param}}`, dynamicParams[param]);
+      if (url.includes(`{${param}}`)) {
+        url = url.replace(`{${param}}`, dynamicParams[param]);
+      }
     }
+    
+    if (url.includes("{id}")) {
+      console.error("❌ Fehler: Die ID wurde nicht korrekt in der URL ersetzt!", url);
+    }    
 
     const queryParams = new URLSearchParams(endpoint.query || {});
     let body = null;
@@ -162,29 +172,33 @@ async function testEndpoint(endpoint, dynamicParams = {}) {
       throw new Error(`HTTP-Fehler: ${response.status} ${response.statusText}`);
     }    
   
-    let responseData = null;
     const contentType = response.headers.get("content-type") || "";
+    let responseData = null;
 
-    // Falls JSON-Response, dann verarbeiten
-    if (contentType.includes("application/json")) {
-      responseData = await response.json();
-    
-      // Speicherort für die Response-Datei
-      const responseFilePath = path.join(__dirname, "responses", `${endpoint.name.replace(/\s+/g, "_")}_response.json`);
-    
-      // Debugging-Log für den Speicherpfad
-      console.log(`📝 Speichere API-Response in: ${responseFilePath}\n`);
-    
-      // API-Response speichern
-      fs.writeFileSync(responseFilePath, JSON.stringify(responseData, null, 2));
-    
-      console.log("✅ API-Response erfolgreich gespeichert!\n");
-    }
+    // Akzeptiere auch "application/vnd.xentral.minimal+json"
+    if (contentType.includes("json")) {  
+        try {
+            responseData = await response.json();
 
-    // Falls keine Antwort vorhanden ist
-    if (!responseData) {
-      console.warn(`⚠️ Keine API-Response zum Speichern für ${endpoint.name}.`);
-      responseData = {};
+            if (!responseData || Object.keys(responseData).length === 0) {
+                console.warn(`⚠️ Keine gültige API-Response für ${endpoint.name}, Speicherung übersprungen.`);
+            } else {
+                const responseDir = path.join(__dirname, "responses");
+                if (!fs.existsSync(responseDir)) {
+                    fs.mkdirSync(responseDir, { recursive: true });
+                }
+
+                const responseFilePath = path.join(responseDir, `${endpoint.name.replace(/\s+/g, "_")}_response.json`);
+
+                fs.writeFileSync(responseFilePath, JSON.stringify(responseData, null, 2));
+                console.log(`✅ API-Response erfolgreich gespeichert.\n`);
+            }
+        } catch (error) {
+            console.error(`❌ Fehler beim Verarbeiten der API-Response für ${endpoint.name}:`, error.message);
+        }
+    } else {
+        console.warn(`⚠️ API-Response für ${endpoint.name} ist kein JSON (Content-Type: ${contentType}), Speicherung übersprungen.`);
+        responseData = {}; // **Verhindert "responseData is not defined"**
     }
 
     // Falls DELETE, ignorieren wir den Strukturvergleich
@@ -249,8 +263,8 @@ async function testEndpoint(endpoint, dynamicParams = {}) {
     console.log("🔍 Strukturvergleich gestartet...");
     ({ missingFields, extraFields } = compareStructures(expectedStructure, responseData));
 
-    console.log("🔎 Debug: missingFields:", missingFields);
-    console.log("🔎 Debug: extraFields:", extraFields);
+    //console.log("🔎 Debug: missingFields:", missingFields);
+    //console.log("🔎 Debug: extraFields:", extraFields);
 
     if (missingFields.length > 0 || extraFields.length > 0) {
       console.log("\n❌ Strukturabweichungen gefunden!\n");
@@ -446,24 +460,28 @@ async function sendSlackReport(testResults) {
 
     [...warnings, ...criticals].forEach((issue) => {
       message += `\n`; // **Leerzeile vor jedem API-Fehlerbericht**
-
+    
       const statusIcon = issue.isCritical ? ":red_circle:" : ":large_orange_circle:";
       message += `${issueCounter}️⃣ [${issue.method}] ${issue.endpointName} ${statusIcon}\n`;
-
-      if (issue.missingFields.length > 0) {
-        message += `:warning: *Fehlende Attribute:* ["${issue.missingFields.join('", "')}"]\n`;
+    
+      // Entferne "data." aus den Attributpfaden
+      const formattedMissingFields = issue.missingFields.map(field => field.replace(/^data\./, ""));
+      const formattedExtraFields = issue.extraFields.map(field => field.replace(/^data\./, ""));
+    
+      if (formattedMissingFields.length > 0) {
+        message += `:warning: *Fehlende Attribute:* ["${formattedMissingFields.join('", "')}"]\n`;
       }
-
-      if (issue.extraFields.length > 0) {
-        message += `:warning: *Neue Attribute:* ["${issue.extraFields.join('", "')}"]\n`;
+    
+      if (formattedExtraFields.length > 0) {
+        message += `:warning: *Neue Attribute:* ["${formattedExtraFields.join('", "')}"]\n`;
       }
-
+    
       if (issue.isCritical && issue.errorMessage) {
         message += `:x: *Fehler:*\n -> ${issue.errorMessage}\n`;
       }
-
+    
       issueCounter++;
-    });
+    });    
 
     if (hasErrors) {
       message += `\n`; // **Leerzeile nach den Fehlerdetails**

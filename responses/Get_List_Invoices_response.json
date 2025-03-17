@@ -1,0 +1,411 @@
+{
+  "data": [
+    {
+      "id": "1",
+      "number": "400000",
+      "date": "2023-01-23T00:00:00+01:00",
+      "status": "partialCancellation",
+      "tags": [],
+      "address": {
+        "name": "Test Kunde",
+        "customerNumber": "10004",
+        "country": "DE"
+      },
+      "project": {
+        "id": "1",
+        "name": "Standard Projekt",
+        "abbreviation": "STANDARD"
+      },
+      "payment": {
+        "method": "paymentInAdvance",
+        "status": "paid",
+        "debit": {
+          "amount": "1.90",
+          "currency": "EUR"
+        },
+        "balance": {
+          "amount": "46.30",
+          "currency": "EUR"
+        }
+      },
+      "updatedBy": {
+        "id": "28"
+      },
+      "updatedAt": "2024-12-10T15:24:58+01:00",
+      "additionalFields": [],
+      "dunningSettings": {
+        "level": "reminder1",
+        "date": "2023-04-26",
+        "comment": "",
+        "sent": false
+      }
+    },
+    {
+      "id": "2",
+      "number": "400001",
+      "date": "2023-01-23T00:00:00+01:00",
+      "status": "canceled",
+      "tags": [],
+      "address": {
+        "name": "Test Kunde",
+        "customerNumber": "10004",
+        "country": "DE"
+      },
+      "project": {
+        "id": "1",
+        "name": "Standard Projekt",
+        "abbreviation": "STANDARD"
+      },
+      "payment": {
+        "method": "paymentInAdvance",
+        "status": "paid",
+        "debit": {
+          "amount": "0.95",
+          "currency": "EUR"
+        },
+        "balance": {
+          "amount": "0.00",
+          "currency": "EUR"
+        }
+      },
+      "updatedBy": {
+        "id": "4"
+      },
+      "updatedAt": "2023-03-09T11:51:26+01:00",
+      "additionalFields": [],
+      "dunningSettings": {
+        "level": "reminder1",
+        "date": "2023-05-17",
+        "comment": "Automatisch als bezahlt markiert am: 17.05.2023",
+        "sent": false
+      }
+    },
+    {
+      "id": "3",
+      "number": "400002",
+      "date": "2023-01-25T00:00:00+01:00",
+      "status": "partialCancellation",
+      "tags": [],
+      "address": {
+        "name": "Test Kunde",
+        "customerNumber": "10004",
+        "country": "DE"
+      },
+      "project": {
+        "id": "1",
+        "name": "Standard Projekt",
+        "abbreviation": "STANDARD"
+      },
+      "payment": {
+        "method": "paymentInAdvance",
+        "status": "paid",
+        "debit": {
+          "amount": "6.60",
+          "currency": "EUR"
+        },
+        "balance": {
+          "amount": "0.00",
+          "currency": "EUR"
+        }
+      },
+      "updatedBy": {
+        "id": "1"
+      },
+      "updatedAt": "2024-01-31T18:21:10+01:00",
+      "additionalFields": [],
+      "dunningSettings": {
+        "level": "reminder1",
+        "date": "2023-05-17",
+        "comment": "Automatisch als bezahlt markiert am: 17.05.2023",
+        "sent": false
+      }
+    },
+    {
+      "id": "4",
+      "number": "400003",
+      "date": "2023-01-25T00:00:00+01:00",
+      "status": "sent",
+      "tags": [],
+      "address": {
+        "name": "Test Kunde",
+        "customerNumber": "10004",
+        "country": "DE"
+      },
+      "project": {
+        "id": "3",
+        "name": "Kasse",
+        "abbreviation": "KASSE"
+      },
+      "payment": {
+        "method": "invoice",
+        "status": "pending",
+        "debit": {
+          "amount": "15.00",
+          "currency": "EUR"
+        },
+        "balance": {
+          "amount": "-15.00",
+          "currency": "EUR"
+        }
+      },
+      "updatedBy": {
+        "id": ""
+      },
+      "updatedAt": null,
+      "additionalFields": [],
+      "dunningSettings": {
+        "level": "reminder1",
+        "date": "2025-03-11",
+        "comment": "",
+        "sent": false
+      }
+    },
+    {
+      "id": "5",
+      "number": "400004",
+      "date": "2023-01-25T00:00:00+01:00",
+      "status": "sent",
+      "tags": [],
+      "address": {
+        "name": "Test Kunde",
+        "customerNumber": "10004",
+        "country": "DE"
+      },
+      "project": {
+        "id": "3",
+        "name": "Kasse",
+        "abbreviation": "KASSE"
+      },
+      "payment": {
+        "method": "invoice",
+        "status": "pending",
+        "debit": {
+          "amount": "15.00",
+          "currency": "EUR"
+        },
+        "balance": {
+          "amount": "-15.00",
+          "currency": "EUR"
+        }
+      },
+      "updatedBy": {
+        "id": ""
+      },
+      "updatedAt": null,
+      "additionalFields": [],
+      "dunningSettings": {
+        "level": "reminder1",
+        "date": "2025-03-11",
+        "comment": "",
+        "sent": false
+      }
+    },
+    {
+      "id": "6",
+      "number": "400005",
+      "date": "2023-01-26T00:00:00+01:00",
+      "status": "canceled",
+      "tags": [],
+      "address": {
+        "name": "Karlo Kunde GmbH & Co. KG",
+        "customerNumber": "10000",
+        "country": "DE"
+      },
+      "project": {
+        "id": "1",
+        "name": "Standard Projekt",
+        "abbreviation": "STANDARD"
+      },
+      "payment": {
+        "method": "invoice",
+        "status": "partlyPaid",
+        "debit": {
+          "amount": "11.90",
+          "currency": "EUR"
+        },
+        "balance": {
+          "amount": "-5.95",
+          "currency": "EUR"
+        }
+      },
+      "updatedBy": {
+        "id": "62"
+      },
+      "updatedAt": "2024-12-19T15:41:27+01:00",
+      "additionalFields": [],
+      "dunningSettings": {
+        "level": "reminder1",
+        "date": "2025-03-11",
+        "comment": "",
+        "sent": false
+      }
+    },
+    {
+      "id": "7",
+      "number": "400006",
+      "date": "2023-01-26T00:00:00+01:00",
+      "status": "sent",
+      "tags": [],
+      "address": {
+        "name": "Karlo Kunde GmbH & Co. KG",
+        "customerNumber": "10000",
+        "country": "DE"
+      },
+      "project": {
+        "id": "4",
+        "name": "Knut Test",
+        "abbreviation": "DM"
+      },
+      "payment": {
+        "method": "invoice",
+        "status": "pending",
+        "debit": {
+          "amount": "11.90",
+          "currency": "EUR"
+        },
+        "balance": {
+          "amount": "-11.90",
+          "currency": "EUR"
+        }
+      },
+      "updatedBy": {
+        "id": "4"
+      },
+      "updatedAt": "2023-01-26T08:15:20+01:00",
+      "additionalFields": [],
+      "dunningSettings": {
+        "level": "reminder1",
+        "date": "2025-03-11",
+        "comment": "",
+        "sent": false
+      }
+    },
+    {
+      "id": "8",
+      "number": "400007",
+      "date": "2023-01-30T00:00:00+01:00",
+      "status": "canceled",
+      "tags": [],
+      "address": {
+        "name": "Karlo Kunde GmbH & Co. KG",
+        "customerNumber": "10000",
+        "country": "DE"
+      },
+      "project": {
+        "id": "4",
+        "name": "Knut Test",
+        "abbreviation": "DM"
+      },
+      "payment": {
+        "method": "invoice",
+        "status": "paid",
+        "debit": {
+          "amount": "11.90",
+          "currency": "EUR"
+        },
+        "balance": {
+          "amount": "0.00",
+          "currency": "EUR"
+        }
+      },
+      "updatedBy": {
+        "id": "4"
+      },
+      "updatedAt": null,
+      "additionalFields": [],
+      "dunningSettings": {
+        "level": "reminder1",
+        "date": "2023-08-01",
+        "comment": "",
+        "sent": false
+      }
+    },
+    {
+      "id": "9",
+      "number": "400008",
+      "date": "2023-01-30T00:00:00+01:00",
+      "status": "sent",
+      "tags": [],
+      "address": {
+        "name": "Karlo Kunde GmbH & Co. KG",
+        "customerNumber": "10000",
+        "country": "DE"
+      },
+      "project": {
+        "id": "4",
+        "name": "Knut Test",
+        "abbreviation": "DM"
+      },
+      "payment": {
+        "method": "invoice",
+        "status": "pending",
+        "debit": {
+          "amount": "23.80",
+          "currency": "EUR"
+        },
+        "balance": {
+          "amount": "-23.80",
+          "currency": "EUR"
+        }
+      },
+      "updatedBy": {
+        "id": "4"
+      },
+      "updatedAt": null,
+      "additionalFields": [],
+      "dunningSettings": {
+        "level": "reminder1",
+        "date": "2025-03-11",
+        "comment": "",
+        "sent": false
+      }
+    },
+    {
+      "id": "10",
+      "number": "400009",
+      "date": "2023-01-31T00:00:00+01:00",
+      "status": "sent",
+      "tags": [],
+      "address": {
+        "name": "Karlo Kunde GmbH & Co. KG",
+        "customerNumber": "10000",
+        "country": "DE"
+      },
+      "project": {
+        "id": "4",
+        "name": "Knut Test",
+        "abbreviation": "DM"
+      },
+      "payment": {
+        "method": "invoice",
+        "status": "pending",
+        "debit": {
+          "amount": "17.85",
+          "currency": "EUR"
+        },
+        "balance": {
+          "amount": "-17.85",
+          "currency": "EUR"
+        }
+      },
+      "updatedBy": {
+        "id": "4"
+      },
+      "updatedAt": null,
+      "additionalFields": [],
+      "dunningSettings": {
+        "level": "reminder1",
+        "date": "2025-03-11",
+        "comment": "",
+        "sent": false
+      }
+    }
+  ],
+  "extra": {
+    "totalCount": 542,
+    "page": {
+      "number": 1,
+      "size": 10
+    }
+  }
+}

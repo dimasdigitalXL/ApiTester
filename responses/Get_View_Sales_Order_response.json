@@ -1,7 +1,7 @@
 {
   "data": {
     "id": "1508",
-    "documentNumber": "",
+    "documentNumber": "86",
     "externalOrderNumber": "",
     "customerOrderNumber": "",
     "transactionNumber": "",
@@ -17,7 +17,7 @@
       "id": 345,
       "name": "Dimas "
     },
-    "status": "created",
+    "status": "completed",
     "customer": {
       "id": "440",
       "number": "16"

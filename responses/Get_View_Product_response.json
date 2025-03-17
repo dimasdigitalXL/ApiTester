@@ -1,0 +1,107 @@
+{
+  "data": {
+    "id": "1347",
+    "uuid": "019547c2-08c3-72c8-895b-baba134de8e1",
+    "name": "Testprodukt API",
+    "description": "Dieses Produkt wurde über die API erstellt.",
+    "shortDescription": null,
+    "number": "1000021000290",
+    "project": {
+      "id": "3",
+      "name": "Kasse"
+    },
+    "category": {
+      "id": "1",
+      "name": "Handelsware (100000)"
+    },
+    "standardSupplier": null,
+    "stockCount": 0,
+    "shopPriceDisplay": null,
+    "ean": "1234567890123",
+    "manufacturer": {
+      "name": null,
+      "number": null,
+      "url": null
+    },
+    "customsTariffNumber": "12345678",
+    "options": [],
+    "selectedOptions": [],
+    "variants": [],
+    "isVariant": false,
+    "variantOf": null,
+    "mainVariant": null,
+    "thumbnailUrl": null,
+    "thumbnailId": null,
+    "tags": [],
+    "freeFields": [],
+    "countryOfOrigin": null,
+    "regionOfOrigin": "",
+    "internalComment": "",
+    "isDeleted": false,
+    "measurements": {
+      "weight": {
+        "value": 0,
+        "unit": "kg"
+      },
+      "netWeight": {
+        "value": 0,
+        "unit": "kg"
+      },
+      "length": {
+        "value": 0,
+        "unit": "cm"
+      },
+      "width": {
+        "value": 0,
+        "unit": "cm"
+      },
+      "height": {
+        "value": 0,
+        "unit": "cm"
+      }
+    },
+    "minimumOrderQuantity": 0,
+    "minimumStorageQuantity": 0,
+    "salesTax": "standard",
+    "hasBatches": false,
+    "serialNumbersMode": "disabled",
+    "hasBestBeforeDate": false,
+    "hasBillOfMaterials": false,
+    "isAssembledJustInTime": false,
+    "isProductionProduct": false,
+    "isExternallyProduced": false,
+    "allowPurchaseFromAllSuppliers": false,
+    "isDisabled": false,
+    "disabledReason": null,
+    "hidePriceOnDocuments": false,
+    "ageRating": null,
+    "isStockItem": false,
+    "defaultStorageLocation": null,
+    "isStockTakingDisabled": false,
+    "isCustomProduct": false,
+    "hideJustInTimeItemsOnDocuments": false,
+    "markAsSoldOut": false,
+    "markAsInactive": false,
+    "isRemainingQuantity": false,
+    "isShippingCostsProduct": false,
+    "discount": {
+      "isDiscountProduct": false,
+      "discountPercentage": 0
+    },
+    "stockTaking": {
+      "hasStockTakingValue": false,
+      "stockTakingValue": 0
+    },
+    "calculatedPurchasePrice": {
+      "hasCalculatedPurchasePrice": false,
+      "price": {
+        "amount": "0.0000",
+        "currency": "EUR"
+      }
+    },
+    "unit": {
+      "name": ""
+    },
+    "updatedAt": "2025-02-27T17:49:08+01:00"
+  }
+}

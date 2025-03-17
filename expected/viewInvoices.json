@@ -1,0 +1,84 @@
+{
+    "data": {
+        "id": "string",
+        "documentNumber": "string",
+        "documentDate": "string",
+        "log": {
+            "createdBy": {
+                "name": "string"
+            },
+            "sentBy": {
+                "name": "string"
+            },
+            "createdAt": "string",
+            "sentAt": null,
+            "updatedAt": "string"
+        },
+        "amountGross": 0,
+        "amountNet": 0,
+        "costCenter": "",
+        "status": "string",
+        "project": {
+            "id": "string",
+            "name": "string",
+            "abbreviation": "string"
+        },
+        "customer": {
+            "id": "string",
+            "name": "string"
+        },
+        "externalOrderReference": "",
+        "devCustomer": "string",
+        "billingAddress": {
+            "id": "string",
+            "name": "string",
+            "contactPerson": "",
+            "department": "",
+            "subdivision": "",
+            "street": "string",
+            "additionalDetails": "",
+            "city": "string",
+            "zipCode": "string",
+            "country": "string",
+            "email": "string"
+        },
+        "paymentMethodName": "string",
+        "paymentStatus": "string",
+        "dunning": "string",
+        "dunningDate": "string",
+        "gln": "",
+        "taxation": 0,
+        "tags": [],
+        "positions": [
+            {
+                "id": 0,
+                "position": 0,
+                "saleOrderPositionId": 0,
+                "createdAt": "string",
+                "productId": 0,
+                "productNumber": "string",
+                "description": "string",
+                "quantity": 0,
+                "price": {
+                    "amount": "string",
+                    "currency": "string"
+                },
+                "vatCategory": "",
+                "taxRate": 0,
+                "discount": 0
+            }
+        ],
+        "paymentTerms": {
+            "earlyPaymentDiscount": 0,
+            "earlyPaymentDate": "string",
+            "dueDate": "string"
+        },
+        "dunningSettings": {
+            "level": "string",
+            "date": "string",
+            "comment": "",
+            "sent": false
+        },
+        "dunningManualSettings": null
+    }
+}

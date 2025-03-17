@@ -1,0 +1,51 @@
+{
+    "data": [
+        {
+            "id": "string",
+            "number": "string",
+            "date": "string",
+            "status": "string",
+            "tags": [],
+            "address": {
+                "name": "string",
+                "customerNumber": "string",
+                "country": "string"
+            },
+            "project": {
+                "id": "string",
+                "name": "string",
+                "abbreviation": "string"
+            },
+            "payment": {
+                "method": "string",
+                "status": "string",
+                "debit": {
+                    "amount": "string|null",
+                    "currency": "string"
+                },
+                "balance": {
+                    "amount": "string|null",
+                    "currency": "string"
+                }
+            },
+            "updatedBy": {
+                "id": "string"
+            },
+            "updatedAt": null,
+            "additionalFields": [],
+            "dunningSettings": {
+                "level": "string",
+                "date": "string",
+                "comment": "",
+                "sent": false
+            }
+        }
+    ],
+    "extra": {
+        "totalCount": 0,
+        "page": {
+            "number": 1,
+            "size": 10
+        }
+    }
+}

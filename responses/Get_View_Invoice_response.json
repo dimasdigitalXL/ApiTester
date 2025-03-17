@@ -1,0 +1,84 @@
+{
+  "data": {
+    "id": "44",
+    "documentNumber": "400039",
+    "documentDate": "2023-03-01T00:00:00+01:00",
+    "log": {
+      "createdBy": {
+        "name": ""
+      },
+      "sentBy": {
+        "name": "Administrator"
+      },
+      "createdAt": "2023-03-01T12:37:04+01:00",
+      "sentAt": null,
+      "updatedAt": "2025-03-11T00:23:09+01:00"
+    },
+    "amountGross": 82.47,
+    "amountNet": 69.3,
+    "costCenter": "",
+    "status": "released",
+    "project": {
+      "id": "1",
+      "name": "Standard Projekt",
+      "abbreviation": "STANDARD"
+    },
+    "customer": {
+      "id": "8",
+      "name": "Christian Hofmann"
+    },
+    "externalOrderReference": "",
+    "devCustomer": "10004",
+    "billingAddress": {
+      "id": "8",
+      "name": "Christian Hofmann",
+      "contactPerson": "",
+      "department": "",
+      "subdivision": "",
+      "street": "Werner-von-Siemens-Straße 6",
+      "additionalDetails": "",
+      "city": "Augsburg",
+      "zipCode": "86159",
+      "country": "DE",
+      "email": "christian@digitalxl.de"
+    },
+    "paymentMethodName": "invoice",
+    "paymentStatus": "pending",
+    "dunning": "mahnung1",
+    "dunningDate": "2025-03-11",
+    "gln": "",
+    "taxation": 0,
+    "tags": [],
+    "positions": [
+      {
+        "id": 60,
+        "position": 1,
+        "saleOrderPositionId": 139,
+        "createdAt": "2023-03-01T12:37:05+01:00",
+        "productId": 91,
+        "productNumber": "1234",
+        "description": "Mutter 5mm",
+        "quantity": 1,
+        "price": {
+          "amount": "83.16",
+          "currency": "EUR"
+        },
+        "vatCategory": "",
+        "taxRate": 20,
+        "discount": 10
+      }
+    ],
+    "paymentTerms": {
+      "earlyPaymentDiscount": 2,
+      "earlyPaymentDate": "2023-03-11T00:00:00+01:00",
+      "dueDate": "2023-03-15T00:00:00+01:00"
+    },
+    "dunningSettings": {
+      "level": "reminder1",
+      "date": "2025-03-11",
+      "comment": "",
+      "sent": false
+    },
+    "dunningManualSettings": null
+  }
+}

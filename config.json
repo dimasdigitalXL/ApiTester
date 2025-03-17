@@ -1,7 +1,7 @@
 {
   "endpoints": [
     { 
-      "name": "Get SalesOrders List",
+      "name": "Get List Sales Orders",
       "url": "https://${XENTRAL_ID}.xentral.biz/api/salesOrders",
       "method": "GET",
       "headers": {
@@ -18,7 +18,7 @@
       "expectedStructure": "expected/salesOrderList.json"
     },
     {
-      "name": "Get SalesOrder View",
+      "name": "Get View Sales Order",
       "url": "https://${XENTRAL_ID}.xentral.biz/api/v1/salesOrders/{id}",
       "method": "GET",
       "headers": {
@@ -56,6 +56,17 @@
       "expectedStructure": "expected/listProducts.json"
     },
     {
+      "name": "Get View Product",
+      "url": "https://${XENTRAL_ID}.xentral.biz/api/v1/products/{id}",
+      "method": "GET",
+      "headers": {
+        "Accept": "application/json",
+        "Content-Type": "application/json"},
+      "query": {},
+      "requiresId": true,
+      "expectedStructure": "expected/viewProduct.json"
+    },
+    {
       "name": "Delete Product",
       "url": "https://${XENTRAL_ID}.xentral.biz/api/products/{id}",
       "method": "DELETE",
@@ -76,6 +87,29 @@
       },
       "bodyFile": "requestBodies/updateProduct.json",
       "requiresId": true
+    },
+    {
+      "name": "Get List Invoices",
+      "url": "https://${XENTRAL_ID}.xentral.biz/api/invoices",
+      "method": "GET",
+      "headers": {
+        "Accept": "application/vnd.xentral.minimal+json",
+        "Authorization": "Bearer ${BEARER_TOKEN}",
+        "Content-Type": "application/vnd.xentral.minimal.v1+json"
+      },
+      "expectedStructure": "expected/listInvoices.json"
+    },
+    {
+      "name": "Get View Invoice",
+      "url": "https://${XENTRAL_ID}.xentral.biz/api/v1/invoices/{id}",
+      "method": "GET",
+      "headers": {
+        "Accept": "application/json",
+        "Authorization": "Bearer ${BEARER_TOKEN}",
+        "Content-Type": "application/json"
+      },
+      "requiresId": true,
+      "expectedStructure": "expected/viewInvoices.json"
     }
   ]
 }

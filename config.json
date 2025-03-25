@@ -1,6 +1,6 @@
 {
   "endpoints": [
-    { 
+    {
       "name": "Get List Sales Orders",
       "url": "https://${XENTRAL_ID}.xentral.biz/api/salesOrders",
       "method": "GET",
@@ -19,7 +19,7 @@
     },
     {
       "name": "Get View Sales Order",
-      "url": "https://${XENTRAL_ID}.xentral.biz/api/v1/salesOrders/{id}",
+      "url": "https://${XENTRAL_ID}.xentral.biz/api/salesOrders/{id}",
       "method": "GET",
       "headers": {
         "Accept": "application/json",
@@ -34,17 +34,18 @@
       "url": "https://${XENTRAL_ID}.xentral.biz/api/products",
       "method": "POST",
       "headers": {
-        "Content-Type": "application/vnd.xentral.default.v2-beta+json",
-        "Accept": "application/json"
+        "Content-Type": "application/json",
+        "Accept": "application/vnd.xentral.default.v2-beta+json"
       },
-      "bodyFile": "requestBodies/createProduct.json"
+      "bodyFile": "requestBodies/createProduct.json",
+      "versionChanged": true
     },
     {
       "name": "Get List Products",
       "url": "https://${XENTRAL_ID}.xentral.biz/api/products",
       "method": "GET",
       "headers": {
-        "Accept": "application/json",
+        "Accept": "application/vnd.xentral.default.v2-beta+json",
         "Content-Type": "application/json"
       },
       "query": {
@@ -53,18 +54,21 @@
         "page[number]": 1,
         "page[size]": 10
       },
-      "expectedStructure": "expected/listProducts.json"
+      "expectedStructure": "expected/listProducts.json",
+      "versionChanged": true
     },
     {
       "name": "Get View Product",
-      "url": "https://${XENTRAL_ID}.xentral.biz/api/v1/products/{id}",
+      "url": "https://${XENTRAL_ID}.xentral.biz/api/products/{id}",
       "method": "GET",
       "headers": {
-        "Accept": "application/json",
-        "Content-Type": "application/json"},
+        "Accept": "application/vnd.xentral.default.v2-beta+json",
+        "Content-Type": "application/json"
+      },
       "query": {},
       "requiresId": true,
-      "expectedStructure": "expected/viewProduct.json"
+      "expectedStructure": "expected/viewProduct.json",
+      "versionChanged": true
     },
     {
       "name": "Delete Product",
@@ -81,12 +85,13 @@
       "url": "https://${XENTRAL_ID}.xentral.biz/api/products/{id}",
       "method": "PATCH",
       "headers": {
-        "Accept": "application/json",
+        "Accept": "application/vnd.xentral.default.v2-beta+json",
         "Authorization": "Bearer ${BEARER_TOKEN}",
         "Content-Type": "application/json"
       },
       "bodyFile": "requestBodies/updateProduct.json",
-      "requiresId": true
+      "requiresId": true,
+      "versionChanged": true
     },
     {
       "name": "Get List Invoices",
@@ -101,7 +106,7 @@
     },
     {
       "name": "Get View Invoice",
-      "url": "https://${XENTRAL_ID}.xentral.biz/api/v1/invoices/{id}",
+      "url": "https://${XENTRAL_ID}.xentral.biz/api/invoices/{id}",
       "method": "GET",
       "headers": {
         "Accept": "application/json",

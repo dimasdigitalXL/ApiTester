@@ -1,30 +1,30 @@
 {
   "data": {
-    "id": "1508",
-    "documentNumber": "86",
-    "externalOrderNumber": "",
+    "id": "19",
+    "documentNumber": "200000",
+    "externalOrderNumber": "10035",
     "customerOrderNumber": "",
     "transactionNumber": "",
-    "externalOrderId": "",
+    "externalOrderId": "4503c227e47d43f5895c7447eeeb44f4",
     "autoCreateDocuments": "deliveryNote+invoice",
-    "date": "2025-02-25",
+    "date": "2023-01-23",
     "earliestFulfillmentDate": null,
     "desiredDeliveryDate": null,
     "desiredDeliveryDateCw": false,
     "reservationDate": null,
-    "editor": "Dimas ",
+    "editor": "Kassen Mitarbeiter",
     "sales": {
-      "id": 345,
-      "name": "Dimas "
+      "id": null,
+      "name": null
     },
     "status": "completed",
     "customer": {
-      "id": "440",
-      "number": "16"
+      "id": "8",
+      "number": "10004"
     },
     "comment": "",
     "project": {
-      "id": "32"
+      "id": "1"
     },
     "bodyOutroduction": "",
     "bodyIntroduction": "",
@@ -34,24 +34,24 @@
     },
     "financials": {
       "paymentMethod": {
-        "id": "13"
+        "id": "11"
       },
       "currency": "EUR",
       "billingAddress": {
-        "name": "DimasTest",
+        "name": "Test Kunde",
         "department": "",
         "subDepartment": "",
-        "street": "",
-        "zipCode": "86165",
+        "street": "Werner-von-Siemens-Straße 6",
+        "zipCode": "86159",
         "city": "Augsburg",
         "state": "BY",
         "country": "DE",
-        "type": "other",
+        "type": "herr",
         "title": "",
         "contactPerson": "",
-        "addressSupplement": "",
+        "addressSupplement": "Gebäude 15 L",
         "fax": "",
-        "email": "",
+        "email": "christian@digitalxl.de",
         "salutation": "",
         "gln": "",
         "phoneNumber": ""
@@ -59,7 +59,7 @@
       "paymentTerms": {
         "paymentTargetDiscount": 0,
         "paymentTargetDays": 14,
-        "paymentTargetDiscountDays": 7
+        "paymentTargetDiscountDays": 10
       }
     },
     "delivery": {
@@ -72,11 +72,11 @@
       },
       "deliveryTerms": null,
       "shippingAddress": {
-        "name": "DimasTest",
+        "name": "Test Kunde",
         "department": "",
         "subDepartment": "",
-        "street": "",
-        "zipCode": "86165",
+        "street": "Werner-von-Siemens-Straße 6",
+        "zipCode": "86159",
         "city": "Augsburg",
         "state": "BY",
         "country": "DE",
@@ -84,23 +84,23 @@
       }
     },
     "netSales": {
-      "amount": "34.25",
+      "amount": "1.60",
       "currency": "EUR"
     },
     "total": {
-      "amount": "40.76",
+      "amount": "1.90",
       "currency": "EUR"
     },
     "positions": [
       {
-        "id": "3605",
-        "quantity": 1.5,
+        "id": "2",
+        "quantity": 10,
         "discount": 0,
         "comment": "",
         "product": {
-          "id": "1334",
-          "number": "1000279",
-          "name": "Wolkenhopser Cloud Weißbier: Der fruchtige Sprung in die Wolken mit Pfand",
+          "id": "89",
+          "number": "700001",
+          "name": "Schraube M10x20",
           "description": "",
           "freeFields": [
             {
@@ -271,647 +271,48 @@
           "effectiveVatRate": 19
         },
         "price": {
-          "amount": "15.69000000",
+          "amount": "0.15966400",
           "currency": "EUR"
         },
         "netRevenueSingle": {
-          "amount": "15.6900",
+          "amount": "0.1597",
           "currency": "EUR"
         },
         "netRevenueTotal": {
-          "amount": "23.5350",
+          "amount": "1.5966",
           "currency": "EUR"
         },
         "grossRevenueSingle": {
-          "amount": "18.6711",
+          "amount": "0.1900",
           "currency": "EUR"
         },
         "grossRevenueTotal": {
-          "amount": "28.0067",
+          "amount": "1.9000",
           "currency": "EUR"
         },
         "webId": "",
-        "hasChildren": true,
+        "hasChildren": false,
         "parent": null,
         "sort": 1
-      },
-      {
-        "id": "3606",
-        "quantity": 1.5,
-        "discount": 0,
-        "comment": "",
-        "product": {
-          "id": "1335",
-          "number": "DS53",
-          "name": "Bierkasten (Pfand)",
-          "description": "",
-          "freeFields": [
-            {
-              "id": "1",
-              "value": ""
-            },
-            {
-              "id": "2",
-              "value": ""
-            },
-            {
-              "id": "3",
-              "value": ""
-            },
-            {
-              "id": "4",
-              "value": ""
-            },
-            {
-              "id": "5",
-              "value": ""
-            },
-            {
-              "id": "6",
-              "value": ""
-            },
-            {
-              "id": "7",
-              "value": ""
-            },
-            {
-              "id": "8",
-              "value": ""
-            },
-            {
-              "id": "9",
-              "value": ""
-            },
-            {
-              "id": "10",
-              "value": ""
-            },
-            {
-              "id": "11",
-              "value": ""
-            },
-            {
-              "id": "12",
-              "value": ""
-            },
-            {
-              "id": "13",
-              "value": ""
-            },
-            {
-              "id": "14",
-              "value": ""
-            },
-            {
-              "id": "15",
-              "value": ""
-            },
-            {
-              "id": "16",
-              "value": ""
-            },
-            {
-              "id": "17",
-              "value": ""
-            },
-            {
-              "id": "18",
-              "value": ""
-            },
-            {
-              "id": "19",
-              "value": ""
-            },
-            {
-              "id": "20",
-              "value": ""
-            },
-            {
-              "id": "21",
-              "value": ""
-            },
-            {
-              "id": "22",
-              "value": ""
-            },
-            {
-              "id": "23",
-              "value": ""
-            },
-            {
-              "id": "24",
-              "value": ""
-            },
-            {
-              "id": "25",
-              "value": ""
-            },
-            {
-              "id": "26",
-              "value": ""
-            },
-            {
-              "id": "27",
-              "value": ""
-            },
-            {
-              "id": "28",
-              "value": ""
-            },
-            {
-              "id": "29",
-              "value": ""
-            },
-            {
-              "id": "30",
-              "value": ""
-            },
-            {
-              "id": "31",
-              "value": ""
-            },
-            {
-              "id": "32",
-              "value": ""
-            },
-            {
-              "id": "33",
-              "value": ""
-            },
-            {
-              "id": "34",
-              "value": ""
-            },
-            {
-              "id": "35",
-              "value": ""
-            },
-            {
-              "id": "36",
-              "value": ""
-            },
-            {
-              "id": "37",
-              "value": ""
-            },
-            {
-              "id": "38",
-              "value": ""
-            },
-            {
-              "id": "39",
-              "value": ""
-            },
-            {
-              "id": "40",
-              "value": ""
-            }
-          ]
-        },
-        "tax": {
-          "vatCategory": "normal",
-          "taxText": "",
-          "effectiveVatRate": 19
-        },
-        "price": {
-          "amount": "2.94117647",
-          "currency": "EUR"
-        },
-        "netRevenueSingle": {
-          "amount": "2.9412",
-          "currency": "EUR"
-        },
-        "netRevenueTotal": {
-          "amount": "4.4118",
-          "currency": "EUR"
-        },
-        "grossRevenueSingle": {
-          "amount": "3.5000",
-          "currency": "EUR"
-        },
-        "grossRevenueTotal": {
-          "amount": "5.2500",
-          "currency": "EUR"
-        },
-        "webId": "",
-        "hasChildren": false,
-        "parent": null,
-        "sort": 3
-      },
-      {
-        "id": "3607",
-        "quantity": 30,
-        "discount": 0,
-        "comment": "",
-        "product": {
-          "id": "345",
-          "number": "1000501000028",
-          "name": "Wolkenhopser Cloud Weißbier: Der fruchtige Sprung in die Wolken",
-          "description": "",
-          "freeFields": [
-            {
-              "id": "1",
-              "value": ""
-            },
-            {
-              "id": "2",
-              "value": ""
-            },
-            {
-              "id": "3",
-              "value": ""
-            },
-            {
-              "id": "4",
-              "value": ""
-            },
-            {
-              "id": "5",
-              "value": ""
-            },
-            {
-              "id": "6",
-              "value": ""
-            },
-            {
-              "id": "7",
-              "value": ""
-            },
-            {
-              "id": "8",
-              "value": ""
-            },
-            {
-              "id": "9",
-              "value": ""
-            },
-            {
-              "id": "10",
-              "value": ""
-            },
-            {
-              "id": "11",
-              "value": ""
-            },
-            {
-              "id": "12",
-              "value": ""
-            },
-            {
-              "id": "13",
-              "value": ""
-            },
-            {
-              "id": "14",
-              "value": ""
-            },
-            {
-              "id": "15",
-              "value": ""
-            },
-            {
-              "id": "16",
-              "value": ""
-            },
-            {
-              "id": "17",
-              "value": ""
-            },
-            {
-              "id": "18",
-              "value": ""
-            },
-            {
-              "id": "19",
-              "value": ""
-            },
-            {
-              "id": "20",
-              "value": ""
-            },
-            {
-              "id": "21",
-              "value": ""
-            },
-            {
-              "id": "22",
-              "value": ""
-            },
-            {
-              "id": "23",
-              "value": ""
-            },
-            {
-              "id": "24",
-              "value": ""
-            },
-            {
-              "id": "25",
-              "value": ""
-            },
-            {
-              "id": "26",
-              "value": ""
-            },
-            {
-              "id": "27",
-              "value": ""
-            },
-            {
-              "id": "28",
-              "value": ""
-            },
-            {
-              "id": "29",
-              "value": ""
-            },
-            {
-              "id": "30",
-              "value": ""
-            },
-            {
-              "id": "31",
-              "value": ""
-            },
-            {
-              "id": "32",
-              "value": ""
-            },
-            {
-              "id": "33",
-              "value": ""
-            },
-            {
-              "id": "34",
-              "value": ""
-            },
-            {
-              "id": "35",
-              "value": ""
-            },
-            {
-              "id": "36",
-              "value": ""
-            },
-            {
-              "id": "37",
-              "value": ""
-            },
-            {
-              "id": "38",
-              "value": ""
-            },
-            {
-              "id": "39",
-              "value": ""
-            },
-            {
-              "id": "40",
-              "value": ""
-            }
-          ]
-        },
-        "tax": {
-          "vatCategory": "normal",
-          "taxText": "",
-          "effectiveVatRate": 19
-        },
-        "price": {
-          "amount": "0.00000000",
-          "currency": "EUR"
-        },
-        "netRevenueSingle": {
-          "amount": "0.0000",
-          "currency": "EUR"
-        },
-        "netRevenueTotal": {
-          "amount": "0.0000",
-          "currency": "EUR"
-        },
-        "grossRevenueSingle": {
-          "amount": "0.0000",
-          "currency": "EUR"
-        },
-        "grossRevenueTotal": {
-          "amount": "0.0000",
-          "currency": "EUR"
-        },
-        "webId": "",
-        "hasChildren": false,
-        "parent": "3605",
-        "sort": 2
-      },
-      {
-        "id": "3608",
-        "quantity": 30,
-        "discount": 0,
-        "comment": "",
-        "product": {
-          "id": "1336",
-          "number": "DS54",
-          "name": "Glasflasche (Pfand)",
-          "description": "",
-          "freeFields": [
-            {
-              "id": "1",
-              "value": ""
-            },
-            {
-              "id": "2",
-              "value": ""
-            },
-            {
-              "id": "3",
-              "value": ""
-            },
-            {
-              "id": "4",
-              "value": ""
-            },
-            {
-              "id": "5",
-              "value": ""
-            },
-            {
-              "id": "6",
-              "value": ""
-            },
-            {
-              "id": "7",
-              "value": ""
-            },
-            {
-              "id": "8",
-              "value": ""
-            },
-            {
-              "id": "9",
-              "value": ""
-            },
-            {
-              "id": "10",
-              "value": ""
-            },
-            {
-              "id": "11",
-              "value": ""
-            },
-            {
-              "id": "12",
-              "value": ""
-            },
-            {
-              "id": "13",
-              "value": ""
-            },
-            {
-              "id": "14",
-              "value": ""
-            },
-            {
-              "id": "15",
-              "value": ""
-            },
-            {
-              "id": "16",
-              "value": ""
-            },
-            {
-              "id": "17",
-              "value": ""
-            },
-            {
-              "id": "18",
-              "value": ""
-            },
-            {
-              "id": "19",
-              "value": ""
-            },
-            {
-              "id": "20",
-              "value": ""
-            },
-            {
-              "id": "21",
-              "value": ""
-            },
-            {
-              "id": "22",
-              "value": ""
-            },
-            {
-              "id": "23",
-              "value": ""
-            },
-            {
-              "id": "24",
-              "value": ""
-            },
-            {
-              "id": "25",
-              "value": ""
-            },
-            {
-              "id": "26",
-              "value": ""
-            },
-            {
-              "id": "27",
-              "value": ""
-            },
-            {
-              "id": "28",
-              "value": ""
-            },
-            {
-              "id": "29",
-              "value": ""
-            },
-            {
-              "id": "30",
-              "value": ""
-            },
-            {
-              "id": "31",
-              "value": ""
-            },
-            {
-              "id": "32",
-              "value": ""
-            },
-            {
-              "id": "33",
-              "value": ""
-            },
-            {
-              "id": "34",
-              "value": ""
-            },
-            {
-              "id": "35",
-              "value": ""
-            },
-            {
-              "id": "36",
-              "value": ""
-            },
-            {
-              "id": "37",
-              "value": ""
-            },
-            {
-              "id": "38",
-              "value": ""
-            },
-            {
-              "id": "39",
-              "value": ""
-            },
-            {
-              "id": "40",
-              "value": ""
-            }
-          ]
-        },
-        "tax": {
-          "vatCategory": "normal",
-          "taxText": "",
-          "effectiveVatRate": 19
-        },
-        "price": {
-          "amount": "0.21008403",
-          "currency": "EUR"
-        },
-        "netRevenueSingle": {
-          "amount": "0.2101",
-          "currency": "EUR"
-        },
-        "netRevenueTotal": {
-          "amount": "6.3025",
-          "currency": "EUR"
-        },
-        "grossRevenueSingle": {
-          "amount": "0.2500",
-          "currency": "EUR"
-        },
-        "grossRevenueTotal": {
-          "amount": "7.5000",
-          "currency": "EUR"
-        },
-        "webId": "",
-        "hasChildren": false,
-        "parent": null,
-        "sort": 4
       }
     ],
     "log": {
-      "createdAt": "2025-02-25T12:42:30+01:00",
+      "createdAt": "-0001-11-30T00:00:00+00:53",
       "createdBy": {
-        "id": "345",
-        "name": "Dimas "
+        "id": "5",
+        "name": "Kassen Mitarbeiter"
       }
     },
-    "salesChannel": null
+    "tags": [
+      {
+        "id": "19",
+        "type": "pruefen",
+        "title": "Prüfen"
+      }
+    ],
+    "salesChannel": {
+      "id": "1",
+      "name": "Shopware 6 Testshop"
+    }
   }
 }

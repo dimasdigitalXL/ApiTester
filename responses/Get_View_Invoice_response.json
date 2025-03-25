@@ -12,7 +12,7 @@
       },
       "createdAt": "2023-03-01T12:37:04+01:00",
       "sentAt": null,
-      "updatedAt": "2025-03-11T00:23:09+01:00"
+      "updatedAt": "2025-03-25T01:10:11+01:00"
     },
     "amountGross": 82.47,
     "amountNet": 69.3,
@@ -45,7 +45,7 @@
     "paymentMethodName": "invoice",
     "paymentStatus": "pending",
     "dunning": "mahnung1",
-    "dunningDate": "2025-03-11",
+    "dunningDate": "2025-03-25",
     "gln": "",
     "taxation": 0,
     "tags": [],
@@ -75,7 +75,7 @@
     },
     "dunningSettings": {
       "level": "reminder1",
-      "date": "2025-03-11",
+      "date": "2025-03-25",
       "comment": "",
       "sent": false
     },

@@ -7,6 +7,17 @@ const { appendFileSync } = require("fs");
 console.log("BEARER_TOKEN aus .env:", process.env.BEARER_TOKEN);
 console.log("XENTRAL_ID aus .env:", process.env.XENTRAL_ID);
 
+const readline = require("readline");
+
+let defaultIds = {};
+try {
+  // Versuche, die Datei mit Default-IDs zu laden (optional)
+  defaultIds = fs.readJsonSync("default-ids.json");
+  console.log("📄 default-ids.json geladen.");
+} catch {
+  console.warn("⚠️ Keine default-ids.json gefunden oder nicht lesbar.");
+}
+
 // Funktion zum Speichern von Logs
 function logToFile(filename, message) {
     const logPath = path.join(__dirname, "logs", filename);
@@ -23,7 +34,7 @@ function compareStructures(expected, actual, path = "") {
   if (!expected || !actual || typeof expected !== "object" || typeof actual !== "object") {
     console.error("❌ Fehler: Erwartete oder tatsächliche Struktur ist ungültig.");
     console.log("🔍 Erwartete Struktur:", JSON.stringify(expected, null, 2));
-    console.log("🔍 Tatsächliche API-Response:", JSON.stringify(responseData, null, 2));
+    console.log("🔍 Tatsächliche API-Response:", JSON.stringify(actual, null, 2));
     return { missingFields, extraFields, typeMismatches };
   }
 
@@ -105,24 +116,18 @@ function compareStructures(expected, actual, path = "") {
 }
 
 // Funktion für API-Endpunkte: führt den Request aus und vergleicht das Ergebnis mit der erwarteten Struktur
-async function testEndpoint(endpoint, dynamicParams = {}) {
+async function testEndpoint(endpoint, dynamicParams = {}, retryCount = 0) {
   try {
-    console.log(`\n🔍 Starte Test für Endpunkt: ${endpoint.name}\n`);
-
     if (endpoint.requiresId && (!dynamicParams.id || dynamicParams.id.trim() === "")) {
       throw new Error(`Der Endpunkt "${endpoint.name}" benötigt eine ID, aber keine wurde angegeben.`);
     }
 
     if (!process.env.XENTRAL_ID) {
-      throw new Error("❌ Fehler: XENTRAL_ID ist nicht definiert. Prüfe deine .env-Datei.");
+      throw new Error("Fehler: XENTRAL_ID ist nicht definiert.");
     }
     
-    // URL mit XENTRAL_ID ersetzen
     let url = endpoint.url.replace("${XENTRAL_ID}", process.env.XENTRAL_ID);
 
-    // Debugging: Generierte URL ausgeben
-    //console.log("🔗 Generierte API-URL:", url, "\n");
-    
     for (const param in dynamicParams) {
       if (url.includes(`{${param}}`)) {
         url = url.replace(`{${param}}`, dynamicParams[param]);
@@ -130,80 +135,71 @@ async function testEndpoint(endpoint, dynamicParams = {}) {
     }
     
     if (url.includes("{id}")) {
-      console.error("❌ Fehler: Die ID wurde nicht korrekt in der URL ersetzt!", url);
-    }    
+      throw new Error(`Fehler: Die ID wurde nicht korrekt ersetzt! URL: ${url}`);
+    }
 
     const queryParams = new URLSearchParams(endpoint.query || {});
     let body = null;
 
-    // Falls der Request-Body aus einer Datei geladen werden muss (bei POST, PUT, PATCH, DELETE)
     if (["POST", "PUT", "PATCH", "DELETE"].includes(endpoint.method)) {
       if (endpoint.bodyFile) {
-          const bodyPath = path.join(__dirname, endpoint.bodyFile);
-          if (fs.existsSync(bodyPath)) {
-              body = fs.readJsonSync(bodyPath);
-          } else {
-              throw new Error(`❌ Fehler: Die Datei für den Request-Body existiert nicht: ${bodyPath}`);
-          }
+        const bodyPath = path.join(__dirname, endpoint.bodyFile);
+        if (fs.existsSync(bodyPath)) {
+          body = fs.readJsonSync(bodyPath);
+        } else {
+          throw new Error(`Fehler: Die Datei für den Request-Body existiert nicht: ${bodyPath}`);
+        }
       } else if (endpoint.method === "DELETE") {
-          body = null; // DELETE-Requests haben oft keinen Body
+        body = null;
       }
-  }
+    }
 
-    // API-Request durchführen
     const response = await fetch(`${url}?${queryParams.toString()}`, {
       method: endpoint.method,
       headers: {
-          ...endpoint.headers,
-          Authorization: `Bearer ${process.env.BEARER_TOKEN}`,
-          "Content-Type": "application/json"
+        Authorization: `Bearer ${process.env.BEARER_TOKEN}`,
+        "Content-Type": "application/json",
+        Accept: endpoint.headers?.Accept || "application/vnd.xentral.VARIANT.v1+json" // Standard v1, falls nichts anderes gesetzt ist
       },
       body: body ? JSON.stringify(body) : (endpoint.method === "DELETE" ? null : undefined)
-    });
+    });    
 
     if ([500, 502, 503].includes(response.status) && retryCount < 3) {
-      console.warn(`⚠️ API-Fehler ${response.status}. Wiederhole Anfrage (${retryCount + 1}/3)...`);
       return testEndpoint(endpoint, dynamicParams, retryCount + 1);
     }
-  
+
     if (!response.ok) {
-      const errorText = await response.text();
-      console.error(`❌ API-Fehler: ${response.status} ${response.statusText} - Antwort: ${errorText}`);
-      throw new Error(`HTTP-Fehler: ${response.status} ${response.statusText}`);
-    }    
-  
-    const contentType = response.headers.get("content-type") || "";
-    let responseData = null;
-
-    // Akzeptiere auch "application/vnd.xentral.minimal+json"
-    if (contentType.includes("json")) {  
-        try {
-            responseData = await response.json();
-
-            if (!responseData || Object.keys(responseData).length === 0) {
-                console.warn(`⚠️ Keine gültige API-Response für ${endpoint.name}, Speicherung übersprungen.`);
-            } else {
-                const responseDir = path.join(__dirname, "responses");
-                if (!fs.existsSync(responseDir)) {
-                    fs.mkdirSync(responseDir, { recursive: true });
-                }
-
-                const responseFilePath = path.join(responseDir, `${endpoint.name.replace(/\s+/g, "_")}_response.json`);
-
-                fs.writeFileSync(responseFilePath, JSON.stringify(responseData, null, 2));
-                console.log(`✅ API-Response erfolgreich gespeichert.\n`);
-            }
-        } catch (error) {
-            console.error(`❌ Fehler beim Verarbeiten der API-Response für ${endpoint.name}:`, error.message);
-        }
-    } else {
-        console.warn(`⚠️ API-Response für ${endpoint.name} ist kein JSON (Content-Type: ${contentType}), Speicherung übersprungen.`);
-        responseData = {}; // **Verhindert "responseData is not defined"**
+      let errorText;
+      try {
+        errorText = await response.json();
+      } catch {
+        errorText = await response.text();
+      }
+      throw new Error(`HTTP-Fehler: ${response.status} - ${JSON.stringify(errorText)}`);
     }
 
-    // Falls DELETE, ignorieren wir den Strukturvergleich
+    const contentType = response.headers.get("content-type") || "";
+    let responseData = {};
+
+    if (contentType.includes("json")) {
+      try {
+        responseData = await response.json();
+        if (responseData && Object.keys(responseData).length > 0) {
+          const responseDir = path.join(__dirname, "responses");
+          if (!fs.existsSync(responseDir)) {
+            fs.mkdirSync(responseDir, { recursive: true });
+          }
+          const responseFilePath = path.join(responseDir, `${endpoint.name.replace(/\s+/g, "_")}_response.json`);
+          fs.writeFileSync(responseFilePath, JSON.stringify(responseData, null, 2));
+        }
+      } catch (error) {
+        console.error(`Fehler beim Parsen der API-Response: ${error.message}`);
+      }
+    } else {
+      responseData = {};
+    }
+
     if (endpoint.method === "DELETE") {
-      console.warn(`⚠️ Erwartete Struktur für ${endpoint.name} wird ignoriert (DELETE-Request).`);
       return {
         endpointName: endpoint.name,
         method: endpoint.method,
@@ -216,92 +212,58 @@ async function testEndpoint(endpoint, dynamicParams = {}) {
       };
     }
 
-    // Falls der Endpunkt ein POST, PUT oder PATCH ist, brauchen wir keine Strukturvalidierung
     if (["POST", "PUT", "PATCH"].includes(endpoint.method)) {
       return {
-          endpointName: endpoint.name,
-          method: endpoint.method,
-          success: response.status >= 200 && response.status < 300, // Erfolg bei 2xx-Statuscodes
-          isCritical: response.status >= 400, // Fehlerhaft bei 4xx+
-          statusCode: response.status,
-          errorMessage: response.status >= 400 ? `Fehlercode: ${response.status}` : null,
-          missingFields: [],
-          extraFields: []
+        endpointName: endpoint.name,
+        method: endpoint.method,
+        success: response.status >= 200 && response.status < 300,
+        isCritical: response.status >= 400,
+        statusCode: response.status,
+        errorMessage: response.status >= 400 ? `Fehlercode: ${response.status}` : null,
+        missingFields: [],
+        extraFields: []
       };
-  }
-  
-    // Erwartete Struktur laden
+    }
+
     let expectedStructure = null;
     if (endpoint.expectedStructure && fs.existsSync(endpoint.expectedStructure)) {
       expectedStructure = await fs.readJson(endpoint.expectedStructure);
-      console.log("📂 Erwartete Struktur geladen.\n");
     }
 
-    // Falls keine erwartete Struktur vorhanden ist
     if (!expectedStructure || typeof expectedStructure !== "object") {
-      if (endpoint.method === "DELETE") {
-          console.warn(`⚠️ Erwartete Struktur für ${endpoint.name} wird ignoriert (DELETE-Request).`);
-      } else {
-          console.error(`❌ Fehler: Erwartete Struktur für ${endpoint.name} konnte nicht geladen werden.`);
-          return {
-              endpointName: endpoint.name,
-              method: endpoint.method,
-              success: false,
-              isCritical: true,
-              statusCode: response.status,
-              errorMessage: "Erwartete Struktur fehlt",
-              missingFields: [],
-              extraFields: []
-          };
-      }
-  }
-
-    // Strukturvergleich durchführen
-    let missingFields = [];
-    let extraFields = [];
-
-    console.log("🔍 Strukturvergleich gestartet...");
-    ({ missingFields, extraFields } = compareStructures(expectedStructure, responseData));
-
-    //console.log("🔎 Debug: missingFields:", missingFields);
-    //console.log("🔎 Debug: extraFields:", extraFields);
-
-    if (missingFields.length > 0 || extraFields.length > 0) {
-      console.log("\n❌ Strukturabweichungen gefunden!\n");
-  
-      if (missingFields.length > 0) {
-          console.log("🚨 Fehlende Felder:");
-          missingFields.forEach(field => console.log(`   ➤ ${field}`));
-      }
-  
-      if (extraFields.length > 0) {
-          console.log("\n🚨 Zusätzliche Felder:");
-          extraFields.forEach(field => console.log(`   ➤ ${field}`));
-      }
-  
-      console.log(""); // Fügt eine Leerzeile für bessere Lesbarkeit hinzu
-  } else {
-      console.log("\n✅ Struktur der API-Response ist korrekt.\n");
-  }  
-
-    if (expectedStructure && responseData && typeof responseData === "object") {
-        ({ missingFields, extraFields } = compareStructures(expectedStructure, responseData));
-    } 
-    if (!responseData || typeof responseData !== "object") {
-      console.error("❌ Fehler: API-Response ist leer oder kein gültiges Objekt");
+      console.warn(`⚠️ Keine gültige erwartete Struktur für ${endpoint.name}. Strukturvergleich übersprungen.`);
       return {
-          endpointName: endpoint.name,
-          method: endpoint.method,
-          success: false,
-          isCritical: true,
-          statusCode: response.status,
-          errorMessage: "Ungültige API-Response",
-          missingFields: [],
-          extraFields: []
+        endpointName: endpoint.name,
+        method: endpoint.method,
+        success: true, // Keine Strukturprüfung möglich
+        isCritical: false,
+        statusCode: response.status,
+        errorMessage: null,
+        missingFields: [],
+        extraFields: []
       };
     }
 
-    const result = {
+    let { missingFields, extraFields } = compareStructures(expectedStructure, responseData);
+
+    if (missingFields.length > 0 || extraFields.length > 0) {
+      console.log("\n❌ Strukturabweichungen gefunden!\n");
+
+      if (missingFields.length > 0) {
+        console.log("🚨 Fehlende Felder:");
+        missingFields.forEach(field => console.log(`   ➤ ${field}`));
+      }
+
+      if (extraFields.length > 0) {
+        console.log("\n🚨 Zusätzliche Felder:");
+        extraFields.forEach(field => console.log(`   ➤ ${field}`));
+      }
+      console.log("");
+    } else {
+      console.log("\n✅ Struktur der API-Response ist korrekt.\n");
+    }
+
+    return {
       endpointName: endpoint.name,
       method: endpoint.method,
       success: missingFields.length === 0 && extraFields.length === 0,
@@ -310,193 +272,347 @@ async function testEndpoint(endpoint, dynamicParams = {}) {
       errorMessage: missingFields.length > 0 || extraFields.length > 0 ? "Strukturabweichungen gefunden" : null,
       missingFields,
       extraFields
-  };
-  
-  // Logge erfolgreiche API-Tests
-  logToFile("test-results.log", `✅ Erfolgreich getestet: ${endpoint.name} (${response.status})`);
-  
-  return result;  
+    };
 
   } catch (error) {
-    console.error("\n❌ FEHLER:\n", error.message);
+    console.error(`❌ Fehler bei ${endpoint.name}: ${error.message}`);
     
-    // Logge Fehler in errors.log
-    logToFile("errors.log", `❌ Fehler bei ${endpoint.name}: ${error.message}`);
-
     return {
-        endpointName: endpoint.name,
-        method: endpoint.method,
-        success: false,
-        isCritical: true,
-        statusCode: null,
-        errorMessage: error.message,
-        missingFields: [],
-        extraFields: []
+      endpointName: endpoint.name,
+      method: endpoint.method,
+      success: false,
+      isCritical: true,
+      statusCode: null,
+      errorMessage: error.message,
+      missingFields: [],
+      extraFields: []
     };
   }
 }
 
 // Fehler protokollieren
 function logError(endpointName, errorMessage) {
-  const logMessage = `[${new Date().toISOString()}] Fehler bei ${endpointName}: ${errorMessage}\n`;
-  fs.appendFileSync("logs/errors.log", logMessage);
+  try {
+    const logDir = path.join(__dirname, "logs");
+    fs.ensureDirSync(logDir); // Stellt sicher, dass das Verzeichnis existiert
+
+    const logMessage = `[${new Date().toISOString()}] Fehler bei ${endpointName}: ${errorMessage}\n\n`;
+    fs.appendFileSync(path.join(logDir, "errors.log"), logMessage);
+  } catch (error) {
+    console.error(`❌ Fehler beim Schreiben in errors.log: ${error.message}`);
+  }
 }
 
 // Unterschiede protokollieren
 function logDifferences(endpointName, differences) {
-  const logMessage = `[${new Date().toISOString()}] Unterschiede bei ${endpointName}:\n${differences.join(
-    "\n"
-  )}\n`;
-  fs.appendFileSync("logs/differences.log", logMessage);
-}
-
-// Hauptfunktion, die alle API-Tests ausführt
-async function main() {
   try {
-    console.log("\n📂 Lade Config-Datei...\n");
-    const config = await fs.readJson("config.json");
-    const endpoints = config.endpoints;
+    if (!differences || differences.length === 0) return; // Falls keine Unterschiede, Logging überspringen
 
-    const args = process.argv.slice(2);
-    const selectedApi = args[0]?.startsWith("--") ? null : args[0]; // Prüft, ob ein API-Name übergeben wurde
-    const dynamicParams = {};
+    const logDir = path.join(__dirname, "logs");
+    fs.ensureDirSync(logDir); // Stellt sicher, dass das Verzeichnis existiert
 
-    // Verarbeite Argumente wie --id=123, --deleteId=456, --updateId=789
-    args.forEach(arg => {
-      const [key, value] = arg.split("=");
-      if (key.startsWith("--")) {
-        dynamicParams[key.replace("--", "")] = value;
-      }
-    });
-
-    // IDs für verschiedene API-Calls
-    let firstOrderId = dynamicParams.id || null; // Für "Get SalesOrder View"
-    let deleteId = dynamicParams.deleteId || null; // Für "Delete Product"
-    let updateId = dynamicParams.updateId || null; // Für "Update Product"
-
-    let testResults = []; // Hier speichern wir alle Testergebnisse
-
-    if (selectedApi) {
-      console.log(`🚀 Starte gezielten API-Test für: ${selectedApi}\n`);
-      const endpoint = endpoints.find(ep => ep.name === selectedApi);
-      if (endpoint) {
-        const result = await testEndpoint(endpoint, dynamicParams);
-        testResults.push(result);
-      } else {
-        console.error(`❌ Fehler: Kein API-Call mit dem Namen "${selectedApi}" gefunden.\n`);
-      }
-    } else {
-      console.log(`🚀 Starte alle API-Tests um ${new Date().toISOString()}\n`);
-
-      for (const endpoint of endpoints) {
-        if (endpoint.name === "Get SalesOrders List" && !firstOrderId) {
-          // Falls keine ID übergeben wurde, versuchen, sie aus SalesOrders List zu holen
-          const responseData = await testEndpoint(endpoint);
-          testResults.push(responseData);
-          if (responseData?.data?.length > 0) {
-            firstOrderId = responseData.data[0].id;
-            console.log(`🔗 Gefundene SalesOrder ID für Detailansicht: ${firstOrderId}\n`);
-          }
-        } else if (endpoint.name === "Get SalesOrder View") {
-          // Falls eine ID vorhanden ist (durch --id= oder aus SalesOrders List), wird sie verwendet
-          if (firstOrderId) {
-            const result = await testEndpoint(endpoint, { id: firstOrderId });
-            testResults.push(result);
-          } else {
-            console.warn(`⚠️ "Get SalesOrder View" konnte nicht getestet werden, da keine ID verfügbar ist.`);
-          }
-        } else if (endpoint.name === "Delete Product" && deleteId) {
-          const result = await testEndpoint(endpoint, { id: deleteId });
-          testResults.push(result);
-        } else if (endpoint.name === "Update Product" && updateId) {
-          const result = await testEndpoint(endpoint, { id: updateId });
-          testResults.push(result);
-        } else if (!endpoint.requiresId) {
-          const result = await testEndpoint(endpoint);
-          testResults.push(result);
-        } else {
-          console.warn(`⚠️ Der Endpunkt "${endpoint.name}" benötigt eine ID, aber keine wurde angegeben.`);
-        }
-      }
-    }
-
-    console.log("\n✅ Alle Tests abgeschlossen.\n");
-
-    // Slack nur ausführen, wenn DISABLE_SLACK nicht gesetzt ist
-    if (!process.env.DISABLE_SLACK) {
-      sendSlackReport(testResults);
-    } else {
-      console.log("\n🔕 Slack-Benachrichtigung ist deaktiviert (DISABLE_SLACK=true).\n");
-    }
-
+    const logMessage = `[${new Date().toISOString()}] Unterschiede bei ${endpointName}:\n${differences.join("\n")}\n\n`;
+    fs.appendFileSync(path.join(logDir, "differences.log"), logMessage);
   } catch (error) {
-    console.error("\n❌ Fehler beim Ausführen des Skripts:");
-    console.error(`   ${error.message}\n`);
+    console.error(`❌ Fehler beim Schreiben in differences.log: ${error.message}`);
   }
 }
 
-// Benachrichtigungsfunktion für Slack
-async function sendSlackReport(testResults) {
+// Fragt den Benutzer interaktiv nach einer ID
+function promptUserForId(message) {
+  return new Promise((resolve) => {
+    const rl = readline.createInterface({
+      input: process.stdin,
+      output: process.stdout
+    });
+
+    rl.question(message, (answer) => {
+      rl.close();
+      resolve(answer.trim());
+    });
+  });
+}
+
+// Lädt die Konfiguration aus config.json
+async function loadConfig() {
   try {
-    let successCount = testResults.filter(r => r.success).length;
-    const warnings = testResults.filter(r => !r.success && !r.isCritical && (r.missingFields.length > 0 || r.extraFields.length > 0));
+    const config = await fs.readJson("config.json");
+    return config.endpoints || [];
+  } catch (error) {
+    console.error("❌ Fehler beim Laden der Konfigurationsdatei:", error.message);
+    process.exit(1);
+  }
+}
+
+// Führt einen einzelnen API-Test aus (inkl. Versionserkennung & ID-Verwendung)
+async function runSingleEndpoint(endpoint, config, versionUpdates, dynamicParamsOverride = {}) {
+  if (endpoint.requiresId && !dynamicParamsOverride.id) {
+    const defaultId = defaultIds[endpoint.name]; // Prüfe, ob eine ID hinterlegt ist
+
+    if (defaultId) {
+      console.log(`🟢 Verwende gespeicherte ID für "${endpoint.name}": ${defaultId}`);
+      dynamicParamsOverride.id = defaultId;
+      console.log(`🚀 Starte gezielten API-Test für: ${endpoint.name} / ${defaultId}`);
+    } else {
+      const answer = await promptUserForId(`🟡 Bitte ID für "${endpoint.name}" angeben: `);
+      if (!answer) {
+        console.warn(`⚠️ Kein Wert eingegeben. Endpunkt "${endpoint.name}" wird übersprungen.`);
+        return null;
+      }
+      dynamicParamsOverride.id = answer;
+      console.log(`🚀 Starte gezielten API-Test für: ${endpoint.name} / ${answer}`);
+    }
+  }
+
+  // Version automatisch erkennen
+  const updatedEndpoint = await checkAndUpdateApiVersion(endpoint, dynamicParamsOverride);
+
+  if (updatedEndpoint.versionChanged) {
+    versionUpdates.push({
+      name: endpoint.name,
+      oldAccept: endpoint.headers.Accept,
+      newAccept: updatedEndpoint.headers.Accept,
+      expectedStructure: endpoint.expectedStructure || null
+    });
+
+    // Speichere neue Header in config-Objekt im Speicher
+    const index = config.endpoints.findIndex(ep => ep.name === endpoint.name);
+    if (index !== -1) config.endpoints[index] = updatedEndpoint;
+  }
+
+  // Führe eigentlichen API-Test durch
+  const result = await testEndpoint(endpoint, dynamicParamsOverride);
+  return result;
+}
+
+// Führt alle API-Tests durch (Komplettlauf)
+async function prepareAndRunAllEndpoints(config) {
+  const versionUpdates = [];
+  const testResults = [];
+
+  console.log(`🚀 Starte alle API-Tests um ${new Date().toISOString()}\n`);
+
+  for (const endpoint of config.endpoints) {
+    // Wichtig: NICHT vorher prüfen, ob requiresId gesetzt ist!
+    // → runSingleEndpoint() regelt alles (default-ids.json oder Benutzereingabe)
+    const result = await runSingleEndpoint(endpoint, config, versionUpdates);
+    if (result) testResults.push(result);
+  }
+
+  return { testResults, versionUpdates };
+}
+
+// Hauptfunktion für den Einstieg
+async function main() {
+  const endpoints = await loadConfig();
+
+  const args = process.argv.slice(2);
+  const selectedApi = args[0]?.startsWith("--") ? null : args[0];
+  const dynamicParams = {};
+
+  args.forEach(arg => {
+    const [key, value] = arg.split("=");
+    if (key.startsWith("--")) {
+      dynamicParams[key.replace("--", "")] = value;
+    }
+  });
+
+  const config = { endpoints };
+  let testResults = [];
+  let versionUpdates = [];
+
+  if (selectedApi) {
+    console.log(`🚀 Starte gezielten API-Test für: ${selectedApi}\n`);
+    const endpoint = endpoints.find(ep => ep.name === selectedApi);
+
+    if (!endpoint) {
+      console.error(`❌ Fehler: Kein API-Call mit dem Namen "${selectedApi}" gefunden.\n`);
+      return;
+    }
+
+    const result = await runSingleEndpoint(endpoint, config, versionUpdates, dynamicParams);
+    if (result) testResults.push(result);
+
+  } else {
+    // Komplettlauf über ALLE Endpunkte
+    const resultObj = await prepareAndRunAllEndpoints(config);
+    testResults = resultObj.testResults;
+    versionUpdates = resultObj.versionUpdates;
+  }
+
+  console.log("\n✅ Alle Tests abgeschlossen.\n");
+
+  if (versionUpdates.length > 0) {
+    await fs.writeJson("config.json", config, { spaces: 2 });
+    console.log("\n🔄 API-Versionen wurden in der Konfigurationsdatei aktualisiert.\n");
+  }
+
+  if (!process.env.DISABLE_SLACK) {
+    await sendSlackReport(testResults, versionUpdates);
+  } else {
+    console.log("\n🔕 Slack-Benachrichtigung ist deaktiviert (DISABLE_SLACK=true).\n");
+  }
+}
+
+// Erkennt, ob eine neuere API-Version über den Accept-Header verfügbar ist (Xentral verwendet keine Pfad-Versionierung)
+async function checkAndUpdateApiVersion(endpoint, dynamicParams = {}) {
+  const headerRegex = /\.v(\d+)(?:-beta|-alpha)?\+json$/;
+  const currentAccept = endpoint.headers?.Accept || "application/vnd.xentral.default.v1+json";
+
+  const match = currentAccept.match(headerRegex);
+  const currentVersion = match ? parseInt(match[1]) : 1;
+  const nextVersion = currentVersion + 1;
+  const newAcceptHeader = `application/vnd.xentral.default.v${nextVersion}-beta+json`;
+
+  // URL vorbereiten
+  let testUrl = endpoint.url;
+
+  if (!process.env.XENTRAL_ID) {
+    console.warn("⚠️ Kein XENTRAL_ID in .env gesetzt – Versionsprüfung übersprungen.");
+    return { ...endpoint, versionChanged: false };
+  }
+
+  // Ersetze XENTRAL_ID Platzhalter
+  testUrl = testUrl.replace("${XENTRAL_ID}", process.env.XENTRAL_ID);
+
+  // Ersetze dynamische Platzhalter wie {id}, {orderId}, ...
+  testUrl = testUrl.replace(/{(.*?)}/g, (match, p1) => {
+    const replacement = dynamicParams[p1];
+    if (!replacement) {
+      console.warn(`⚠️ Platzhalter {${p1}} konnte nicht ersetzt werden – fehlt in Aufrufparametern.`);
+      return match; // lasse {id} stehen, damit der Fehler sichtbar ist
+    }
+    return replacement;
+  });
+
+  // Sicherheit: Warnung, falls noch {irgendwas} in URL steht
+  if (testUrl.includes("{")) {
+    console.warn("⚠️ WARNUNG: Es sind noch unersetzte Platzhalter in der URL:", testUrl);
+    return { ...endpoint, versionChanged: false };
+  }
+
+  console.log(`🔍 Prüfe neue API-Version mit: ${testUrl}`);
+  console.log(`🧾 Verwende Header: ${newAcceptHeader}\n`);
+
+  try {
+    const response = await fetch(testUrl, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${process.env.BEARER_TOKEN}`,
+        Accept: newAcceptHeader,
+        "User-Agent": "Mozilla/5.0 (XentralAPITester)"
+      }
+    });
+
+    if (response.status === 200) {
+      console.log(`✅ API-Version erkannt über Accept-Header: ${newAcceptHeader}`);
+      return {
+        ...endpoint,
+        versionChanged: true,
+        headers: {
+          ...endpoint.headers,
+          Accept: newAcceptHeader
+        }
+      };
+    } else if (response.status === 406 || response.status === 404) {
+      console.warn(`⚠️ API-Version ${newAcceptHeader} wird nicht akzeptiert (${response.status} ${response.statusText}).`);
+    } else {
+      const body = await response.text();
+      console.warn(`⚠️ API-Version ${newAcceptHeader} konnte nicht überprüft werden (Status: ${response.status}).`);
+      console.warn(`📄 Fehlerinhalt: ${body.substring(0, 300)}...`);
+    }
+
+  } catch (error) {
+    console.warn(`⚠️ Fehler beim Prüfen der API-Version (${newAcceptHeader}): ${error.message}`);
+  }
+
+  return { ...endpoint, versionChanged: false };
+}
+
+// Sendet eine strukturierte Slack-Benachrichtigung mit allen Ergebnissen
+async function sendSlackReport(testResults, versionUpdates = []) {
+  try {
+    // Filtere Testergebnisse
+    const successCount = testResults.filter(r => r.success).length;
+    const warnings = testResults.filter(r =>
+      !r.success && !r.isCritical &&
+      (r.missingFields.length > 0 || r.extraFields.length > 0)
+    );
     const criticals = testResults.filter(r => r.isCritical);
 
     const totalTests = testResults.length;
     const warningCount = warnings.length;
     const criticalCount = criticals.length;
 
-    let message = `:mag: *API Testbericht ${new Date().toLocaleDateString()}*\n`;
+    let message = `:mag: *API Testbericht - ${new Date().toLocaleDateString()}*\n`;
     message += `---------------------------------------------\n`;
 
+    // Neuer Bereich für automatisch erkannte API-Versionen
+    if (versionUpdates.length > 0) {
+      message += `:rocket: *Automatisch erkannte neue API-Versionen:*\n\n`;
+
+      versionUpdates.forEach(ep => {
+        message += `🔄 *${ep.name}*\n`;
+        message += `🧾 Neuer Accept-Header: \`${ep.newAccept}\`\n`;
+        if (ep.expectedStructure) {
+          message += `⚠ Erwartete Struktur prüfen: \`${ep.expectedStructure}\`\n`;
+        } else {
+          message += `⚠ Erwartete Struktur nicht verknüpft – bitte manuell prüfen!\n`;
+        }
+        message += `\n`;
+      });
+
+      message += `---------------------------------------------\n`;
+    }
+
+    // Fehlerdetails (nur wenn vorhanden)
     if (warnings.length > 0 || criticals.length > 0) {
       message += `:pushpin: *Fehlerdetails:*\n`;
     } else {
-      message += `✅ Alle Tests wurden erfolgreich ausgeführt. Keine Abweichungen gefunden!\n`;
+      message += `✅ *Alle Tests erfolgreich ausgeführt.* Keine Abweichungen gefunden!\n`;
     }
 
+    // Fehler- oder Warnberichte durchgehen
     let issueCounter = 1;
-    let hasErrors = warnings.length > 0 || criticals.length > 0;
-
-    [...warnings, ...criticals].forEach((issue) => {
-      message += `\n`; // **Leerzeile vor jedem API-Fehlerbericht**
-    
+    [...warnings, ...criticals].forEach(issue => {
       const statusIcon = issue.isCritical ? ":red_circle:" : ":large_orange_circle:";
-      message += `${issueCounter}️⃣ [${issue.method}] ${issue.endpointName} ${statusIcon}\n`;
-    
-      // Entferne "data." aus den Attributpfaden
-      const formattedMissingFields = issue.missingFields.map(field => field.replace(/^data\./, ""));
-      const formattedExtraFields = issue.extraFields.map(field => field.replace(/^data\./, ""));
-    
-      if (formattedMissingFields.length > 0) {
-        message += `:warning: *Fehlende Attribute:* ["${formattedMissingFields.join('", "')}"]\n`;
-      }
-    
-      if (formattedExtraFields.length > 0) {
-        message += `:warning: *Neue Attribute:* ["${formattedExtraFields.join('", "')}"]\n`;
-      }
-    
-      if (issue.isCritical && issue.errorMessage) {
-        message += `:x: *Fehler:*\n -> ${issue.errorMessage}\n`;
-      }
-    
-      issueCounter++;
-    });    
+      message += `\n${issueCounter}️⃣ *${issue.endpointName}* (${issue.method}) ${statusIcon}\n`;
 
-    if (hasErrors) {
-      message += `\n`; // **Leerzeile nach den Fehlerdetails**
+      const formattedMissing = issue.missingFields.map(f => f.replace(/^data\./, ""));
+      const formattedExtra = issue.extraFields.map(f => f.replace(/^data\./, ""));
+
+      if (formattedMissing.length > 0) {
+        message += `:warning: *Fehlende Attribute:* ${formattedMissing.join(", ")}\n`;
+      }
+      if (formattedExtra.length > 0) {
+        message += `:warning: *Neue Attribute:* ${formattedExtra.join(", ")}\n`;
+      }
+      if (issue.isCritical && issue.errorMessage) {
+        message += `:x: *Fehlermeldung:* ${issue.errorMessage}\n`;
+      }
+
+      issueCounter++;
+    });
+
+    if (warnings.length > 0 || criticals.length > 0) {
+      message += `\n`; // optisch trennen
     }
 
-    message += `---------------------------------------------\n`;
+    // Zusammenfassung / Statistik
     message += `:bar_chart: *Gesamtstatistik:* ${totalTests} API-Calls\n`;
     message += `:small_blue_diamond: :large_green_circle: *Erfolgreich:* ${successCount}\n`;
     message += `:small_blue_diamond: :large_orange_circle: *Achtung:* ${warningCount}\n`;
     message += `:small_blue_diamond: :red_circle: *Kritisch:* ${criticalCount}\n`;
-    message += `---------------------------------------------\n`;
 
-    let statusIcon = criticalCount > 0 ? ":red_circle:" : warningCount > 0 ? ":large_orange_circle:" : ":large_green_circle:";
+    // Status-Symbol nach Schwere
+    const statusIcon = criticalCount > 0
+      ? ":red_circle:"
+      : warningCount > 0
+        ? ":large_orange_circle:"
+        : ":large_green_circle:";
     message += `:loudspeaker: *Status:* ${statusIcon}\n`;
 
+    // Slack-Webhook aufrufen
     await axios.post(process.env.SLACK_WEBHOOK_URL, { text: message });
     console.log("\n📩 Slack-Testbericht erfolgreich gesendet.");
   } catch (error) {

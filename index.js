@@ -38,7 +38,6 @@ function compareStructures(expected, actual, path = "") {
     return { missingFields, extraFields, typeMismatches };
   }
 
-  // Prüfen, ob eines der Objekte ein Array ist und das andere nicht
   if (Array.isArray(expected) !== Array.isArray(actual)) {
     typeMismatches.push(
       `Typen stimmen nicht überein bei ${path || "root"}: erwartet ${
@@ -48,14 +47,11 @@ function compareStructures(expected, actual, path = "") {
     return { missingFields, extraFields, typeMismatches };
   }
 
-  // Falls das erwartete Objekt ein Array ist, prüfen wir die Elemente
   if (Array.isArray(expected)) {
-    if (actual.length === 0) {
-      return { missingFields, extraFields, typeMismatches }; // Kein Fehler, wenn `actual` leer ist
-    }
+    if (actual.length === 0) return { missingFields, extraFields, typeMismatches };
 
     for (let i = 0; i < expected.length; i++) {
-      const result = compareStructures(expected[0], actual[i], `${path}[${i}]`);
+      const result = compareStructures(expected[0], actual[i], path);
       missingFields.push(...result.missingFields);
       extraFields.push(...result.extraFields);
       typeMismatches.push(...result.typeMismatches);
@@ -63,7 +59,6 @@ function compareStructures(expected, actual, path = "") {
     return { missingFields, extraFields, typeMismatches };
   }
 
-  // Überprüfen, ob Felder fehlen oder Typen nicht übereinstimmen
   for (const key in expected) {
     if (!Object.hasOwn(actual, key)) {
       missingFields.push(`${path ? path + "." : ""}${key}`);
@@ -73,7 +68,6 @@ function compareStructures(expected, actual, path = "") {
       const expectedType = typeof expectedValue;
       const actualType = typeof actualValue;
 
-      // Erlaube `null` für bestimmte erwartete Typen
       const isNullableString = expectedValue === "string|null" && (actualValue === null || actualType === "string");
       const isNullableNumber = expectedValue === "number|null" && (actualValue === null || actualType === "number");
       const isNullableBoolean = expectedValue === "boolean|null" && (actualValue === null || actualType === "boolean");
@@ -91,7 +85,6 @@ function compareStructures(expected, actual, path = "") {
         typeMismatches.push(`${path ? path + "." : ""}${key}: erwartet ${expectedType}, erhalten ${actualType}`);
       }
 
-      // Falls der Wert ein Objekt ist, rekursiv weiter prüfen
       if (expectedType === "object" && expectedValue !== null && actualValue !== null) {
         const result = compareStructures(expectedValue, actualValue, `${path ? path + "." : ""}${key}`);
         missingFields.push(...result.missingFields);
@@ -101,23 +94,27 @@ function compareStructures(expected, actual, path = "") {
     }
   }
 
-  // Prüfen, ob es zusätzliche Felder in der API-Response gibt
   for (const key in actual) {
     if (!Object.hasOwn(expected, key)) {
       extraFields.push(`${path ? path + "." : ""}${key}`);
     }
   }
 
+  // Entferne "data[0]." für saubere Slack-Ausgabe
+  const cleanPath = (entry) => entry.replace(/^data\[0\]\./, "");
+
   return {
-    missingFields: missingFields.map((f) => f.replace(/^data\./, "")), // Entfernt "data." für bessere Anzeige
-    extraFields: extraFields.map((f) => f.replace(/^data\./, "")), // Entfernt "data."
-    typeMismatches,
+    // Entfernt "data[0]." und "data." aus den Pfaden für bessere Lesbarkeit in Konsole & Slack
+    missingFields: missingFields.map(f => f.replace(/^data\[0\]\./, "").replace(/^data\./, "")),
+    extraFields: extraFields.map(f => f.replace(/^data\[0\]\./, "").replace(/^data\./, "")),
+    typeMismatches
   };  
 }
 
 // Funktion für API-Endpunkte: führt den Request aus und vergleicht das Ergebnis mit der erwarteten Struktur
 async function testEndpoint(endpoint, dynamicParams = {}, retryCount = 0) {
   try {
+    // Prüfe, ob eine ID notwendig ist, aber nicht vorhanden
     if (endpoint.requiresId && (!dynamicParams.id || dynamicParams.id.trim() === "")) {
       throw new Error(`Der Endpunkt "${endpoint.name}" benötigt eine ID, aber keine wurde angegeben.`);
     }
@@ -125,117 +122,99 @@ async function testEndpoint(endpoint, dynamicParams = {}, retryCount = 0) {
     if (!process.env.XENTRAL_ID) {
       throw new Error("Fehler: XENTRAL_ID ist nicht definiert.");
     }
-    
+
+    // URL mit Platzhaltern ersetzen
     let url = endpoint.url.replace("${XENTRAL_ID}", process.env.XENTRAL_ID);
-
     for (const param in dynamicParams) {
-      if (url.includes(`{${param}}`)) {
-        url = url.replace(`{${param}}`, dynamicParams[param]);
-      }
-    }
-    
-    if (url.includes("{id}")) {
-      throw new Error(`Fehler: Die ID wurde nicht korrekt ersetzt! URL: ${url}`);
+      url = url.replace(`{${param}}`, dynamicParams[param]);
     }
 
+    // Query-Parameter anhängen
     const queryParams = new URLSearchParams(endpoint.query || {});
     let body = null;
 
-    if (["POST", "PUT", "PATCH", "DELETE"].includes(endpoint.method)) {
-      if (endpoint.bodyFile) {
-        const bodyPath = path.join(__dirname, endpoint.bodyFile);
-        if (fs.existsSync(bodyPath)) {
-          body = fs.readJsonSync(bodyPath);
-        } else {
-          throw new Error(`Fehler: Die Datei für den Request-Body existiert nicht: ${bodyPath}`);
-        }
-      } else if (endpoint.method === "DELETE") {
-        body = null;
+    // Falls ein Body benötigt wird (POST, PUT, PATCH)
+    if (["POST", "PUT", "PATCH"].includes(endpoint.method) && endpoint.bodyFile) {
+      const bodyPath = path.join(__dirname, endpoint.bodyFile);
+      if (fs.existsSync(bodyPath)) {
+        body = fs.readJsonSync(bodyPath);
+      } else {
+        throw new Error(`Fehler: Die Datei für den Request-Body existiert nicht: ${bodyPath}`);
       }
     }
 
+    // Request abschicken
     const response = await fetch(`${url}?${queryParams.toString()}`, {
       method: endpoint.method,
       headers: {
         Authorization: `Bearer ${process.env.BEARER_TOKEN}`,
-        "Content-Type": "application/json",
-        Accept: endpoint.headers?.Accept || "application/vnd.xentral.VARIANT.v1+json" // Standard v1, falls nichts anderes gesetzt ist
+        Accept: endpoint.headers?.Accept || "application/json",
+        ...(endpoint.method !== "GET" && { "Content-Type": "application/json" })
       },
-      body: body ? JSON.stringify(body) : (endpoint.method === "DELETE" ? null : undefined)
-    });    
+      body: body ? JSON.stringify(body) : undefined
+    });
 
+    // Wiederholung bei Serverfehler (max. 3x)
     if ([500, 502, 503].includes(response.status) && retryCount < 3) {
       return testEndpoint(endpoint, dynamicParams, retryCount + 1);
     }
 
+    // 📦 Body ein einziges Mal lesen (wichtig!)
+    let responseText;
+    try {
+      responseText = await response.text();
+    } catch (err) {
+      console.warn(`⚠️ Antwort konnte nicht gelesen werden: ${err.message}`);
+      responseText = "";
+    }
+
+    // ❗ Falls Request fehlschlägt
     if (!response.ok) {
-      let errorText;
-      try {
-        errorText = await response.json();
-      } catch {
-        errorText = await response.text();
-      }
-      throw new Error(`HTTP-Fehler: ${response.status} - ${JSON.stringify(errorText)}`);
+      throw new Error(`HTTP-Fehler: ${response.status} - ${responseText}`);
     }
 
-    const contentType = response.headers.get("content-type") || "";
+    // 🚀 Versuche, die Antwort als JSON zu parsen
     let responseData = {};
-
-    if (contentType.includes("json")) {
-      try {
-        responseData = await response.json();
-        if (responseData && Object.keys(responseData).length > 0) {
-          const responseDir = path.join(__dirname, "responses");
-          if (!fs.existsSync(responseDir)) {
-            fs.mkdirSync(responseDir, { recursive: true });
-          }
-          const responseFilePath = path.join(responseDir, `${endpoint.name.replace(/\s+/g, "_")}_response.json`);
-          fs.writeFileSync(responseFilePath, JSON.stringify(responseData, null, 2));
-        }
-      } catch (error) {
-        console.error(`Fehler beim Parsen der API-Response: ${error.message}`);
-      }
-    } else {
-      responseData = {};
+    try {
+      responseData = JSON.parse(responseText);
+    } catch {
+      console.warn("⚠️ Antwort ist kein gültiges JSON.");
     }
 
-    if (endpoint.method === "DELETE") {
+    // Speichere Response (falls sinnvoll)
+    if (responseData && Object.keys(responseData).length > 0) {
+      const responseDir = path.join(__dirname, "responses");
+      if (!fs.existsSync(responseDir)) fs.mkdirSync(responseDir, { recursive: true });
+      const responseFilePath = path.join(responseDir, `${endpoint.name.replace(/\s+/g, "_")}_response.json`);
+      fs.writeFileSync(responseFilePath, JSON.stringify(responseData, null, 2));
+    }
+
+    // Für DELETE oder POST/PUT/PATCH gibt es keinen Strukturvergleich
+    if (["DELETE", "POST", "PUT", "PATCH"].includes(endpoint.method)) {
       return {
         endpointName: endpoint.name,
         method: endpoint.method,
         success: response.ok,
         isCritical: !response.ok,
         statusCode: response.status,
-        errorMessage: response.ok ? null : `Fehlercode: ${response.status}`,
+        errorMessage: !response.ok ? `Fehlercode: ${response.status}` : null,
         missingFields: [],
         extraFields: []
       };
     }
 
-    if (["POST", "PUT", "PATCH"].includes(endpoint.method)) {
-      return {
-        endpointName: endpoint.name,
-        method: endpoint.method,
-        success: response.status >= 200 && response.status < 300,
-        isCritical: response.status >= 400,
-        statusCode: response.status,
-        errorMessage: response.status >= 400 ? `Fehlercode: ${response.status}` : null,
-        missingFields: [],
-        extraFields: []
-      };
-    }
-
+    // Strukturvergleich starten
     let expectedStructure = null;
     if (endpoint.expectedStructure && fs.existsSync(endpoint.expectedStructure)) {
       expectedStructure = await fs.readJson(endpoint.expectedStructure);
     }
 
-    if (!expectedStructure || typeof expectedStructure !== "object") {
+    if (!expectedStructure) {
       console.warn(`⚠️ Keine gültige erwartete Struktur für ${endpoint.name}. Strukturvergleich übersprungen.`);
       return {
         endpointName: endpoint.name,
         method: endpoint.method,
-        success: true, // Keine Strukturprüfung möglich
+        success: true,
         isCritical: false,
         statusCode: response.status,
         errorMessage: null,
@@ -244,21 +223,25 @@ async function testEndpoint(endpoint, dynamicParams = {}, retryCount = 0) {
       };
     }
 
-    let { missingFields, extraFields } = compareStructures(expectedStructure, responseData);
+    const { missingFields, extraFields, typeMismatches } = compareStructures(expectedStructure, responseData);
 
-    if (missingFields.length > 0 || extraFields.length > 0) {
-      console.log("\n❌ Strukturabweichungen gefunden!\n");
+    if (missingFields.length > 0 || extraFields.length > 0 || typeMismatches.length > 0) {
+      console.log(`\n❌ Strukturabweichungen gefunden!\n`);
 
       if (missingFields.length > 0) {
         console.log("🚨 Fehlende Felder:");
-        missingFields.forEach(field => console.log(`   ➤ ${field}`));
+        missingFields.forEach(f => console.log(`   ➤ ${f}`));
       }
 
       if (extraFields.length > 0) {
         console.log("\n🚨 Zusätzliche Felder:");
-        extraFields.forEach(field => console.log(`   ➤ ${field}`));
+        extraFields.forEach(f => console.log(`   ➤ ${f}`));
       }
-      console.log("");
+
+      if (typeMismatches.length > 0) {
+        console.log("\n🚨 Typabweichungen:");
+        typeMismatches.forEach(t => console.log(`   ➤ ${t}`));
+      }
     } else {
       console.log("\n✅ Struktur der API-Response ist korrekt.\n");
     }
@@ -266,17 +249,18 @@ async function testEndpoint(endpoint, dynamicParams = {}, retryCount = 0) {
     return {
       endpointName: endpoint.name,
       method: endpoint.method,
-      success: missingFields.length === 0 && extraFields.length === 0,
+      success: missingFields.length === 0 && extraFields.length === 0 && typeMismatches.length === 0,
       isCritical: false,
       statusCode: response.status,
-      errorMessage: missingFields.length > 0 || extraFields.length > 0 ? "Strukturabweichungen gefunden" : null,
+      errorMessage: (missingFields.length > 0 || extraFields.length > 0 || typeMismatches.length > 0)
+        ? "Strukturabweichungen gefunden"
+        : null,
       missingFields,
       extraFields
     };
 
   } catch (error) {
     console.error(`❌ Fehler bei ${endpoint.name}: ${error.message}`);
-    
     return {
       endpointName: endpoint.name,
       method: endpoint.method,
@@ -370,11 +354,10 @@ async function runSingleEndpoint(endpoint, config, versionUpdates, dynamicParams
   if (updatedEndpoint.versionChanged) {
     versionUpdates.push({
       name: endpoint.name,
-      oldAccept: endpoint.headers.Accept,
-      newAccept: updatedEndpoint.headers.Accept,
-      expectedStructure: endpoint.expectedStructure || null
+      url: updatedEndpoint.url,
+      expectedStructure: endpoint.expectedStructure // für Slack-Ausgabe
     });
-
+    
     // Speichere neue Header in config-Objekt im Speicher
     const index = config.endpoints.findIndex(ep => ep.name === endpoint.name);
     if (index !== -1) config.endpoints[index] = updatedEndpoint;
@@ -454,139 +437,141 @@ async function main() {
   }
 }
 
-// Erkennt, ob eine neuere API-Version über den Accept-Header verfügbar ist (Xentral verwendet keine Pfad-Versionierung)
+// Diese Funktion erkennt automatisch eine höhere API-Version über die URL.
+// Sie ersetzt z. B. /v1/ durch /v2/ und testet, ob diese neue Version gültig ist.
+// Wenn sie erfolgreich ist (Status 200), wird die config.json aktualisiert.
+// Sobald eine neue Version nicht akzeptiert wird (404, 406 o.ä.), wird der Test abgebrochen.
 async function checkAndUpdateApiVersion(endpoint, dynamicParams = {}) {
-  const headerRegex = /\.v(\d+)(?:-beta|-alpha)?\+json$/;
-  const currentAccept = endpoint.headers?.Accept || "application/vnd.xentral.default.v1+json";
+  const versionRegex = /\/v(\d+)\//;
+  const match = endpoint.url.match(versionRegex);
+  const currentVersion = match ? parseInt(match[1]) : null;
 
-  const match = currentAccept.match(headerRegex);
-  const currentVersion = match ? parseInt(match[1]) : 1;
-  const nextVersion = currentVersion + 1;
-  const newAcceptHeader = `application/vnd.xentral.default.v${nextVersion}-beta+json`;
-
-  // URL vorbereiten
-  let testUrl = endpoint.url;
-
-  if (!process.env.XENTRAL_ID) {
-    console.warn("⚠️ Kein XENTRAL_ID in .env gesetzt – Versionsprüfung übersprungen.");
+  // Falls keine Versionsnummer in der URL → keine Prüfung nötig
+  if (!currentVersion) {
     return { ...endpoint, versionChanged: false };
   }
 
-  // Ersetze XENTRAL_ID Platzhalter
-  testUrl = testUrl.replace("${XENTRAL_ID}", process.env.XENTRAL_ID);
+  let testedVersion = currentVersion + 1;
 
-  // Ersetze dynamische Platzhalter wie {id}, {orderId}, ...
-  testUrl = testUrl.replace(/{(.*?)}/g, (match, p1) => {
-    const replacement = dynamicParams[p1];
-    if (!replacement) {
-      console.warn(`⚠️ Platzhalter {${p1}} konnte nicht ersetzt werden – fehlt in Aufrufparametern.`);
-      return match; // lasse {id} stehen, damit der Fehler sichtbar ist
+  // Teste nur die "nächsthöhere" Version – wenn sie nicht existiert, breche ab
+  while (testedVersion <= currentVersion + 5) {
+    // Neue URL zusammenbauen (z. B. /v2/ → /v3/)
+    const newUrl = endpoint.url.replace(`/v${currentVersion}/`, `/v${testedVersion}/`);
+
+    // Ersetze Platzhalter wie ${XENTRAL_ID} und {id}
+    let finalUrl = newUrl.replace("${XENTRAL_ID}", process.env.XENTRAL_ID || "");
+    for (const key in dynamicParams) {
+      finalUrl = finalUrl.replace(`{${key}}`, dynamicParams[key]);
     }
-    return replacement;
-  });
 
-  // Sicherheit: Warnung, falls noch {irgendwas} in URL steht
-  if (testUrl.includes("{")) {
-    console.warn("⚠️ WARNUNG: Es sind noch unersetzte Platzhalter in der URL:", testUrl);
-    return { ...endpoint, versionChanged: false };
-  }
+    console.log(`🔍 Prüfe neue API-Version über URL: ${finalUrl}`);
 
-  console.log(`🔍 Prüfe neue API-Version mit: ${testUrl}`);
-  console.log(`🧾 Verwende Header: ${newAcceptHeader}\n`);
-
-  try {
-    const response = await fetch(testUrl, {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${process.env.BEARER_TOKEN}`,
-        Accept: newAcceptHeader,
-        "User-Agent": "Mozilla/5.0 (XentralAPITester)"
-      }
-    });
-
-    if (response.status === 200) {
-      console.log(`✅ API-Version erkannt über Accept-Header: ${newAcceptHeader}`);
-      return {
-        ...endpoint,
-        versionChanged: true,
+    try {
+      const response = await fetch(finalUrl, {
+        method: "GET",
         headers: {
-          ...endpoint.headers,
-          Accept: newAcceptHeader
+          Authorization: `Bearer ${process.env.BEARER_TOKEN}`,
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          "User-Agent": "XentralAPITester"
         }
-      };
-    } else if (response.status === 406 || response.status === 404) {
-      console.warn(`⚠️ API-Version ${newAcceptHeader} wird nicht akzeptiert (${response.status} ${response.statusText}).`);
-    } else {
-      const body = await response.text();
-      console.warn(`⚠️ API-Version ${newAcceptHeader} konnte nicht überprüft werden (Status: ${response.status}).`);
-      console.warn(`📄 Fehlerinhalt: ${body.substring(0, 300)}...`);
+      });
+
+      if (response.status === 200) {
+        // Erfolg: neue Version gefunden → URL aktualisieren
+        console.log(`✅ Neue API-Version erkannt: /v${testedVersion}/`);
+        const updatedUrl = endpoint.url.replace(`/v${currentVersion}/`, `/v${testedVersion}/`);
+
+        return {
+          ...endpoint,
+          url: updatedUrl,
+          versionChanged: true
+        };
+      } else {
+        // Sobald die erste höhere Version nicht angenommen wird, abbrechen!
+        console.warn(`⛔️ Version /v${testedVersion}/ nicht akzeptiert (Status ${response.status}) – Abbruch.`);
+        break;
+      }
+
+    } catch (error) {
+      console.warn(`⚠️ Fehler beim Prüfen von /v${testedVersion}/: ${error.message}`);
+      break; // auch bei Netzproblemen oder Fehlern → abbrechen
     }
 
-  } catch (error) {
-    console.warn(`⚠️ Fehler beim Prüfen der API-Version (${newAcceptHeader}): ${error.message}`);
+    testedVersion++;
   }
 
+  // Falls keine neue Version gefunden wurde → Rückgabe wie ursprünglich
   return { ...endpoint, versionChanged: false };
 }
 
-// Sendet eine strukturierte Slack-Benachrichtigung mit allen Ergebnissen
+// Benachrichtigungsfunktion für Slack (angepasst für URL-basierte Versionen)
 async function sendSlackReport(testResults, versionUpdates = []) {
   try {
-    // Filtere Testergebnisse
     const successCount = testResults.filter(r => r.success).length;
     const warnings = testResults.filter(r =>
-      !r.success && !r.isCritical &&
-      (r.missingFields.length > 0 || r.extraFields.length > 0)
+      !r.success && !r.isCritical && (r.missingFields.length > 0 || r.extraFields.length > 0)
     );
     const criticals = testResults.filter(r => r.isCritical);
-
     const totalTests = testResults.length;
+
     const warningCount = warnings.length;
     const criticalCount = criticals.length;
 
-    let message = `:mag: *API Testbericht - ${new Date().toLocaleDateString()}*\n`;
+    let message = `:mag: *API Testbericht - ${new Date().toLocaleDateString("de-DE")}*\n`;
     message += `---------------------------------------------\n`;
 
-    // Neuer Bereich für automatisch erkannte API-Versionen
+    // Neue API-Versionen
     if (versionUpdates.length > 0) {
-      message += `:rocket: *Automatisch erkannte neue API-Versionen:*\n\n`;
-
+      message += `:rocket: *Automatisch erkannte neue API-Versionen:*\n`;
       versionUpdates.forEach(ep => {
-        message += `🔄 *${ep.name}*\n`;
-        message += `🧾 Neuer Accept-Header: \`${ep.newAccept}\`\n`;
+        message += `:arrows_counterclockwise: *${ep.name}*\n`;
+        message += `:link: Neue API-URL: ${ep.url}\n`;
         if (ep.expectedStructure) {
-          message += `⚠ Erwartete Struktur prüfen: \`${ep.expectedStructure}\`\n`;
+          message += `:open_file_folder: *Struktur-Datei:* \`${ep.expectedStructure}\`\n`;
         } else {
-          message += `⚠ Erwartete Struktur nicht verknüpft – bitte manuell prüfen!\n`;
+          message += `:warning: Erwartete Struktur nicht verknüpft – bitte manuell prüfen!\n`;
         }
-        message += `\n`;
       });
-
       message += `---------------------------------------------\n`;
     }
 
-    // Fehlerdetails (nur wenn vorhanden)
+    // Fehlerdetails
     if (warnings.length > 0 || criticals.length > 0) {
       message += `:pushpin: *Fehlerdetails:*\n`;
     } else {
-      message += `✅ *Alle Tests erfolgreich ausgeführt.* Keine Abweichungen gefunden!\n`;
+      message += `:white_check_mark: *Alle Tests erfolgreich ausgeführt.* Keine Abweichungen gefunden!\n`;
     }
 
-    // Fehler- oder Warnberichte durchgehen
+    // Auflistung aller Probleme
     let issueCounter = 1;
     [...warnings, ...criticals].forEach(issue => {
       const statusIcon = issue.isCritical ? ":red_circle:" : ":large_orange_circle:";
       message += `\n${issueCounter}️⃣ *${issue.endpointName}* (${issue.method}) ${statusIcon}\n`;
 
-      const formattedMissing = issue.missingFields.map(f => f.replace(/^data\./, ""));
-      const formattedExtra = issue.extraFields.map(f => f.replace(/^data\./, ""));
+      const stripOnlyDataPrefix = str =>
+        str.replace(/^data\[0\]\./, "")
+           .replace(/^data\./, "");
 
-      if (formattedMissing.length > 0) {
-        message += `:warning: *Fehlende Attribute:* ${formattedMissing.join(", ")}\n`;
+      const formattedMissingFields = issue.missingFields.map(stripOnlyDataPrefix);
+      const formattedExtraFields = issue.extraFields.map(stripOnlyDataPrefix);
+      const formattedTypeMismatches = (issue.typeMismatches || []).map(
+        mismatch =>
+          `${stripOnlyDataPrefix(mismatch.path)}: erwartet ${mismatch.expected}, erhalten ${mismatch.actual}`
+      );
+
+      if (formattedMissingFields.length > 0) {
+        message += `:warning: *Fehlende Attribute:* ${formattedMissingFields.join(", ")}\n`;
       }
-      if (formattedExtra.length > 0) {
-        message += `:warning: *Neue Attribute:* ${formattedExtra.join(", ")}\n`;
+
+      if (formattedExtraFields.length > 0) {
+        message += `:warning: *Neue Attribute:* ${formattedExtraFields.join(", ")}\n`;
       }
+
+      if (formattedTypeMismatches.length > 0) {
+        message += `:straight_ruler: *Typabweichungen:*\n• ${formattedTypeMismatches.join("\n• ")}\n`;
+      }
+
       if (issue.isCritical && issue.errorMessage) {
         message += `:x: *Fehlermeldung:* ${issue.errorMessage}\n`;
       }
@@ -595,24 +580,17 @@ async function sendSlackReport(testResults, versionUpdates = []) {
     });
 
     if (warnings.length > 0 || criticals.length > 0) {
-      message += `\n`; // optisch trennen
+      message += `\n`; // Leerzeile nach Fehlerdetails
     }
 
-    // Zusammenfassung / Statistik
+    // Zusammenfassung
+    message += `---------------------------------------------\n`;
     message += `:bar_chart: *Gesamtstatistik:* ${totalTests} API-Calls\n`;
     message += `:small_blue_diamond: :large_green_circle: *Erfolgreich:* ${successCount}\n`;
     message += `:small_blue_diamond: :large_orange_circle: *Achtung:* ${warningCount}\n`;
     message += `:small_blue_diamond: :red_circle: *Kritisch:* ${criticalCount}\n`;
+    message += `:loudspeaker: *Status:* ${criticalCount > 0 ? ":red_circle:" : warningCount > 0 ? ":large_orange_circle:" : ":large_green_circle:"}\n`;
 
-    // Status-Symbol nach Schwere
-    const statusIcon = criticalCount > 0
-      ? ":red_circle:"
-      : warningCount > 0
-        ? ":large_orange_circle:"
-        : ":large_green_circle:";
-    message += `:loudspeaker: *Status:* ${statusIcon}\n`;
-
-    // Slack-Webhook aufrufen
     await axios.post(process.env.SLACK_WEBHOOK_URL, { text: message });
     console.log("\n📩 Slack-Testbericht erfolgreich gesendet.");
   } catch (error) {

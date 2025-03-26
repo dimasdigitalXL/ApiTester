@@ -1,0 +1,473 @@
+{
+  "data": [
+    {
+      "id": "5",
+      "uuid": "",
+      "number": "10002",
+      "customerType": "person",
+      "name": "Kassen Mitarbeiter",
+      "firstname": "",
+      "lastname": "",
+      "title": "",
+      "salutation": null,
+      "birthdate": null,
+      "department": "",
+      "subDepartment": "",
+      "projects": [
+        {
+          "id": "3"
+        }
+      ],
+      "contactDetails": {
+        "email": "",
+        "phone": null,
+        "fax": null,
+        "website": null,
+        "additionalData": []
+      },
+      "accountManager": null,
+      "salesManager": {
+        "id": "1"
+      },
+      "lead": {
+        "isLead": false,
+        "status": ""
+      }
+    },
+    {
+      "id": "7",
+      "uuid": "",
+      "number": "10003",
+      "customerType": "person",
+      "name": "Testkunde ABC",
+      "firstname": "",
+      "lastname": "",
+      "title": "",
+      "salutation": null,
+      "birthdate": null,
+      "department": "",
+      "subDepartment": "",
+      "projects": [
+        {
+          "id": "1"
+        },
+        {
+          "id": "53"
+        }
+      ],
+      "contactDetails": {
+        "email": "",
+        "phone": "243523452452",
+        "fax": "234523452",
+        "website": null,
+        "additionalData": []
+      },
+      "accountManager": null,
+      "salesManager": {
+        "id": "5"
+      },
+      "lead": {
+        "isLead": false,
+        "status": ""
+      }
+    },
+    {
+      "id": "8",
+      "uuid": "",
+      "number": "10004",
+      "customerType": "person",
+      "name": "Christian Hofmann",
+      "firstname": "",
+      "lastname": "",
+      "title": "",
+      "salutation": "other",
+      "birthdate": null,
+      "department": "",
+      "subDepartment": "",
+      "projects": [
+        {
+          "id": "1"
+        }
+      ],
+      "contactDetails": {
+        "email": "christian@digitalxl.de",
+        "phone": "+491728317513",
+        "fax": null,
+        "website": null,
+        "additionalData": []
+      },
+      "accountManager": null,
+      "salesManager": null,
+      "lead": {
+        "isLead": false,
+        "status": ""
+      }
+    },
+    {
+      "id": "9",
+      "uuid": "",
+      "number": "10023",
+      "customerType": "person",
+      "name": "EDI Testkunde Pascal mit GLN 4304768000002",
+      "firstname": "",
+      "lastname": "",
+      "title": "",
+      "salutation": "mr",
+      "birthdate": null,
+      "department": "",
+      "subDepartment": "",
+      "projects": [
+        {
+          "id": "0"
+        }
+      ],
+      "contactDetails": {
+        "email": "test@test.de",
+        "phone": null,
+        "fax": null,
+        "website": null,
+        "additionalData": []
+      },
+      "accountManager": null,
+      "salesManager": {
+        "id": "1"
+      },
+      "lead": {
+        "isLead": false,
+        "status": ""
+      }
+    },
+    {
+      "id": "13",
+      "uuid": "",
+      "number": "10005",
+      "customerType": "person",
+      "name": "Kunde AT",
+      "firstname": "",
+      "lastname": "",
+      "title": "",
+      "salutation": null,
+      "birthdate": null,
+      "department": "",
+      "subDepartment": "",
+      "projects": [
+        {
+          "id": "1"
+        }
+      ],
+      "contactDetails": {
+        "email": "",
+        "phone": null,
+        "fax": null,
+        "website": null,
+        "additionalData": []
+      },
+      "accountManager": null,
+      "salesManager": {
+        "id": "1"
+      },
+      "lead": {
+        "isLead": false,
+        "status": ""
+      }
+    },
+    {
+      "id": "14",
+      "uuid": "",
+      "number": "10006",
+      "customerType": "person",
+      "name": "Kunde mit US$ Währung",
+      "firstname": "",
+      "lastname": "",
+      "title": "",
+      "salutation": null,
+      "birthdate": null,
+      "department": "",
+      "subDepartment": "",
+      "projects": [
+        {
+          "id": "0"
+        }
+      ],
+      "contactDetails": {
+        "email": "",
+        "phone": null,
+        "fax": null,
+        "website": null,
+        "additionalData": []
+      },
+      "accountManager": null,
+      "salesManager": {
+        "id": "5"
+      },
+      "lead": {
+        "isLead": false,
+        "status": ""
+      }
+    },
+    {
+      "id": "15",
+      "uuid": "",
+      "number": "10007",
+      "customerType": "person",
+      "name": "Lawn Care",
+      "firstname": "",
+      "lastname": "",
+      "title": null,
+      "salutation": null,
+      "birthdate": null,
+      "department": "",
+      "subDepartment": "",
+      "projects": [
+        {
+          "id": "1"
+        }
+      ],
+      "contactDetails": {
+        "email": "lawncare.swiss@gmail.com",
+        "phone": "01732652905",
+        "fax": null,
+        "website": null,
+        "additionalData": []
+      },
+      "accountManager": null,
+      "salesManager": null,
+      "lead": {
+        "isLead": false,
+        "status": null
+      }
+    },
+    {
+      "id": "17",
+      "uuid": "",
+      "number": "10008",
+      "customerType": "person",
+      "name": "Ricki",
+      "firstname": "",
+      "lastname": "",
+      "title": "",
+      "salutation": null,
+      "birthdate": null,
+      "department": "",
+      "subDepartment": "",
+      "projects": [
+        {
+          "id": "1"
+        },
+        {
+          "id": "2"
+        },
+        {
+          "id": "3"
+        },
+        {
+          "id": "4"
+        },
+        {
+          "id": "5"
+        },
+        {
+          "id": "6"
+        },
+        {
+          "id": "9"
+        },
+        {
+          "id": "12"
+        },
+        {
+          "id": "17"
+        },
+        {
+          "id": "18"
+        },
+        {
+          "id": "19"
+        },
+        {
+          "id": "20"
+        },
+        {
+          "id": "21"
+        },
+        {
+          "id": "22"
+        },
+        {
+          "id": "23"
+        },
+        {
+          "id": "24"
+        },
+        {
+          "id": "25"
+        },
+        {
+          "id": "26"
+        },
+        {
+          "id": "27"
+        },
+        {
+          "id": "28"
+        },
+        {
+          "id": "29"
+        },
+        {
+          "id": "30"
+        },
+        {
+          "id": "31"
+        },
+        {
+          "id": "32"
+        },
+        {
+          "id": "33"
+        },
+        {
+          "id": "39"
+        },
+        {
+          "id": "40"
+        },
+        {
+          "id": "41"
+        },
+        {
+          "id": "42"
+        },
+        {
+          "id": "43"
+        },
+        {
+          "id": "44"
+        },
+        {
+          "id": "45"
+        },
+        {
+          "id": "46"
+        },
+        {
+          "id": "47"
+        },
+        {
+          "id": "48"
+        },
+        {
+          "id": "49"
+        },
+        {
+          "id": "50"
+        },
+        {
+          "id": "51"
+        },
+        {
+          "id": "52"
+        },
+        {
+          "id": "53"
+        },
+        {
+          "id": "54"
+        },
+        {
+          "id": "55"
+        }
+      ],
+      "contactDetails": {
+        "email": "",
+        "phone": null,
+        "fax": null,
+        "website": null,
+        "additionalData": []
+      },
+      "accountManager": null,
+      "salesManager": {
+        "id": "1"
+      },
+      "lead": {
+        "isLead": false,
+        "status": ""
+      }
+    },
+    {
+      "id": "18",
+      "uuid": "",
+      "number": "19329",
+      "customerType": "company",
+      "name": "T4D",
+      "firstname": "",
+      "lastname": "",
+      "title": "",
+      "salutation": "company",
+      "birthdate": null,
+      "department": "",
+      "subDepartment": "",
+      "projects": [
+        {
+          "id": "1"
+        }
+      ],
+      "contactDetails": {
+        "email": "",
+        "phone": null,
+        "fax": null,
+        "website": null,
+        "additionalData": []
+      },
+      "accountManager": null,
+      "salesManager": {
+        "id": "1"
+      },
+      "lead": {
+        "isLead": false,
+        "status": ""
+      }
+    },
+    {
+      "id": "19",
+      "uuid": "",
+      "number": "10009",
+      "customerType": "person",
+      "name": "Laufkundschaft",
+      "firstname": "",
+      "lastname": "",
+      "title": "",
+      "salutation": "other",
+      "birthdate": null,
+      "department": "",
+      "subDepartment": "",
+      "projects": [
+        {
+          "id": "1"
+        }
+      ],
+      "contactDetails": {
+        "email": "",
+        "phone": null,
+        "fax": null,
+        "website": null,
+        "additionalData": []
+      },
+      "accountManager": null,
+      "salesManager": {
+        "id": "1"
+      },
+      "lead": {
+        "isLead": false,
+        "status": ""
+      }
+    }
+  ],
+  "extra": {
+    "totalCount": 252,
+    "page": {
+      "number": 1,
+      "size": 10
+    }
+  }
+}

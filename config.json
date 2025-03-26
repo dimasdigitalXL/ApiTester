@@ -2,7 +2,7 @@
   "endpoints": [
     {
       "name": "Get List Sales Orders",
-      "url": "https://${XENTRAL_ID}.xentral.biz/api/salesOrders",
+      "url": "https://${XENTRAL_ID}.xentral.biz/api/v1/salesOrders",
       "method": "GET",
       "headers": {
         "Accept": "application/json",
@@ -19,7 +19,7 @@
     },
     {
       "name": "Get View Sales Order",
-      "url": "https://${XENTRAL_ID}.xentral.biz/api/salesOrders/{id}",
+      "url": "https://${XENTRAL_ID}.xentral.biz/api/v1/salesOrders/{id}",
       "method": "GET",
       "headers": {
         "Accept": "application/json",
@@ -31,21 +31,20 @@
     },
     {
       "name": "Create New Product",
-      "url": "https://${XENTRAL_ID}.xentral.biz/api/products",
+      "url": "https://${XENTRAL_ID}.xentral.biz/api/v1/products",
       "method": "POST",
       "headers": {
         "Content-Type": "application/json",
-        "Accept": "application/vnd.xentral.default.v2-beta+json"
+        "Accept": "application/json"
       },
-      "bodyFile": "requestBodies/createProduct.json",
-      "versionChanged": true
+      "bodyFile": "requestBodies/createProduct.json"
     },
     {
       "name": "Get List Products",
-      "url": "https://${XENTRAL_ID}.xentral.biz/api/products",
+      "url": "https://${XENTRAL_ID}.xentral.biz/api/v1/products",
       "method": "GET",
       "headers": {
-        "Accept": "application/vnd.xentral.default.v2-beta+json",
+        "Accept": "application/json",
         "Content-Type": "application/json"
       },
       "query": {
@@ -54,25 +53,23 @@
         "page[number]": 1,
         "page[size]": 10
       },
-      "expectedStructure": "expected/listProducts.json",
-      "versionChanged": true
+      "expectedStructure": "expected/listProducts.json"
     },
     {
       "name": "Get View Product",
-      "url": "https://${XENTRAL_ID}.xentral.biz/api/products/{id}",
+      "url": "https://${XENTRAL_ID}.xentral.biz/api/v1/products/{id}",
       "method": "GET",
       "headers": {
-        "Accept": "application/vnd.xentral.default.v2-beta+json",
+        "Accept": "application/json",
         "Content-Type": "application/json"
       },
       "query": {},
       "requiresId": true,
-      "expectedStructure": "expected/viewProduct.json",
-      "versionChanged": true
+      "expectedStructure": "expected/viewProduct.json"
     },
     {
       "name": "Delete Product",
-      "url": "https://${XENTRAL_ID}.xentral.biz/api/products/{id}",
+      "url": "https://${XENTRAL_ID}.xentral.biz/api/v1/products/{id}",
       "method": "DELETE",
       "headers": {
         "Accept": "application/json",
@@ -82,31 +79,29 @@
     },
     {
       "name": "Update Product",
-      "url": "https://${XENTRAL_ID}.xentral.biz/api/products/{id}",
+      "url": "https://${XENTRAL_ID}.xentral.biz/api/v1/products/{id}",
       "method": "PATCH",
       "headers": {
-        "Accept": "application/vnd.xentral.default.v2-beta+json",
+        "Accept": "application/json",
         "Authorization": "Bearer ${BEARER_TOKEN}",
         "Content-Type": "application/json"
       },
       "bodyFile": "requestBodies/updateProduct.json",
-      "requiresId": true,
-      "versionChanged": true
+      "requiresId": true
     },
     {
       "name": "Get List Invoices",
-      "url": "https://${XENTRAL_ID}.xentral.biz/api/invoices",
+      "url": "https://${XENTRAL_ID}.xentral.biz/api/v1/invoices",
       "method": "GET",
       "headers": {
         "Accept": "application/vnd.xentral.minimal+json",
-        "Authorization": "Bearer ${BEARER_TOKEN}",
-        "Content-Type": "application/vnd.xentral.minimal.v1+json"
+        "Authorization": "Bearer ${BEARER_TOKEN}"
       },
       "expectedStructure": "expected/listInvoices.json"
     },
     {
       "name": "Get View Invoice",
-      "url": "https://${XENTRAL_ID}.xentral.biz/api/invoices/{id}",
+      "url": "https://${XENTRAL_ID}.xentral.biz/api/v1/invoices/{id}",
       "method": "GET",
       "headers": {
         "Accept": "application/json",
@@ -115,6 +110,30 @@
       },
       "requiresId": true,
       "expectedStructure": "expected/viewInvoices.json"
+    },
+    {
+      "name": "Get List Customers",
+      "url": "https://${XENTRAL_ID}.xentral.biz/api/v2/customers",
+      "method": "GET",
+      "headers": {
+        "Accept": "application/json",
+        "Authorization": "Bearer ${BEARER_TOKEN}"
+      },
+      "expectedStructure": "expected/listCustomers.json",
+      "versionChanged": true
+    },
+    {
+      "name": "Get View Customer",
+      "url": "https://${XENTRAL_ID}.xentral.biz/api/v2/customers/{id}",
+      "method": "GET",
+      "headers": {
+        "Accept": "application/json",
+        "Authorization": "Bearer ${BEARER_TOKEN}",
+        "Content-Type": "application/json"
+      },
+      "requiresId": true,
+      "expectedStructure": "expected/viewCustomer.json",
+      "versionChanged": true
     }
   ]
 }

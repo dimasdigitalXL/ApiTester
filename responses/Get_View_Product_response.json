@@ -10,21 +10,20 @@
       "id": "3",
       "name": "Kasse"
     },
-    "merchandiseGroup": {
+    "category": {
       "id": "1",
       "name": "Handelsware (100000)"
     },
-    "categories": [],
     "standardSupplier": null,
     "stockCount": 0,
+    "shopPriceDisplay": null,
     "ean": "1234567890123",
     "manufacturer": {
       "name": null,
       "number": null,
-      "link": null
+      "url": null
     },
     "customsTariffNumber": "12345678",
-    "isMatrixProduct": false,
     "options": [],
     "selectedOptions": [],
     "variants": [],
@@ -34,208 +33,7 @@
     "thumbnailUrl": null,
     "thumbnailId": null,
     "tags": [],
-    "freeFields": [
-      {
-        "id": "1",
-        "name": "Info",
-        "value": ""
-      },
-      {
-        "id": "2",
-        "name": "Testnummer",
-        "value": ""
-      },
-      {
-        "id": "3",
-        "name": "VPE pro Palette",
-        "value": ""
-      },
-      {
-        "id": "4",
-        "name": "Anzahl Paletten",
-        "value": ""
-      },
-      {
-        "id": "5",
-        "name": "Menge pro Karton",
-        "value": ""
-      },
-      {
-        "id": "6",
-        "name": "Artikelnummer beim Lieferanten",
-        "value": ""
-      },
-      {
-        "id": "7",
-        "name": "Präferenz|Ja=>j|Nein=>n|Eingeschränkt=>e",
-        "value": ""
-      },
-      {
-        "id": "8",
-        "name": "Anzahl Kartons",
-        "value": ""
-      },
-      {
-        "id": "9",
-        "name": "Gewicht pro Stück",
-        "value": ""
-      },
-      {
-        "id": "10",
-        "name": "mainArticle_filterGroup",
-        "value": ""
-      },
-      {
-        "id": "11",
-        "name": "Variante ausblenden",
-        "value": ""
-      },
-      {
-        "id": "12",
-        "name": "Gewicht der Position",
-        "value": ""
-      },
-      {
-        "id": "13",
-        "name": "Wunsch-Charge",
-        "value": ""
-      },
-      {
-        "id": "14",
-        "name": "Artikelzustand|neu=>neu|B-Ware=>B-Ware|C-Ware=>C-Ware",
-        "value": ""
-      },
-      {
-        "id": "15",
-        "name": "Shopcustomizing",
-        "value": ""
-      },
-      {
-        "id": "16",
-        "name": "Mengenaufteilung",
-        "value": ""
-      },
-      {
-        "id": "17",
-        "name": "Beschreibung des Zustands",
-        "value": ""
-      },
-      {
-        "id": "18",
-        "name": "RoutingFreeField",
-        "value": ""
-      },
-      {
-        "id": "19",
-        "name": "Gebindegröße",
-        "value": ""
-      },
-      {
-        "id": "20",
-        "name": "Gebrauchsspuren",
-        "value": ""
-      },
-      {
-        "id": "21",
-        "name": "Rollenlänge",
-        "value": ""
-      },
-      {
-        "id": "22",
-        "name": "Qualität",
-        "value": ""
-      },
-      {
-        "id": "23",
-        "name": "Farbe",
-        "value": ""
-      },
-      {
-        "id": "24",
-        "name": "Abmessung",
-        "value": ""
-      },
-      {
-        "id": "25",
-        "name": "Pfandartikel",
-        "value": ""
-      },
-      {
-        "id": "26",
-        "name": "Pfandartikel Anzahl",
-        "value": ""
-      },
-      {
-        "id": "27",
-        "name": "TestFreifeld27",
-        "value": ""
-      },
-      {
-        "id": "28",
-        "name": "TestFreiFeld28",
-        "value": ""
-      },
-      {
-        "id": "29",
-        "name": "TestFreiFeld29",
-        "value": ""
-      },
-      {
-        "id": "30",
-        "name": "Leistungsdatum",
-        "value": ""
-      },
-      {
-        "id": "31",
-        "name": null,
-        "value": ""
-      },
-      {
-        "id": "32",
-        "name": "Schwerer Artikel",
-        "value": ""
-      },
-      {
-        "id": "33",
-        "name": "Erhaltener Rabatt",
-        "value": ""
-      },
-      {
-        "id": "34",
-        "name": "price",
-        "value": ""
-      },
-      {
-        "id": "35",
-        "name": "discount",
-        "value": ""
-      },
-      {
-        "id": "36",
-        "name": "Date",
-        "value": ""
-      },
-      {
-        "id": "37",
-        "name": "Start Datum",
-        "value": ""
-      },
-      {
-        "id": "38",
-        "name": "Rufnummer",
-        "value": ""
-      },
-      {
-        "id": "39",
-        "name": "SIM - Karten - Nummer",
-        "value": ""
-      },
-      {
-        "id": "40",
-        "name": "Rabatt auf Positionsebene verrechnet",
-        "value": ""
-      }
-    ],
+    "freeFields": [],
     "countryOfOrigin": null,
     "regionOfOrigin": "",
     "internalComment": "",
@@ -278,7 +76,18 @@
     "hidePriceOnDocuments": false,
     "ageRating": null,
     "isStockItem": false,
+    "defaultStorageLocation": null,
     "isStockTakingDisabled": false,
+    "isCustomProduct": false,
+    "hideJustInTimeItemsOnDocuments": false,
+    "markAsSoldOut": false,
+    "markAsInactive": false,
+    "isRemainingQuantity": false,
+    "isShippingCostsProduct": false,
+    "discount": {
+      "isDiscountProduct": true,
+      "discountPercentage": 10.5
+    },
     "stockTaking": {
       "hasStockTakingValue": true,
       "stockTakingValue": 50
@@ -289,30 +98,6 @@
         "amount": "0.0000",
         "currency": "EUR"
       }
-    },
-    "isCustomProduct": false,
-    "hideJustInTimeItemsOnDocuments": false,
-    "isShippingCostsProduct": false,
-    "discount": {
-      "isDiscountProduct": true,
-      "discountPercentage": 10.5
-    },
-    "salesChannel": {
-      "description": "",
-      "meta": {
-        "title": "",
-        "description": "",
-        "keywords": ""
-      },
-      "isStockNumberSyncActive": false,
-      "isRemainingQuantity": false,
-      "isSoldOut": false,
-      "isVisible": true,
-      "suggestedRetailPrice": null,
-      "suggestedStockQuantity": "",
-      "deliveryTime": "",
-      "createNewProductDuringImport": false,
-      "channels": null
     },
     "unit": {
       "name": ""

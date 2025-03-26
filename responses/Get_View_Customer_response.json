@@ -1,0 +1,42 @@
+{
+  "data": {
+    "id": "440",
+    "uuid": "",
+    "number": "16",
+    "customerType": "person",
+    "name": "DimasTest",
+    "firstname": "",
+    "lastname": "",
+    "title": "",
+    "salutation": "other",
+    "salutationPhrase": "",
+    "birthdate": null,
+    "department": "",
+    "subDepartment": "",
+    "projects": [
+      {
+        "id": "32"
+      }
+    ],
+    "groups": [],
+    "contactDetails": {
+      "email": "",
+      "phone": null,
+      "mobile": null,
+      "fax": null,
+      "website": null,
+      "additionalData": []
+    },
+    "accountManager": null,
+    "salesManager": null,
+    "lead": {
+      "isLead": false,
+      "status": ""
+    }
+  },
+  "links": {
+    "self": "https://636a1d639f14e.xentral.biz/api/v2/customers/440",
+    "contactPersons": "https://636a1d639f14e.xentral.biz/api/customers/440/contactPerson",
+    "addresses": "https://636a1d639f14e.xentral.biz/api/v2/customers/440/addresses"
+  }
+}

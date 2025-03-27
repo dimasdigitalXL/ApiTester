@@ -15,7 +15,7 @@
       "reservationDate": "string",
       "editor": "string",
       "sales": {
-        "id": "string",
+        "id": 0,
         "name": "string"
       },
       "status": "string",
@@ -47,7 +47,8 @@
           "fax": "string",
           "email": "string",
           "salutation": "string",
-          "gln": "string"
+          "gln": "string",
+          "phoneNumber": "string"
         },
         "paymentMethod": {
           "id": "string"
@@ -62,7 +63,11 @@
         "email": "string",
         "conditions": "string",
         "autoShipping": true,  
-        "fastLane": false,     
+        "fastLane": false,
+        "desiredDeliveryDate": "string",
+        "shippingMethod": {
+          "id": "string"
+        },    
         "shippingAddress": {
           "name": "string",
           "department": "string",
@@ -83,7 +88,17 @@
           "id": "string",
           "name": "string"
         }
-      }
+      },
+      "isBeingEdited": false,
+      "subsequentDelivery": false,
+      "shippingDateOk": true,
+      "creditLimitOk": true,
+      "shippingLockOk": true,
+      "prepaidOk": true,
+      "postageOk": true,
+      "customerCheckOk": true,
+      "vatOk": true,
+      "stockOk": false
     }
   ],
   "extra": {

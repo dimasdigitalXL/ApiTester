@@ -1,0 +1,411 @@
+{
+  "data": [
+    {
+      "id": "string",
+      "number": "string",
+      "date": "string",
+      "status": "string",
+      "tags": [],
+      "address": {
+        "name": "string",
+        "customerNumber": "string",
+        "country": "string"
+      },
+      "project": {
+        "id": "string",
+        "name": "string",
+        "abbreviation": "string"
+      },
+      "payment": {
+        "method": "string",
+        "status": "string",
+        "debit": {
+          "amount": "string",
+          "currency": "string"
+        },
+        "balance": {
+          "amount": "string",
+          "currency": "string"
+        }
+      },
+      "updatedBy": {
+        "id": "string"
+      },
+      "updatedAt": "string",
+      "additionalFields": [],
+      "dunningSettings": {
+        "level": "string",
+        "date": "string",
+        "comment": "string",
+        "sent": false
+      }
+    },
+    {
+      "id": "string",
+      "number": "string",
+      "date": "string",
+      "status": "string",
+      "tags": [],
+      "address": {
+        "name": "string",
+        "customerNumber": "string",
+        "country": "string"
+      },
+      "project": {
+        "id": "string",
+        "name": "string",
+        "abbreviation": "string"
+      },
+      "payment": {
+        "method": "string",
+        "status": "string",
+        "debit": {
+          "amount": "string",
+          "currency": "string"
+        },
+        "balance": {
+          "amount": "string",
+          "currency": "string"
+        }
+      },
+      "updatedBy": {
+        "id": "string"
+      },
+      "updatedAt": "string",
+      "additionalFields": [],
+      "dunningSettings": {
+        "level": "string",
+        "date": "string",
+        "comment": "string",
+        "sent": false
+      }
+    },
+    {
+      "id": "string",
+      "number": "string",
+      "date": "string",
+      "status": "string",
+      "tags": [],
+      "address": {
+        "name": "string",
+        "customerNumber": "string",
+        "country": "string"
+      },
+      "project": {
+        "id": "string",
+        "name": "string",
+        "abbreviation": "string"
+      },
+      "payment": {
+        "method": "string",
+        "status": "string",
+        "debit": {
+          "amount": "string",
+          "currency": "string"
+        },
+        "balance": {
+          "amount": "string",
+          "currency": "string"
+        }
+      },
+      "updatedBy": {
+        "id": "string"
+      },
+      "updatedAt": "string",
+      "additionalFields": [],
+      "dunningSettings": {
+        "level": "string",
+        "date": "string",
+        "comment": "string",
+        "sent": false
+      }
+    },
+    {
+      "id": "string",
+      "number": "string",
+      "date": "string",
+      "status": "string",
+      "tags": [],
+      "address": {
+        "name": "string",
+        "customerNumber": "string",
+        "country": "string"
+      },
+      "project": {
+        "id": "string",
+        "name": "string",
+        "abbreviation": "string"
+      },
+      "payment": {
+        "method": "string",
+        "status": "string",
+        "debit": {
+          "amount": "string",
+          "currency": "string"
+        },
+        "balance": {
+          "amount": "string",
+          "currency": "string"
+        }
+      },
+      "updatedBy": {
+        "id": "string"
+      },
+      "updatedAt": null,
+      "additionalFields": [],
+      "dunningSettings": {
+        "level": "string",
+        "date": "string",
+        "comment": "string",
+        "sent": false
+      }
+    },
+    {
+      "id": "string",
+      "number": "string",
+      "date": "string",
+      "status": "string",
+      "tags": [],
+      "address": {
+        "name": "string",
+        "customerNumber": "string",
+        "country": "string"
+      },
+      "project": {
+        "id": "string",
+        "name": "string",
+        "abbreviation": "string"
+      },
+      "payment": {
+        "method": "string",
+        "status": "string",
+        "debit": {
+          "amount": "string",
+          "currency": "string"
+        },
+        "balance": {
+          "amount": "string",
+          "currency": "string"
+        }
+      },
+      "updatedBy": {
+        "id": "string"
+      },
+      "updatedAt": null,
+      "additionalFields": [],
+      "dunningSettings": {
+        "level": "string",
+        "date": "string",
+        "comment": "string",
+        "sent": false
+      }
+    },
+    {
+      "id": "string",
+      "number": "string",
+      "date": "string",
+      "status": "string",
+      "tags": [],
+      "address": {
+        "name": "string",
+        "customerNumber": "string",
+        "country": "string"
+      },
+      "project": {
+        "id": "string",
+        "name": "string",
+        "abbreviation": "string"
+      },
+      "payment": {
+        "method": "string",
+        "status": "string",
+        "debit": {
+          "amount": "string",
+          "currency": "string"
+        },
+        "balance": {
+          "amount": "string",
+          "currency": "string"
+        }
+      },
+      "updatedBy": {
+        "id": "string"
+      },
+      "updatedAt": "string",
+      "additionalFields": [],
+      "dunningSettings": {
+        "level": "string",
+        "date": "string",
+        "comment": "string",
+        "sent": false
+      }
+    },
+    {
+      "id": "string",
+      "number": "string",
+      "date": "string",
+      "status": "string",
+      "tags": [],
+      "address": {
+        "name": "string",
+        "customerNumber": "string",
+        "country": "string"
+      },
+      "project": {
+        "id": "string",
+        "name": "string",
+        "abbreviation": "string"
+      },
+      "payment": {
+        "method": "string",
+        "status": "string",
+        "debit": {
+          "amount": "string",
+          "currency": "string"
+        },
+        "balance": {
+          "amount": "string",
+          "currency": "string"
+        }
+      },
+      "updatedBy": {
+        "id": "string"
+      },
+      "updatedAt": "string",
+      "additionalFields": [],
+      "dunningSettings": {
+        "level": "string",
+        "date": "string",
+        "comment": "string",
+        "sent": false
+      }
+    },
+    {
+      "id": "string",
+      "number": "string",
+      "date": "string",
+      "status": "string",
+      "tags": [],
+      "address": {
+        "name": "string",
+        "customerNumber": "string",
+        "country": "string"
+      },
+      "project": {
+        "id": "string",
+        "name": "string",
+        "abbreviation": "string"
+      },
+      "payment": {
+        "method": "string",
+        "status": "string",
+        "debit": {
+          "amount": "string",
+          "currency": "string"
+        },
+        "balance": {
+          "amount": "string",
+          "currency": "string"
+        }
+      },
+      "updatedBy": {
+        "id": "string"
+      },
+      "updatedAt": null,
+      "additionalFields": [],
+      "dunningSettings": {
+        "level": "string",
+        "date": "string",
+        "comment": "string",
+        "sent": false
+      }
+    },
+    {
+      "id": "string",
+      "number": "string",
+      "date": "string",
+      "status": "string",
+      "tags": [],
+      "address": {
+        "name": "string",
+        "customerNumber": "string",
+        "country": "string"
+      },
+      "project": {
+        "id": "string",
+        "name": "string",
+        "abbreviation": "string"
+      },
+      "payment": {
+        "method": "string",
+        "status": "string",
+        "debit": {
+          "amount": "string",
+          "currency": "string"
+        },
+        "balance": {
+          "amount": "string",
+          "currency": "string"
+        }
+      },
+      "updatedBy": {
+        "id": "string"
+      },
+      "updatedAt": null,
+      "additionalFields": [],
+      "dunningSettings": {
+        "level": "string",
+        "date": "string",
+        "comment": "string",
+        "sent": false
+      }
+    },
+    {
+      "id": "string",
+      "number": "string",
+      "date": "string",
+      "status": "string",
+      "tags": [],
+      "address": {
+        "name": "string",
+        "customerNumber": "string",
+        "country": "string"
+      },
+      "project": {
+        "id": "string",
+        "name": "string",
+        "abbreviation": "string"
+      },
+      "payment": {
+        "method": "string",
+        "status": "string",
+        "debit": {
+          "amount": "string",
+          "currency": "string"
+        },
+        "balance": {
+          "amount": "string",
+          "currency": "string"
+        }
+      },
+      "updatedBy": {
+        "id": "string"
+      },
+      "updatedAt": null,
+      "additionalFields": [],
+      "dunningSettings": {
+        "level": "string",
+        "date": "string",
+        "comment": "string",
+        "sent": false
+      }
+    }
+  ],
+  "extra": {
+    "totalCount": 0,
+    "page": {
+      "number": 0,
+      "size": 0
+    }
+  }
+}

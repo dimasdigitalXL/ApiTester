@@ -15,7 +15,8 @@
         "page[number]": 1,
         "page[size]": 50
       },
-      "expectedStructure": "expected/salesOrderList.json"
+      "expectedStructure": "expected/Get_List_Sales_Orders_updated.json",
+      "requiresId": false
     },
     {
       "name": "Get View Sales Order",
@@ -27,7 +28,7 @@
       },
       "query": {},
       "requiresId": true,
-      "expectedStructure": "expected/salesOrderView.json"
+      "expectedStructure": "expected/Get_View_Sales_Order_updated.json"
     },
     {
       "name": "Create New Product",
@@ -37,7 +38,8 @@
         "Content-Type": "application/json",
         "Accept": "application/json"
       },
-      "bodyFile": "requestBodies/createProduct.json"
+      "bodyFile": "requestBodies/createProduct.json",
+      "requiresId": false
     },
     {
       "name": "Get List Products",
@@ -53,7 +55,8 @@
         "page[number]": 1,
         "page[size]": 10
       },
-      "expectedStructure": "expected/listProducts.json"
+      "expectedStructure": "expected/Get_List_Products_updated.json",
+      "requiresId": false
     },
     {
       "name": "Get View Product",
@@ -97,7 +100,8 @@
         "Accept": "application/vnd.xentral.minimal+json",
         "Authorization": "Bearer ${BEARER_TOKEN}"
       },
-      "expectedStructure": "expected/listInvoices.json"
+      "expectedStructure": "expected/Get_List_Invoices_updated.json",
+      "requiresId": false
     },
     {
       "name": "Get View Invoice",
@@ -119,7 +123,8 @@
         "Accept": "application/json",
         "Authorization": "Bearer ${BEARER_TOKEN}"
       },
-      "expectedStructure": "expected/listCustomers.json",
+      "expectedStructure": "expected/Get_List_Customers_updated.json",
+      "requiresId": false,
       "versionChanged": true
     },
     {
@@ -132,7 +137,7 @@
         "Content-Type": "application/json"
       },
       "requiresId": true,
-      "expectedStructure": "expected/viewCustomer.json",
+      "expectedStructure": "expected/Get_View_Customer_updated.json",
       "versionChanged": true
     }
   ]

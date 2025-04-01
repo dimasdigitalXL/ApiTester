@@ -1,0 +1,473 @@
+{
+  "data": [
+    {
+      "id": "string",
+      "uuid": "string",
+      "number": "string",
+      "customerType": "string",
+      "name": "string",
+      "firstname": "string",
+      "lastname": "string",
+      "title": "string",
+      "salutation": null,
+      "birthdate": null,
+      "department": "string",
+      "subDepartment": "string",
+      "projects": [
+        {
+          "id": "string"
+        }
+      ],
+      "contactDetails": {
+        "email": "string",
+        "phone": null,
+        "fax": null,
+        "website": null,
+        "additionalData": []
+      },
+      "accountManager": null,
+      "salesManager": {
+        "id": "string"
+      },
+      "lead": {
+        "isLead": false,
+        "status": "string"
+      }
+    },
+    {
+      "id": "string",
+      "uuid": "string",
+      "number": "string",
+      "customerType": "string",
+      "name": "string",
+      "firstname": "string",
+      "lastname": "string",
+      "title": "string",
+      "salutation": null,
+      "birthdate": null,
+      "department": "string",
+      "subDepartment": "string",
+      "projects": [
+        {
+          "id": "string"
+        },
+        {
+          "id": "string"
+        }
+      ],
+      "contactDetails": {
+        "email": "string",
+        "phone": "string",
+        "fax": "string",
+        "website": null,
+        "additionalData": []
+      },
+      "accountManager": null,
+      "salesManager": {
+        "id": "string"
+      },
+      "lead": {
+        "isLead": false,
+        "status": "string"
+      }
+    },
+    {
+      "id": "string",
+      "uuid": "string",
+      "number": "string",
+      "customerType": "string",
+      "name": "string",
+      "firstname": "string",
+      "lastname": "string",
+      "title": "string",
+      "salutation": "string",
+      "birthdate": null,
+      "department": "string",
+      "subDepartment": "string",
+      "projects": [
+        {
+          "id": "string"
+        }
+      ],
+      "contactDetails": {
+        "email": "string",
+        "phone": "string",
+        "fax": null,
+        "website": null,
+        "additionalData": []
+      },
+      "accountManager": null,
+      "salesManager": null,
+      "lead": {
+        "isLead": false,
+        "status": "string"
+      }
+    },
+    {
+      "id": "string",
+      "uuid": "string",
+      "number": "string",
+      "customerType": "string",
+      "name": "string",
+      "firstname": "string",
+      "lastname": "string",
+      "title": "string",
+      "salutation": "string",
+      "birthdate": null,
+      "department": "string",
+      "subDepartment": "string",
+      "projects": [
+        {
+          "id": "string"
+        }
+      ],
+      "contactDetails": {
+        "email": "string",
+        "phone": null,
+        "fax": null,
+        "website": null,
+        "additionalData": []
+      },
+      "accountManager": null,
+      "salesManager": {
+        "id": "string"
+      },
+      "lead": {
+        "isLead": false,
+        "status": "string"
+      }
+    },
+    {
+      "id": "string",
+      "uuid": "string",
+      "number": "string",
+      "customerType": "string",
+      "name": "string",
+      "firstname": "string",
+      "lastname": "string",
+      "title": "string",
+      "salutation": null,
+      "birthdate": null,
+      "department": "string",
+      "subDepartment": "string",
+      "projects": [
+        {
+          "id": "string"
+        }
+      ],
+      "contactDetails": {
+        "email": "string",
+        "phone": null,
+        "fax": null,
+        "website": null,
+        "additionalData": []
+      },
+      "accountManager": null,
+      "salesManager": {
+        "id": "string"
+      },
+      "lead": {
+        "isLead": false,
+        "status": "string"
+      }
+    },
+    {
+      "id": "string",
+      "uuid": "string",
+      "number": "string",
+      "customerType": "string",
+      "name": "string",
+      "firstname": "string",
+      "lastname": "string",
+      "title": "string",
+      "salutation": null,
+      "birthdate": null,
+      "department": "string",
+      "subDepartment": "string",
+      "projects": [
+        {
+          "id": "string"
+        }
+      ],
+      "contactDetails": {
+        "email": "string",
+        "phone": null,
+        "fax": null,
+        "website": null,
+        "additionalData": []
+      },
+      "accountManager": null,
+      "salesManager": {
+        "id": "string"
+      },
+      "lead": {
+        "isLead": false,
+        "status": "string"
+      }
+    },
+    {
+      "id": "string",
+      "uuid": "string",
+      "number": "string",
+      "customerType": "string",
+      "name": "string",
+      "firstname": "string",
+      "lastname": "string",
+      "title": null,
+      "salutation": null,
+      "birthdate": null,
+      "department": "string",
+      "subDepartment": "string",
+      "projects": [
+        {
+          "id": "string"
+        }
+      ],
+      "contactDetails": {
+        "email": "string",
+        "phone": "string",
+        "fax": null,
+        "website": null,
+        "additionalData": []
+      },
+      "accountManager": null,
+      "salesManager": null,
+      "lead": {
+        "isLead": false,
+        "status": null
+      }
+    },
+    {
+      "id": "string",
+      "uuid": "string",
+      "number": "string",
+      "customerType": "string",
+      "name": "string",
+      "firstname": "string",
+      "lastname": "string",
+      "title": "string",
+      "salutation": null,
+      "birthdate": null,
+      "department": "string",
+      "subDepartment": "string",
+      "projects": [
+        {
+          "id": "string"
+        },
+        {
+          "id": "string"
+        },
+        {
+          "id": "string"
+        },
+        {
+          "id": "string"
+        },
+        {
+          "id": "string"
+        },
+        {
+          "id": "string"
+        },
+        {
+          "id": "string"
+        },
+        {
+          "id": "string"
+        },
+        {
+          "id": "string"
+        },
+        {
+          "id": "string"
+        },
+        {
+          "id": "string"
+        },
+        {
+          "id": "string"
+        },
+        {
+          "id": "string"
+        },
+        {
+          "id": "string"
+        },
+        {
+          "id": "string"
+        },
+        {
+          "id": "string"
+        },
+        {
+          "id": "string"
+        },
+        {
+          "id": "string"
+        },
+        {
+          "id": "string"
+        },
+        {
+          "id": "string"
+        },
+        {
+          "id": "string"
+        },
+        {
+          "id": "string"
+        },
+        {
+          "id": "string"
+        },
+        {
+          "id": "string"
+        },
+        {
+          "id": "string"
+        },
+        {
+          "id": "string"
+        },
+        {
+          "id": "string"
+        },
+        {
+          "id": "string"
+        },
+        {
+          "id": "string"
+        },
+        {
+          "id": "string"
+        },
+        {
+          "id": "string"
+        },
+        {
+          "id": "string"
+        },
+        {
+          "id": "string"
+        },
+        {
+          "id": "string"
+        },
+        {
+          "id": "string"
+        },
+        {
+          "id": "string"
+        },
+        {
+          "id": "string"
+        },
+        {
+          "id": "string"
+        },
+        {
+          "id": "string"
+        },
+        {
+          "id": "string"
+        },
+        {
+          "id": "string"
+        },
+        {
+          "id": "string"
+        }
+      ],
+      "contactDetails": {
+        "email": "string",
+        "phone": null,
+        "fax": null,
+        "website": null,
+        "additionalData": []
+      },
+      "accountManager": null,
+      "salesManager": {
+        "id": "string"
+      },
+      "lead": {
+        "isLead": false,
+        "status": "string"
+      }
+    },
+    {
+      "id": "string",
+      "uuid": "string",
+      "number": "string",
+      "customerType": "string",
+      "name": "string",
+      "firstname": "string",
+      "lastname": "string",
+      "title": "string",
+      "salutation": "string",
+      "birthdate": null,
+      "department": "string",
+      "subDepartment": "string",
+      "projects": [
+        {
+          "id": "string"
+        }
+      ],
+      "contactDetails": {
+        "email": "string",
+        "phone": null,
+        "fax": null,
+        "website": null,
+        "additionalData": []
+      },
+      "accountManager": null,
+      "salesManager": {
+        "id": "string"
+      },
+      "lead": {
+        "isLead": false,
+        "status": "string"
+      }
+    },
+    {
+      "id": "string",
+      "uuid": "string",
+      "number": "string",
+      "customerType": "string",
+      "name": "string",
+      "firstname": "string",
+      "lastname": "string",
+      "title": "string",
+      "salutation": "string",
+      "birthdate": null,
+      "department": "string",
+      "subDepartment": "string",
+      "projects": [
+        {
+          "id": "string"
+        }
+      ],
+      "contactDetails": {
+        "email": "string",
+        "phone": null,
+        "fax": null,
+        "website": null,
+        "additionalData": []
+      },
+      "accountManager": null,
+      "salesManager": {
+        "id": "string"
+      },
+      "lead": {
+        "isLead": false,
+        "status": "string"
+      }
+    }
+  ],
+  "extra": {
+    "totalCount": 0,
+    "page": {
+      "number": 0,
+      "size": 0
+    }
+  }
+}

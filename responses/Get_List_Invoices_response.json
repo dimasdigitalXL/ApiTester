@@ -155,7 +155,7 @@
       "additionalFields": [],
       "dunningSettings": {
         "level": "reminder1",
-        "date": "2025-03-27",
+        "date": "2025-03-31",
         "comment": "",
         "sent": false
       }
@@ -195,7 +195,7 @@
       "additionalFields": [],
       "dunningSettings": {
         "level": "reminder1",
-        "date": "2025-03-27",
+        "date": "2025-03-31",
         "comment": "",
         "sent": false
       }
@@ -235,7 +235,7 @@
       "additionalFields": [],
       "dunningSettings": {
         "level": "reminder1",
-        "date": "2025-03-27",
+        "date": "2025-03-31",
         "comment": "",
         "sent": false
       }
@@ -275,7 +275,7 @@
       "additionalFields": [],
       "dunningSettings": {
         "level": "reminder1",
-        "date": "2025-03-27",
+        "date": "2025-03-31",
         "comment": "",
         "sent": false
       }
@@ -355,7 +355,7 @@
       "additionalFields": [],
       "dunningSettings": {
         "level": "reminder1",
-        "date": "2025-03-27",
+        "date": "2025-03-31",
         "comment": "",
         "sent": false
       }
@@ -395,14 +395,14 @@
       "additionalFields": [],
       "dunningSettings": {
         "level": "reminder1",
-        "date": "2025-03-27",
+        "date": "2025-03-31",
         "comment": "",
         "sent": false
       }
     }
   ],
   "extra": {
-    "totalCount": 555,
+    "totalCount": 558,
     "page": {
       "number": 1,
       "size": 10

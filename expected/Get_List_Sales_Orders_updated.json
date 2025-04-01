@@ -1,0 +1,111 @@
+{
+  "data": [
+    {
+      "id": "string",
+      "documentNumber": "string",
+      "externalOrderNumber": "string",
+      "customerOrderNumber": "string",
+      "transactionNumber": "string",
+      "externalOrderId": "string",
+      "date": "string",
+      "netSales": 0,
+      "total": 0,
+      "desiredDeliveryDate": null,
+      "desiredDeliveryDateAsCalendarWeek": false,
+      "reservationDate": null,
+      "editor": "string",
+      "sales": {
+        "id": 0,
+        "name": "string"
+      },
+      "status": "string",
+      "customer": {
+        "id": "string",
+        "number": "string"
+      },
+      "comment": "string",
+      "project": {
+        "id": "string"
+      },
+      "bodyOutroduction": "string",
+      "language": {
+        "iso2": "string"
+      },
+      "financials": {
+        "paymentMethod": {
+          "id": "string"
+        },
+        "currency": "string",
+        "billingAddress": {
+          "name": "string",
+          "department": "string",
+          "subDepartment": "string",
+          "street": "string",
+          "zipCode": "string",
+          "city": "string",
+          "state": "string",
+          "country": "string",
+          "type": "string",
+          "title": "string",
+          "contactPerson": "string",
+          "addressSupplement": "string",
+          "fax": "string",
+          "email": "string",
+          "salutation": "string",
+          "gln": "string",
+          "phoneNumber": "string"
+        },
+        "paymentTerms": {
+          "paymentTargetDiscount": 0,
+          "paymentTargetDays": 0,
+          "paymentTargetDiscountDays": 0
+        }
+      },
+      "delivery": {
+        "email": "string",
+        "conditions": "string",
+        "autoShipping": true,
+        "fastLane": false,
+        "desiredDeliveryDate": "string",
+        "shippingMethod": {
+          "id": "string"
+        },
+        "shippingAddress": {
+          "name": "string",
+          "department": "string",
+          "subDepartment": "string",
+          "street": "string",
+          "zipCode": "string",
+          "city": "string",
+          "state": "string",
+          "country": "string",
+          "gln": "string"
+        }
+      },
+      "log": {
+        "createdAt": "string",
+        "createdBy": {
+          "id": "string",
+          "name": "string"
+        }
+      },
+      "isBeingEdited": false,
+      "subsequentDelivery": false,
+      "shippingDateOk": true,
+      "creditLimitOk": true,
+      "shippingLockOk": true,
+      "prepaidOk": true,
+      "postageOk": true,
+      "customerCheckOk": true,
+      "vatOk": true,
+      "stockOk": false
+    }
+  ],
+  "extra": {
+    "totalCount": 0,
+    "page": {
+      "number": 0,
+      "size": 0
+    }
+  }
+}

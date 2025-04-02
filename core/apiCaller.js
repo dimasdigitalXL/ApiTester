@@ -1,10 +1,19 @@
 // apiCaller.js
 
-const fs = require("fs-extra");
-const path = require("path");
-const axios = require("axios");
-const compareStructures = require("./compareStructures");
+// Externe Module
+const fs = require("fs-extra"); // Erweiterte File-System-Funktionen
+const path = require("path"); // Pfad-Handling
+const axios = require("axios"); // Für HTTP-Requests
+const compareStructures = require("./compareStructures"); // Strukturanalyse & Vergleichsfunktion
 
+/**
+ * transformValues:
+ * Normalisiert Werte in der API-Response für die erwartete Strukturdatei:
+ * - Strings → "string"
+ * - Zahlen → 0
+ * - Arrays und Objekte → rekursiv durchlaufen
+ * - Andere Werte (null, boolean etc.) bleiben wie sie sind
+ */
 function transformValues(value) {
   if (typeof value === "string") return "string";
   if (typeof value === "number") return 0;
@@ -19,6 +28,11 @@ function transformValues(value) {
   return value;
 }
 
+/**
+ * getLatestUpdatedPath:
+ * Ermittelt den Pfad zur aktuellsten `*_updated.json` oder `*_updated_vX.json`-Datei
+ * für eine bestimmte API (z. B. "Get_View_Product")
+ */
 function getLatestUpdatedPath(baseName) {
   const dir = path.join(__dirname, "..", "expected");
   const files = fs.readdirSync(dir);
@@ -38,6 +52,11 @@ function getLatestUpdatedPath(baseName) {
     : path.join(dir, `${baseName}_updated.json`);
 }
 
+/**
+ * getNextUpdatedPath:
+ * Erzeugt den Pfad für die nächste Version der updated-Struktur,
+ * z. B. `_updated_v2.json` oder `_updated_v3.json`
+ */
 function getNextUpdatedPath(baseName) {
   const dir = path.join(__dirname, "..", "expected");
   const files = fs.readdirSync(dir);
@@ -58,13 +77,25 @@ function getNextUpdatedPath(baseName) {
   );
 }
 
+/**
+ * testEndpoint:
+ * Hauptfunktion zur Durchführung eines einzelnen API-Tests
+ * - API-Call ausführen
+ * - Antwort transformieren (normalize)
+ * - Mit vorhandener erwarteter Struktur vergleichen
+ * - Abweichungen (fehlende/zusätzliche Felder, Typabweichungen) erkennen
+ * - Neue Struktur als `*_updated[_vX].json` speichern
+ * - config.json aktualisieren, falls nötig
+ */
 async function testEndpoint(endpoint, dynamicParams = {}, config = null) {
   try {
+    // 🔁 URL zusammenbauen (XENTRAL_ID + evtl. {id})
     let url = endpoint.url.replace("${XENTRAL_ID}", process.env.XENTRAL_ID);
     for (const param in dynamicParams) {
       url = url.replace(`{${param}}`, dynamicParams[param]);
     }
 
+    // 🔧 Query-Parameter + Body laden (falls POST/PATCH/PUT)
     const queryParams = new URLSearchParams(endpoint.query || {});
     let body = null;
 
@@ -77,6 +108,7 @@ async function testEndpoint(endpoint, dynamicParams = {}, config = null) {
       }
     }
 
+    // 🛰️ API-Request
     const response = await axios({
       url: `${url}?${queryParams.toString()}`,
       method: endpoint.method,
@@ -86,9 +118,10 @@ async function testEndpoint(endpoint, dynamicParams = {}, config = null) {
         Accept: endpoint.headers?.Accept || "application/json",
         ...(endpoint.method !== "GET" && { "Content-Type": "application/json" })
       },
-      validateStatus: () => true
+      validateStatus: () => true // → auch 400/500 Responses erlauben
     });
 
+    // 🧪 Datenstruktur auswerten
     let responseData = {};
     try {
       responseData = response.data;
@@ -110,11 +143,12 @@ async function testEndpoint(endpoint, dynamicParams = {}, config = null) {
       }
     }
 
+    // 🔍 Vergleich der Strukturen
     const { missingFields, extraFields, typeMismatches } = compareStructures(expectedStructure, transformed);
-
     const hasDifferences =
       missingFields.length > 0 || extraFields.length > 0 || typeMismatches.length > 0;
 
+    // 💾 Wenn Unterschiede: neue Struktur speichern & config aktualisieren
     if (hasDifferences) {
       const newPath = getNextUpdatedPath(baseName);
       await fs.writeJson(newPath, transformed, { spaces: 2 });
@@ -143,6 +177,7 @@ async function testEndpoint(endpoint, dynamicParams = {}, config = null) {
       updatedStructure: hasDifferences ? path.basename(getNextUpdatedPath(baseName)) : null
     };
   } catch (error) {
+    // ❌ Bei Request-Fehlern: Ergebnis als "kritisch" markieren
     console.error(`Fehler bei ${endpoint.name}: ${error.message}`);
     return {
       endpointName: endpoint.name,

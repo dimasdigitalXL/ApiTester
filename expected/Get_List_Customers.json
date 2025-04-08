@@ -3,8 +3,6 @@
     {
       "id": "string",
       "uuid": "string",
-      "number": "string",
-      "deviatingCustomerNumber": "string",
       "customerType": "string",
       "name": "string",
       "firstname": "string",

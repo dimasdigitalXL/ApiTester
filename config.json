@@ -68,7 +68,7 @@
       },
       "query": {},
       "requiresId": true,
-      "expectedStructure": "expected/viewProduct.json"
+      "expectedStructure": "expected/Get_View_Product.json"
     },
     {
       "name": "Delete Product",
@@ -113,7 +113,7 @@
         "Content-Type": "application/json"
       },
       "requiresId": true,
-      "expectedStructure": "expected/viewInvoices.json"
+      "expectedStructure": "expected/Get_View_Invoice.json"
     },
     {
       "name": "Get List Customers",

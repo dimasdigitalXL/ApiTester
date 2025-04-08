@@ -1,5 +1,8 @@
+//validateConfig.js
+
 const fs = require("fs-extra");
 const path = require("path");
+const { resolveProjectPath } = require("./utils");
 
 /**
  * Validiert, ob alle in der config.json angegebenen Dateien tatsächlich existieren.
@@ -11,18 +14,18 @@ function validateConfig(endpoints) {
   let hasWarnings = false;
 
   endpoints.forEach((ep) => {
-    // Überprüfe, ob die angegebene bodyFile existiert (z. B. POST request body)
+    // Prüfe: bodyFile (z. B. "requestBodies/create-customer.json")
     if (ep.bodyFile) {
-      const bodyPath = path.join(__dirname, "..", ep.bodyFile);
+      const bodyPath = resolveProjectPath(ep.bodyFile);
       if (!fs.existsSync(bodyPath)) {
         console.warn(`⚠️ Warnung: Datei fehlt → ${ep.bodyFile} (${ep.name})`);
         hasWarnings = true;
       }
     }
 
-    // Überprüfe, ob die angegebene expectedStructure-Datei existiert
+    // Prüfe: expectedStructure (z. B. "expected/Get_View_Customer.json")
     if (ep.expectedStructure) {
-      const expectedPath = path.join(__dirname, "..", ep.expectedStructure);
+      const expectedPath = resolveProjectPath(ep.expectedStructure);
       if (!fs.existsSync(expectedPath)) {
         console.warn(`⚠️ Warnung: Datei fehlt → ${ep.expectedStructure} (${ep.name})`);
         hasWarnings = true;
@@ -30,7 +33,6 @@ function validateConfig(endpoints) {
     }
   });
 
-  // Erfolgsnachricht, wenn keine Warnungen gefunden wurden
   if (!hasWarnings) {
     console.log("✅ Alle Referenzen in config.json vorhanden.");
   }

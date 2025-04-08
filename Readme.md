@@ -98,7 +98,3 @@ node index.js "Get View Customer"
 
 - Alte expected-Dateien bleiben erhalten → Vergleichshistorie sichtbar
 - Optional: `logs/errors.log` und `logs/differences.log` für manuelle Nachverfolgung
-
----
-
-Made with ❤️ by Dimas

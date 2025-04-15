@@ -6,7 +6,7 @@ const compareStructures = require("./compareStructures");
 const { resolveProjectPath } = require("./utils");
 
 /**
- * 🧠 Konvertiert verschachtelte API-Antwort in abstraktes Typmodell
+ * Konvertiert verschachtelte API-Antwort in abstraktes Typmodell
  * (Strings → "string", Zahlen → 0 usw.)
  */
 function transformValues(value) {
@@ -24,7 +24,7 @@ function transformValues(value) {
 }
 
 /**
- * 📁 Gibt exakt den Pfad zurück, der in der config.json als expectedStructure definiert ist.
+ * Gibt exakt den Pfad zurück, der in der config.json als expectedStructure definiert ist.
  * → Dieser Pfad soll als Referenz für die Vergleichsstruktur verwendet werden.
  *
  * @param {string} baseName - z. B. "Get_View_Customer"
@@ -40,7 +40,7 @@ function getLatestUpdatedPath(baseName, endpoint) {
 }
 
 /**
- * 📤 Gibt den nächsten freien Pfad für eine neue aktualisierte Struktur zurück
+ * Gibt den nächsten freien Pfad für eine neue aktualisierte Struktur zurück
  * → z. B. "Get_List_Customers_updated_v3.json"
  *
  * @param {string} baseName - z. B. "Get_List_Customers"

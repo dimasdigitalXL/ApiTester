@@ -5,7 +5,7 @@ require("dotenv").config();
 const path = require("path");
 const fs = require("fs-extra");
 
-// 🔁 NEU: Reset-Modul importieren
+// Reset-Modul importieren
 const { resetApprovals } = require("./core/resetApprovals");
 
 const { loadConfig } = require("./core/configLoader");

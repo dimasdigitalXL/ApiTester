@@ -16,17 +16,17 @@ const { resolveProjectPath } = require("./utils");
  */
 async function testEndpoint(endpoint, dynamicParams = {}, config = null) {
   try {
-    // 🔧 Ersetze Platzhalter in URL (z. B. ${XENTRAL_ID} oder {id})
+    // Ersetze Platzhalter in URL (z. B. ${XENTRAL_ID} oder {id})
     let url = endpoint.url.replace("${XENTRAL_ID}", process.env.XENTRAL_ID);
     for (const param in dynamicParams) {
       url = url.replace(`{${param}}`, dynamicParams[param]);
     }
 
-    // 🧾 Optional: Query-Parameter vorbereiten
+    // (Optional) Query-Parameter vorbereiten
     const queryParams = new URLSearchParams(endpoint.query || {});
     let body = null;
 
-    // 📦 Bei POST/PATCH/PUT: Lade JSON-Body aus Datei
+    // Bei POST/PATCH/PUT: Lade JSON-Body aus Datei
     if (["POST", "PUT", "PATCH"].includes(endpoint.method)) {
       if (endpoint.bodyFile) {
         const bodyPath = resolveProjectPath(endpoint.bodyFile);
@@ -36,7 +36,7 @@ async function testEndpoint(endpoint, dynamicParams = {}, config = null) {
       }
     }
 
-    // 📡 Führe API-Request aus
+    // Führe API-Request aus
     const response = await axios({
       url: `${url}?${queryParams.toString()}`,
       method: endpoint.method,
@@ -49,7 +49,7 @@ async function testEndpoint(endpoint, dynamicParams = {}, config = null) {
       validateStatus: () => true
     });
 
-    // 🧼 Fallback: Leere JSON bei ungültiger Antwort
+    // Fallback: Leere JSON bei ungültiger Antwort
     let responseData = {};
     try {
       responseData = response.data;
@@ -57,7 +57,7 @@ async function testEndpoint(endpoint, dynamicParams = {}, config = null) {
       console.warn("Antwort ist kein gültiges JSON.");
     }
 
-    // 💡 Falls kein expectedStructure gesetzt → Test als erfolgreich markieren
+    // Falls kein expectedStructure gesetzt → Test als erfolgreich markieren
     if (!endpoint.expectedStructure) {
       console.log(`ℹ️ Kein expectedStructure für "${endpoint.name}" definiert – Test wird übersprungen.`);
       return {
@@ -74,7 +74,7 @@ async function testEndpoint(endpoint, dynamicParams = {}, config = null) {
       };
     }
 
-    // 🔄 Lade erwartete Struktur aus config.json
+    // Lade erwartete Struktur aus config.json
     const expectedPath = resolveProjectPath(endpoint.expectedStructure);
     const approvalsPath = resolveProjectPath("pending-approvals.json");
     const baseName = endpoint.name.replace(/\s+/g, "_");
@@ -91,20 +91,20 @@ async function testEndpoint(endpoint, dynamicParams = {}, config = null) {
       expectedStructure = await fs.readJson(expectedPath);
     }
 
-    // 🔍 Vergleiche Response mit erwarteter Struktur
+    // Vergleiche Response mit erwarteter Struktur
     const transformed = transformValues(responseData);
     const { missingFields, extraFields, typeMismatches } = compareStructures(expectedStructure, transformed);
     const hasDifferences =
       missingFields.length > 0 || extraFields.length > 0 || typeMismatches.length > 0;
 
-    // 💾 Wenn Unterschiede gefunden wurden: Neue Struktur speichern
+    // Wenn Unterschiede gefunden wurden: Neue Struktur speichern
     let updatedPath = null;
     if (hasDifferences) {
       updatedPath = getNextUpdatedPath(baseName);
       await fs.writeJson(updatedPath, transformed, { spaces: 2 });
       console.log(`📄 Struktur aktualisiert und gespeichert: ${updatedPath}`);
 
-      // ✅ Prüfe, ob Slack-Zustimmung existiert (pending-approvals.json)
+      // Prüfe, ob Slack-Zustimmung existiert (pending-approvals.json)
       if (fs.existsSync(approvalsPath)) {
         const approvals = await fs.readJson(approvalsPath);
         const approvalStatus = approvals[baseName];
@@ -114,7 +114,7 @@ async function testEndpoint(endpoint, dynamicParams = {}, config = null) {
           if (config) {
             const found = config.endpoints.find(e => e.name === endpoint.name);
             if (found) {
-              // 📌 Aktualisiere expectedStructure in config.json
+              // Aktualisiere expectedStructure in config.json
               found.expectedStructure = path
                 .relative(resolveProjectPath(), updatedPath)
                 .replace(/\\/g, "/");
@@ -132,7 +132,7 @@ async function testEndpoint(endpoint, dynamicParams = {}, config = null) {
       }
     }
 
-    // 📤 Rückgabe des Testergebnisses
+    // Rückgabe des Testergebnisses
     return {
       endpointName: endpoint.name,
       method: endpoint.method,

@@ -1,30 +1,49 @@
-// slackReporter.js
+// core/slackReporter.js – mit Block Kit + Modal-PIN-Verifizierung (Funktion B)
 
 const axios = require("axios");
 const fs = require("fs-extra");
 require("dotenv").config();
 const { resolveProjectPath } = require("./utils");
+const { getSlackWorkspaces } = require("./slackWorkspaces");
 
 const approvalsFilePath = resolveProjectPath("pending-approvals.json");
 
-/**
- * Entfernt führendes "data." oder "data[0]." aus einem Pfadstring.
- * So wird die Slack-Ausgabe lesbarer.
- */
 function stripDataPrefix(str) {
   return str.replace(/^data\[0\]\./, "").replace(/^data\./, "");
 }
 
-/**
- * Sendet einen zusammengefassten Testbericht über den Slack-Bot.
- * Zusätzlich werden bei neuen Feldern interaktive Nachrichten mit Buttons gesendet.
- */
+async function sendToAllWorkspaces(payload) {
+  const workspaces = getSlackWorkspaces();
+
+  for (const { token, channel } of workspaces) {
+    if (!token || !channel) continue;
+    try {
+      await axios.post(
+        "https://slack.com/api/chat.postMessage",
+        { ...payload, channel },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json"
+          }
+        }
+      );
+    } catch (err) {
+      console.error("❌ Fehler beim Senden an Slack Workspace:", err.message);
+    }
+  }
+}
+
 async function sendSlackReport(testResults, versionUpdates = []) {
   try {
     const successCount = testResults.filter(r => r.success).length;
-    const warnings = testResults.filter(r =>
-      !r.success && !r.isCritical &&
-      (r.missingFields.length > 0 || r.extraFields.length > 0 || r.typeMismatches.length > 0)
+    const warnings = testResults.filter(
+      r =>
+        !r.success &&
+        !r.isCritical &&
+        (r.missingFields.length > 0 ||
+         r.extraFields.length > 0 ||
+         r.typeMismatches.length > 0)
     );
     const criticals = testResults.filter(r => r.isCritical);
     const totalTests = testResults.length;
@@ -35,7 +54,6 @@ async function sendSlackReport(testResults, versionUpdates = []) {
     let message = `🔍 *API Testbericht - ${new Date().toLocaleDateString("de-DE")}*\n`;
     message += `-------------------------------------------------\n`;
 
-    // API-Versionshinweise
     if (versionUpdates.length > 0) {
       message += `🚀 *Automatisch erkannte neue API-Versionen:*\n`;
       versionUpdates.forEach(ep => {
@@ -45,14 +63,12 @@ async function sendSlackReport(testResults, versionUpdates = []) {
       message += `-------------------------------------------------\n`;
     }
 
-    // Fehlerausgabe
     if (warnings.length > 0 || criticals.length > 0) {
       message += `📌 *Fehlerdetails:*\n`;
     } else {
       message += `✅ *Alle Tests erfolgreich ausgeführt.* Keine Abweichungen gefunden!\n`;
     }
 
-    // Alle Issues (Warnungen + kritische Fehler)
     let issueCounter = 1;
     for (const issue of [...warnings, ...criticals]) {
       const icon = issue.isCritical ? "🔴" : "🟠";
@@ -74,56 +90,46 @@ async function sendSlackReport(testResults, versionUpdates = []) {
         message += `⚠️ *Typabweichungen:*\n• ${cleanedTypes.join("\n• ")}\n`;
       }
 
-      // Interaktive Freigabe bei neuen Feldern
-      if (cleanedExtra.length > 0 && process.env.SLACK_BOT_TOKEN && process.env.SLACK_CHANNEL_ID) {
-        // Nachricht mit Buttons
-        await axios.post("https://slack.com/api/chat.postMessage", {
-          channel: process.env.SLACK_CHANNEL_ID,
-          text: `❓ Neue Felder bei *${issue.endpointName}* entdeckt: ${cleanedExtra.join(", ")}\nWie möchtest du fortfahren?`,
-          attachments: [
+      // Block Kit Buttons (Funktion B: open_pin_modal und wait_action)
+      if (cleanedExtra.length > 0) {
+        await sendToAllWorkspaces({
+          text: `❓ Neue Felder bei *${issue.endpointName}* entdeckt.`,
+          blocks: [
             {
-              text: "Bitte Aktion auswählen:",
-              callback_id: issue.endpointName.replace(/\s+/g, "_"),
-              color: "#f2c744",
-              actions: [
+              type: "section",
+              text: {
+                type: "mrkdwn",
+                text: `*Neue Attribute:* ${cleanedExtra.join(", ")}\nWie möchtest du fortfahren?`
+              }
+            },
+            {
+              type: "actions",
+              block_id: "decision_buttons",
+              elements: [
                 {
-                  name: "confirm",
-                  text: "✅ Einverstanden",
                   type: "button",
-                  value: "approve"
+                  text: { type: "plain_text", text: "✅ Einverstanden" },
+                  style: "primary",
+                  action_id: "open_pin_modal",
+                  value: issue.endpointName.replace(/\s+/g, "_")
                 },
                 {
-                  name: "wait",
-                  text: "⏸️ Warten",
                   type: "button",
-                  value: "wait"
+                  text: { type: "plain_text", text: "⏸️ Warten" },
+                  style: "danger",
+                  action_id: "wait_action",
+                  value: issue.endpointName.replace(/\s+/g, "_")
                 }
               ]
-            }
+            },
+            { type: "divider" }
           ]
-        }, {
-          headers: {
-            Authorization: `Bearer ${process.env.SLACK_BOT_TOKEN}`,
-            "Content-Type": "application/json"
-          }
-        });
-
-        // ➕ Jetzt separat eine Trennlinie als eigene Slack-Nachricht senden
-        await axios.post("https://slack.com/api/chat.postMessage", {
-          channel: process.env.SLACK_CHANNEL_ID,
-          text: `-------------------------------------------------`
-        }, {
-          headers: {
-            Authorization: `Bearer ${process.env.SLACK_BOT_TOKEN}`,
-            "Content-Type": "application/json"
-          }
         });
       }
 
       issueCounter++;
     }
 
-    // Statistik & Abschluss
     message += `\n-------------------------------------------------\n`;
     message += `📊 *Gesamtstatistik:* ${totalTests} API-Calls\n`;
     message += `🔹 🟢 *Erfolgreich:* ${successCount}\n`;
@@ -131,25 +137,11 @@ async function sendSlackReport(testResults, versionUpdates = []) {
     message += `🔹 🔴 *Kritisch:* ${criticalCount}\n`;
     message += `📢 *Status:* ${criticalCount > 0 ? "🔴" : warningCount > 0 ? "🟠" : "🟢"}\n`;
 
-    // Hauptbericht senden
-    if (process.env.SLACK_BOT_TOKEN && process.env.SLACK_CHANNEL_ID) {
-      await axios.post("https://slack.com/api/chat.postMessage", {
-        channel: process.env.SLACK_CHANNEL_ID,
-        text: message
-      }, {
-        headers: {
-          Authorization: `Bearer ${process.env.SLACK_BOT_TOKEN}`,
-          "Content-Type": "application/json"
-        }
-      });
+    await sendToAllWorkspaces({ text: message });
 
-      console.log("\n📩 Slack-Testbericht über Bot erfolgreich gesendet.");
-    } else {
-      console.log("⚠️ Bot-Konfiguration fehlt – Bericht nicht über Bot gesendet.");
-    }
-
+    console.log("\n📩 Slack-Testbericht an alle Workspaces gesendet.");
   } catch (error) {
-    console.error("\n❌ Fehler beim Senden des Slack-Berichts:", error.message);
+    console.error("\n❌ Fehler beim Slack-Versand:", error.message);
   }
 }
 

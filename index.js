@@ -10,7 +10,7 @@ const { resetApprovals } = require("./core/resetApprovals");
 
 const { loadConfig } = require("./core/configLoader");
 const { runSingleEndpoint } = require("./core/endpointRunner");
-const { sendSlackReport } = require("./core/slackReporter");
+const { sendSlackReport } = require("./core/slack/slackReporter");
 const { validateConfig } = require("./core/validateConfig");
 
 /**

@@ -5,46 +5,48 @@ Ein automatisierter API-Tester zur kontinuierlichen Validierung und Überwachung
 ## 🚀 Features
 
 - Automatische Strukturprüfung von API-Responses
-- Dynamische Pfadparameter (z. B. `{id}`) + ID-Autofill
-- Automatische API-Versionsprüfung (z. B. `/v1/`, `/v2/`, ...)
-- Typprüfung, fehlende & zusätzliche Felder, neue Attribute
-- Differenzspeicherung in `_updated[_vX].json` (Versionierung)
-- Zustimmung zu Änderungen über Slack notwendig
-- Interaktive Slack-Nachrichten mit Block Kit UI
-- PIN-Verifizierung via Modal vor finaler Freigabe
-- Mehrere Slack-Workspaces unterstützt (`SLACK_BOT_TOKEN_n`)
-- Automatische Aktualisierung der ursprünglichen Slack-Nachricht
-- Logging von Fehlern und Unterschieden in `logs/`
+- Unterstützung dynamischer Pfadparameter (z. B. `{id}`)
+- Zwei-Schritt-Versionserkennung (API-Version wird erkannt und später evaluiert)
+- Vergleich gegen aktualisierte erwartete Datenstruktur (`_updated.json`, `_updated_v1.json`, ...)
+- Typabweichungs- und Feldvergleich (fehlende/zusätzliche Felder)
+- Slack-Benachrichtigung mit detailliertem Fehlerreport
+- Interaktive Zustimmung via Slack-Button & PIN-Verifizierung
+- Speicherung von Logs (Fehler, Differenzen)
+- Unterstützung mehrerer Slack Workspaces
 
 ## 🧱 Projektstruktur
 
 ```bash
 .
-├── core/
-│   ├── apiCaller.js           # Führt Request aus, vergleicht mit expected
-│   ├── compareStructures.js   # JSON-Strukturvergleich
-│   ├── configLoader.js        # Lädt config.json
-│   ├── endpointRunner.js      # Testablauf inkl. Versionserkennung
-│   ├── fileLogger.js          # Speichert logs (Fehler & Unterschiede)
-│   ├── promptHelper.js        # ID-Abfrage für manuelle Tests
-│   ├── slackReporter.js       # Erstellt Slack-Testbericht
-│   ├── slackWorkspaces.js     # Lädt Slack-Tokens und Secrets
-│   ├── validateConfig.js      # Validierung von config.json
-│   ├── versionChecker.js      # Prüft URL-Versionen (v1 → v2 ...)
-│   └── utils.js               # Hilfsfunktionen (Pfadlösung, Cleanup ...)
+├── core/                  
+│   ├── slack/               # Modularisierte Slack-Interaktion
+│   │   ├── handlePinSubmission.js
+│   │   ├── openPinModal.js
+│   │   ├── slackReporter.js
+│   │   ├── slackWorkspaces.js
+│   │   ├── validateSignature.js
+│   │   └── getDisplayName.js
+│   ├── apiCaller.js       
+│   ├── compareStructures.js
+│   ├── configLoader.js    
+│   ├── endpointRunner.js  
+│   ├── fileLogger.js      
+│   ├── promptHelper.js    
+│   ├── structureAnalyzer.js  # Vergleicht und verwaltet expected/updated-Strukturen
+│   └── utils.js           
 │
-├── expected/                  # Erwartete Strukturen
-├── logs/                      # Fehler und Differenzen
-├── responses/                 # Gespeicherte Originalantworten (optional)
-├── requestBodies/             # JSON-Payloads für POST/PUT/PATCH
-├── default-ids.json           # Fallback IDs
-├── config.json                # Test-Konfiguration
-├── pending-approvals.json     # Temporäre Zustimmungsverwaltung
-├── slackInteractiveServer.js  # Express-Server für Slack-Modals & Buttons
-└── index.js                   # Hauptausführung
+├── expected/              # Erwartete Datenstrukturen (.json)
+├── logs/                  # Fehler- und Differenzlogs
+├── responses/             # (Optional) Gespeicherte Originalantworten
+├── requestBodies/         # JSON-Dateien für POST-/PUT-/PATCH-Requests
+├── default-ids.json       # Vorbelegte IDs für GET-Detail-Requests
+├── config.json            # API-Endpunktdefinitionen inkl. erwarteter Struktur
+├── slackInteractiveServer.js # Express-Router für Slack-Interaktionen
+├── startSlackServer.js    # Einstiegspunkt für Slack-Server
+└── index.js               # Hauptprozess: orchestriert alle Tests
 ```
 
-## 🔧 Beispiel `config.json`
+## 🔧 Beispiel: config.json
 
 ```json
 {
@@ -52,41 +54,36 @@ Ein automatisierter API-Tester zur kontinuierlichen Validierung und Überwachung
   "url": "https://${XENTRAL_ID}.xentral.biz/api/v1/customers/{id}",
   "method": "GET",
   "requiresId": true,
-  "expectedStructure": "expected/Get_View_Customer_updated_v2.json"
+  "expectedStructure": "expected/Get_View_Customer_updated.json"
 }
 ```
 
-## 🧪 Testablauf
+## 🧪 Testablauf (Zwei-Schritt-Logik)
 
-1. **Version prüfen**  
-   - `/v1/` → `/v2/` → `/v3/` etc.
-   - Wenn neuer Pfad → config.json aktualisiert, Test pausiert
+1. **Versionserkennung**  
+   - API-URL wird auf `/v2/`, `/v3/` etc. geprüft  
+   - Wenn neue Version erkannt → `config.json` wird aktualisiert, Test wird **abgebrochen**
 
-2. **Struktur vergleichen**  
-   - Felder: fehlend, neu, Typabweichungen
-   - Änderungen → neue Struktur gespeichert (`_updated`, `_updated_v2`, ...)
-   - Zustimmung via Slack notwendig zur Übernahme
+2. **Testlauf (bei erneutem Aufruf)**  
+   - API wird erneut aufgerufen  
+   - Antwortstruktur wird als `_updated[_vX].json` gespeichert  
+   - Unterschiede (fehlende, zusätzliche Felder, Typabweichungen) werden gemeldet  
+   - Strukturänderungen müssen per Slack bestätigt werden
 
 ## 📤 Slack-Integration
 
-- Slack-Report enthält:
-  - ✅ Erfolgreiche Tests
-  - 🟠 Abweichungen (Warnings)
-  - 🔴 Kritische Fehler (Timeout, 500er ...)
-  - 🔄 Automatisch erkannte neue API-Versionen
-
-- Interaktive Block-Kit Nachrichten:
-  - `✅ Einverstanden` → Modal mit PIN-Abfrage
-  - `⏸️ Warten` → Struktur wird nicht übernommen
-  - Bei Erfolg → Originalnachricht wird aktualisiert mit:  
-    `✅ Freigegeben durch <DisplayName>`
-
-## 🔐 PIN-Verifizierung
-
-- Modal wird geöffnet bei Klick auf ✅
-- Eingabe der PIN (aus `.env`) ist erforderlich
-- Erst nach korrekter Eingabe wird die `config.json` aktualisiert
-- Gilt global für alle Workspaces
+- Slack-Report mit:
+  - ✅ Erfolgreichen Tests
+  - ⚠️ Warnungen bei Differenzen
+  - 🔴 Kritischen Fehlern
+  - 🔄 Neue API-Versionen
+- Bei neuen Feldern:
+  - Interaktive Nachricht mit zwei Buttons:
+    - `✅ Einverstanden` → öffnet PIN-Modal
+    - `⏸️ Warten` → keine Aktion
+  - Nach erfolgreicher PIN-Eingabe:
+    - `config.json` wird automatisch aktualisiert
+    - Originalnachricht in Slack wird ersetzt mit: `✅ Freigegeben durch <Name>`
 
 ## ⚙️ .env-Konfiguration
 
@@ -94,43 +91,46 @@ Ein automatisierter API-Tester zur kontinuierlichen Validierung und Überwachung
 XENTRAL_ID=deine_subdomain
 BEARER_TOKEN=abc123456...
 
+# Slack Workspace 1
 SLACK_BOT_TOKEN_1=xoxb-...
 SLACK_CHANNEL_ID_1=C0123456789
 SLACK_SIGNING_SECRET_1=...
 
-# (optional weitere Workspaces)
-SLACK_BOT_TOKEN_2=...
-SLACK_CHANNEL_ID_2=...
+# Slack Workspace 2 (optional)
+SLACK_BOT_TOKEN_2=xoxb-...
+SLACK_CHANNEL_ID_2=C0987654321
 SLACK_SIGNING_SECRET_2=...
 
+# Optional
 SLACK_APPROVE_PIN=1234
+SLACK_SERVER_PORT=3001
 DISABLE_SLACK=false
 ```
 
 ## ▶️ Nutzung
 
 ```bash
-# Alle Tests automatisch ausführen
+# Alle API-Tests ausführen
 node index.js
 
-# Einzelner Test (z. B. bei requiresId)
+# Einzelnen Test gezielt ausführen
 node index.js "Get View Customer" --id=4711
 ```
 
-## 🌐 Slack Interaktivität
+## 🔄 Slack-Server starten
+
+Startet den Express-Server, um Slack-Interaktionen zu verarbeiten:
 
 ```bash
-# Lokalen Server starten (empfängt Slack-Interaktionen)
-node slackInteractiveServer.js
-
-# Über ngrok öffentlich erreichbar machen:
-ngrok http 3001
+node startSlackServer.js
 ```
 
-## 🧠 Hinweise
+Intern wird die Datei `slackInteractiveServer.js` verwendet, die alle Interaktionen modular verarbeitet (`/core/slack/`).
 
-- Jede API-Strukturänderung erfordert Zustimmung über Slack
-- Zustimmung wird durch Eingabe der PIN verifiziert
-- Alte erwartete Strukturen bleiben erhalten (Historie)
-- Logs befinden sich in `logs/errors.log` und `logs/differences.log`
-- Nachrichten in Slack werden bei Zustimmung automatisch aktualisiert
+## 🧠 Weitere Hinweise
+
+- Strukturupdates werden versioniert gespeichert
+- Die Datei `config.json` wird **nur** nach Zustimmung (und PIN-Verifikation) aktualisiert
+- Zustimmung & Verlauf in `pending-approvals.json`
+- Alle erwarteten und tatsächlichen API-Strukturen liegen in `expected/` und `responses/`
+- Unterschiede, Fehler, Versionssprünge werden im Terminal und per Slack visualisiert

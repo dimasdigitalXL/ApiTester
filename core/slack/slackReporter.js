@@ -3,7 +3,7 @@
 const axios = require("axios");
 const fs = require("fs-extra");
 require("dotenv").config();
-const { resolveProjectPath } = require("./utils");
+const { resolveProjectPath } = require("../utils");
 const { getSlackWorkspaces } = require("./slackWorkspaces");
 
 const approvalsFilePath = resolveProjectPath("pending-approvals.json");

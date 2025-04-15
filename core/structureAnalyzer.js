@@ -1,4 +1,4 @@
-// structureAnalyzer.js
+// core/structureAnalyzer.js
 
 const fs = require("fs-extra");
 const path = require("path");
@@ -26,25 +26,17 @@ function transformValues(value) {
 /**
  * Gibt exakt den Pfad zurück, der in der config.json als expectedStructure definiert ist.
  * → Dieser Pfad soll als Referenz für die Vergleichsstruktur verwendet werden.
- *
- * @param {string} baseName - z. B. "Get_View_Customer"
- * @param {object} endpoint - das Endpoint-Objekt aus config.json
- * @returns {string|null} - absoluter Pfad zur verwendeten Vergleichsstruktur
  */
 function getLatestUpdatedPath(baseName, endpoint) {
   if (endpoint.expectedStructure) {
     return resolveProjectPath(endpoint.expectedStructure);
   }
-
   return null;
 }
 
 /**
  * Gibt den nächsten freien Pfad für eine neue aktualisierte Struktur zurück
  * → z. B. "Get_List_Customers_updated_v3.json"
- *
- * @param {string} baseName - z. B. "Get_List_Customers"
- * @returns {string} - absoluter Pfad zur neuen Datei
  */
 function getNextUpdatedPath(baseName) {
   const dir = resolveProjectPath("expected");
@@ -68,9 +60,30 @@ function getNextUpdatedPath(baseName) {
   );
 }
 
+/**
+ * Gibt die zuletzt generierte *_updated[_vX].json Datei für einen Endpunkt zurück
+ * → z. B. "Get_View_Customer_updated_v3.json"
+ * (Nur der Dateiname, nicht der vollständige Pfad)
+ */
+function getLatestUpdatedFile(baseName) {
+  const dir = resolveProjectPath("expected");
+  if (!fs.existsSync(dir)) return null;
+
+  const files = fs.readdirSync(dir);
+  const regex = new RegExp(`^${baseName}_updated(?:_v(\\d+))?\\.json$`);
+
+  const matching = files
+    .map(f => ({ file: f, match: f.match(regex) }))
+    .filter(f => f.match)
+    .sort((a, b) => parseInt(b.match[1] || 0) - parseInt(a.match[1] || 0));
+
+  return matching.length > 0 ? matching[0].file : null;
+}
+
 module.exports = {
   transformValues,
   getLatestUpdatedPath,
   getNextUpdatedPath,
+  getLatestUpdatedFile,
   compareStructures
 };

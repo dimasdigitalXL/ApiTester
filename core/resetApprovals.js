@@ -1,25 +1,29 @@
+// core/resetApprovals.js
+
 const fs = require("fs-extra");
 const { resolveProjectPath } = require("./utils");
+const approvalsFile = resolveProjectPath("pending-approvals.json");
 
+/**
+ * Setzt nur die approval‑Status zurück, 
+ * bewahrt jedoch den gecachten Block‑Array unter __rawBlocks.
+ */
 async function resetApprovals() {
-  const approvalsPath = resolveProjectPath("pending-approvals.json");
+  const approvals = await fs.readJson(approvalsFile);
+  // speicher den Block‑Cache
+  const rawBlocks = approvals.__rawBlocks || {};
 
-  if (await fs.exists(approvalsPath)) {
-    const data = await fs.readJson(approvalsPath);
-    let wasModified = false;
-
-    for (const key in data) {
-      if (data[key] === "approved") {
-        data[key] = "waiting";
-        wasModified = true;
-      }
-    }
-
-    if (wasModified) {
-      await fs.writeJson(approvalsPath, data, { spaces: 2 });
-      console.log("♻️ Alle 'approved'-Zustände wurden zurück auf 'waiting' gesetzt.");
-    }
+  // baue ein neues Objekt nur mit __rawBlocks und zurückgesetzten Endpoints
+  const newApprovals = { __rawBlocks: rawBlocks };
+  for (const key of Object.keys(approvals)) {
+    if (key === "__rawBlocks") continue;
+    // hier je nachdem, wie du in pending-approvals.json deine Endpoints trackst:
+    // newApprovals[key] = "waiting";
+    // oder falls es ein Objekt ist:
+    newApprovals[key] = "waiting";
   }
+
+  await fs.writeJson(approvalsFile, newApprovals, { spaces: 2 });
 }
 
 module.exports = { resetApprovals };

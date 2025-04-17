@@ -1,0 +1,110 @@
+{
+    "data": [
+        {
+            "id": "string",
+            "name": "string",
+            "keyName": "string",
+            "description": "string",
+            "currency": "string",
+            "normalTaxRate": 0,
+            "reducedTaxRate": 0,
+            "storageProcess": "string",
+            "pickingProcess": "string"
+        },
+        {
+            "id": "string",
+            "name": "string",
+            "keyName": "string",
+            "description": "string",
+            "currency": "string",
+            "normalTaxRate": 0,
+            "reducedTaxRate": 0,
+            "storageProcess": "string",
+            "pickingProcess": "string"
+        },
+        {
+            "id": "string",
+            "name": "string",
+            "keyName": "string",
+            "description": "string",
+            "currency": "string",
+            "normalTaxRate": 0,
+            "reducedTaxRate": 0,
+            "storageProcess": "string",
+            "pickingProcess": "string"
+        },
+        {
+            "id": "string",
+            "name": "string",
+            "keyName": "string",
+            "description": "string",
+            "currency": "string",
+            "normalTaxRate": 0,
+            "reducedTaxRate": 0,
+            "storageProcess": "string",
+            "pickingProcess": "string"
+        },
+        {
+            "id": "string",
+            "name": "string",
+            "keyName": "string",
+            "description": "string",
+            "currency": "string",
+            "normalTaxRate": 0,
+            "reducedTaxRate": 0,
+            "storageProcess": "string",
+            "pickingProcess": "string"
+        },
+        {
+            "id": "string",
+            "name": "string",
+            "keyName": "string",
+            "description": "string",
+            "currency": "string",
+            "normalTaxRate": 0,
+            "reducedTaxRate": 0,
+            "storageProcess": "string",
+            "pickingProcess": "string"
+        },
+        {
+            "id": "string",
+            "name": "string",
+            "keyName": "string",
+            "description": "string",
+            "currency": "string",
+            "normalTaxRate": 0,
+            "reducedTaxRate": 0,
+            "storageProcess": "string",
+            "pickingProcess": "string"
+        },
+        {
+            "id": "string",
+            "name": "string",
+            "keyName": "string",
+            "description": "string",
+            "currency": "string",
+            "normalTaxRate": 0,
+            "reducedTaxRate": 0,
+            "storageProcess": "string",
+            "pickingProcess": "string"
+        },
+        {
+            "id": "string",
+            "name": "string",
+            "keyName": "string",
+            "description": "string",
+            "currency": "string",
+            "normalTaxRate": 0,
+            "reducedTaxRate": 0,
+            "storageProcess": "string",
+            "pickingProcess": "string"
+        }
+    ],
+    "extra": {
+        "totalCount": 0,
+        "page": {
+            "number": 0,
+            "size": 0
+        }
+    }
+}

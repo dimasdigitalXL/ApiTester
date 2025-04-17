@@ -1,4 +1,99 @@
 {
+  "__rawBlocks": {
+    "Get_View_Customer": [
+      {
+        "type": "header",
+        "text": {
+          "type": "plain_text",
+          "text": "🔍 API Testbericht"
+        }
+      },
+      {
+        "type": "context",
+        "elements": [
+          {
+            "type": "mrkdwn",
+            "text": "📅 Datum: *17.4.2025*"
+          }
+        ]
+      },
+      {
+        "type": "divider"
+      },
+      {
+        "type": "section",
+        "text": {
+          "type": "mrkdwn",
+          "text": "*1️⃣ Get View Customer* `(GET)` 🟠"
+        }
+      },
+      {
+        "type": "context",
+        "elements": [
+          {
+            "type": "mrkdwn",
+            "text": "⚠️ *Neue Felder:* number, deviatingCustomerNumber"
+          }
+        ]
+      },
+      {
+        "type": "actions",
+        "block_id": "decision_buttons",
+        "elements": [
+          {
+            "type": "button",
+            "text": {
+              "type": "plain_text",
+              "text": "✅ Einverstanden"
+            },
+            "style": "primary",
+            "action_id": "open_pin_modal",
+            "value": "Get_View_Customer"
+          },
+          {
+            "type": "button",
+            "text": {
+              "type": "plain_text",
+              "text": "⏸️ Warten"
+            },
+            "style": "danger",
+            "action_id": "wait_action",
+            "value": "Get_View_Customer"
+          }
+        ]
+      },
+      {
+        "type": "divider"
+      },
+      {
+        "type": "section",
+        "text": {
+          "type": "mrkdwn",
+          "text": "📊 *Gesamtstatistik:* 25 API-Calls"
+        }
+      },
+      {
+        "type": "section",
+        "text": {
+          "type": "mrkdwn",
+          "text": "🔹 🟢 *Erfolgreich:* 24\n🔹 🟠 *Achtung:* 1\n🔹 🔴 *Kritisch:* 0"
+        }
+      },
+      {
+        "type": "section",
+        "text": {
+          "type": "mrkdwn",
+          "text": "📢 *Status:* 🟠"
+        }
+      },
+      {
+        "type": "divider"
+      }
+    ]
+  },
   "Get_List_Customers": "waiting",
-  "Get_View_Customer": "waiting"
+  "Get_View_Customer": "waiting",
+  "Get_View_Purchase_Order": "waiting",
+  "Get_List_Purchase_Orders": "waiting",
+  "Get_View_Sales_Order": "waiting"
 }

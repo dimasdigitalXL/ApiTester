@@ -4,6 +4,17 @@
     "Update Product": "1345",
     "Get View Sales Order": "19",
     "Get View Invoice": "44",
-    "Get View Customer": "440"
+    "Get View Customer": "440",
+    "Get View Delivery Note": "1",
+    "Get View Purchase Order": "1",
+    "Get View Credit Note": "1",
+    "Get View Liability": "1",
+    "Get View Suppliers": "11",
+    "Get View Return": "1",
+    "Get View Options of a Product": "1",
+    "Get View Media": "1",
+    "Get View Purchase Prices": "1",
+    "Get View Sales Prices": "1",
+    "Get View Parts": "1"
   }
   

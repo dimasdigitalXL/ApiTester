@@ -1,0 +1,39 @@
+{
+    "data": {
+        "id": "string",
+        "date": "string",
+        "documentNumber": "string",
+        "progress": "string",
+        "shippingMethod": {
+            "id": 0,
+            "name": "string"
+        },
+        "project": {
+            "id": 0,
+            "name": "string"
+        },
+        "status": "string",
+        "bodyOutroduction": "string",
+        "internalComment": "string",
+        "salesOrder": {
+            "id": "string"
+        },
+        "positions": [
+            {
+                "id": "string",
+                "salesOrderPosition": {
+                    "id": "string"
+                },
+                "product": {
+                    "id": "string",
+                    "number": "string",
+                    "name": "string"
+                },
+                "quantity": 0,
+                "returnReason": {
+                    "designation": "string"
+                }
+            }
+        ]
+    }
+}

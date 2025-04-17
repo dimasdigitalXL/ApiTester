@@ -19,31 +19,38 @@ Ein automatisierter API-Tester zur kontinuierlichen Validierung und Überwachung
 ```bash
 .
 ├── core/                  
-│   ├── slack/               # Modularisierte Slack-Interaktion
-│   │   ├── handlePinSubmission.js
-│   │   ├── openPinModal.js
-│   │   ├── slackReporter.js
-│   │   ├── slackWorkspaces.js
-│   │   ├── validateSignature.js
-│   │   └── getDisplayName.js
-│   ├── apiCaller.js       
-│   ├── compareStructures.js
-│   ├── configLoader.js    
-│   ├── endpointRunner.js  
-│   ├── fileLogger.js      
-│   ├── promptHelper.js    
-│   ├── structureAnalyzer.js  # Vergleicht und verwaltet expected/updated-Strukturen
-│   └── utils.js           
+│   ├── slack/                             # Modularisierte Slack-Interaktion
+│   │   ├── slackReporter/                 # Slack-Report (BlockKit)
+│   │   │   ├── renderHeaderBlock.js       # Erstellt Header + Datum + Divider
+│   │   │   ├── renderIssueBlocks.js       # Zeigt Fehlerdetails + Buttons für Zustimmung
+│   │   │   ├── renderStatsBlock.js        # Übersicht über Testanzahl + Status (🟢, 🟠, 🔴)
+│   │   │   ├── renderVersionBlocks.js     # Neue API-Versionen als Slack-Abschnitt
+│   │   │   └── sendSlackReport.js         # Baut gesamte Slack-Nachricht & versendet
+│   │   ├── handlePinSubmission.js         # PIN-Verifizierung & Slack-Nachricht aktualisieren
+│   │   ├── openPinModal.js                # Öffnet Slack-Modal zur PIN-Eingabe
+│   │   ├── getDisplayName.js              # Holt Slack-Anzeigename via User-ID
+│   │   ├── slackWorkspaces.js             # Slack-Workspace-Erkennung über ENV
+│   │   └── validateSignature.js           # Validiert Slack-Signaturen (HMAC)
 │
-├── expected/              # Erwartete Datenstrukturen (.json)
-├── logs/                  # Fehler- und Differenzlogs
-├── responses/             # (Optional) Gespeicherte Originalantworten
-├── requestBodies/         # JSON-Dateien für POST-/PUT-/PATCH-Requests
-├── default-ids.json       # Vorbelegte IDs für GET-Detail-Requests
-├── config.json            # API-Endpunktdefinitionen inkl. erwarteter Struktur
-├── slackInteractiveServer.js # Express-Router für Slack-Interaktionen
-├── startSlackServer.js    # Einstiegspunkt für Slack-Server
-└── index.js               # Hauptprozess: orchestriert alle Tests
+│   ├── apiCaller.js                       # Führt HTTP-Requests aus & verarbeitet die Antwort
+│   ├── compareStructures.js               # Vergleicht expected/actual-Struktur rekursiv
+│   ├── configLoader.js                    # Lädt config.json & prüft auf gültige Endpunkte
+│   ├── endpointRunner.js                  # Führt gezielte oder alle Tests aus
+│   ├── fileLogger.js                      # Loggt Fehler & speichert JSON-Responses
+│   ├── promptHelper.js                    # CLI-ID-Abfragen bei dynamischen URLs
+│   ├── structureAnalyzer.js               # Verwaltet & versioniert *_updated.json Dateien
+│   └── utils.js                           # Hilfsfunktionen für Pfade etc.
+│
+├── expected/                              # Erwartete Datenstrukturen (.json)
+├── logs/                                  # Fehler- und Differenzlogs
+├── responses/                             # (Optional) Gespeicherte API-Responses
+├── requestBodies/                         # JSON für POST-, PUT-, PATCH-Requests
+├── default-ids.json                       # Gespeicherte IDs für Detail-Tests
+├── config.json                            # Liste aller API-Endpunkte + erwartete Struktur
+├── pending-approvals.json                 # Zustimmungsstatus + Original-Slack-Blocks
+├── slackInteractiveServer.js              # Express-Router für Slack-Interaktionen
+├── startSlackServer.js                    # Startet Slack-Interaktionsserver (Port 3001)
+└── index.js                               # Einstiegspunkt: orchestriert die API-Tests
 ```
 
 ## 🔧 Beispiel: config.json

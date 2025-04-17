@@ -1,0 +1,71 @@
+{
+    "data": [
+        {
+            "id": "string",
+            "name": "string",
+            "sort": 0,
+            "createdAt": "string"
+        },
+        {
+            "id": "string",
+            "name": "string",
+            "sort": 0,
+            "createdAt": "string"
+        },
+        {
+            "id": "string",
+            "name": "string",
+            "sort": 0,
+            "createdAt": "string"
+        },
+        {
+            "id": "string",
+            "name": "string",
+            "sort": 0,
+            "createdAt": "string"
+        },
+        {
+            "id": "string",
+            "name": "string",
+            "sort": 0,
+            "createdAt": "string"
+        },
+        {
+            "id": "string",
+            "name": "string",
+            "sort": 0,
+            "createdAt": "string"
+        },
+        {
+            "id": "string",
+            "name": "string",
+            "sort": 0,
+            "createdAt": "string"
+        },
+        {
+            "id": "string",
+            "name": "string",
+            "sort": 0,
+            "createdAt": "string"
+        },
+        {
+            "id": "string",
+            "name": "string",
+            "sort": 0,
+            "createdAt": "string"
+        },
+        {
+            "id": "string",
+            "name": "string",
+            "sort": 0,
+            "createdAt": "string"
+        }
+    ],
+    "extra": {
+        "totalCount": 0,
+        "page": {
+            "number": 0,
+            "size": 0
+        }
+    }
+}

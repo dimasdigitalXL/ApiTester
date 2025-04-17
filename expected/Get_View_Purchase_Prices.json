@@ -1,0 +1,94 @@
+{
+    "data": [
+        {
+            "id": "string",
+            "amount": 0,
+            "supplier": {
+                "id": "string",
+                "name": "string"
+            },
+            "price": {
+                "amount": "string",
+                "currency": "string"
+            },
+            "additionalInformation": {
+                "supplierAvailableStock": 0,
+                "supplierAvailableStockDate": "string",
+                "safetyStock": 0,
+                "standardDeliveryTime": 0,
+                "standardDeliveryTimeUnit": null,
+                "currentDeliveryTime": 0,
+                "currentDeliveryTimeUnit": null
+            }
+        },
+        {
+            "id": "string",
+            "amount": 0,
+            "supplier": {
+                "id": "string",
+                "name": "string"
+            },
+            "price": {
+                "amount": "string",
+                "currency": "string"
+            },
+            "additionalInformation": {
+                "supplierAvailableStock": 0,
+                "supplierAvailableStockDate": "string",
+                "safetyStock": 0,
+                "standardDeliveryTime": 0,
+                "standardDeliveryTimeUnit": null,
+                "currentDeliveryTime": 0,
+                "currentDeliveryTimeUnit": null
+            }
+        },
+        {
+            "id": "string",
+            "amount": 0,
+            "supplier": {
+                "id": "string",
+                "name": "string"
+            },
+            "price": {
+                "amount": "string",
+                "currency": "string"
+            },
+            "additionalInformation": {
+                "supplierAvailableStock": 0,
+                "supplierAvailableStockDate": "string",
+                "safetyStock": 0,
+                "standardDeliveryTime": 0,
+                "standardDeliveryTimeUnit": null,
+                "currentDeliveryTime": 0,
+                "currentDeliveryTimeUnit": null
+            }
+        },
+        {
+            "id": "string",
+            "amount": 0,
+            "supplier": {
+                "id": "string",
+                "name": "string"
+            },
+            "price": {
+                "amount": "string",
+                "currency": "string"
+            },
+            "additionalInformation": {
+                "supplierAvailableStock": 0,
+                "supplierAvailableStockDate": "string",
+                "safetyStock": 0,
+                "standardDeliveryTime": 0,
+                "standardDeliveryTimeUnit": null,
+                "currentDeliveryTime": 0,
+                "currentDeliveryTimeUnit": null
+            }
+        }
+    ],
+    "extra": {
+        "page": {
+            "number": 0,
+            "size": 0
+        }
+    }
+}

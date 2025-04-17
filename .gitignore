@@ -2,3 +2,4 @@
 node_modules/
 logs/
 output.log
+cron.log

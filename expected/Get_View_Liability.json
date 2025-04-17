@@ -1,0 +1,85 @@
+{
+    "data": {
+        "id": "string",
+        "documentNumber": "string",
+        "date": "string",
+        "createdAt": "string",
+        "createdBy": {
+            "name": "string"
+        },
+        "updatedAt": "string",
+        "status": "string",
+        "supplier": {
+            "id": "string"
+        },
+        "supplierInvoiceNumber": "string",
+        "receiptDate": "string",
+        "serviceDate": null,
+        "financials": {
+            "amountGross": {
+                "amount": "string",
+                "currency": "string"
+            },
+            "amountNet": {
+                "amount": "string",
+                "currency": "string"
+            },
+            "freightCharge": 0,
+            "taxation": "string",
+            "taxes": {
+                "normalTax": {
+                    "rate": 0,
+                    "amount": 0
+                },
+                "reducedTax": {
+                    "rate": 0,
+                    "amount": 0
+                },
+                "customTax1": {
+                    "rate": 0,
+                    "amount": 0
+                },
+                "customTax2": {
+                    "rate": 0,
+                    "amount": 0
+                }
+            },
+            "paymentTerms": {
+                "dueDate": "string",
+                "earlyPaymentDate": "string",
+                "earlyPaymentDiscount": 0,
+                "earlyPaymentDiscountAmount": 0
+            },
+            "bookingText": "string",
+            "payment": {
+                "methodName": "string",
+                "paidAmount": 0,
+                "paidOnDate": "string",
+                "discountReceived": 0
+            },
+            "costCenter": "string",
+            "glAccount": "string"
+        },
+        "purchaseOrder": null,
+        "assignedPurchaseOrders": [],
+        "project": {
+            "id": "string"
+        },
+        "accounting": [
+            {
+                "glAccount": "string",
+                "bookingText": "string",
+                "amount": {
+                    "amount": "string",
+                    "currency": "string"
+                },
+                "tax": {
+                    "rate": 0
+                },
+                "costCenter": "string"
+            }
+        ],
+        "positions": [],
+        "purpose": null
+    }
+}

@@ -1,0 +1,71 @@
+{
+    "data": {
+        "id": "string",
+        "number": "string",
+        "date": "string",
+        "createdAt": "string",
+        "createdBy": {
+            "name": "string"
+        },
+        "sentAt": null,
+        "sentBy": null,
+        "updatedAt": "string",
+        "grossValue": {
+            "amount": "string",
+            "currency": "string"
+        },
+        "netValue": {
+            "amount": "string",
+            "currency": "string"
+        },
+        "costCenter": "string",
+        "status": "string",
+        "tags": [],
+        "project": {
+            "id": "string",
+            "name": "string"
+        },
+        "customer": {
+            "id": "string",
+            "name": "string"
+        },
+        "externalOrderReference": "string",
+        "devCustomer": "string",
+        "billingAddress": {
+            "name": "string",
+            "contactPerson": "string",
+            "department": "string",
+            "subdivision": "string",
+            "street": "string",
+            "additionalDetails": "string",
+            "city": "string",
+            "zipCode": "string",
+            "country": "string"
+        },
+        "paymentMethodName": "string",
+        "paymentStatus": "string",
+        "gln": "string",
+        "taxation": 0,
+        "positions": [
+            {
+                "id": 0,
+                "position": 0,
+                "salesOrderPosition": {
+                    "id": "string"
+                },
+                "createdAt": "string",
+                "productId": 0,
+                "productNumber": "string",
+                "description": "string",
+                "quantity": 0,
+                "price": {
+                    "amount": "string",
+                    "currency": "string"
+                },
+                "vatCategory": "string",
+                "taxRate": 0,
+                "discount": 0
+            }
+        ]
+    }
+}

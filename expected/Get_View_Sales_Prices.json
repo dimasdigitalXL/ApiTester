@@ -1,0 +1,81 @@
+{
+    "data": [
+        {
+            "id": "string",
+            "customer": null,
+            "customerGroup": {
+                "id": "string",
+                "name": "string",
+                "reference": "string"
+            },
+            "validFrom": null,
+            "expiresAt": null,
+            "amount": 0,
+            "price": {
+                "amount": "string",
+                "currency": "string"
+            }
+        },
+        {
+            "id": "string",
+            "customer": null,
+            "customerGroup": {
+                "id": "string",
+                "name": "string",
+                "reference": "string"
+            },
+            "validFrom": null,
+            "expiresAt": null,
+            "amount": 0,
+            "price": {
+                "amount": "string",
+                "currency": "string"
+            }
+        },
+        {
+            "id": "string",
+            "customer": null,
+            "customerGroup": null,
+            "validFrom": null,
+            "expiresAt": null,
+            "amount": 0,
+            "price": {
+                "amount": "string",
+                "currency": "string"
+            }
+        },
+        {
+            "id": "string",
+            "customer": null,
+            "customerGroup": null,
+            "validFrom": null,
+            "expiresAt": null,
+            "amount": 0,
+            "price": {
+                "amount": "string",
+                "currency": "string"
+            }
+        },
+        {
+            "id": "string",
+            "customer": {
+                "id": "string",
+                "name": "string"
+            },
+            "customerGroup": null,
+            "validFrom": null,
+            "expiresAt": null,
+            "amount": 0,
+            "price": {
+                "amount": "string",
+                "currency": "string"
+            }
+        }
+    ],
+    "extra": {
+        "page": {
+            "number": 0,
+            "size": 0
+        }
+    }
+}

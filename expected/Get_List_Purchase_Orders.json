@@ -1,0 +1,941 @@
+{
+  "data": [
+    {
+      "id": "string",
+      "date": "string",
+      "project": {
+        "id": "string"
+      },
+      "status": "string",
+      "documentNumber": "string",
+      "supplier": {
+        "id": "string",
+        "number": "string",
+        "customerNumberAtSupplier": "string",
+        "honorific": "string",
+        "name": "string",
+        "department": "string",
+        "subDepartment": "string",
+        "extraAddressLine": "string",
+        "street": "string",
+        "zipCode": "string",
+        "city": "string",
+        "state": "string",
+        "country": "string",
+        "contactPerson": "string",
+        "email": "string",
+        "telephone": "string",
+        "telefax": "string"
+      },
+      "bodyIntroduction": "string",
+      "bodyOutroduction": "string",
+      "requestForQuotation": null,
+      "suppliersOfferReference": "string",
+      "internalDesignation": "string",
+      "language": {
+        "iso2": "string"
+      },
+      "salesOrderConfirmationReference": "string",
+      "isConfirmationRequested": false,
+      "isConfirmed": false,
+      "confirmedVia": "string",
+      "financials": {
+        "paymentMethod": {
+          "id": "string"
+        },
+        "total": {
+          "currency": "string",
+          "amount": "string"
+        },
+        "paymentTerms": {
+          "paymentTargetDiscount": 0,
+          "paymentTargetDays": 0,
+          "paymentTargetDiscountDays": 0,
+          "paymentTargetDiscountAmount": 0,
+          "isPaymentTargetDiscountApplied": false
+        },
+        "costCenter": "string",
+        "tax": {
+          "taxation": "string",
+          "vatId": "string",
+          "taxDisplay": "string"
+        }
+      },
+      "delivery": {
+        "deliveryTerms": null,
+        "hasDifferentDeliveryAddress": false,
+        "deliveryAddress": {
+          "honorific": "string",
+          "name": "string",
+          "department": "string",
+          "subDepartment": "string",
+          "extraAddressLine": "string",
+          "street": "string",
+          "zipCode": "string",
+          "city": "string",
+          "state": "string",
+          "country": "string",
+          "contactPerson": "string"
+        },
+        "dates": {
+          "desiredDeliveryDate": null,
+          "confirmedDeliveryDate": null
+        }
+      },
+      "formatting": {
+        "hideLetterHead": false,
+        "hidePrices": false,
+        "hideProductNumbers": false,
+        "showLongProductNumbers": false,
+        "hideProductDescriptions": false,
+        "showOwnProductNumberInColumn": false
+      },
+      "internalComment": "string",
+      "liabilitiesInfo": "string"
+    },
+    {
+      "id": "string",
+      "date": "string",
+      "project": {
+        "id": "string"
+      },
+      "status": "string",
+      "documentNumber": "string",
+      "supplier": {
+        "id": "string",
+        "number": "string",
+        "customerNumberAtSupplier": "string",
+        "honorific": "string",
+        "name": "string",
+        "department": "string",
+        "subDepartment": "string",
+        "extraAddressLine": "string",
+        "street": "string",
+        "zipCode": "string",
+        "city": "string",
+        "state": "string",
+        "country": "string",
+        "contactPerson": "string",
+        "email": "string",
+        "telephone": "string",
+        "telefax": "string"
+      },
+      "bodyIntroduction": "string",
+      "bodyOutroduction": "string",
+      "requestForQuotation": null,
+      "suppliersOfferReference": "string",
+      "internalDesignation": "string",
+      "language": {
+        "iso2": "string"
+      },
+      "salesOrderConfirmationReference": "string",
+      "isConfirmationRequested": false,
+      "isConfirmed": false,
+      "confirmedVia": "string",
+      "financials": {
+        "paymentMethod": {
+          "id": "string"
+        },
+        "total": {
+          "currency": "string",
+          "amount": "string"
+        },
+        "paymentTerms": {
+          "paymentTargetDiscount": 0,
+          "paymentTargetDays": 0,
+          "paymentTargetDiscountDays": 0,
+          "paymentTargetDiscountAmount": 0,
+          "isPaymentTargetDiscountApplied": false
+        },
+        "costCenter": "string",
+        "tax": {
+          "taxation": "string",
+          "vatId": "string",
+          "taxDisplay": "string"
+        }
+      },
+      "delivery": {
+        "deliveryTerms": null,
+        "hasDifferentDeliveryAddress": false,
+        "deliveryAddress": {
+          "honorific": "string",
+          "name": "string",
+          "department": "string",
+          "subDepartment": "string",
+          "extraAddressLine": "string",
+          "street": "string",
+          "zipCode": "string",
+          "city": "string",
+          "state": "string",
+          "country": "string",
+          "contactPerson": "string"
+        },
+        "dates": {
+          "desiredDeliveryDate": null,
+          "confirmedDeliveryDate": null
+        }
+      },
+      "formatting": {
+        "hideLetterHead": false,
+        "hidePrices": false,
+        "hideProductNumbers": false,
+        "showLongProductNumbers": false,
+        "hideProductDescriptions": false,
+        "showOwnProductNumberInColumn": false
+      },
+      "internalComment": "string",
+      "liabilitiesInfo": "string"
+    },
+    {
+      "id": "string",
+      "date": "string",
+      "project": {
+        "id": "string"
+      },
+      "status": "string",
+      "documentNumber": "string",
+      "supplier": {
+        "id": "string",
+        "number": "string",
+        "customerNumberAtSupplier": "string",
+        "honorific": "string",
+        "name": "string",
+        "department": "string",
+        "subDepartment": "string",
+        "extraAddressLine": "string",
+        "street": "string",
+        "zipCode": "string",
+        "city": "string",
+        "state": "string",
+        "country": "string",
+        "contactPerson": "string",
+        "email": "string",
+        "telephone": "string",
+        "telefax": "string"
+      },
+      "bodyIntroduction": "string",
+      "bodyOutroduction": "string",
+      "requestForQuotation": null,
+      "suppliersOfferReference": "string",
+      "internalDesignation": "string",
+      "language": {
+        "iso2": "string"
+      },
+      "salesOrderConfirmationReference": "string",
+      "isConfirmationRequested": false,
+      "isConfirmed": false,
+      "confirmedVia": "string",
+      "financials": {
+        "paymentMethod": {
+          "id": "string"
+        },
+        "total": {
+          "currency": "string",
+          "amount": "string"
+        },
+        "paymentTerms": {
+          "paymentTargetDiscount": 0,
+          "paymentTargetDays": 0,
+          "paymentTargetDiscountDays": 0,
+          "paymentTargetDiscountAmount": 0,
+          "isPaymentTargetDiscountApplied": false
+        },
+        "costCenter": "string",
+        "tax": {
+          "taxation": "string",
+          "vatId": "string",
+          "taxDisplay": "string"
+        }
+      },
+      "delivery": {
+        "deliveryTerms": null,
+        "hasDifferentDeliveryAddress": true,
+        "deliveryAddress": {
+          "honorific": "string",
+          "name": "string",
+          "department": "string",
+          "subDepartment": "string",
+          "extraAddressLine": "string",
+          "street": "string",
+          "zipCode": "string",
+          "city": "string",
+          "state": "string",
+          "country": "string",
+          "contactPerson": "string"
+        },
+        "dates": {
+          "desiredDeliveryDate": null,
+          "confirmedDeliveryDate": null
+        }
+      },
+      "formatting": {
+        "hideLetterHead": false,
+        "hidePrices": false,
+        "hideProductNumbers": false,
+        "showLongProductNumbers": false,
+        "hideProductDescriptions": false,
+        "showOwnProductNumberInColumn": false
+      },
+      "internalComment": "string",
+      "liabilitiesInfo": "string"
+    },
+    {
+      "id": "string",
+      "date": "string",
+      "project": {
+        "id": "string"
+      },
+      "status": "string",
+      "documentNumber": "string",
+      "supplier": {
+        "id": "string",
+        "number": "string",
+        "customerNumberAtSupplier": "string",
+        "honorific": "string",
+        "name": "string",
+        "department": "string",
+        "subDepartment": "string",
+        "extraAddressLine": "string",
+        "street": "string",
+        "zipCode": "string",
+        "city": "string",
+        "state": "string",
+        "country": "string",
+        "contactPerson": "string",
+        "email": "string",
+        "telephone": "string",
+        "telefax": "string"
+      },
+      "bodyIntroduction": "string",
+      "bodyOutroduction": "string",
+      "requestForQuotation": null,
+      "suppliersOfferReference": "string",
+      "internalDesignation": "string",
+      "language": {
+        "iso2": "string"
+      },
+      "salesOrderConfirmationReference": "string",
+      "isConfirmationRequested": false,
+      "isConfirmed": false,
+      "confirmedVia": "string",
+      "financials": {
+        "paymentMethod": {
+          "id": "string"
+        },
+        "total": {
+          "currency": "string",
+          "amount": "string"
+        },
+        "paymentTerms": {
+          "paymentTargetDiscount": 0,
+          "paymentTargetDays": 0,
+          "paymentTargetDiscountDays": 0,
+          "paymentTargetDiscountAmount": 0,
+          "isPaymentTargetDiscountApplied": false
+        },
+        "costCenter": "string",
+        "tax": {
+          "taxation": "string",
+          "vatId": "string",
+          "taxDisplay": "string"
+        }
+      },
+      "delivery": {
+        "deliveryTerms": null,
+        "hasDifferentDeliveryAddress": true,
+        "deliveryAddress": {
+          "honorific": "string",
+          "name": "string",
+          "department": "string",
+          "subDepartment": "string",
+          "extraAddressLine": "string",
+          "street": "string",
+          "zipCode": "string",
+          "city": "string",
+          "state": "string",
+          "country": "string",
+          "contactPerson": "string"
+        },
+        "dates": {
+          "desiredDeliveryDate": null,
+          "confirmedDeliveryDate": null
+        }
+      },
+      "formatting": {
+        "hideLetterHead": false,
+        "hidePrices": false,
+        "hideProductNumbers": false,
+        "showLongProductNumbers": false,
+        "hideProductDescriptions": false,
+        "showOwnProductNumberInColumn": false
+      },
+      "internalComment": "string",
+      "liabilitiesInfo": "string"
+    },
+    {
+      "id": "string",
+      "date": "string",
+      "project": {
+        "id": "string"
+      },
+      "status": "string",
+      "documentNumber": "string",
+      "supplier": {
+        "id": "string",
+        "number": "string",
+        "customerNumberAtSupplier": "string",
+        "honorific": "string",
+        "name": "string",
+        "department": "string",
+        "subDepartment": "string",
+        "extraAddressLine": "string",
+        "street": "string",
+        "zipCode": "string",
+        "city": "string",
+        "state": "string",
+        "country": "string",
+        "contactPerson": "string",
+        "email": "string",
+        "telephone": "string",
+        "telefax": "string"
+      },
+      "bodyIntroduction": "string",
+      "bodyOutroduction": "string",
+      "requestForQuotation": null,
+      "suppliersOfferReference": "string",
+      "internalDesignation": "string",
+      "language": {
+        "iso2": "string"
+      },
+      "salesOrderConfirmationReference": "string",
+      "isConfirmationRequested": false,
+      "isConfirmed": true,
+      "confirmedVia": "string",
+      "financials": {
+        "paymentMethod": {
+          "id": "string"
+        },
+        "total": {
+          "currency": "string",
+          "amount": "string"
+        },
+        "paymentTerms": {
+          "paymentTargetDiscount": 0,
+          "paymentTargetDays": 0,
+          "paymentTargetDiscountDays": 0,
+          "paymentTargetDiscountAmount": 0,
+          "isPaymentTargetDiscountApplied": false
+        },
+        "costCenter": "string",
+        "tax": {
+          "taxation": "string",
+          "vatId": "string",
+          "taxDisplay": "string"
+        }
+      },
+      "delivery": {
+        "deliveryTerms": null,
+        "hasDifferentDeliveryAddress": false,
+        "deliveryAddress": {
+          "honorific": "string",
+          "name": "string",
+          "department": "string",
+          "subDepartment": "string",
+          "extraAddressLine": "string",
+          "street": "string",
+          "zipCode": "string",
+          "city": "string",
+          "state": "string",
+          "country": "string",
+          "contactPerson": "string"
+        },
+        "dates": {
+          "desiredDeliveryDate": null,
+          "confirmedDeliveryDate": null
+        }
+      },
+      "formatting": {
+        "hideLetterHead": false,
+        "hidePrices": false,
+        "hideProductNumbers": false,
+        "showLongProductNumbers": false,
+        "hideProductDescriptions": false,
+        "showOwnProductNumberInColumn": false
+      },
+      "internalComment": "string",
+      "liabilitiesInfo": "string"
+    },
+    {
+      "id": "string",
+      "date": "string",
+      "project": {
+        "id": "string"
+      },
+      "status": "string",
+      "documentNumber": "string",
+      "supplier": {
+        "id": "string",
+        "number": "string",
+        "customerNumberAtSupplier": "string",
+        "honorific": "string",
+        "name": "string",
+        "department": "string",
+        "subDepartment": "string",
+        "extraAddressLine": "string",
+        "street": "string",
+        "zipCode": "string",
+        "city": "string",
+        "state": "string",
+        "country": "string",
+        "contactPerson": "string",
+        "email": "string",
+        "telephone": "string",
+        "telefax": "string"
+      },
+      "bodyIntroduction": "string",
+      "bodyOutroduction": "string",
+      "requestForQuotation": null,
+      "suppliersOfferReference": "string",
+      "internalDesignation": "string",
+      "language": {
+        "iso2": "string"
+      },
+      "salesOrderConfirmationReference": "string",
+      "isConfirmationRequested": false,
+      "isConfirmed": false,
+      "confirmedVia": "string",
+      "financials": {
+        "paymentMethod": {
+          "id": "string"
+        },
+        "total": {
+          "currency": "string",
+          "amount": "string"
+        },
+        "paymentTerms": {
+          "paymentTargetDiscount": 0,
+          "paymentTargetDays": 0,
+          "paymentTargetDiscountDays": 0,
+          "paymentTargetDiscountAmount": 0,
+          "isPaymentTargetDiscountApplied": true
+        },
+        "costCenter": "string",
+        "tax": {
+          "taxation": "string",
+          "vatId": "string",
+          "taxDisplay": "string"
+        }
+      },
+      "delivery": {
+        "deliveryTerms": null,
+        "hasDifferentDeliveryAddress": false,
+        "deliveryAddress": {
+          "honorific": "string",
+          "name": "string",
+          "department": "string",
+          "subDepartment": "string",
+          "extraAddressLine": "string",
+          "street": "string",
+          "zipCode": "string",
+          "city": "string",
+          "state": "string",
+          "country": "string",
+          "contactPerson": "string"
+        },
+        "dates": {
+          "desiredDeliveryDate": null,
+          "confirmedDeliveryDate": null
+        }
+      },
+      "formatting": {
+        "hideLetterHead": false,
+        "hidePrices": false,
+        "hideProductNumbers": false,
+        "showLongProductNumbers": false,
+        "hideProductDescriptions": false,
+        "showOwnProductNumberInColumn": false
+      },
+      "internalComment": "string",
+      "liabilitiesInfo": "string"
+    },
+    {
+      "id": "string",
+      "date": "string",
+      "project": {
+        "id": "string"
+      },
+      "status": "string",
+      "documentNumber": "string",
+      "supplier": {
+        "id": "string",
+        "number": "string",
+        "customerNumberAtSupplier": "string",
+        "honorific": "string",
+        "name": "string",
+        "department": "string",
+        "subDepartment": "string",
+        "extraAddressLine": "string",
+        "street": "string",
+        "zipCode": "string",
+        "city": "string",
+        "state": "string",
+        "country": "string",
+        "contactPerson": "string",
+        "email": "string",
+        "telephone": "string",
+        "telefax": "string"
+      },
+      "bodyIntroduction": "string",
+      "bodyOutroduction": "string",
+      "requestForQuotation": null,
+      "suppliersOfferReference": "string",
+      "internalDesignation": "string",
+      "language": {
+        "iso2": "string"
+      },
+      "salesOrderConfirmationReference": "string",
+      "isConfirmationRequested": false,
+      "isConfirmed": false,
+      "confirmedVia": "string",
+      "financials": {
+        "paymentMethod": {
+          "id": "string"
+        },
+        "total": {
+          "currency": "string",
+          "amount": "string"
+        },
+        "paymentTerms": {
+          "paymentTargetDiscount": 0,
+          "paymentTargetDays": 0,
+          "paymentTargetDiscountDays": 0,
+          "paymentTargetDiscountAmount": 0,
+          "isPaymentTargetDiscountApplied": false
+        },
+        "costCenter": "string",
+        "tax": {
+          "taxation": "string",
+          "vatId": "string",
+          "taxDisplay": "string"
+        }
+      },
+      "delivery": {
+        "deliveryTerms": null,
+        "hasDifferentDeliveryAddress": false,
+        "deliveryAddress": {
+          "honorific": "string",
+          "name": "string",
+          "department": "string",
+          "subDepartment": "string",
+          "extraAddressLine": "string",
+          "street": "string",
+          "zipCode": "string",
+          "city": "string",
+          "state": "string",
+          "country": "string",
+          "contactPerson": "string"
+        },
+        "dates": {
+          "desiredDeliveryDate": null,
+          "confirmedDeliveryDate": null
+        }
+      },
+      "formatting": {
+        "hideLetterHead": false,
+        "hidePrices": false,
+        "hideProductNumbers": false,
+        "showLongProductNumbers": false,
+        "hideProductDescriptions": false,
+        "showOwnProductNumberInColumn": false
+      },
+      "internalComment": "string",
+      "liabilitiesInfo": "string"
+    },
+    {
+      "id": "string",
+      "date": "string",
+      "project": {
+        "id": "string"
+      },
+      "status": "string",
+      "documentNumber": "string",
+      "supplier": {
+        "id": "string",
+        "number": "string",
+        "customerNumberAtSupplier": "string",
+        "honorific": "string",
+        "name": "string",
+        "department": "string",
+        "subDepartment": "string",
+        "extraAddressLine": "string",
+        "street": "string",
+        "zipCode": "string",
+        "city": "string",
+        "state": "string",
+        "country": "string",
+        "contactPerson": "string",
+        "email": "string",
+        "telephone": "string",
+        "telefax": "string"
+      },
+      "bodyIntroduction": "string",
+      "bodyOutroduction": "string",
+      "requestForQuotation": null,
+      "suppliersOfferReference": "string",
+      "internalDesignation": "string",
+      "language": {
+        "iso2": "string"
+      },
+      "salesOrderConfirmationReference": "string",
+      "isConfirmationRequested": false,
+      "isConfirmed": false,
+      "confirmedVia": "string",
+      "financials": {
+        "paymentMethod": {
+          "id": "string"
+        },
+        "total": {
+          "currency": "string",
+          "amount": "string"
+        },
+        "paymentTerms": {
+          "paymentTargetDiscount": 0,
+          "paymentTargetDays": 0,
+          "paymentTargetDiscountDays": 0,
+          "paymentTargetDiscountAmount": 0,
+          "isPaymentTargetDiscountApplied": true
+        },
+        "costCenter": "string",
+        "tax": {
+          "taxation": "string",
+          "vatId": "string",
+          "taxDisplay": "string"
+        }
+      },
+      "delivery": {
+        "deliveryTerms": null,
+        "hasDifferentDeliveryAddress": true,
+        "deliveryAddress": {
+          "honorific": "string",
+          "name": "string",
+          "department": "string",
+          "subDepartment": "string",
+          "extraAddressLine": "string",
+          "street": "string",
+          "zipCode": "string",
+          "city": "string",
+          "state": "string",
+          "country": "string",
+          "contactPerson": "string"
+        },
+        "dates": {
+          "desiredDeliveryDate": null,
+          "confirmedDeliveryDate": null
+        }
+      },
+      "formatting": {
+        "hideLetterHead": false,
+        "hidePrices": false,
+        "hideProductNumbers": false,
+        "showLongProductNumbers": false,
+        "hideProductDescriptions": false,
+        "showOwnProductNumberInColumn": false
+      },
+      "internalComment": "string",
+      "liabilitiesInfo": "string"
+    },
+    {
+      "id": "string",
+      "date": "string",
+      "project": {
+        "id": "string"
+      },
+      "status": "string",
+      "documentNumber": "string",
+      "supplier": {
+        "id": "string",
+        "number": "string",
+        "customerNumberAtSupplier": "string",
+        "honorific": "string",
+        "name": "string",
+        "department": "string",
+        "subDepartment": "string",
+        "extraAddressLine": "string",
+        "street": "string",
+        "zipCode": "string",
+        "city": "string",
+        "state": "string",
+        "country": "string",
+        "contactPerson": "string",
+        "email": "string",
+        "telephone": "string",
+        "telefax": "string"
+      },
+      "bodyIntroduction": "string",
+      "bodyOutroduction": "string",
+      "requestForQuotation": null,
+      "suppliersOfferReference": "string",
+      "internalDesignation": "string",
+      "language": {
+        "iso2": "string"
+      },
+      "salesOrderConfirmationReference": "string",
+      "isConfirmationRequested": false,
+      "isConfirmed": false,
+      "confirmedVia": "string",
+      "financials": {
+        "paymentMethod": {
+          "id": "string"
+        },
+        "total": {
+          "currency": "string",
+          "amount": "string"
+        },
+        "paymentTerms": {
+          "paymentTargetDiscount": 0,
+          "paymentTargetDays": 0,
+          "paymentTargetDiscountDays": 0,
+          "paymentTargetDiscountAmount": 0,
+          "isPaymentTargetDiscountApplied": true
+        },
+        "costCenter": "string",
+        "tax": {
+          "taxation": "string",
+          "vatId": "string",
+          "taxDisplay": "string"
+        }
+      },
+      "delivery": {
+        "deliveryTerms": null,
+        "hasDifferentDeliveryAddress": true,
+        "deliveryAddress": {
+          "honorific": "string",
+          "name": "string",
+          "department": "string",
+          "subDepartment": "string",
+          "extraAddressLine": "string",
+          "street": "string",
+          "zipCode": "string",
+          "city": "string",
+          "state": "string",
+          "country": "string",
+          "contactPerson": "string"
+        },
+        "dates": {
+          "desiredDeliveryDate": null,
+          "confirmedDeliveryDate": null
+        }
+      },
+      "formatting": {
+        "hideLetterHead": false,
+        "hidePrices": false,
+        "hideProductNumbers": false,
+        "showLongProductNumbers": false,
+        "hideProductDescriptions": false,
+        "showOwnProductNumberInColumn": false
+      },
+      "internalComment": "string",
+      "liabilitiesInfo": "string"
+    },
+    {
+      "id": "string",
+      "date": "string",
+      "project": {
+        "id": "string"
+      },
+      "status": "string",
+      "documentNumber": "string",
+      "supplier": {
+        "id": "string",
+        "number": "string",
+        "customerNumberAtSupplier": "string",
+        "honorific": "string",
+        "name": "string",
+        "department": "string",
+        "subDepartment": "string",
+        "extraAddressLine": "string",
+        "street": "string",
+        "zipCode": "string",
+        "city": "string",
+        "state": "string",
+        "country": "string",
+        "contactPerson": "string",
+        "email": "string",
+        "telephone": "string",
+        "telefax": "string"
+      },
+      "bodyIntroduction": "string",
+      "bodyOutroduction": "string",
+      "requestForQuotation": null,
+      "suppliersOfferReference": "string",
+      "internalDesignation": "string",
+      "language": {
+        "iso2": "string"
+      },
+      "salesOrderConfirmationReference": "string",
+      "isConfirmationRequested": false,
+      "isConfirmed": false,
+      "confirmedVia": "string",
+      "financials": {
+        "paymentMethod": {
+          "id": "string"
+        },
+        "total": {
+          "currency": "string",
+          "amount": "string"
+        },
+        "paymentTerms": {
+          "paymentTargetDiscount": 0,
+          "paymentTargetDays": 0,
+          "paymentTargetDiscountDays": 0,
+          "paymentTargetDiscountAmount": 0,
+          "isPaymentTargetDiscountApplied": true
+        },
+        "costCenter": "string",
+        "tax": {
+          "taxation": "string",
+          "vatId": "string",
+          "taxDisplay": "string"
+        }
+      },
+      "delivery": {
+        "deliveryTerms": null,
+        "hasDifferentDeliveryAddress": true,
+        "deliveryAddress": {
+          "honorific": "string",
+          "name": "string",
+          "department": "string",
+          "subDepartment": "string",
+          "extraAddressLine": "string",
+          "street": "string",
+          "zipCode": "string",
+          "city": "string",
+          "state": "string",
+          "country": "string",
+          "contactPerson": "string"
+        },
+        "dates": {
+          "desiredDeliveryDate": null,
+          "confirmedDeliveryDate": null
+        }
+      },
+      "formatting": {
+        "hideLetterHead": false,
+        "hidePrices": false,
+        "hideProductNumbers": false,
+        "showLongProductNumbers": false,
+        "hideProductDescriptions": false,
+        "showOwnProductNumberInColumn": false
+      },
+      "internalComment": "string",
+      "liabilitiesInfo": "string"
+    }
+  ],
+  "extra": {
+    "totalCount": 0,
+    "page": {
+      "number": 0,
+      "size": 0
+    }
+  }
+}

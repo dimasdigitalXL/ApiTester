@@ -1,0 +1,18 @@
+{
+    "data": {
+        "id": "string",
+        "type": "string",
+        "general": {
+            "name": "string",
+            "address": {
+                "note": "string",
+                "street": "string",
+                "zip": "string",
+                "city": "string",
+                "state": "string",
+                "country": "string"
+            }
+        },
+        "tags": []
+    }
+}

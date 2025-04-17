@@ -1,0 +1,150 @@
+{
+    "data": {
+        "id": "string",
+        "date": "string",
+        "project": {
+            "id": "string"
+        },
+        "status": "string",
+        "documentNumber": "string",
+        "supplier": {
+            "id": "string",
+            "number": "string",
+            "customerNumberAtSupplier": "string",
+            "honorific": "string",
+            "name": "string",
+            "department": "string",
+            "subDepartment": "string",
+            "extraAddressLine": "string",
+            "street": "string",
+            "zipCode": "string",
+            "city": "string",
+            "state": "string",
+            "country": "string",
+            "contactPerson": "string",
+            "email": "string",
+            "telephone": "string",
+            "telefax": "string"
+        },
+        "bodyIntroduction": "string",
+        "bodyOutroduction": "string",
+        "requestForQuotation": null,
+        "suppliersOfferReference": "string",
+        "internalDesignation": "string",
+        "language": {
+            "iso2": "string"
+        },
+        "salesOrderConfirmationReference": "string",
+        "isConfirmationRequested": false,
+        "isConfirmed": false,
+        "confirmedVia": "string",
+        "financials": {
+            "paymentMethod": {
+                "id": "string"
+            },
+            "total": {
+                "currency": "string",
+                "amount": "string"
+            },
+            "paymentTerms": {
+                "paymentTargetDiscount": 0,
+                "paymentTargetDays": 0,
+                "paymentTargetDiscountDays": 0,
+                "paymentTargetDiscountAmount": 0,
+                "isPaymentTargetDiscountApplied": false
+            },
+            "costCenter": "string",
+            "tax": {
+                "taxation": "string",
+                "vatId": "string",
+                "taxDisplay": "string"
+            }
+        },
+        "delivery": {
+            "deliveryTerms": null,
+            "hasDifferentDeliveryAddress": false,
+            "deliveryAddress": {
+                "honorific": "string",
+                "name": "string",
+                "department": "string",
+                "subDepartment": "string",
+                "extraAddressLine": "string",
+                "street": "string",
+                "zipCode": "string",
+                "city": "string",
+                "state": "string",
+                "country": "string",
+                "contactPerson": "string"
+            },
+            "dates": {
+                "desiredDeliveryDate": null,
+                "confirmedDeliveryDate": null
+            }
+        },
+        "formatting": {
+            "hideLetterHead": false,
+            "hidePrices": false,
+            "hideProductNumbers": false,
+            "showLongProductNumbers": false,
+            "hideProductDescriptions": false,
+            "showOwnProductNumberInColumn": false
+        },
+        "internalComment": "string",
+        "liabilitiesInfo": "string",
+        "positions": [
+            {
+                "id": "string",
+                "project": {
+                    "id": "string"
+                },
+                "product": {
+                    "id": "string"
+                },
+                "name": "string",
+                "description": "string",
+                "quantity": 0,
+                "delivered": 0,
+                "salesOrderPosition": null,
+                "price": {
+                    "amount": "string",
+                    "currency": "string"
+                },
+                "tax": {
+                    "vatCategory": "string",
+                    "taxText": "string",
+                    "rate": 0
+                }
+            },
+            {
+                "id": "string",
+                "project": {
+                    "id": "string"
+                },
+                "product": {
+                    "id": "string"
+                },
+                "name": "string",
+                "description": "string",
+                "quantity": 0,
+                "delivered": 0,
+                "salesOrderPosition": null,
+                "price": {
+                    "amount": "string",
+                    "currency": "string"
+                },
+                "tax": {
+                    "vatCategory": "string",
+                    "taxText": "string",
+                    "rate": 0
+                }
+            }
+        ],
+        "log": {
+            "createdAt": "string",
+            "isSent": false,
+            "sentAt": null,
+            "sentBy": "string",
+            "sentVia": "string"
+        }
+    }
+}

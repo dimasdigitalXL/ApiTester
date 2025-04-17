@@ -1,4 +1,4 @@
-// core/slack/handlePinSubmission.js
+// api-tester/core/slack/handlePinSubmission.js
 
 const fs = require("fs-extra");
 const path = require("path");
@@ -9,76 +9,81 @@ const { getLatestUpdatedFile } = require("../structureAnalyzer");
 const { getDisplayName } = require("./getDisplayName");
 
 const approvalsFilePath = resolveProjectPath("pending-approvals.json");
-const configPath = resolveProjectPath("config.json");
-const expectedDir = resolveProjectPath("expected");
-const GLOBAL_PIN = process.env.SLACK_APPROVE_PIN || "1234";
+const configPath        = resolveProjectPath("config.json");
+const expectedDir       = resolveProjectPath("expected");
+const GLOBAL_PIN        = process.env.SLACK_APPROVE_PIN || "1234";
 
 /**
- * Behandelt die eingereichte PIN aus dem Slack Modal.
- * @param {object} payload - Slack payload aus view_submission
- * @returns {object|null} response für Slack, falls Fehler
+ * Behandelt die PIN aus dem Slack Modal und updated die ursprüngliche Nachricht.
  */
 async function handlePinSubmission(payload) {
   const pin = payload.view.state.values.pin_input.pin.value;
-  const metadata = JSON.parse(payload.view.private_metadata);
-  const { endpoint, original_ts, channel } = metadata;
+  const { endpoint, original_ts, channel } = JSON.parse(payload.view.private_metadata);
+  const { token } = getSlackWorkspaces()[0] || {};
+  const userName = await getDisplayName(payload.user.id, token);
 
-  const token = getSlackWorkspaces()[0]?.token;
-  const userId = payload.user?.id;
-  const userName = await getDisplayName(userId, token);
-  const approvals = await fs.readJson(approvalsFilePath);
-
-  // Falsche PIN
+  // ❌ Falsche PIN
   if (pin !== GLOBAL_PIN) {
-    console.log("❌ Falsche PIN von:", userName);
     return {
       response_action: "errors",
-      errors: {
-        pin_input: "❌ Falsche PIN. Bitte erneut versuchen."
-      }
+      errors: { pin_input: "❌ Falsche PIN. Bitte erneut versuchen." }
     };
   }
 
   console.log(`✅ ${userName} hat ${endpoint} freigegeben (PIN korrekt)`);
 
-  // config.json anpassen
-  const updatedFileName = getLatestUpdatedFile(endpoint);
-  if (updatedFileName) {
-    const updatedFilePath = path.join(expectedDir, updatedFileName);
-    if (await fs.exists(configPath)) {
-      const config = await fs.readJson(configPath);
-      const found = config.endpoints.find(e => e.name.replace(/\s+/g, "_") === endpoint);
-      if (found) {
-        found.expectedStructure = path
-          .relative(resolveProjectPath(), updatedFilePath)
-          .replace(/\\/g, "/");
-        await fs.writeJson(configPath, config, { spaces: 2 });
-        console.log(`🛠️ config.json aktualisiert auf ${found.expectedStructure}`);
-      }
+  // 🛠️ Optional: config.json aktualisieren
+  const updatedFile = getLatestUpdatedFile(endpoint);
+  if (updatedFile && await fs.pathExists(configPath)) {
+    const cfg   = await fs.readJson(configPath);
+    const entry = cfg.endpoints.find(e => e.name.replace(/\s+/g, "_") === endpoint);
+    if (entry) {
+      entry.expectedStructure = path
+        .relative(resolveProjectPath(), path.join(expectedDir, updatedFile))
+        .replace(/\\/g, "/");
+      await fs.writeJson(configPath, cfg, { spaces: 2 });
+      console.log(`🛠️ config.json aktualisiert: ${entry.expectedStructure}`);
     }
   }
 
-  // Zustimmung vermerken
+  // ✅ Zustimmung vermerken
+  const approvals = await fs.readJson(approvalsFilePath);
   approvals[endpoint] = "waiting";
   await fs.writeJson(approvalsFilePath, approvals, { spaces: 2 });
 
-  // Originalnachricht aktualisieren
+  // 📤 Nachricht aktualisieren: vollständigen Report + NEU-Block
   if (channel && original_ts) {
+    // Lade gecachte Blöcke aus pending-approvals.json
+    const { __rawBlocks = {} } = await fs.readJson(approvalsFilePath);
+    const key            = endpoint.replace(/\s+/g, "_");
+    const originalBlocks = __rawBlocks[key] || [];
+
+    // Entferne Button-Block
+    const cleanedBlocks = originalBlocks.filter(b => b.block_id !== "decision_buttons");
+
+    // Erzeuge NEU-Block mit aktuellem Zeitstempel
+    const nowTime = new Date().toLocaleTimeString("de-DE");
+    const newSectionBlocks = [
+      { type: "divider" },
+      { type: "section", text: { type: "mrkdwn", text: "*NEU*" } },
+      { type: "context", elements: [{ type: "mrkdwn", text: nowTime }] },
+      { type: "section", text: { type: "mrkdwn", text: `✅ *Freigegeben durch ${userName}*` } }
+    ];
+
+    // Zusammensetzen aller Blöcke
+    const updatedBlocks = [
+      ...cleanedBlocks,
+      ...newSectionBlocks
+    ];
+
+    // Ein Update-Call mit vollständigem Block-Array
     await axios.post(
       "https://slack.com/api/chat.update",
       {
         channel,
         ts: original_ts,
         text: `✅ ${userName} hat *${endpoint}* freigegeben.`,
-        blocks: [
-          {
-            type: "section",
-            text: {
-              type: "mrkdwn",
-              text: `✅ *Freigegeben durch ${userName}*`
-            }
-          }
-        ]
+        blocks: updatedBlocks
       },
       {
         headers: {
@@ -88,10 +93,10 @@ async function handlePinSubmission(payload) {
       }
     );
 
-    console.log("📤 Originalnachricht aktualisiert (Buttons entfernt)");
+    console.log("📤 Slack-Nachricht aktualisiert: Report + NEU-Block");
   }
 
-  return null; // keine Fehler
+  return null;
 }
 
 module.exports = { handlePinSubmission };

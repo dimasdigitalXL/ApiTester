@@ -19,7 +19,15 @@ const GLOBAL_PIN        = process.env.SLACK_APPROVE_PIN || "1234";
 async function handlePinSubmission(payload) {
   const pin = payload.view.state.values.pin_input.pin.value;
   const { endpoint, original_ts, channel } = JSON.parse(payload.view.private_metadata);
-  const { token } = getSlackWorkspaces()[0] || {};
+
+  // Wähle das richtige Workspace-Token anhand des Channels
+  const workspaces = getSlackWorkspaces();
+  const workspace  = workspaces.find(ws => ws.channel === channel);
+  if (!workspace) {
+    console.error("🚨 Kein Workspace gefunden für Channel:", channel);
+    return { response_action: "errors", errors: { pin_input: "Interner Fehler: Workspace nicht gefunden." } };
+  }
+  const token = workspace.token;
   const userName = await getDisplayName(payload.user.id, token);
 
   // ❌ Falsche PIN
@@ -51,21 +59,29 @@ async function handlePinSubmission(payload) {
   approvals[endpoint] = "waiting";
   await fs.writeJson(approvalsFilePath, approvals, { spaces: 2 });
 
-  // 📤 Nachricht aktualisieren: vollständigen Report + NEU-Block
+  // 📤 Slack-Nachricht aktualisieren
   if (channel && original_ts) {
     // Lade gecachte Blöcke aus pending-approvals.json
     const { __rawBlocks = {} } = await fs.readJson(approvalsFilePath);
     const key            = endpoint.replace(/\s+/g, "_");
     const originalBlocks = __rawBlocks[key] || [];
 
-    // Entferne Button-Block
-    const cleanedBlocks = originalBlocks.filter(b => b.block_id !== "decision_buttons");
+    // Button-Block entfernen
+    let cleanedBlocks = originalBlocks.filter(b => b.block_id !== "decision_buttons");
 
-    // Erzeuge NEU-Block mit aktuellem Zeitstempel
+    // Falls der letzte Block ein Divider ist, entferne ihn
+    if (
+      cleanedBlocks.length > 0 &&
+      cleanedBlocks[cleanedBlocks.length - 1].type === "divider"
+    ) {
+      cleanedBlocks.pop();
+    }
+
+    // AKTUALISIERT-Block mit Zeitstempel
     const nowTime = new Date().toLocaleTimeString("de-DE");
     const newSectionBlocks = [
       { type: "divider" },
-      { type: "section", text: { type: "mrkdwn", text: "*NEU*" } },
+      { type: "section", text: { type: "mrkdwn", text: "_AKTUALISIERT_" } },
       { type: "context", elements: [{ type: "mrkdwn", text: nowTime }] },
       { type: "section", text: { type: "mrkdwn", text: `✅ *Freigegeben durch ${userName}*` } }
     ];
@@ -76,7 +92,6 @@ async function handlePinSubmission(payload) {
       ...newSectionBlocks
     ];
 
-    // Ein Update-Call mit vollständigem Block-Array
     await axios.post(
       "https://slack.com/api/chat.update",
       {
@@ -93,7 +108,7 @@ async function handlePinSubmission(payload) {
       }
     );
 
-    console.log("📤 Slack-Nachricht aktualisiert: Report + NEU-Block");
+    console.log("📤 Slack-Nachricht aktualisiert: Report + AKTUALISIERT-Block");
   }
 
   return null;

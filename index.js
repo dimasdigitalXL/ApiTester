@@ -1,36 +1,24 @@
-// index.js (mit resetApprovals vor dem Teststart und Cron-Handling)
+// index.js
+
 require("dotenv").config();
 
-// Cron-Start-Nachricht (frühzeitig behandeln und beenden)
-if (process.argv.includes("--cron")) {
-  const { sendToAllWorkspaces } = require("./core/slack/slackReporter/sendSlackReport");
-  (async () => {
-    await sendToAllWorkspaces({
-      text: `⏰ *API-Tester Cronjob* wurde um ${new Date().toLocaleTimeString("de-DE")} automatisch gestartet.`
-    });
-    process.exit(0);
-  })();
-  return;
-}
-
-// Normale Testausführung
 const fs = require("fs-extra");
-const path = require("path");
+const { resolveProjectPath } = require("./core/utils");
 const { resetApprovals } = require("./core/resetApprovals");
 const { loadConfig } = require("./core/configLoader");
 const { runSingleEndpoint } = require("./core/endpointRunner");
-const { sendSlackReport } = require("./core/slack/slackReporter/sendSlackReport");
+const { sendSlackReport, sendToAllWorkspaces } = require("./core/slack/slackReporter/sendSlackReport");
 const { validateConfig } = require("./core/validateConfig");
 
 /**
  * Führt alle Endpunkte aus der Konfiguration nacheinander aus
- * Gibt die gesammelten Testergebnisse und erkannte Versionsänderungen zurück
+ * und sammelt Testergebnisse sowie erkannte Versionsupdates.
  */
 async function prepareAndRunAllEndpoints(config) {
   const versionUpdates = [];
   const testResults = [];
 
-  console.log(`🚀 Starte alle API-Tests um ${new Date().toISOString()}`);
+  console.log(`🚀 Starte alle API-Tests um ${new Date().toISOString()}\n`);
 
   for (const endpoint of config.endpoints) {
     console.log("\n---- Neue API-Test-Abfrage ----");
@@ -42,33 +30,35 @@ async function prepareAndRunAllEndpoints(config) {
 }
 
 /**
- * Hauptfunktion: bereitet alle Tests vor und startet sie
+ * Hauptfunktion: lädt Config, validiert, resetet Approvals
+ * und führt entweder einen Einzel- oder Komplettlauf aus.
  */
 async function main() {
   const config = await loadConfig();
   validateConfig(config.endpoints);
 
-  // 🧹 Setze alle genehmigten Felder wieder auf "waiting"
+  // Reset aller genehmigten Felder auf "waiting", Block-Cache bleibt erhalten
   await resetApprovals();
 
-  // CLI-Parameter parsen
   const args = process.argv.slice(2);
   const selectedApi = args[0]?.startsWith("--") ? null : args[0];
   const dynamicParams = {};
   args.forEach(arg => {
     const [key, value] = arg.split("=");
-    if (key.startsWith("--")) dynamicParams[key.replace("--", "")] = value;
+    if (key.startsWith("--")) {
+      dynamicParams[key.replace("--", "")] = value;
+    }
   });
 
   let testResults = [];
   let versionUpdates = [];
 
   if (selectedApi) {
-    console.log(`🚀 Starte gezielten API-Test für: ${selectedApi}`);
+    console.log(`🚀 Starte gezielten API-Test für: ${selectedApi}\n`);
     const endpoint = config.endpoints.find(ep => ep.name === selectedApi);
     if (!endpoint) {
       console.error(`❌ Kein API-Call mit dem Namen "${selectedApi}" gefunden.`);
-      process.exit(1);
+      return;
     }
     const result = await runSingleEndpoint(endpoint, config, versionUpdates, dynamicParams);
     if (result) testResults.push(result);
@@ -80,13 +70,11 @@ async function main() {
 
   console.log("\n✅ Alle Tests abgeschlossen.\n");
 
-  // Wenn Version-Updates vorliegen, config.json aktualisieren
   if (versionUpdates.length > 0) {
-    await fs.writeJson(path.resolve(__dirname, "config.json"), config, { spaces: 2 });
-    console.log("🔄 API-Versionen in der Konfigurationsdatei aktualisiert.");
+    await fs.writeJson(resolveProjectPath("config.json"), config, { spaces: 2 });
+    console.log("🔄 API-Versionen in config.json aktualisiert.\n");
   }
 
-  // Slack-Benachrichtigung
   if (!process.env.DISABLE_SLACK) {
     await sendSlackReport(testResults, versionUpdates);
   } else {
@@ -94,9 +82,27 @@ async function main() {
   }
 }
 
-if (require.main === module) {
-  main().catch(err => {
-    console.error(err);
-    process.exit(1);
+/**
+ * Cron-Run: Notifikation, Tests + Report, dann Exit
+ */
+async function cronRun() {
+  // 1) Cron-Start-Notification an alle Workspaces
+  await sendToAllWorkspaces({
+    text: `⏰ *API-Tester Cronjob* wurde um ${new Date().toLocaleTimeString("de-DE")} automatisch gestartet.`
   });
+
+  // 2) Tests und Report
+  await main();
+
+  // 3) Prozess sauber beenden
+  process.exit(0);
+}
+
+// Entry Point
+if (require.main === module) {
+  if (process.argv.includes("--cron")) {
+    cronRun();
+  } else {
+    main();
+  }
 }

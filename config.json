@@ -304,6 +304,18 @@
       },
       "requiresId": true,
       "expectedStructure": "expected/Get_View_Parts.json"
+    },
+    {
+      "name": "Get View Address",
+      "url": "https://${XENTRAL_ID}.xentral.biz/api/v2/customers/{customerId}/addresses/{id}",
+      "method": "GET",
+      "headers": {
+        "Accept": "application/json",
+        "Authorization": "Bearer ${BEARER_TOKEN}",
+        "Content-Type": "application/json"
+      },
+      "requiresId": true,
+      "expectedStructure": "expected/Get_View_Address.json"
     }
   ]
 }

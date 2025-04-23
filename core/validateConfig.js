@@ -34,7 +34,7 @@ function validateConfig(endpoints) {
   });
 
   if (!hasWarnings) {
-    console.log("✅ Alle Referenzen in config.json vorhanden.");
+    console.log("\n✅ Alle Referenzen in config.json vorhanden.\n");
   }
 }
 

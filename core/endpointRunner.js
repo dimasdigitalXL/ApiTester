@@ -1,86 +1,129 @@
-// endpointRunner.js (angepasst auf Zwei-Schritt-Logik)
+// api-tester/core/endpointRunner.js
 
-const path = require("path");
-const { promptUserForId } = require("./promptHelper"); // Fragt Benutzer nach einer ID, falls notwendig
-const { checkAndUpdateApiVersion } = require("./versionChecker"); // Prüft, ob eine neuere API-Version existiert
-const { testEndpoint } = require("./apiCaller"); // Führt den tatsächlichen API-Test aus
+const { promptUserForId } = require("./promptHelper");
+const { checkAndUpdateApiVersion } = require("./versionChecker");
+const { testEndpoint } = require("./apiCaller");
 
-/**
- * Entfernt das data-Präfix aus einem Feldpfad für saubere Konsolenanzeige
- * z.B. data.positions.tax.rate → positions.tax.rate
- */
+// Lade alle Default‐IDs (Zahl/String oder Objekt)
+const defaultIds = require("../default-ids.json");
+
+/** Entfernt das data.-Präfix für saubere Logs */
 function stripDataPrefix(str) {
   return str.replace(/^data\[0\]\./, "").replace(/^data\./, "");
 }
 
-/**
- * Führt einen einzelnen API-Test aus
- * - Prüft, ob eine neue Version vorhanden ist (Zwei-Schritt-Logik)
- * - Führt im zweiten Schritt den Strukturvergleich und Test durch
- */
-async function runSingleEndpoint(endpoint, config, versionUpdates, dynamicParamsOverride = {}) {
-  // Falls der Endpunkt eine ID erfordert, prüfe, ob sie übergeben wurde oder in default-ids.json vorhanden ist
-  if (endpoint.requiresId && !dynamicParamsOverride.id) {
-    const defaultIds = require("../default-ids.json");
-    const defaultId = defaultIds[endpoint.name];
-
-    if (defaultId) {
-      console.log(`🟢 Verwende gespeicherte ID für "${endpoint.name}": ${defaultId}`);
-      dynamicParamsOverride.id = defaultId;
-      console.log(`🚀 Starte gezielten API-Test für: ${endpoint.name} / ${defaultId}`);
-    } else {
-      const answer = await promptUserForId(`🟡 Bitte ID für "${endpoint.name}" angeben: `);
-      if (!answer) {
-        console.warn(`⚠️ Kein Wert eingegeben. Endpunkt "${endpoint.name}" wird übersprungen.`);
-        return null;
-      }
-      dynamicParamsOverride.id = answer;
-      console.log(`🚀 Starte gezielten API-Test für: ${endpoint.name} / ${answer}`);
+async function runSingleEndpoint(
+  endpoint,
+  config,
+  versionUpdates,
+  dynamicParamsOverride = {}
+) {
+  // Multi-/Single-ID-Handling 
+  if (endpoint.requiresId) {
+    // 1.1) Default-Eintrag nach Name oder Unterstrich-Key
+    let defEntry = defaultIds[endpoint.name];
+    if (defEntry === undefined) {
+      defEntry = defaultIds[endpoint.name.replace(/\s+/g, "_")];
     }
+    console.log("🔍 default-ids.json für", endpoint.name, "→", defEntry);
+
+    // 1.2) Params ermitteln: Objekt → alle Keys, sonst nur "id"
+    const isObject = defEntry !== null && typeof defEntry === "object";
+    const params = isObject ? Object.keys(defEntry) : ["id"];
+
+    // 1.3) Für jeden Param:
+    for (const key of params) {
+      if (!dynamicParamsOverride[key]) {
+        // → Primitive Default (Zahl/String) befüllen
+        if (!isObject && key === "id" && defEntry != null) {
+          dynamicParamsOverride.id = String(defEntry);
+          console.log(
+            `🟢 Verwende gespeicherte id für "${endpoint.name}": ${defEntry}`
+          );
+        }
+        // → Objekt-Default für mehrfache Params
+        else if (
+          isObject &&
+          defEntry[key] != null
+        ) {
+          dynamicParamsOverride[key] = String(defEntry[key]);
+          console.log(
+            `🟢 Verwende gespeicherte ${key} für "${endpoint.name}": ${defEntry[key]}`
+          );
+        }
+        // → sonst CLI-Abfrage
+        else {
+          const answer = await promptUserForId(
+            `🟡 Bitte Wert für "${key}" bei "${endpoint.name}" angeben: `
+          );
+          if (!answer) {
+            console.warn(
+              `⚠️ Kein Wert für ${key} eingegeben. Überspringe "${endpoint.name}".`
+            );
+            return null;
+          }
+          dynamicParamsOverride[key] = answer;
+          console.log(
+            `🟢 Nutzer-Eingabe ${key} für "${endpoint.name}": ${answer}`
+          );
+        }
+      }
+    }
+
+    console.log(
+      `🚀 Starte Test für "${endpoint.name}" mit Parametern: ` +
+        params.map((k) => `${k}=${dynamicParamsOverride[k]}`).join(", ")
+    );
   }
 
-  // Prüfe, ob es eine neue API-Version für den Endpunkt gibt
-  const updatedEndpoint = await checkAndUpdateApiVersion(endpoint, dynamicParamsOverride);
-
-  // Wenn eine neue Version erkannt wurde:
+  // Versionserkennung 
+  const updatedEndpoint = await checkAndUpdateApiVersion(
+    endpoint,
+    dynamicParamsOverride
+  );
   if (updatedEndpoint.versionChanged) {
     versionUpdates.push({
       name: endpoint.name,
       url: updatedEndpoint.url,
-      expectedStructure: endpoint.expectedStructure
+      expectedStructure: endpoint.expectedStructure,
     });
-
-    // Speichere die aktualisierte URL im config-Objekt
-    const index = config.endpoints.findIndex(ep => ep.name === endpoint.name);
-    if (index !== -1) config.endpoints[index] = updatedEndpoint;
-
-    // → Breche hier ab: Test wird im **nächsten Durchlauf** durchgeführt (2-Schritt-Logik)
-    return null;
+    // Config updaten
+    const idx = config.endpoints.findIndex((e) => e.name === endpoint.name);
+    if (idx !== -1) config.endpoints[idx] = updatedEndpoint;
+    console.log(
+      `🔄 Neue API-Version für "${endpoint.name}": ${updatedEndpoint.url}`
+    );
+    return null; // 2-Schritt-Logik: hier abbrechen
   }
 
-  // Jetzt: Strukturvergleich und Datentypprüfung mit der (ggf. aktualisierten) API-Version
-  const result = await testEndpoint(updatedEndpoint, dynamicParamsOverride, config);
-
+  // Struktur- & Typvergleich 
+  const result = await testEndpoint(
+    updatedEndpoint,
+    dynamicParamsOverride,
+    config
+  );
   const { missingFields, extraFields, typeMismatches } = result;
 
-  // Anzeige der fehlenden Felder
   if (missingFields.length > 0) {
-    const cleaned = missingFields.map(stripDataPrefix);
-    console.log(`❌ Fehlende Felder: ${cleaned.join(", ")}`);
+    console.log(
+      `❌ Fehlende Felder: ${missingFields
+        .map(stripDataPrefix)
+        .join(", ")}`
+    );
   }
-
-  // Anzeige zusätzlicher (unerwarteter) Felder
   if (extraFields.length > 0) {
-    const cleaned = extraFields.map(stripDataPrefix);
-    console.log(`➕ Zusätzliche Felder: ${cleaned.join(", ")}`);
+    console.log(
+      `➕ Zusätzliche Felder: ${extraFields
+        .map(stripDataPrefix)
+        .join(", ")}`
+    );
   }
-
-  // Anzeige von Typabweichungen
   if (typeMismatches.length > 0) {
     console.log("⚠️ Typabweichungen:");
-    typeMismatches.forEach(tm => {
-      const path = stripDataPrefix(tm.path);
-      console.log(`• ${path}: erwartet ${tm.expected}, erhalten ${tm.actual}`);
+    typeMismatches.forEach((tm) => {
+      console.log(
+        `• ${stripDataPrefix(tm.path)}: erwartet ${tm.expected}, erhalten ${tm.actual}`
+      );
     });
   }
 

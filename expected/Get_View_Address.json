@@ -1,0 +1,25 @@
+{
+    "data": {
+        "id": "string",
+        "type": "string",
+        "name": "string",
+        "street": "string",
+        "zip": "string",
+        "city": "string",
+        "country": "string",
+        "state": "string",
+        "addressSupplement": "string",
+        "department": "string",
+        "subDepartment": "string",
+        "contactDetails": {
+            "email": "string",
+            "phone": "string",
+            "gln": null
+        },
+        "deliveryDetails": null
+    },
+    "links": {
+        "self": "string",
+        "customer": "string"
+    }
+}

@@ -78,7 +78,7 @@ async function main() {
   if (!process.env.DISABLE_SLACK) {
     await sendSlackReport(testResults, versionUpdates);
   } else {
-    console.log("🔕 Slack-Benachrichtigung ist deaktiviert (DISABLE_SLACK=true).");
+    console.log("🔕 Slack-Benachrichtigung ist deaktiviert (DISABLE_SLACK=true).\n");
   }
 }
 

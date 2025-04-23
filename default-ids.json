@@ -15,6 +15,10 @@
     "Get View Media": "1",
     "Get View Purchase Prices": "1",
     "Get View Sales Prices": "1",
-    "Get View Parts": "1"
+    "Get View Parts": "1",
+    "Get View Address": { 
+      "customerId": "2",
+      "id": "masterdata"
+    }
   }
   

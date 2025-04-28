@@ -15,7 +15,7 @@
         "page[number]": 1,
         "page[size]": 50
       },
-      "expectedStructure": "expected/Get_List_Sales_Orders_updated.json",
+      "expectedStructure": "expected/Get_List_Sales_Orders_updated_v1.json",
       "requiresId": false
     },
     {
@@ -28,7 +28,7 @@
       },
       "query": {},
       "requiresId": true,
-      "expectedStructure": "expected/Get_View_Sales_Order_updated.json"
+      "expectedStructure": "expected/Get_View_Sales_Order_updated_v1.json"
     },
     {
       "name": "Create New Product",
@@ -183,7 +183,7 @@
         "Accept": "application/json",
         "Authorization": "Bearer ${BEARER_TOKEN}"
       },
-      "expectedStructure": "expected/Get_List_Projects.json",
+      "expectedStructure": "expected/Get_List_Projects_updated.json",
       "requiresId": false
     },
     {

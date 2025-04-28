@@ -1,6 +1,6 @@
 // index.js
 
-require("dotenv").config();
+require('dotenv').config();
 
 const fs = require("fs-extra");
 const { resolveProjectPath } = require("./core/utils");
@@ -11,9 +11,14 @@ const { sendSlackReport, sendToAllWorkspaces } = require("./core/slack/slackRepo
 const { validateConfig } = require("./core/validateConfig");
 
 /**
- * Führt alle Endpunkte aus der Konfiguration nacheinander aus
- * und sammelt Testergebnisse sowie erkannte Versionsupdates.
+ * Wandle "true"/"false" aus der ENV in echte Booleans um.
+ * Jeder nicht-leere String ist sonst truthy, selbst "false".
  */
+const disableSlack = (process.env.DISABLE_SLACK || "")
+  .toLowerCase() === "true";
+const slackDryRun = (process.env.SLACK_DRY_RUN || "")
+  .toLowerCase() === "true";
+
 async function prepareAndRunAllEndpoints(config) {
   const versionUpdates = [];
   const testResults = [];
@@ -29,10 +34,6 @@ async function prepareAndRunAllEndpoints(config) {
   return { testResults, versionUpdates };
 }
 
-/**
- * Hauptfunktion: lädt Config, validiert, resetet Approvals
- * und führt entweder einen Einzel- oder Komplettlauf aus.
- */
 async function main() {
   const config = await loadConfig();
   validateConfig(config.endpoints);
@@ -75,16 +76,14 @@ async function main() {
     console.log("🔄 API-Versionen in config.json aktualisiert.\n");
   }
 
-  if (!process.env.DISABLE_SLACK) {
-    await sendSlackReport(testResults, versionUpdates);
+  // **Hier wird nun disableSlack verwendet**:
+  if (!disableSlack) {
+    await sendSlackReport(testResults, versionUpdates, { dryRun: slackDryRun });
   } else {
-    console.log("🔕 Slack-Benachrichtigung ist deaktiviert (DISABLE_SLACK=true).\n");
+    console.log(`🔕 Slack-Benachrichtigung ist deaktiviert (DISABLE_SLACK=${process.env.DISABLE_SLACK}).\n`);
   }
 }
 
-/**
- * Cron-Run: Notifikation, Tests + Report, dann Exit
- */
 async function cronRun() {
   // 1) Cron-Start-Notification an alle Workspaces
   await sendToAllWorkspaces({

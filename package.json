@@ -15,5 +15,8 @@
     "dotenv": "^16.4.7",
     "express": "^5.1.0",
     "fs-extra": "^11.3.0"
+  },
+  "devDependencies": {
+    "mocha": "^11.1.0"
   }
 }
